@@ -1,0 +1,304 @@
+@media (max-width: 1200px) {
+/*==========================
+	Main-Banner
+============================*/
+	.main-banner .container {
+		padding:0;
+		width:100%;
+	}
+	.main-banner .banner-left{
+		padding-top:0;
+		padding-bottom:15%;
+	}
+		.main-banner .banner-left .banner-button{
+			margin-top: 10%;
+		}
+		.main-banner .banner-left .pull-right{
+			float:none !important;
+		}
+
+	.main-banner .banner-img{
+		background: url(../images/banner-img.png);
+		background-size:95%;
+		height:461px;
+		width:654px;
+		z-index: 1;
+		position: relative;
+	}
+/*==========================
+	Reason
+============================*/
+	.reason-wrapper .bg-reason-1,
+	.reason-wrapper  .bg-reason-2{
+		padding:0;
+
+	}
+	.reason-wrapper h4:not(.reason-head){
+		font-size:1.5em;
+		width:100%;
+	}
+
+/*==========================
+	Video
+============================*/
+	.home-video2 .content{
+		padding-right:0;
+	}
+
+
+}
+
+@media (max-width: 992px) {
+/*==========================
+	Main-Banner
+============================*/
+
+	.main-banner br,.main-banner br:after{
+		content: ' '
+	}
+	.main-banner .banner-left{
+		padding-bottom:12.5%;
+	}
+		.main-banner .banner-left .banner-button{
+			padding-top:50%;
+		}
+
+
+/*==========================
+	Reason
+============================*/
+	.reason-wrapper h4:not(.reason-head){
+		font-size:1.2em;
+		margin: 15px 0 30px;
+	}
+	.reason-wrapper p{
+		font-size:0.9em;
+	}
+
+/*==========================
+	Materi
+============================*/	
+	.materi-wrapper{
+		padding-bottom:0px;
+	}
+	.materi-content{
+		padding:0 0 15px;
+	}
+	.materi-content .caption p{
+		font-size:0.55em;
+	}
+
+
+/*==========================
+	Footer
+============================*/
+	footer .footer-bot{
+		padding-top:10px;
+	}
+	footer .footer-bot .col-md-8{
+		margin:0 !important;
+	}
+	footer .footer-bot p,
+	footer p, footer .container p,
+	footer a, footer .text-right
+	{
+		text-align: center;
+	}
+}
+
+
+
+@media (max-width: 767px){
+/*==========================
+	Header
+============================*/
+	.navhome .navbar-header{
+		text-align: center;
+	}
+	.container-fluid > .navbar-header{
+		margin: 0 auto;
+	}
+	.navhome{
+		padding:10px 10% 0;
+	}
+		.navhome .navbar-toggle{
+			margin-right:0;
+		}
+	.logo{
+		width:50px;
+		/*margin: 0 0 0 40px;*/
+	}
+
+	
+	/*==========================
+		fullpage-login
+	============================*/
+	.fullpage-login div.navlogin a.logo img{
+		width:20%;
+	}
+
+
+
+/*==========================
+	Main-Banner
+============================*/
+	.main-banner, .main-banner p {
+		text-align:center;
+	}
+		.main-banner .banner-left{
+			padding-bottom: 15%;
+		}
+
+			.main-banner .banner-left .banner-button{
+				padding-top:0;
+				margin-top:5%;
+				margin-left: 5px;
+			}
+
+
+/*==========================
+	Reason
+============================*/
+	.reason-cloud{
+		position:inherit;
+	}
+	.reason-wrapper{
+		text-align:center;
+	}
+		.reason-wrapper .reason-number{
+			display:none;
+		}
+		.reason-wrapper p.text-right{
+			direction: ltr;
+		}
+			.reason-wrapper p.text-right br{
+				content:"";
+			}
+		.reason-content2 .left{
+			padding:0;
+		}
+
+		.reason-content .left p, 
+		.reason-content .right p, 
+		.reason-content2 .left p, 
+		.reason-content2 .right p{
+			font-size: 0.9em;
+			text-align: center;
+		}
+
+		.reason-wrapper h4.text-right, .reason-wrapper h4.text-right b,
+		.reason-wrapper h4.text-left, .reason-wrapper h4.text-left b
+		{padding:20px 0;}
+		.reason-wrapper .text-left, .reason-wrapper .text-right{
+			text-align:center;
+		}
+
+
+	.reason-wrapper img{
+		width:90%;
+	}
+
+
+
+/*==========================
+	Big Video Wrapper
+============================*/
+	.big-video-wrapper h3{
+		font-size:1.25em;
+	}
+
+
+/*==========================
+	Materi
+============================*/
+	.materi-wrapper .materi-container{
+		margin:0;
+	}
+		.materi-content,.materi-content .caption{
+			padding-bottom:0;
+		}
+			.materi-content .caption{
+				margin: 0;
+				padding:10px 0 0;
+			}
+				.materi-content .caption p{
+					font-size:1.3em;
+					padding:0 20px;
+					text-align: left;
+				}
+				.materi-content .caption a{
+					width:100%;
+					display:block;
+				}
+
+
+/*==========================
+	Video
+============================*/
+	.home-video-wrapper .home-video-container{
+		margin-top:40px;
+	}
+		.home-video-wrapper .home-video-container h2{
+			text-align:center;
+		}
+		.home-video-wrapper > .home-video-container:not(.home-video-first){
+			margin-top:5%;
+			padding-top:5%;
+			border-top:1px solid #a4b7c4;
+		}
+
+		.home-video, .home-video2{
+			margin-bottom:0;
+		}
+
+
+/*==========================
+	Footer
+============================*/
+	footer{
+		background-color:#0f947a;
+		padding: 0 0 10px;
+	}
+
+
+
+
+}
+
+
+
+
+@media (max-width: 478px){
+
+	/*==========================
+		Materi
+	============================*/
+	.materi-content .caption p,.materi-content .caption a{
+		font-size:0.8em;
+	}
+
+
+	/*==========================
+		Konten Download
+	============================*/
+	.download-konten .panel-group.stat-wrapper .panel-body{
+		padding:0;
+	}
+
+
+}
+
+
+
+@media (max-width: 375px){
+
+	/*==========================
+		Materi
+	============================*/
+	.materi-content .caption h6{
+		padding:0 0 10px;
+	}
+	.materi-content .caption p{
+		display:none;
+	}
+}

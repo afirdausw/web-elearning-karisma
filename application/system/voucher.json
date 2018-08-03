@@ -1,0 +1,12 @@
+{
+  "data":[
+    {
+      "kode_voucher":"VCR050817RBIRHW16",
+      "durasi" : 3,
+      "status" : 0,
+      "siswa" : 0,
+      "start" : "0",
+      "expired" : "0"
+    }
+  ]
+}

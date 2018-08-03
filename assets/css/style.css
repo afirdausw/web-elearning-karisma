@@ -1,0 +1,81 @@
+/*================================
+
+ SIGN UP
+
+=================================*/
+
+/*icon betul tidaknya form*/
+
+.has-success .form-control-feedback{
+
+	color:#32C2A6;
+
+}
+
+.has-error .form-control-feedback{
+
+	color:#FF0202;
+
+}
+
+
+
+.has-feedback.has-success input{
+
+	border:1px solid #32C2A6 !important;
+
+}
+
+.has-feedback.has-error input{
+
+	border:1px solid #FF0202 !important;
+
+}
+
+
+
+
+
+/* BUTTON Sign Up steps Wizard */
+
+.form-login .wizard > .actions a, .form-login .wizard > .actions a:hover, .form-login .wizard > .actions a:active{
+
+	background:#1BBC9B;
+
+}
+
+
+
+.form-login .wizard > .actions .disabled a, .form-login .wizard > .actions .disabled a:hover, .form-login .wizard > .actions .disabled a:active{
+
+	background:#c6f1e8;
+
+}
+
+
+
+/* BOOTSTRAP modif */
+
+.fullpage-login .form-control{
+
+	height:inherit;
+
+}
+
+.fullpage-login .form-control-feedback{
+
+	line-height:35px;
+
+	height:37px;
+
+	width:inherit;
+
+}
+
+
+
+.fullpage-login .form-group .has-feedback{
+
+	margin-bottom:0;
+
+}

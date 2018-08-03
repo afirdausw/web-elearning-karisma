@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1901dd16-5077-4a28-941e-e68e0d3b8e2d" name="LPIH (project level)" url="http://ftp.lpi-hidayatullah.or.id">
+        <fileTransfer host="ftp.lpi-hidayatullah.or.id" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="b00f24d9-f007-4bcd-857c-350eb9a554a9" name="USS" url="http://ftp.myprime.co.id">
+        <fileTransfer host="ftp.myprime.co.id" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="3c436f74-6ae6-4979-9c1f-73a0b33dccc6" name="BINTANG SEKOLAH" url="http://ftp.karismaacademy.com">
+        <fileTransfer host="ftp.karismaacademy.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
