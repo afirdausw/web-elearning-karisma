@@ -22,33 +22,60 @@ class Pretest extends CI_Controller
         $this->load->view("pg_user/datadiri");
     }
 
-    function mapel()
+    function mapel($id_materi='')
     {
-        $start = 0;
-        $limit = 6;
-        $start-=1;
-        if($start<0) $start = 0;
-        $start*=$limit;
-        $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+        if($id_materi){
+            $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
+            $mapel = $this->model_pg->get_mapel_by_id($id_materi);
+            //        var_dump($mapok->kelas_id);
+            //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
+            $mapok_baru = [];
+            foreach ($mapok as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru[] = $v;
+            }
+            $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
 
-        $kelas = $this->model_pg->fetch_all_kelas();
+            $data = array(
+                "kelas" => $mapel,
+                'materi' => $mapok_baru,
+                'mapel_lain' => $this->model_pg->get_mapel_random(),
+            );
 
-        $data = [
-            "mapel" => $mapel,
-            "kelas" => $kelas, 
-            "limit" => $limit,
-            "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
-        ];
-        $idsiswa = $this->session->userdata('id_siswa');
-        if($idsiswa != NULL){
-            $siswa = $this->model_pg->get_data_user($idsiswa);
-            $data['siswa'] = $siswa;
+            // return $this->output
+            //      ->set_content_type('application/json')
+            //      ->set_status_header(500)
+            //      ->set_output(json_encode($data));
+
+            $this->load->view('pg_user/materi_pokok', $data);
+        }else{            
+            $start = 0;
+            $limit = 6;
+            $start-=1;
+            if($start<0) $start = 0;
+            $start*=$limit;
+            $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+
+            $kelas = $this->model_pg->fetch_all_kelas();
+
+            $data = [
+                "mapel" => $mapel,
+                "kelas" => $kelas, 
+                "limit" => $limit,
+                "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
+            ];
+            $idsiswa = $this->session->userdata('id_siswa');
+            if($idsiswa != NULL){
+                $siswa = $this->model_pg->get_data_user($idsiswa);
+                $data['siswa'] = $siswa;
+            }
+           // return $this->output
+           //     ->set_content_type('application/json')
+           //     ->set_status_header(500)
+           //     ->set_output(json_encode($data));
+            $this->load->view("pg_user/pretest-mapel", $data);
         }
-       // return $this->output
-       //     ->set_content_type('application/json')
-       //     ->set_status_header(500)
-       //     ->set_output(json_encode($data));
-        $this->load->view("pg_user/pretest-mapel", $data);
     }
 
     public function ajax_load_listmapel($limit, $start){
