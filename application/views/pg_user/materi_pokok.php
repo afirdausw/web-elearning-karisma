@@ -113,8 +113,8 @@
                 <h1>Lanjutkan Belajar</h1>
                 <span>Selesaikan belajar anda untuk memperdalam pelajaran ini</span>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                        Selesai <b>70%</b>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:30%">
+                        Selesai <b>30%</b>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@
                                             $icon = "<i class='fa fa-youtube'></i>";
                                             echo '
                                                     <div class="modal modal-center fade" id="'.$bab->id_konten.'" role="dialog">
-                                                        <div class="modal-dialog modal-dialog-center" style="width: 90%">
+                                                        <div class="modal-dialog modal-dialog-center" style="width: 70%">
                                                             <div class="modal-content modal-content-youtube">
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>

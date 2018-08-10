@@ -10,6 +10,8 @@ class Pretest extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_pg');
+
+        $this->load->library("form_validation");
     }
 
     function index()
@@ -82,5 +84,35 @@ class Pretest extends CI_Controller
             </div>
             <?php
         }   
+    }
+
+    function daftar() {
+//        $this->form_validation_rules();
+
+        $params     = $this->input->post(null, true);
+        $nama       = isset($params["nama"])        ? $params["nama"]    : '';
+        $telepon    = isset($params["telepon"])     ? $params["telepon"] : '';
+        $email      = isset($params["email"])       ? $params["email"]   : '';
+        $alamat     = isset($params["alamat"])      ? $params["alamat"]  : '';
+
+//        if ($this->form_validation->run() == FALSE) {
+//            alert_error("Error", "Terjadi Kesalahan Saat Daftar!");
+//        } else {
+            $result = $this->model_pg->daftar_pretest($nama, $telepon, $email, $alamat);
+            //$insert_pretest = $this->model_pg->daftar($result, $session);
+
+            redirect("pretest/mapel");
+//        }
+    }
+
+    private function form_validation_rules() {
+        //set validation rules for each input
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required');
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required');
+        $this->form_validation->set_rules('alamat', 'Alamat Lengkap', 'required');
+
+        //set custom error message
+        $this->form_validation->set_message('required', '%s tidak boleh kosong');
     }
 }

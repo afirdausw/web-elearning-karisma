@@ -926,7 +926,7 @@ footer a:hover:not(.logo-footer) {
 .media-link:focus {
     color: #0679B0;
     transition: all .2s ease-in-out;
-},
+}
 .media:hover > .media-left .fa,
 .media-link.disable:hover,
 .media-link:focus > .media > .media-left > .fa {

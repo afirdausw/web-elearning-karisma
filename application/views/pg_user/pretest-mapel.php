@@ -49,8 +49,7 @@
 
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
-                            <li><a href="<?php echo base_url().'login' ?>">Masuk</a></li>
+                            <li><a href="#">Selamat Datang Siswa "Pretest"</a></li>
                         </ul>
                     </div>
                 </div>
@@ -73,7 +72,7 @@
                 foreach ($mapel as $value) { ?>
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="thumbnail materi-lainnya">
-                            <a href="<?php echo base_url().'pretest/mapel/'.$value->id_mapel; ?>">
+                            <a href="<?php echo base_url().'konten/mapel/'.$value->id_mapel; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
                                 <img src="<?=(isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) && substr($value->gambar_mapel,0,5) == 'data:' ? $value->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $value->nama_mapel ?>">
                                 <div class="caption">

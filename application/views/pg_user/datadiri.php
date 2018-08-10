@@ -69,22 +69,22 @@
                       <span>Silahkan isi data diri anda</span>
                     </div>
 
-                    <form action="<?php echo base_url('pretest/mapel') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?php echo base_url('pretest/daftar') ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group has-feedback">
                             <span class="ti-id-badge form-control-feedback"></span>
                             <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" id="nama">
                         </div>
                         <div class="form-group has-feedback">
                             <span class="ti-mobile form-control-feedback"></span>
-                            <input type="password" class="form-control" placeholder="Nomor Telepon" id="password">
+                            <input type="text" class="form-control" placeholder="Nomor Telepon" name="telepon" id="telepon">
                         </div>
                         <div class="form-group has-feedback">
                             <span class="ti-email form-control-feedback"></span>
-                            <input type="email" class="form-control" placeholder="Email" id="email">
+                            <input type="email" class="form-control" placeholder="Email" name="email" id="email">
                         </div>
                         <div class="form-group has-feedback">
                             <span class="ti-direction form-control-feedback"></span>
-                            <input type="text" class="form-control" placeholder="Alamat" name="address" id="address">
+                            <input type="text" class="form-control" placeholder="Alamat" name="alamat" id="address">
                         </div><br>
                         <p>Dengan menekan Masuk Pretest, anda mengkonfirmasi telah menyetujui</p>
                         <p><a href="#">Syarat dan Ketentuan</a>, serta <a href="#">Kebijakan Privasi</a> Karisma Academy</p>

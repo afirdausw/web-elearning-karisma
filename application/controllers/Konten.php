@@ -71,7 +71,60 @@ class Konten extends CI_Controller
             <?php
             redirect('', 'refresh');
         }
+    }
 
+
+
+    public function mapel($id_mapel){
+        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $materi = $this->model_pg->get_materi_by_mapel($id_mapel);
+
+        // TODO handle error apabila konten tidak ada di DB
+        // DEBUG HERE
+        error_reporting(0);
+        $sub_materi_1 = $this->model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
+        if($sub_materi_1 != null){
+            $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+            $mapok_baru = [];
+            foreach ($mapok as $key => $value) {
+                $v = $array = json_decode(json_encode($value), true);
+                $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $mapok_baru[] = $v;
+            }
+            $konten = "";
+            $mapok_baru = json_decode (json_encode ($mapok_baru), FALSE);
+            $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+
+            $data = array(
+                'siswa' => $siswa,
+                'materi' => $materi,
+                'materi_pokok' => $mapok_baru,
+                'sub_materi' => $sub_materi_1,
+                'konten' => $konten,
+                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
+                'next' => $this->model_pg->get_next_konten($konten->id_konten),
+                'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+            );
+            //        return $this->output
+            //            ->set_content_type('application/json')
+            //            ->set_status_header(500)
+            //            ->set_output(json_encode($data));
+
+            if($konten->kategori == '1'){
+                $this->load->view('pg_user/konten', $data);
+            } elseif ($konten->kategori == '2'){
+                $this->load->view('pg_user/konten_video', $data);
+            } elseif ($konten->kategori == '3'){
+                $this->load->view('pg_user/konten_soal', $data);
+            }
+        }else{
+            ?>
+            <div style="text-align:center; font-size:21px; font-weight:bolder; font-family:'Segoe UI'">Konten belum tersedia</div>
+            <?php
+            redirect('', 'refresh');
+        }
     }
 
     public function detail($id_sub_materi)

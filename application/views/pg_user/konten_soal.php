@@ -332,42 +332,43 @@
                                     	}
                                     }
                             ?>
-                                <div class="modal-body modal-konten step-<?= $no ?>" data-step="<?= $no ?>">
-                                    <div class="row">
-                                        <div class="col-md-7 pertanyaan">
-                                            <span class="badge">Soal <?= $no ?> dari <?= $jumlah ?></span>
-                                            <p><?= $value->isi_soal ?></p>
-                                        </div>
-                                        <div class="col-md-5 jawaban">
+                            <div class="modal-body modal-konten step-<?= $no ?>" data-step="<?= $no ?>">
+                                <div class="row">
+                                    <div class="col-md-7 pertanyaan">
+                                        <span class="badge">Soal <?= $no ?> dari <?= $jumlah ?></span>
+                                        <p><?= $value->isi_soal ?></p>
+                                    </div>
+                                    <div class="col-md-5 jawaban">
+                                        <div class="row">
                                             <span class="badge">Pilihan</span>
-                                            <div class="btn-group" data-toggle="buttons">
-                                                <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==1){echo"active";}}?>">
-                                                    <input type="radio" name="jawabSoal" id="option1" autocomplete="off" value="1" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==1){echo"checked='checked'";}}?>><span>A.</span> <?php $text=str_ireplace('<p>','',$value->jawab_1); echo $text;
-                                                    ?>
-                                                </label>
-                                                <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==2){echo"active";}}?>">
-                                                    <input type="radio" name="jawabSoal" id="option2" autocomplete="off" value="2" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==2){echo"checked='checked'";}}?>><span>B.</span> <?php $text=str_ireplace('<p>','',$value->jawab_2); echo $text;
-                                                    ?>
-                                                </label>
-                                                <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==3){echo"active";}}?>">
-                                                    <input type="radio" name="jawabSoal" id="option3" autocomplete="off" value="3" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==3){echo"checked='checked'";}}?>><span>C.</span> <?php $text=str_ireplace('<p>','',$value->jawab_3); echo $text;
-                                                    ?>
-                                                </label>
-                                                <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==4){echo"active";}}?>">
-                                                    <input type="radio" name="jawabSoal" id="option4" autocomplete="off" value="4" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==4){echo"checked='checked'";}}?>><span>D.</span> <?php $text=str_ireplace('<p>','',$value->jawab_4); echo $text;
-                                                    ?>
-                                                </label>
-                                                <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==5){echo"active";}}?>">
+                                        </div>
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==1){echo"active";}}?>">
+                                                <input type="radio" name="jawabSoal" id="option1" autocomplete="off" value="1" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==1){echo"checked='checked'";}}?>><span>A.</span> <?php $text=str_ireplace('<p>','',$value->jawab_1); echo $text;
+                                                ?>
+                                            </label>
+                                            <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==2){echo"active";}}?>">
+                                                <input type="radio" name="jawabSoal" id="option2" autocomplete="off" value="2" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==2){echo"checked='checked'";}}?>><span>B.</span> <?php $text=str_ireplace('<p>','',$value->jawab_2); echo $text;
+                                                ?>
+                                            </label>
+                                            <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==3){echo"active";}}?>">
+                                                <input type="radio" name="jawabSoal" id="option3" autocomplete="off" value="3" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==3){echo"checked='checked'";}}?>><span>C.</span> <?php $text=str_ireplace('<p>','',$value->jawab_3); echo $text;
+                                                ?>
+                                            </label>
+                                            <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==4){echo"active";}}?>">
+                                                <input type="radio" name="jawabSoal" id="option4" autocomplete="off" value="4" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==4){echo"checked='checked'";}}?>><span>D.</span> <?php $text=str_ireplace('<p>','',$value->jawab_4); echo $text;
+                                                ?>
+                                            </label>
+                                            <label class="btn btn-primary btn-block <?php if(isset($data_jawaban)){if(isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==5){echo"active";}}?>">
 
-                                                    <input type="radio" name="jawabSoal" id="option5" autocomplete="off" value="5" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==5){echo"checked='checked'";}}?>><span>E.</span> <?php $text=str_ireplace('<p>','',$value->jawab_5); echo $text;
-                                                    ?>
-                                                </label>
-                                            </div>
+                                                <input type="radio" name="jawabSoal" id="option5" autocomplete="off" value="5" soal-no="<?=$id_soal;?>" <?php if(isset($data_jawaban)){if (isset($array_terjawab[$no-1]) AND $array_terjawab[$no-1]==5){echo"checked='checked'";}}?>><span>E.</span> <?php $text=str_ireplace('<p>','',$value->jawab_5); echo $text;
+                                                ?>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
-                            <?php $no++; 
-                            } ?>
+                            </div>
+                            <?php $no++; } ?>
                             <div class="modal-footer" style="text-align: center">
                             	<div class="col-md-12">
                                     <ul class="pagination">
@@ -384,7 +385,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="finalButton" class="col-md-12 text-center hidden" >
+                                <div id="finalButton" class="col-md-12 text-center hidden" style="margin-top: 10px">
                                 	<button class="btn btn-block btn-success"><span class="glyphicon glyphicon-ok"></span> Selesai</button>
                                 </div>
                             </div>
