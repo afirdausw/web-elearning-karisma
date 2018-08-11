@@ -875,18 +875,4 @@ function ganti_password($idlogin, $newpassword){
 
         return $query->row();
     }
-
-    function daftar_pretest($nama, $email, $telepon, $alamat){
-	    $result 	= null;
-        $data_user 	= array(
-            "nama_siswa_pretest" => $nama,
-            "telepon_siswa_pretest" => $email,
-            "email_siswa_pretest" => $telepon,
-            "alamat" => $alamat
-        );
-        $tambah = $this->db->insert("siswa_pretest", $data_user);
-        $id_sesi = $this->db->insert_id();
-
-        return $result;
-    }
 }

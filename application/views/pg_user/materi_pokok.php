@@ -76,11 +76,22 @@
                         <li><a href="#">Tanya Jawab</a></li>
                         <li><a href="#">Quiz</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Firdaus <span class="arrow-down ti-angle-down"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Link</a></li>
-                                <li><a href="#">Link</a></li>
-                            </ul>
+                            <?php
+                            if(!$this->session->userdata("pretest_logged_in") AND $this->session->userdata("siswa_logged_in")){ ?>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=($this->session->userdata('siswa_nama')!=NULL ? $this->session->userdata('siswa_nama') : "Anonim");?> <span class="arrow-down ti-angle-down"></span></a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Akun</a></li>
+                                    <li><a href="<?=base_url('profil') ?>">Profil</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
+                                </ul>
+                            <?php
+                            }else if($this->session->userdata("pretest_logged_in")){ ?>
+                                <a href="<?=base_url("pretest/logout")?>">Logout (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)
+                            <?php
+                            }
+                            ?>
                         </li>
                     </ul>
                 </div>
@@ -163,10 +174,12 @@
                         <div class="panel-heading" role="tab">
                             <h4 class="panel-title">
                                 <a class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
-                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?>
+                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> 
+                                <?= (($key->pretest_status) ? "" : "<b>(Premium)</b?>" ); ?>
                                 </a>
                             </h4>
                         </div>
+                        
                         <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse" role="tabpanel">
                             <div class="panel-body">
                                 <?php
@@ -196,6 +209,17 @@
                                             $link = "href='".base_url()."konten/detail_soal/".$bab->id_sub_materi."'";
                                             $icon = "<i class='fa fa-check-square-o'></i>";
                                         }
+                                        //jika premium
+                                        if(!$key->pretest_status){
+                                            if($this->session->userdata("siswa_logged_in") AND $siswa_status < 1){
+                                                $link = "href='".base_url()."profil'";
+                                                $icon = "<i class='fa fa-lock'></i>";
+                                            }else if($this->session->userdata("pretest_logged_in")){
+                                                $link = "href='".base_url()."login'";
+                                                $icon = "<i class='fa fa-lock'></i>";
+                                            }
+                                            
+                                        }
                                 ?>
                                 <div class="media">
                                     <a <?= $link; ?>>
@@ -223,7 +247,14 @@
                 <?php foreach ($mapel_lain as $data) { ?>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="thumbnail materi-lainnya">
-                        <a href="<?= base_url().'mapel/'.$data->id_mapel; ?>">
+                        <?php
+                            $linkmaterilain=base_url();
+                            if($this->session->userdata("pretest_logged_in")){
+                                $linkmaterilain .= "pretest/";
+                            }
+                            $linkmaterilain .= 'mapel/'.$data->id_mapel;
+                        ?>
+                        <a href="<?= $linkmaterilain; ?>">
                             <span class="badge-diskon">Diskon 25%</span>
                             <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                             <div class="caption">

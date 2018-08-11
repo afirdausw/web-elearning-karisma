@@ -115,38 +115,36 @@
                         <li><a href="#">Peserta</a></li>
                         <li><a href="#">Tanya Jawab</a></li>
                         <li><a href="#">Quiz</a></li>
+                        
                         <?php
                             $idsiswa = $this->session->userdata('id_siswa');
                             if($idsiswa != NULL){
+                        ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="arrow-down ti-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Akun</a></li>
+                                <li><a href="<?=base_url('profil') ?>">Profil</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
+                            </ul>
+                        </li>
+                        <?php }else{
+                            if($this->session->userdata('pretest_logged_in')){ ?>
+                                <li><a href="<?=base_url("pretest/logout")?>">Logout Pretest (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)</a></li>
+                            <?php
+                            }else{ ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="arrow-down ti-angle-down"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
+                                        <li><a href="<?php echo base_url().'login' ?>">Login</a></li>
+                                    </ul>
+                                </li>
+                            <?php
+                            }
                             ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> 
-                                <?php
-                                if($siswa->id_premium!=0){
-                                ?>
-                                    <i class="ti-heart" title="Anda telah terdaftar sebagai akun PREMIUM!"></i>
-                                <?php
-                                }else{ ?> 
-                                    <i class="ti-heart-broken" title="Akun Anda masih berstatus reguler"></i>
-                                <?php
-                                }
-                                ?>
-                                <span class="arrow-down ti-angle-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Akun</a></li>
-                                    <li><a href="<?=base_url('profil') ?>">Profil</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
-                                </ul>
-                            </li>
-                        <?php } else { ?>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="arrow-down ti-angle-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
-                                    <li><a href="<?php echo base_url().'login' ?>">Login</a></li>
-                                </ul>
-                            </li>
+                            
                         <?php
                         } ?>
                     </ul>

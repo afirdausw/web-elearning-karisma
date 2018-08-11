@@ -48,6 +48,10 @@ class Login extends CI_Controller
             if ($result != null) {
                 $this->session->set_userdata('siswa_logged_in', TRUE);
                 $this->session->set_userdata('id_siswa', $result->id_siswa);
+                $this->session->set_userdata('siswa_nama', $result->nama_siswa);
+                $this->session->unset_userdata('pretest_logged_in');
+                $this->session->unset_userdata('pretest_email');
+                $this->session->unset_userdata('pretest_nama');
                 redirect(".");  
             } else {
                 alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
@@ -64,104 +68,104 @@ class Login extends CI_Controller
         redirect(".");
     }
 
-    function do_login()
-    {
-        $this->form_validation_rules();
+    // function do_login()
+    // {
+    //     $this->form_validation_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            alert_error("Gagal Login", "Terjadi Kesalahan Saat Login");
-            redirect("login");
-        } else {
-            $params = $this->input->post(null, true);
+    //     if ($this->form_validation->run() == FALSE) {
+    //         alert_error("Gagal Login", "Terjadi Kesalahan Saat Login");
+    //         redirect("login");
+    //     } else {
+    //         $params = $this->input->post(null, true);
 
-            //cek apakah yang login adalah orang tua?
-            //***************************************
-            if ($params['akses'] == 'parent') {
-                $cek_parent = $this->model_login->cek_login_ortu($params['username'], $params['password']);
+    //         //cek apakah yang login adalah orang tua?
+    //         //***************************************
+    //         if ($params['akses'] == 'parent') {
+    //             $cek_parent = $this->model_login->cek_login_ortu($params['username'], $params['password']);
 
-                $cekortu = $this->model_login->cek_login_ortu($params['username'], $params['password']);
-                if ($cekortu != null) {
-                    //echo $cekortu->id_ortu;
-                    $this->session->set_userdata('parent_logged_in', TRUE);
-                    $this->session->set_userdata('id_ortu', $cekortu->id_ortu);
-                    $this->session->set_userdata('id_ortu_siswa', $cekortu->id_siswa);
+    //             $cekortu = $this->model_login->cek_login_ortu($params['username'], $params['password']);
+    //             if ($cekortu != null) {
+    //                 //echo $cekortu->id_ortu;
+    //                 $this->session->set_userdata('parent_logged_in', TRUE);
+    //                 $this->session->set_userdata('id_ortu', $cekortu->id_ortu);
+    //                 $this->session->set_userdata('id_ortu_siswa', $cekortu->id_siswa);
 
-                    redirect('parents/dashboard');
-                } else {
-                    alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
-                    redirect("login");
-                }
-                //end
-                //***************************************
-            } else {
-                $do_login = $this->model_login->cek_login($params['username'], $params['password']);
-                if ($do_login != null) {
-                    $this->set_siswa_akses($do_login);
+    //                 redirect('parents/dashboard');
+    //             } else {
+    //                 alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
+    //                 redirect("login");
+    //             }
+    //             //end
+    //             //***************************************
+    //         } else {
+    //             $do_login = $this->model_login->cek_login($params['username'], $params['password']);
+    //             if ($do_login != null) {
+    //                 $this->set_siswa_akses($do_login);
 
-                    if (empty($this->session->userdata('akses'))) {
-                        $this->session->set_userdata('siswa_logged_in', TRUE);
-                        $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
-                        $param = ['siswa' => $id_siswa];
-                        $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
+    //                 if (empty($this->session->userdata('akses'))) {
+    //                     $this->session->set_userdata('siswa_logged_in', TRUE);
+    //                     $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
+    //                     $param = ['siswa' => $id_siswa];
+    //                     $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
 
-                        $json = json_decode($data, true);
-                        if ($json['exp']) {
-                            redirect("user/aktivasi");
-                        }
-                    } else {
-                        redirect("user/dashboard");
-                    }
+    //                     $json = json_decode($data, true);
+    //                     if ($json['exp']) {
+    //                         redirect("user/aktivasi");
+    //                     }
+    //                 } else {
+    //                     redirect("user/dashboard");
+    //                 }
 
-                } else {
-                    alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
-                    redirect("login");
-                }
-            }
+    //             } else {
+    //                 alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
+    //                 redirect("login");
+    //             }
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
-    private function curl_download($Url, $param = array())
-    {
+    // private function curl_download($Url, $param = array())
+    // {
 
-        // is cURL installed yet?
-        if (!function_exists('curl_init')) {
-            die('Sorry cURL is not installed!');
-        }
+    //     // is cURL installed yet?
+    //     if (!function_exists('curl_init')) {
+    //         die('Sorry cURL is not installed!');
+    //     }
 
-        // OK cool - then let's create a new cURL resource handle
-        $ch = curl_init();
+    //     // OK cool - then let's create a new cURL resource handle
+    //     $ch = curl_init();
 
-        // Now set some options (most are optional)
+    //     // Now set some options (most are optional)
 
-        // Set URL to download
-        curl_setopt($ch, CURLOPT_URL, $Url);
-        //set Post
-        curl_setopt($ch, CURLOPT_POST, true);
-        // Set a referer
-        curl_setopt($ch, CURLOPT_REFERER, "http://www.example.org/yay.htm");
-        // Set a param
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
-        // User agent
-        curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
+    //     // Set URL to download
+    //     curl_setopt($ch, CURLOPT_URL, $Url);
+    //     //set Post
+    //     curl_setopt($ch, CURLOPT_POST, true);
+    //     // Set a referer
+    //     curl_setopt($ch, CURLOPT_REFERER, "http://www.example.org/yay.htm");
+    //     // Set a param
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+    //     // User agent
+    //     curl_setopt($ch, CURLOPT_USERAGENT, "MozillaXYZ/1.0");
 
-        // Include header in result? (0 = yes, 1 = no)
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+    //     // Include header in result? (0 = yes, 1 = no)
+    //     curl_setopt($ch, CURLOPT_HEADER, 0);
 
-        // Should cURL return or print out the data? (true = return, false = print)
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     // Should cURL return or print out the data? (true = return, false = print)
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // Timeout in seconds
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    //     // Timeout in seconds
+    //     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
 
-        // Download the given URL, and return output
-        $output = curl_exec($ch);
+    //     // Download the given URL, and return output
+    //     $output = curl_exec($ch);
 
-        // Close the cURL resource, and free system resources
-        curl_close($ch);
+    //     // Close the cURL resource, and free system resources
+    //     curl_close($ch);
 
-        return $output;
-    }
+    //     return $output;
+    // }
 
     private function set_siswa_akses($do_login)
     {

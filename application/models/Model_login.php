@@ -103,4 +103,33 @@ class Model_login extends CI_Model
         return $result->result_array();
     }
 
+    /*
+    PRETEST
+    =========
+    */
+    
+
+    function daftar_pretest($nama, $telepon, $email, $alamat, $time){
+        $result     = null;
+        $data_user  = array(
+            "nama_siswa_pretest" => $nama,
+            "telepon_siswa_pretest" => $telepon,
+            "email_siswa_pretest" => $email,
+            "alamat" => $alamat,
+            "timestamp_signup" => $time,
+        );
+        $this->db->insert("siswa_pretest", $data_user);
+        $id_sesi = $this->db->insert_id();
+        return $id_sesi;
+    }
+
+    function cek_pretest_namaemail($nama, $email){
+        $this->db->select("nama_siswa, email");
+        $this->db->from("siswa");
+        $this->db->where("((nama_siswa = '$nama' AND email = '$email') OR email = '$email')");
+        $query = $this->db->get();
+        $data = $query->row();
+        return $data;
+    }
+
 }

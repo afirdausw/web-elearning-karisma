@@ -49,7 +49,7 @@
 
                     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li><a href="#">Selamat Datang Siswa "Pretest"</a></li>
+                            <li><a href="<?=base_url("pretest/logout")?>">Logout (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,6 +59,9 @@
 
     <section>
         <div class="container home-materi-list" style="margin-top: 50px">
+            <?php
+            ?>
+            <h1>Selamat datang, <b><?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?></b></h1>
             <h1>Anda masuk sebagai siswa pretest di <b>Karisma Academy</b></h1>
             <h2 style="margin-bottom: 10px">Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
             <h3>Dan segera bergabung dengan kami untuk melihat lebih banyak konten lainnya dan diskusi bersama</h3>
@@ -72,7 +75,7 @@
                 foreach ($mapel as $value) { ?>
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="thumbnail materi-lainnya">
-                            <a href="<?php echo base_url().'konten/mapel/'.$value->id_mapel; ?>">
+                            <a href="<?php echo base_url().'pretest/mapel/'.$value->id_mapel; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
                                 <img src="<?=(isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) && substr($value->gambar_mapel,0,5) == 'data:' ? $value->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $value->nama_mapel ?>">
                                 <div class="caption">

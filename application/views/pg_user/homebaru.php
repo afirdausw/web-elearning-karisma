@@ -119,19 +119,15 @@
     </section>
 
     <section>
-        <div class="container home-materi-list">
+        <div class="container home-materi-list" id="materi_list">
             <h1>Belajar Desain Grafis, Website, Digital Marketing, dan Arsitektur</h1>
             <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
-
-
-            
             <div class="row">
                 <div class="col-md-12" style="text-align: center; clear: both" id="home_materi_pagination_top">
                 </div>
             </div>           
             <div class="row" id="home_list_materi"> <!-- BARIS KE 1 -->
                 <?php
-                 //TODO SAMAKAN DENGAN controller home.php
                 foreach ($mapel as $value) { ?>
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="thumbnail materi-lainnya">

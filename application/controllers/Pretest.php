@@ -9,72 +9,94 @@ class Pretest extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('model_pg');
 
+        $this->load->model('model_pg');
+        $this->load->model('model_login');
+
+        $this->load->helper('alert_helper');
         $this->load->library("form_validation");
     }
 
     function index()
     {
-        $data = array(
-            'title' => 'Judul'
-        );
-        $this->load->view("pg_user/datadiri");
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($pretest_logged){ //jika siswa telah mendaftar pretest
+            redirect(base_url("pretest/mapel"));
+        }else if ($siswa_logged){
+            redirect(base_url()."#materi_list");
+        }else{
+            $data = array(
+                'title' => 'Judul',
+                'form_aksi' => base_url(uri_string())."/daftar",
+            );
+            $this->load->view("pg_user/datadiri", $data);
+        }
     }
 
     function mapel($id_materi='')
     {
-        if($id_materi){
-            $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
-            $mapel = $this->model_pg->get_mapel_by_id($id_materi);
-            //        var_dump($mapok->kelas_id);
-            //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
-            $mapok_baru = [];
-            foreach ($mapok as $key => $value) {
-            $v = $array = json_decode(json_encode($value), true);
-            $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
-            $mapok_baru[] = $v;
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        if($pretest_logged){ //jika siswa telah login dan mendaftar pretest
+            if($id_materi){
+                $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
+                $mapel = $this->model_pg->get_mapel_by_id($id_materi);
+                //        var_dump($mapok->kelas_id);
+                //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
+                $mapok_baru = [];
+                foreach ($mapok as $key => $value) {
+                $v = $array = json_decode(json_encode($value), true);
+                $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $mapok_baru[] = $v;
+                }
+                $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+
+                $data = array(
+                    "kelas" => $mapel,
+                    'materi' => $mapok_baru,
+                    'mapel_lain' => $this->model_pg->get_mapel_random(),
+                );
+
+                // return $this->output
+                //      ->set_content_type('application/json')
+                //      ->set_status_header(500)
+                //      ->set_output(json_encode($data));
+
+                $this->load->view('pg_user/materi_pokok', $data);
+            }else{            
+                $start = 0;
+                $limit = 6;
+                $start-=1;
+                if($start<0) $start = 0;
+                $start*=$limit;
+                $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+
+                $kelas = $this->model_pg->fetch_all_kelas();
+
+                $data = [
+                    "mapel" => $mapel,
+                    "kelas" => $kelas, 
+                    "limit" => $limit,
+                    "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
+                ];
+
+                $siswa_logged = $this->session->userdata('siswa_logged_in');
+                if ($siswa_logged){
+                    redirect(base_url()."#materi_list");
+                    // $siswa = $this->model_pg->get_data_user($idsiswa);
+                    // $data['siswa'] = $siswa;
+                }else{
+
+                }
+               // return $this->output
+               //     ->set_content_type('application/json')
+               //     ->set_status_header(500)
+               //     ->set_output(json_encode($data));
+                $this->load->view("pg_user/pretest-mapel", $data);
             }
-            $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
-
-            $data = array(
-                "kelas" => $mapel,
-                'materi' => $mapok_baru,
-                'mapel_lain' => $this->model_pg->get_mapel_random(),
-            );
-
-            // return $this->output
-            //      ->set_content_type('application/json')
-            //      ->set_status_header(500)
-            //      ->set_output(json_encode($data));
-
-            $this->load->view('pg_user/materi_pokok', $data);
-        }else{            
-            $start = 0;
-            $limit = 6;
-            $start-=1;
-            if($start<0) $start = 0;
-            $start*=$limit;
-            $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
-
-            $kelas = $this->model_pg->fetch_all_kelas();
-
-            $data = [
-                "mapel" => $mapel,
-                "kelas" => $kelas, 
-                "limit" => $limit,
-                "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
-            ];
-            $idsiswa = $this->session->userdata('id_siswa');
-            if($idsiswa != NULL){
-                $siswa = $this->model_pg->get_data_user($idsiswa);
-                $data['siswa'] = $siswa;
-            }
-           // return $this->output
-           //     ->set_content_type('application/json')
-           //     ->set_status_header(500)
-           //     ->set_output(json_encode($data));
-            $this->load->view("pg_user/pretest-mapel", $data);
+        }else{
+            alert_error("Daftar Pretest Terlebih Dahulu", "Diperlukan nama lengkap, e-mail, nomor telepon, dan alamat");
+            redirect(base_url("pretest"));
         }
     }
 
@@ -121,15 +143,33 @@ class Pretest extends CI_Controller
         $telepon    = isset($params["telepon"])     ? $params["telepon"] : '';
         $email      = isset($params["email"])       ? $params["email"]   : '';
         $alamat     = isset($params["alamat"])      ? $params["alamat"]  : '';
+        $tanggal = date(DATE_ATOM);
 
 //        if ($this->form_validation->run() == FALSE) {
 //            alert_error("Error", "Terjadi Kesalahan Saat Daftar!");
 //        } else {
-            $result = $this->model_pg->daftar_pretest($nama, $telepon, $email, $alamat);
-            //$insert_pretest = $this->model_pg->daftar($result, $session);
+            $cek1 = $this->model_login->cek_pretest_namaemail($nama, $email);
+            //jika siswa telah mendaftar akun tetap
+            if ($cek1 == null) {
+                $aksi = $this->model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                if($aksi){
+                    //reset sesion
+                    $this->session->set_userdata('pretest_logged_in', TRUE);
+                    $this->session->set_userdata('pretest_email', $email);
+                    $this->session->set_userdata('pretest_nama', $nama);
+                    redirect(base_url()."pretest/mapel/");
+                }
+            }else{
+                alert_error("Telah terdaftar", "Nama dan/atau e-mail anda telah terdaftar dalam sistem, silahkan login");
+                redirect(base_url()."login");
+            }
 
-            redirect("pretest/mapel");
 //        }
+    }
+
+    function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 
     private function form_validation_rules() {

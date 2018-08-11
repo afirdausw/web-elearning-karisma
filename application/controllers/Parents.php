@@ -315,9 +315,9 @@ public function log_by_date()
 		}
 	}
 
-function logout(){
-	$this->session->sess_destroy();
-	redirect(base_url());
-}
+	function logout(){
+		$this->session->sess_destroy();
+		redirect(base_url());
+	}
 
 }

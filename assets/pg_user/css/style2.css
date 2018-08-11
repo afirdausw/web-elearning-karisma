@@ -338,11 +338,14 @@
     padding: 8px 0;
 }
 /* Materi List */
+.home-materi-list h1:first-child {
+    margin-top:50px;
+}
 .home-materi-list h1 {
     text-align: center;
     font-weight: 500;
     font-size: 28px;
-    margin: 50px 0 8px 0;
+    margin: 0px 0 8px 0;
     color: #333;
 }
 .home-materi-list h2 {
@@ -356,7 +359,7 @@
     color: #F3771B;
 }
 .home-materi-list h3 {
-    text-align: left;
+    text-align: center;
     font-weight: 400;
     font-size: 16px;
     margin: 0 0 50px 0;

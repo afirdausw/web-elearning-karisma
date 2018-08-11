@@ -88,7 +88,24 @@
                                         <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
                                     </ul>
                                 </li>
-                                <?php } ?>
+                                <?php }else{
+                                    if($this->session->userdata('pretest_logged_in')){ ?>
+                                        <li><a href="<?=base_url("pretest/logout")?>">Logout Pretest (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)</a></li>
+                                    <?php
+                                    }else{ ?>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="arrow-down ti-angle-down"></span></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
+                                                <li><a href="<?php echo base_url().'login' ?>">Login</a></li>
+                                            </ul>
+                                        </li>
+                                    <?php
+                                    }
+                                    ?>
+                                    
+                                <?php
+                                } ?>
                             </ul>
                         </div>
                     </div>
@@ -197,6 +214,7 @@
                         ?>
                         <div class="row wrap-materi">
                             <div class="col-lg-7 col-md-7">
+
                                 <span class="materi-no"><?= $key->urutan_materi ?>.</span>
                                 <span class="judul-submateri"><?= $key->nama_sub_materi ?></span>
                             </div>

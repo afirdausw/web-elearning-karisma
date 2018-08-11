@@ -62,6 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-xs-12 col-center daftar">
+                    <?php echo $this->session->flashdata('alert'); ?>
                     <h2>Pretest</h2>
                     <p>di <b>KARISMA ACADEMY</b></p>
                     <p>Sudah punya akun Karisma Academy? Masuk <a href="<?php echo base_url().'login' ?>">di sini</a></p>
@@ -69,7 +70,7 @@
                       <span>Silahkan isi data diri anda</span>
                     </div>
 
-                    <form action="<?php echo base_url('pretest/daftar') ?>" method="post" enctype="multipart/form-data">
+                    <form action="<?=$form_aksi;?>" method="post" enctype="multipart/form-data">
                         <div class="form-group has-feedback">
                             <span class="ti-id-badge form-control-feedback"></span>
                             <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" id="nama">

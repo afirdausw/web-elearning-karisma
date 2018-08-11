@@ -65,8 +65,7 @@ class Konten extends CI_Controller
             } elseif ($konten->kategori == '3'){
                 $this->load->view('pg_user/konten_soal', $data);
             }
-        }else{
-            ?>
+        }else{ ?>
             <div style="text-align:center; font-size:21px; font-weight:bolder; font-family:'Segoe UI'">Konten belum tersedia</div>
             <?php
             redirect('', 'refresh');
@@ -119,8 +118,7 @@ class Konten extends CI_Controller
             } elseif ($konten->kategori == '3'){
                 $this->load->view('pg_user/konten_soal', $data);
             }
-        }else{
-            ?>
+        }else{ ?>
             <div style="text-align:center; font-size:21px; font-weight:bolder; font-family:'Segoe UI'">Konten belum tersedia</div>
             <?php
             redirect('', 'refresh');
@@ -142,24 +140,32 @@ class Konten extends CI_Controller
         $mapok_baru = json_decode (json_encode ($mapok_baru), FALSE);
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-        $data = array(
-            'siswa' => $siswa,
-            'materi' => $materi,
-            'materi_pokok' => $mapok_baru,
-            'sub_materi' => $sub_materi_1,
-            'konten' => $konten,
-            'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-            'next' => $this->model_pg->get_next_konten($konten->id_konten),
-            'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
-            'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-            'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
-//        return $this->output
-//            ->set_content_type('application/json')
-//            ->set_status_header(500)
-//            ->set_output(json_encode($data));
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($pretest_logged AND !$konten->pretest_status){
+            redirect(base_url("login"));
+        }else if($siswa_logged AND $siswa->id_premium < 1){
+            redirect(base_url("profil"));
+        }else{
+            $data = array(
+                'siswa' => $siswa,
+                'materi' => $materi,
+                'materi_pokok' => $mapok_baru,
+                'sub_materi' => $sub_materi_1,
+                'konten' => $konten,
+                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next' => $this->model_pg->get_next_konten($konten->id_konten),
+                'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+            );
+    //        return $this->output
+    //            ->set_content_type('application/json')
+    //            ->set_status_header(500)
+    //            ->set_output(json_encode($data));
 
-        $this->load->view('pg_user/konten', $data);
+            $this->load->view('pg_user/konten', $data);
+        }
     }
 
     public function detail_video($id_sub_materi)
@@ -177,20 +183,28 @@ class Konten extends CI_Controller
         $mapok_baru = json_decode (json_encode ($mapok_baru), FALSE);
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-        $data = array(
-            'siswa' => $siswa,
-            'materi' => $materi,
-            'materi_pokok' => $mapok_baru,
-            'sub_materi' => $sub_materi_1,
-            'konten' => $konten,
-            'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-            'next' => $this->model_pg->get_next_konten($konten->id_konten),
-            'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
-            'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-            'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($pretest_logged AND !$konten->pretest_status){
+            redirect(base_url("login"));
+        }else if($siswa_logged AND $siswa->id_premium < 1){
+            redirect(base_url("profil"));
+        }else{
+            $data = array(
+                'siswa' => $siswa,
+                'materi' => $materi,
+                'materi_pokok' => $mapok_baru,
+                'sub_materi' => $sub_materi_1,
+                'konten' => $konten,
+                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next' => $this->model_pg->get_next_konten($konten->id_konten),
+                'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+            );
 
-        $this->load->view('pg_user/konten_video', $data);
+            $this->load->view('pg_user/konten_video', $data);
+        }
     }
 
     public function detail_soal($id_sub_materi)
@@ -208,62 +222,70 @@ class Konten extends CI_Controller
         $mapok_baru = json_decode (json_encode ($mapok_baru), FALSE);
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-        if(isset($siswa->id_siswa)){
-            $check = [
-                "id_siswa"     => $siswa->id_siswa,
-                "sub_materi_id" => $id_sub_materi,
-            ];
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($pretest_logged AND !$konten->pretest_status){
+            redirect(base_url("login"));
+        }else if($siswa_logged AND $siswa->id_premium < 1){
+            redirect(base_url("profil"));
         }else{
-            $check = [
-                "id_siswa"     => NULL,
-                "sub_materi_id" => NULL,
-            ];
-        }
-        $data_log = $this->model_konten->select_log_data_result($check);
-        $data = array(
-            'siswa' => $siswa,
-            'materi_pokok' => $mapok_baru,
-            'materi' => $materi,
-            'sub_materi' => $sub_materi_1,
-            'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-            'next' => $this->model_pg->get_next_konten($konten->id_konten),
-            'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
-            'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-            'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
-            'soal' => $this->model_pg->fetch_soal_by_submateri($id_sub_materi),
-            'jumlah' => $this->model_pg->jumlah_soal($id_sub_materi),
-
-            'test_jum' => $this->model_konten->select_log_count($check),
-            'log' => $this->model_konten->select_log_data($check),
-        );
-        if(isset($siswa->id_siswa)){
-            //error
-            $jawab_data = [
-                "id_siswa"      => $siswa->id_siswa,
-                "sub_materi_id" => $id_sub_materi,
-            ];
-            $data_jawaban = $this->model_konten->select_jawaban_data('hitung_semua',$jawab_data);
-            if(intval($data_jawaban->numrows) > 0 ){
-                $jawab_data["soal_id"] = -1;
-                $data['data_jawaban'] = $this->model_konten->select_jawaban_data('fetch',$jawab_data);
-            }
-            $datanya = $this->model_konten->select_log_data($check);
-            if($datanya!=NULL){
-                $data['innerHTMLnya'] = $datanya->nilai;
+            if(isset($siswa->id_siswa)){
+                $check = [
+                    "id_siswa"     => $siswa->id_siswa,
+                    "sub_materi_id" => $id_sub_materi,
+                ];
             }else{
-                $data['innerHTMLnya'] = 0;
+                $check = [
+                    "id_siswa"     => NULL,
+                    "sub_materi_id" => NULL,
+                ];
             }
-        }else{
-            $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
+            $data_log = $this->model_konten->select_log_data_result($check);
+            $data = array(
+                'siswa' => $siswa,
+                'materi_pokok' => $mapok_baru,
+                'materi' => $materi,
+                'sub_materi' => $sub_materi_1,
+                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next' => $this->model_pg->get_next_konten($konten->id_konten),
+                'prev' => $this->model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'soal' => $this->model_pg->fetch_soal_by_submateri($id_sub_materi),
+                'jumlah' => $this->model_pg->jumlah_soal($id_sub_materi),
+
+                'test_jum' => $this->model_konten->select_log_count($check),
+                'log' => $this->model_konten->select_log_data($check),
+            );
+            if(isset($siswa->id_siswa)){
+                //error
+                $jawab_data = [
+                    "id_siswa"      => $siswa->id_siswa,
+                    "sub_materi_id" => $id_sub_materi,
+                ];
+                $data_jawaban = $this->model_konten->select_jawaban_data('hitung_semua',$jawab_data);
+                if(intval($data_jawaban->numrows) > 0 ){
+                    $jawab_data["soal_id"] = -1;
+                    $data['data_jawaban'] = $this->model_konten->select_jawaban_data('fetch',$jawab_data);
+                }
+                $datanya = $this->model_konten->select_log_data($check);
+                if($datanya!=NULL){
+                    $data['innerHTMLnya'] = $datanya->nilai;
+                }else{
+                    $data['innerHTMLnya'] = 0;
+                }
+            }else{
+                $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
+            }
+
+            // $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
+    //        return $this->output
+    //            ->set_content_type('application/json')
+    //            ->set_status_header(500)
+    //            ->set_output(json_encode($data));
+
+            $this->load->view('pg_user/konten_soal', $data);
         }
-
-        // $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
-//        return $this->output
-//            ->set_content_type('application/json')
-//            ->set_status_header(500)
-//            ->set_output(json_encode($data));
-
-        $this->load->view('pg_user/konten_soal', $data);
     }
 
     public function start_soal($id_sub_materi){
