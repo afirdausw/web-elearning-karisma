@@ -346,6 +346,7 @@ class Konten extends CI_Controller
 
 
     public function submit_jawab($id_materi, $soal_id, $jawab){
+        //TO-DO siswa pretest
         //CHECK DATA DI JAWABAN SISWA
         $siswa = $this->session->userdata('id_siswa');
         $sub_materi = intval($id_materi);

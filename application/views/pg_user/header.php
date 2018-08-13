@@ -1,483 +1,108 @@
-<?php
-if ($this->uri->segment(1) != "login" AND $this->uri->segment(1) != "signup") {
-    ?>
-    <div class="navbar navbar-fixed-top navhome" role="navigation" id="header">
-        <div class="container-fluid" style="padding:0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-bso">
-                    <span class="icon-bar first"></span>
-                    <span class="icon-bar second"></span>
-                    <span class="icon-bar third"></span>
-                </button>
-                <a class="logo" href="<?php echo base_url(''); ?>"><img
-                            src="<?php echo base_url('assets/dashboard/images/icon-lpi.png') ?>"
-                            alt="Lembaga Pendidikan Islam Hidayatullah" style="width:50px;"></a>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Karisma Academy - Sertifikasi Online</title>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <div class="collapse navbar-collapse navstyle" id="nav-bso">
-                <ul class="nav navbar-nav navbar-right">
-                    <?php
-                    if (!empty($_SESSION['id_siswa'])) { ?>
-                        <li class="search-lg"><a href="<?php echo base_url('pencarian'); ?>"><span
-                                        class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-                        <li class="dropdown user-profile">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <?php echo isset($_SESSION['nama_siswa']) ? strtok($_SESSION['nama_siswa'], ' ') : 'No name' ?>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url('user/dashboard'); ?>">Dashboard</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="<?php echo base_url('user/beli'); ?>">Beli Paket</a></li>
-                                <li><a href="<?php echo base_url('user/buylist'); ?>">Riwayat</a></li>
-                                <li><a href="<?php echo base_url('user/aktivasi'); ?>">Aktivasi</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="<?php echo base_url('user'); ?>">Profilku</a></li>
-                                <li><a href="<?php echo base_url('parents'); ?>">Orang Tua</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="<?php echo base_url('user/logout'); ?>">Logout</a></li>
-                            </ul>
-                        </li>
-                        <?php
-                    } else { ?>
-                        <li><a href="<?php echo base_url('pencarian') ?>"><span class="glyphicon glyphicon-search"
-                                                                                aria-hidden="true"></span></a></li>
+    <link rel="shortcut icon" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
+    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
+    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
 
-                        <li style='padding: 15px 0px;' class="hidden-xs">|</li>
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                LOGIN
-                                <span class="caret"></span>
-                            </a>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
 
-                            <ul class="dropdown-menu">
-                                <li><a href="<?php echo base_url('login') ?>">Siswa / Orang Tua</a></li>
-                                <li><a href="<?php echo base_url('psep_sekolah/login'); ?>">Sekolah / Guru</a></li>
-                            </ul>
-                        </li>
-                        <li style='padding: 15px 0px;' class="hidden-xs">|</li>
-                        <li><a href="<?php echo base_url('signup') ?>">DAFTAR</a></li>
-                        <li style='padding: 15px 0px;' class="hidden-xs">|</li>
-                        <?php
-                    } ?>
-                </ul>
-                <ul class="nav navbar-nav navbar-left">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bootstrap.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
 
+</head>
 
-                    <?php
-                    if (!empty($_SESSION['id_siswa'])) {
-                        if (isset($_SESSION['akses'])) {
-//                        if (count($_SESSION['akses']) > 0) {
-//                            if (isset($_SESSION['akses']['reguler'])) {
-//                                $paketaktif = $_SESSION['akses']['reguler'][0];
-//                            } else if (isset($_SESSION['akses']['premium'])) {
-//                                $paketaktif = $_SESSION['akses']['premium'][0];
-//                            }
-//                        } else {
-//                            $paketaktif = 0;
-//                        }
-                            $paketaktif = 100;
-                            if (count($_SESSION['menu']) > 0) {
-                                foreach ($_SESSION['menu'] as $jenjang => $data_kelas) {
+<body>
+    <!-- HEADER -->  
+    <header class="top-header">
+        <div class="container">
+            <nav class="navbar navbar-default navbar-custom" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand logo" href="<?php echo base_url(); ?>"></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Beranda <span class="arrow-down ti-angle-down"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tentang Kami <span class="arrow-down ti-angle-down"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Link</a></li>
+                                    <li><a href="#">Link</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kursus <span class="arrow-down ti-angle-down"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <?php
+                                    foreach($kelas as $key) :
+                                        echo "<li><a href='kelas/$key->id_kelas'>$key->alias_kelas</a> </li>";
+                                    endforeach;
                                     ?>
-                                    <li class="dropdown menu-large">
-                                        <a class="dropdown-toggle" data-toggle="dropdown"
-                                           href="#"><?php echo $jenjang; ?>
-                                            <span class="caret"></span></a>
-                                        <ul class="dropdown-menu megamenu row">
-                                            <?php foreach ($data_kelas as $kelas) {
-                                                ?>
-                                                <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                                    <ul>
-                                                        <li class="dropdown-header"><?php echo $kelas['alias_kelas']; ?></li>
-                                                        <?php foreach ($kelas['Mapel'] as $mapel) {
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel['id_mapel']);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo($id_mapok == "#" ? "javascript:alert('Data Materi Kosong');" : (base_url() . "materi/tabel_konten_detail/" . $id_mapok)) ?>"><?php echo $mapel['nama_mapel'] ?>
-                                                                    Kelas <?php echo $kelas['tingkatan_kelas'] ?></a>
-                                                            </li>
-                                                            <?php
-                                                        } ?>
-                                                    </ul>
-                                                </li>
-                                            <?php }
-
-                                            ?>
-                                        </ul>
-                                    </li>
-                                <?php }
-                            }
-                        } else {
-                            $paketaktif = 0;
-                        }
-                    } else {
-                        $paketaktif = 0;
-                    }
-
-
-                    ?>
-                    <?php
-                    if ($paketaktif == 0) {
-
-                    }
-                    ?>
-                    <!-- Perlu kode untuk PAUD -->
-                    <?php if ($paketaktif >= 4 && $paketaktif <= 6 || $paketaktif == 0) { ?>
-                        <li class="dropdown menu-large">
-                            <a href="#">PAUD</a>
-                        </li>
-                    <?php } ?>
-
-
-                    <?php if ($paketaktif >= 4 && $paketaktif <= 6 || $paketaktif == 0) { ?>
-                        <li class="dropdown menu-large">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SD
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu megamenu row">
-                                <?php if ($paketaktif == 4 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 4</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-
-                                                if ($mapel->tingkatan_kelas == 4) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif == 5 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 5</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-                                                if ($mapel->tingkatan_kelas == 5) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif == 6 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 6</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-                                                if ($mapel->tingkatan_kelas == 6) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-                    <?php } ?>
-
-                    <?php if ($paketaktif >= 7 && $paketaktif <= 9 || $paketaktif == 0) { ?>
-                        <li class="dropdown menu-large">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SMP
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu megamenu row">
-                                <?php if ($paketaktif == 7 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 7</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-                                                if ($mapel->tingkatan_kelas == 7) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif == 8 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 8</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-                                                if ($mapel->tingkatan_kelas == 8) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif == 9 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <li class="dropdown-header">Kelas 9</li>
-                                            <?php foreach ($navbar_links as $mapel) {
-                                                if ($mapel->tingkatan_kelas == 9) {
-
-                                                    $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                    if (count($mapok) > 0) {
-                                                        $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                    } else {
-                                                        $id_mapok = "#";
-                                                    }
-
-                                                    ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                            Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                    <?php
-                                                }
-                                            } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
-                    <?php } ?>
-
-                    <?php if ($paketaktif >= 19 && $paketaktif <= 24 || $paketaktif == 0) { ?>
-                        <li class="dropdown menu-large">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">SMA
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu megamenu row">
-
-                                <?php if ($paketaktif >= 23 && $paketaktif <= 24 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <?php if ($paketaktif == 23 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 10 IPA</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 10) {
-                                                        if (strpos($mapel->nama_mapel, 'IPA') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                            <?php if ($paketaktif == 24 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 10 IPS</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 10) {
-                                                        if (strpos($mapel->nama_mapel, 'IPS') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif >= 21 && $paketaktif <= 22 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <?php if ($paketaktif == 21 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 11 IPA</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 11) {
-                                                        if (strpos($mapel->nama_mapel, 'IPA') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                            <?php if ($paketaktif == 22 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 11 IPS</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 11) {
-                                                        if (strpos($mapel->nama_mapel, 'IPS') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-                                <?php if ($paketaktif >= 19 && $paketaktif <= 20 || $paketaktif == 0) { ?>
-                                    <li class="col-sm-4">
-                                        <ul>
-                                            <?php if ($paketaktif == 19 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 12 IPA</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 12) {
-                                                        if (strpos($mapel->nama_mapel, 'IPA') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                            <?php if ($paketaktif == 20 || $paketaktif == 0) { ?>
-                                                <li class="dropdown-header">Kelas 12 IPS</li>
-                                                <?php foreach ($navbar_links as $mapel) {
-                                                    if ($mapel->tingkatan_kelas == 12) {
-                                                        if (strpos($mapel->nama_mapel, 'IPS') == true) {
-
-                                                            $mapok = $this->model_login->get_id_materipokok($mapel->id_mapel);
-                                                            if (count($mapok) > 0) {
-                                                                $id_mapok = "materi/tabel_konten_detail/" . $mapok[0]['id_materi_pokok'];
-                                                            } else {
-                                                                $id_mapok = "#";
-                                                            }
-
-                                                            ?>
-                                                            <li>
-                                                                <a href="<?php echo base_url() . $id_mapok; ?>"><?php echo $mapel->nama_mapel ?>
-                                                                    Kelas <?php echo $mapel->tingkatan_kelas ?></a></li>
-                                                            <?php
-                                                        }
-                                                    }
-                                                } ?>
-                                            <?php } ?>
-                                        </ul>
-                                    </li>
-                                <?php } ?>
-
-                            </ul>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sertifikat <span class="arrow-down ti-angle-down"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Daftar</a></li>
+                                    <li><a href="#">Login</a></li>
+                                </ul>
+                            </li>
+                            <?php
+                                $idsiswa = $this->session->userdata('id_siswa');
+                                if($idsiswa != NULL){
+                                ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="arrow-down ti-angle-down"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Akun</a></li>
+                                        <li><a href="<?=base_url('profil') ?>">Profil</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
+                                    </ul>
+                                </li>
+                            <?php } else { ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="arrow-down ti-angle-down"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
+                                        <li><a href="<?php echo base_url().'login' ?>">Login</a></li>
+                                    </ul>
+                                </li>
+                            <?php
+                            } ?>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
         </div>
-    </div>
-
-    <?php
-} //Penutup if != login
-else {
-    ?>
-    <div class="nav navlogin">
-        <a class="logo" href="<?php echo base_url(''); ?>">
-            <img src="<?php echo base_url('assets/dashboard/images/icon-lpi.png') ?>"
-                 alt="Lembaga Pendidikan Islam Hidayatullah" class="img-responsive">
-        </a>
-    </div>
-
-    <?php
-} //Penutup else != login
-?>
-			
+    </header>
+    
