@@ -45,22 +45,26 @@ class Pretest extends CI_Controller
                 //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
                 $mapok_baru = [];
                 foreach ($mapok as $key => $value) {
-                $v = $array = json_decode(json_encode($value), true);
-                $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
-                $mapok_baru[] = $v;
+                    $v = $array = json_decode(json_encode($value), true);
+                    $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                    $mapok_baru[] = $v;
                 }
                 $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
 
+                $id = $this->session->userdata('pretest_id');
+                $cek = $this->model_pg->get_log_baca($id);
+
                 $data = array(
                     "kelas" => $mapel,
+                    'status' => $cek,
                     'materi' => $mapok_baru,
                     'mapel_lain' => $this->model_pg->get_mapel_random(),
                 );
 
-                // return $this->output
-                //      ->set_content_type('application/json')
-                //      ->set_status_header(500)
-                //      ->set_output(json_encode($data));
+//                return $this->output
+//                      ->set_content_type('application/json')
+//                      ->set_status_header(500)
+//                      ->set_output(json_encode($data));
 
                 $this->load->view('pg_user/materi_pokok', $data);
             }else{            
@@ -152,9 +156,11 @@ class Pretest extends CI_Controller
             //jika siswa telah mendaftar akun tetap
             if ($cek1 == null) {
                 $aksi = $this->model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                $id = $this->db->insert_id();
                 if($aksi){
                     //reset sesion
                     $this->session->set_userdata('pretest_logged_in', TRUE);
+                    $this->session->set_userdata('pretest_id', $id);
                     $this->session->set_userdata('pretest_email', $email);
                     $this->session->set_userdata('pretest_nama', $nama);
                     redirect(base_url()."pretest/mapel/");

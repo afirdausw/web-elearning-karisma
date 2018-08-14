@@ -117,15 +117,19 @@
     </div>
 </section> <!-- End of konten Judul -->
 
+<!-- Cek apakah sudah pernah membaca sebelumnya atau belum -->
+<?php
+    if(!empty($status)){
+?>
 <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
     <div class="container">
         <div class="row">
             <div class="col-md-8 banner-left">
                 <h1>Lanjutkan Belajar</h1>
-                <span>Selesaikan belajar anda untuk memperdalam pelajaran ini</span>
+                <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:30%">
-                        Selesai <b>30%</b>
+                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                        Selesai <b>20%</b>
                     </div>
                 </div>
             </div>
@@ -135,20 +139,22 @@
         </div>
     </div>
 </section> <!-- End of BANNER-->
-
-<!--<section class="banner-top">
+<?php }else{ ?>'
+<section class="banner-top mulai-belajar" style="background: #F58634; margin-top: -20px;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 banner-left">
-                <h1>Daftar Sekarang GRATIS</h1>
-                <span>diskusi langsung dengan instruktur</span>
+                <h1>Ayo mulai belajar dengan kami</h1>
+                <span>dan diskusi langsung dengan instruktur</span>
             </div>
             <div class="col-md-4 banner-right">
-                <a href="#">Start Learn</a>
+                <a href="#">Mulai Belajar</a>
             </div>
         </div>
     </div>
-</section>--> <!-- End of BANNER-->
+</section> <!-- End of BANNER-->
+<?php } ?>
+
 <section class="wrap-deskripsi"> <!-- konten -->
     <div class="container">
         <div class="row">

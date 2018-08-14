@@ -875,4 +875,14 @@ function ganti_password($idlogin, $newpassword){
 
         return $query->row();
     }
+
+    function get_log_baca($id){
+        $this->db->select('*');
+        $this->db->from('log_baca');
+        $this->db->where('id_siswa', $id);
+
+        $query = $this->db->get();
+
+        return $query->row();
+    }
 }

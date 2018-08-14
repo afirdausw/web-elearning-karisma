@@ -45,7 +45,7 @@
 }
 .banner-bottom {
     padding-bottom: 20px;
-}				 
+}
 .banner-top .banner-left,
 .banner-bottom .banner-left {
     color: #FFF;
@@ -94,6 +94,9 @@
     background-size: cover;
     display: block;
     position: relative;
+}
+.mulai-belajar {
+    margin-top: -20px !important;
 }
 
 /* BANNER UNTUK HASIL QUIZ */
