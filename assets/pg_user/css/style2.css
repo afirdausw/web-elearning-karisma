@@ -49,7 +49,6 @@
 .banner-top .banner-left,
 .banner-bottom .banner-left {
     color: #FFF;
-    padding-left: 65px;
 }
 .banner-top .banner-left h1,
 .banner-bottom .banner-left h1 {		
@@ -95,10 +94,10 @@
     display: block;
     position: relative;
 }
-.mulai-belajar {
-    margin-top: -20px !important;
-}
+.btn-continue:link {
+    margin-top: -15px !important;
 
+}
 /* BANNER UNTUK HASIL QUIZ */
 .banner-quiz-hasil {
     background: #0679B0;

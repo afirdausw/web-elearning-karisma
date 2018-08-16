@@ -53,10 +53,10 @@ class Konten extends CI_Controller
                 'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
                 'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
-    //        return $this->output
-    //            ->set_content_type('application/json')
-    //            ->set_status_header(500)
-    //            ->set_output(json_encode($data));
+//            return $this->output
+//                ->set_content_type('application/json')
+//                ->set_status_header(500)
+//                ->set_output(json_encode($data));
 
             if($konten->kategori == '1'){
                 $this->load->view('pg_user/konten', $data);
@@ -73,15 +73,17 @@ class Konten extends CI_Controller
     }
 
 
-
     public function mapel($id_mapel){
         $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-        $materi = $this->model_pg->get_materi_by_mapel($id_mapel);
+        $id = $this->session->userdata('pretest_id');
 
+        $materi = $this->model_pg->get_materi_by_mapel_one($id_mapel);
         // TODO handle error apabila konten tidak ada di DB
         // DEBUG HERE
         error_reporting(0);
         $sub_materi_1 = $this->model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
+
+
         if($sub_materi_1 != null){
             $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
             $mapok_baru = [];
@@ -106,10 +108,15 @@ class Konten extends CI_Controller
                 'next_mapok' => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
                 'prev_mapok' => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
-            //        return $this->output
-            //            ->set_content_type('application/json')
-            //            ->set_status_header(500)
-            //            ->set_output(json_encode($data));
+
+//            return $this->output
+//                ->set_content_type('application/json')
+//                ->set_status_header(500)
+//                ->set_output(json_encode($data));
+
+            // simpan ke log baca
+            $tanggal = date(DATE_ATOM);
+            $this->model_konten->insert_log_baca($id, $sub_materi_1->id_sub_materi, $tanggal);
 
             if($konten->kategori == '1'){
                 $this->load->view('pg_user/konten', $data);

@@ -67,6 +67,36 @@ class Model_pg extends CI_Model
 		return $query->result();
 	}
 
+    function get_materi_by_mapel_one($id_mapel)
+    {
+
+		$this->db->select('*');
+		$this->db->from('materi_pokok');
+		$this->db->join('mata_pelajaran', 'mata_pelajaran.id_mapel = materi_pokok.mapel_id', 'left');
+		$this->db->join('kelas', 'mata_pelajaran.kelas_id = kelas.id_kelas', 'left');
+		$this->db->where('materi_pokok.mapel_id', $id_mapel);
+		//tester
+		//echo $this->db->_compile_select();
+		$query = $this->db->get();
+
+		return $query->row();
+
+
+
+//		$this->db->select('*');
+//		$this->db->from('materi_pokok');
+//		$this->db->join('mata_pelajaran', 'mata_pelajaran.id_mapel = materi_pokok.mapel_id', 'left');
+//		$this->db->join('kelas', 'mata_pelajaran.kelas_id = kelas.id_kelas', 'left');
+//		$this->db->where('materi_pokok.mapel_id', $id_mapel);
+//		$this->db->order_by('materi_pokok.urutan', 'ASC');
+//        $this->db->limit(1);
+//
+//		$query = $this->db->get();
+//
+//		return $query->result();
+//		return $query->result_array();
+	}
+
 
 	function get_sub_materi_by_materi($id_materi)
 	{

@@ -73,7 +73,6 @@ class Model_konten extends CI_Model {
 	public function insert_log($data)
 	{
 		$query = $this->db->insert("log_ujian", $data);
-
 		return $query;
 
 	}
@@ -127,5 +126,17 @@ class Model_konten extends CI_Model {
         $result = $query->row();
         return $result;
 	}
+
+
+    public function insert_log_baca($siswa, $sub_materi, $waktu)
+    {
+        $data  = array(
+            "id_siswa" => $siswa,
+            "sub_materi_id" => $sub_materi,
+            "created_at" => $waktu
+        );
+        $query = $this->db->insert("log_baca", $data);
+        return $query;
+    }
 
 }

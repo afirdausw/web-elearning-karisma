@@ -134,13 +134,13 @@
                 </div>
             </div>
             <div class="col-md-4 banner-right">
-                <a href="#">Lanjutkan</a>
+                <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
             </div>
         </div>
     </div>
 </section> <!-- End of BANNER-->
-<?php }else{ ?>'
-<section class="banner-top mulai-belajar" style="background: #F58634; margin-top: -20px;">
+<?php }else{ ?>
+<section class="banner-top" style="background: #F58634; margin-top: 0;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 banner-left">
@@ -148,7 +148,7 @@
                 <span>dan diskusi langsung dengan instruktur</span>
             </div>
             <div class="col-md-4 banner-right">
-                <a href="#">Mulai Belajar</a>
+                <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
             </div>
         </div>
     </div>

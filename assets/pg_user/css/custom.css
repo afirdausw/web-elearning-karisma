@@ -100,6 +100,13 @@ label {
     .navbar, .top-header .container {
         height: 60px;
     }
+    .btn-continue:link {
+        margin-top: 60px !important;
+    }
+    .banner-top .banner-left,
+    .banner-bottom .banner-left {
+        padding-left: 65px;
+    }
 }
 
 
