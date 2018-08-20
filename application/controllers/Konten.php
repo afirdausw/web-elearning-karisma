@@ -233,9 +233,11 @@ class Konten extends CI_Controller
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if($pretest_logged AND !$konten->pretest_status){
             redirect(base_url("login"));
-        }else if($siswa_logged AND $siswa->id_premium < 1){
-            redirect(base_url("profil"));
-        }else{
+        }
+//        else if($siswa_logged AND $siswa->id_premium < 1){
+//            redirect(base_url("profil"));
+//        }
+        else{
             if(isset($siswa->id_siswa)){
                 $check = [
                     "id_siswa"     => $siswa->id_siswa,
@@ -355,7 +357,14 @@ class Konten extends CI_Controller
     public function submit_jawab($id_materi, $soal_id, $jawab){
         //TO-DO siswa pretest
         //CHECK DATA DI JAWABAN SISWA
-        $siswa = $this->session->userdata('id_siswa');
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($pretest_logged){
+            $siswa = $this->session->userdata('pretest_id');
+        }else if($siswa_logged){
+            $siswa = $this->session->userdata('id_siswa');
+        }
+
         $sub_materi = intval($id_materi);
         $start = date('Y-m-d H:i:s');
 
@@ -364,6 +373,11 @@ class Konten extends CI_Controller
             "sub_materi_id" => $sub_materi,
         ];
         $data_log = $this->model_konten->select_log_data($check);
+
+//        return $this->output
+//            ->set_content_type('application/json')
+//            ->set_status_header(500)
+//            ->set_output(json_encode($check));
 
         $ins = [
             "id_log_ujian"  => $data_log->id_log_ujian,

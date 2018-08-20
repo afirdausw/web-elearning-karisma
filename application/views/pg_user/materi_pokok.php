@@ -129,8 +129,8 @@
                 <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
-                        Selesai <b>20%</b>
                     </div>
+                    <b>20%</b>
                 </div>
             </div>
             <div class="col-md-4 banner-right">
