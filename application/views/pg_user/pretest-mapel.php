@@ -157,6 +157,7 @@
         lst = $("#home_list_materi");
         nav = $("nav.navbar");
         $("html, body").animate({scrollTop: bnner.height() - nav.height()}, "slow");
+        var url =
         $.ajax({
             url: "<?= base_url() ?>pretest/ajax_load_listmapel/"+<?=$limit?>+"/"+num,
             success: function (result) {
