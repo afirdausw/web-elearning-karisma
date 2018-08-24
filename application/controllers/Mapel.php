@@ -34,6 +34,11 @@ class Mapel extends CI_Controller
             'mapel_lain' => $this->model_pg->get_mapel_random(),
         );
 
+        if ($this->session->userdata("siswa_logged_in")){
+            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $data['siswa_status'] = $siswa->id_premium;
+        }
+
         // return $this->output
         //      ->set_content_type('application/json')
         //      ->set_status_header(500)

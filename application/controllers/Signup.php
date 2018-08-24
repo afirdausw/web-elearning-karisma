@@ -19,15 +19,20 @@ class Signup extends CI_Controller
 
     function index()
     {
-        $data = array(
-            'navbar_links'    => $this->model_pg->get_navbar_links(),
-            'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-            'select_kota'     => $this->model_pg->fetch_all_kota(),
-            'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-            'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-            'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
-        );
-        $this->load->view("pg_user/signup", $data);
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if ($siswa_logged){
+            redirect(base_url("profil"));
+        }else{
+            $data = array(
+                'navbar_links'    => $this->model_pg->get_navbar_links(),
+                'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
+                'select_kota'     => $this->model_pg->fetch_all_kota(),
+                'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
+                'select_kelas'    => $this->model_pg->fetch_all_kelas(),
+                'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+            );
+            $this->load->view("pg_user/signup", $data);
+        }
     }
 
     function kota($idprovinsi)

@@ -118,68 +118,88 @@
 
 <!-- Cek apakah sudah pernah membaca sebelumnya atau belum -->
 <?php
+
 // 180824 - Rendy
 $jumlahPretest = 0;
 foreach ($materi as $key){
     if($key->pretest_status) $jumlahPretest++;
-};
-if ($jumlahPretest>0){
-    if(!empty($status)){
+}
+if($this->session->userdata("siswa_logged_in") AND $siswa_status){
+    //reset kondisi
+    $jumlahPretest = 1;
+}
+if(isset($key->id_materi_pokok)){
+    if ($jumlahPretest>0){
+        if(!empty($status)){
+        ?>
+            <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 banner-left">
+                            <h1>Lanjutkan Belajar</h1>
+                            <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                                </div>
+                                <b>20%</b>
+                            </div>
+                        </div>
+                        <div class="col-md-4 banner-right">
+                            <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+                        </div>
+                    </div>
+                </div>
+            </section> <!-- End of BANNER-->
+        <?php
+        }else{ ?>
+            <section class="banner-top" style="background: #F58634; margin-top: 0;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 banner-left">
+                            <h1>Ayo mulai belajar dengan kami</h1>
+                            <span>dan diskusi langsung dengan instruktur</span>
+                        </div>
+                        <div class="col-md-4 banner-right">
+                            <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
+                        </div>
+                    </div>
+                </div>
+            </section> <!-- End of BANNER-->
+        <?php }
+    }else{
     ?>
-        <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
+
+        <section class="banner-top" style="background: #cc3434; margin-top: 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 banner-left">
-                        <h1>Lanjutkan Belajar</h1>
-                        <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
-                            </div>
-                            <b>20%</b>
-                        </div>
+                        <h1>Mohon maaf, materi berikut hanya berlaku bagi pengguna <b>Premium</b></h1>
+                        <span>Daftar sekarang dan daftar sebagai siswa premium</span>
                     </div>
                     <div class="col-md-4 banner-right">
-                        <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+                        <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
                     </div>
                 </div>
             </div>
         </section> <!-- End of BANNER-->
     <?php
-    }else{ ?>
-        <section class="banner-top" style="background: #F58634; margin-top: 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 banner-left">
-                        <h1>Ayo mulai belajar dengan kami</h1>
-                        <span>dan diskusi langsung dengan instruktur</span>
-                    </div>
-                    <div class="col-md-4 banner-right">
-                        <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
-                    </div>
-                </div>
-            </div>
-        </section> <!-- End of BANNER-->
-    <?php }
-}else{
-?>
+    }
+}else{ ?>
     <section class="banner-top" style="background: #cc3434; margin-top: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 banner-left">
-                    <h1>Mohon maaf, materi berikut hanya berlaku bagi pengguna <b>Premium</b></h1>
-                    <span>Daftar sekarang dan daftar sebagai siswa premium</span>
+                    <h1>Mohon maaf, materi <b>belum tersedia</b></h1>
+                    <span>Kami akan segera memperbaharui materi ini</span>
                 </div>
                 <div class="col-md-4 banner-right">
-                    <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                    <a href="<?= base_url() ?>" style="color:#cc3434 !important;">Kembali ke menu utama</a>
                 </div>
             </div>
         </div>
     </section> <!-- End of BANNER-->
 <?php
-}?>
-
-
-
+} ?>
 
 <section class="wrap-deskripsi"> <!-- konten -->
     <div class="container">
@@ -243,9 +263,11 @@ if ($jumlahPretest>0){
                                         }
                                         //jika premium
                                         if(!$key->pretest_status){
-                                            if($this->session->userdata("siswa_logged_in") AND $siswa_status < 1){
-                                                $link = "href='".base_url()."profil'";
-                                                $icon = "<i class='fa fa-lock'></i>";
+                                            if($this->session->userdata("siswa_logged_in")){
+                                                if($siswa_status < 1){
+                                                    $link = "href='".base_url()."profil'";
+                                                    $icon = "<i class='fa fa-lock'></i>";
+                                                }
                                             }else if($this->session->userdata("pretest_logged_in")){
                                                 $link = "href='".base_url()."login'";
                                                 $icon = "<i class='fa fa-lock'></i>";
