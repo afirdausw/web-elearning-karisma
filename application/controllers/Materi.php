@@ -42,6 +42,12 @@ class Materi extends CI_Controller
         //      ->set_status_header(500)
         //      ->set_output(json_encode($data));
 
+        
+        //Jika kode pretest tidak ada
+        if($data->kelas == NULL){
+            redirect(base_url());
+        }
+
         $this->load->view('pg_user/materi_pokok', $data);
     }
 }

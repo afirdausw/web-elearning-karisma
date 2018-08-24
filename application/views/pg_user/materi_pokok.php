@@ -101,7 +101,6 @@
 </header> <!-- END OF HEADER -->
 
 <?php $data = $kelas ?>
-<?php foreach ($materi as $key); ?>
 <section class="banner-top banner-materi darker"> <!-- konten Judul -->
     <div class="container">
         <div class="row">
@@ -119,41 +118,68 @@
 
 <!-- Cek apakah sudah pernah membaca sebelumnya atau belum -->
 <?php
+// 180824 - Rendy
+$jumlahPretest = 0;
+foreach ($materi as $key){
+    if($key->pretest_status) $jumlahPretest++;
+};
+if ($jumlahPretest>0){
     if(!empty($status)){
-?>
-<section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 banner-left">
-                <h1>Lanjutkan Belajar</h1>
-                <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+    ?>
+        <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 banner-left">
+                        <h1>Lanjutkan Belajar</h1>
+                        <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                            </div>
+                            <b>20%</b>
+                        </div>
                     </div>
-                    <b>20%</b>
+                    <div class="col-md-4 banner-right">
+                        <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 banner-right">
-                <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+        </section> <!-- End of BANNER-->
+    <?php
+    }else{ ?>
+        <section class="banner-top" style="background: #F58634; margin-top: 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 banner-left">
+                        <h1>Ayo mulai belajar dengan kami</h1>
+                        <span>dan diskusi langsung dengan instruktur</span>
+                    </div>
+                    <div class="col-md-4 banner-right">
+                        <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- End of BANNER-->
+    <?php }
+}else{
+?>
+    <section class="banner-top" style="background: #cc3434; margin-top: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 banner-left">
+                    <h1>Mohon maaf, materi berikut hanya berlaku bagi pengguna <b>Premium</b></h1>
+                    <span>Daftar sekarang dan daftar sebagai siswa premium</span>
+                </div>
+                <div class="col-md-4 banner-right">
+                    <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                </div>
             </div>
         </div>
-    </div>
-</section> <!-- End of BANNER-->
-<?php }else{ ?>
-<section class="banner-top" style="background: #F58634; margin-top: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 banner-left">
-                <h1>Ayo mulai belajar dengan kami</h1>
-                <span>dan diskusi langsung dengan instruktur</span>
-            </div>
-            <div class="col-md-4 banner-right">
-                <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
-            </div>
-        </div>
-    </div>
-</section> <!-- End of BANNER-->
-<?php } ?>
+    </section> <!-- End of BANNER-->
+<?php
+}?>
+
+
+
 
 <section class="wrap-deskripsi"> <!-- konten -->
     <div class="container">

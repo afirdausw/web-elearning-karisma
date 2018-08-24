@@ -62,8 +62,6 @@
 
 <section>
     <div class="container home-materi-list" style="margin-top: 50px">
-        <?php
-        ?>
         <h1>Selamat datang,
             <b><?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?></b>
         </h1>
@@ -71,6 +69,9 @@
         <h2 style="margin-bottom: 10px">Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia
         </h2>
         <h3>Dan segera bergabung dengan kami untuk melihat lebih banyak konten lainnya dan diskusi bersama</h3>
+
+        <?= $this->session->flashdata('alert'); ?>
+
         <div class="line-text">
             <span style="font-size: 16px">Silakan pilih <b>Mata Pelajaran</b> yang ingin anda ikuti</span>
         </div>
@@ -93,7 +94,7 @@
                                     $mapel = $value->nama_mapel;
                                 }
                                 ?>
-                                <a href="<?= base_url() . 'kelas/' . $value->kelas_id; ?>" class="badge-kelas">
+                                <a href="<?= base_url() . 'pretest/mapel/' . $value->id_mapel; ?>" class="badge-kelas">
                                     <?= $value->alias_kelas ?>
                                 </a>
                                 <h3><?= $mapel ?></h3>
