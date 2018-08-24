@@ -354,8 +354,7 @@ class Konten extends CI_Controller
 
     public function start_soal($id_sub_materi)
     {
-        if (isset($_SESSION['pretest_logged_in']) && $_SESSION['pretest_logged_in']) {
-
+        if ($this->session->userdata('pretest_logged_in')) {
             $siswa = $this->session->userdata('pretest_id');
             $sub_materi = intval($id_sub_materi);
             $start = date('Y-m-d H:i:s');
@@ -391,7 +390,6 @@ class Konten extends CI_Controller
 
                 $estimasi_finish = time() + ($waktu_soal * 60);
                 $ins["finish"] = date('Y-m-d H:i:s', $estimasi_finish);
-                echo var_dump($soal);
 
                 $simpan = $this->model_konten->insert_log_pretest($ins);
 
@@ -466,8 +464,7 @@ class Konten extends CI_Controller
 
     public function submit_jawab($id_materi, $soal_id, $jawab)
     {
-        //TO-DO siswa pretest
-        //CHECK DATA DI JAWABAN SISWA
+        //CHECK DATA DI JAWABAN SISWA dan PRETEST
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if ($pretest_logged) {

@@ -51,8 +51,7 @@
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="<?= base_url("pretest/logout") ?>">Logout
-                                (<?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?>
-                                )</a></li>
+                                (<?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?>)</a></li>
                     </ul>
                 </div>
             </div>

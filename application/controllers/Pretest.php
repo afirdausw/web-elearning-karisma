@@ -160,15 +160,23 @@ class Pretest extends CI_Controller
             $cek1 = $this->model_login->cek_pretest_namaemail($nama, $email);
             //jika siswa telah mendaftar akun tetap
             if ($cek1 == null) {
-                $aksi = $this->model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
-                $id = $this->db->insert_id();
+                //jika pretest telah mendaftar pretest sebelumnya
+                $cek2 = $this->model_login->cek_pretest_sebelumnya($nama, $telepon, $email, $alamat, $tanggal);
+                if($cek2 == null){
+                    $aksi = $this->model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                    $id = $this->db->insert_id();
+                }else{
+                    $aksi = $this->model_login->update_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                    $id = $aksi;
+                }
+
                 if($aksi){
                     //reset sesion
                     $this->session->set_userdata('pretest_logged_in', TRUE);
                     $this->session->set_userdata('pretest_id', $id);
                     $this->session->set_userdata('pretest_email', $email);
                     $this->session->set_userdata('pretest_nama', $nama);
-                    redirect(base_url()."pretest/mapel/");
+                    redirect(base_url("pretest/mapel"));
                 }
             }else{
                 alert_error("Telah terdaftar", "Nama dan/atau e-mail anda telah terdaftar dalam sistem, silahkan login");

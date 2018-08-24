@@ -73,6 +73,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</a>
 								<h4 class="title"><?php echo $submateri->nama_sub_materi ?></h4>
 								<p class="category">Daftar Soal per Sub-materi</p>
+
+								<div class="">
+									<form action="<?=$form_action . 'detail/' . $submateri->id_sub_materi.'/ubah_waktu';?>" method = "post">
+										<label>Waktu Soal <input name="waktu_soal" class="form-control" style="width:inherit !important; display:inherit !important;" type="number" max="999" min="1" value="<?= (isset($submateri->waktu_soal) ? $submateri->waktu_soal : '1' ) ?>"> menit</label>
+										<input type="submit" class="btn btn-success" value="SIMPAN WAKTU">
+										
+									</form>
+								</div>
 							</div>
 							<div class="content">
 								<div class="table-responsive">

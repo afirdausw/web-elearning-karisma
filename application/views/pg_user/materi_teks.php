@@ -167,7 +167,7 @@
 						<p>
 							Maaf... Konten ini khusus untuk premium member. Silahkan memilih paket dengan harga mulai Rp 150.000,-
 							<br>
-							Ingin menjadi premium member? silahkan daftar <a href="<?php echo base_url('signup'); ?>" class="link-login">disini</a>.
+							Ingin menjadi premium member? silahkan daftar <a href="<?php echo base_url('profil'); ?>" class="link-login">disini</a>.
 						</p>
 					</div>
 				<?php

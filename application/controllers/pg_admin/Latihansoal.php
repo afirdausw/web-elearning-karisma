@@ -110,22 +110,39 @@ class Latihansoal extends CI_Controller
 
 
     // show all latihan soal from specified sub materi
-    public function detail($id_sub_materi)
+    public function detail($id_sub_materi, $act = '')
     {
-        $data = array(
-            'navbar_title' => "Latihan Soal",
-            'form_action' => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data' => $this->model_adm->fetch_soal_by_submateri($id_sub_materi),
-            'submateri' => $this->model_adm->fetch_materi_by_id($id_sub_materi),
-        );
+        if (!$act){
+            $data = array(
+                'navbar_title' => "Latihan Soal",
+                'form_action' => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
+                'table_data' => $this->model_adm->fetch_soal_by_submateri($id_sub_materi),
+                'submateri' => $this->model_adm->fetch_materi_by_id($id_sub_materi),
+            );
 
-        // tester
-        // alert_success('', "");
-        // alert_error('danger', "isi 2");
-        // alert_warning('info', "isi 2");
-        // alert_info('info', "isi 2");
+            // tester
+            // alert_success('', "");
+            // alert_error('danger', "isi 2");
+            // alert_warning('info', "isi 2");
+            // alert_info('info', "isi 2");
 
-        $this->load->view('pg_admin/latihansoal_detail', $data);
+            $this->load->view('pg_admin/latihansoal_detail', $data);
+        }else if ($act){
+            switch($act){
+                case "ubah_waktu" :
+                    $params = $this->input->post(null, false);
+                    $waktu_soal = isset($params['waktu_soal'])        ? $params['waktu_soal']    : 1;
+                    $aksi = $this->model_adm->update_waktu_soal($id_sub_materi, $waktu_soal);
+
+                    if($aksi){
+                        alert_success("Sukses", "Data waktu berhasil dimodifikasi");
+                    }else{
+                        alert_error("Error", "Kesalahan saat modifikasi");
+                    }
+                    redirect(base_url('pg_admin/latihansoal/detail/' . $id_sub_materi));
+                break;
+            }
+        }
     }
 
     public function ambilbanksoal($id_sub_materi)

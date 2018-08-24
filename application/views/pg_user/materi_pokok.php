@@ -212,6 +212,10 @@ if(isset($key->id_materi_pokok)){
             </div>
         </div><!-- End of Row  -->
 
+        <?php
+        if (isset($materi) AND $materi != NULL){
+        ?>
+
         <div class="row">
             <div class="col-md-5">
                 <h1>Materi <?= $data->nama_mapel ?></h1>
@@ -291,37 +295,49 @@ if(isset($key->id_materi_pokok)){
             </div>
         </div><!-- End of Row  -->
 
+        <?php
+        }
+        ?>
+
+        <?php
+        if(isset($mapel_lain)){ ?>
+
         <div class="row">
             <div class="col-md-4">
                 <h1>Materi Lainnya</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <?php foreach ($mapel_lain as $data) { ?>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="thumbnail materi-lainnya">
-                        <?php
-                            $linkmaterilain=base_url();
-                            if($this->session->userdata("pretest_logged_in")){
-                                $linkmaterilain .= "pretest/";
-                            }
-                            $linkmaterilain .= 'mapel/'.$data->id_mapel;
-                        ?>
-                        <a href="<?= $linkmaterilain; ?>">
-                            <span class="badge-diskon">Diskon 25%</span>
-                            <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
-                            <div class="caption">
-                                <h3><?= $data->nama_mapel ?> . . .</h3>
-                                <p>Pelajari lebih lanjut ...</p>
-                            </div>
-                        </a>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <?php foreach ($mapel_lain as $data) { ?>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail materi-lainnya">
+                            <?php
+                                $linkmaterilain=base_url();
+                                if($this->session->userdata("pretest_logged_in")){
+                                    $linkmaterilain .= "pretest/";
+                                }
+                                $linkmaterilain .= 'mapel/'.$data->id_mapel;
+                            ?>
+                            <a href="<?= $linkmaterilain; ?>">
+                                <span class="badge-diskon">Diskon 25%</span>
+                                <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
+                                <div class="caption">
+                                    <h3><?= $data->nama_mapel ?> . . .</h3>
+                                    <p>Pelajari lebih lanjut ...</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
+                    <?php } ?>
                 </div>
-                <?php } ?>
-            </div>
-        </div><!-- End of Row  -->
-    </div>
+            </div><!-- End of Row  -->
+        </div>
+
+        <?php
+        }
+        ?>
 </section> <!-- End of konten-->
 
 <?php include('footer.php'); ?>

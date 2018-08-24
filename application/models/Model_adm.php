@@ -1498,6 +1498,17 @@ class Model_adm extends CI_Model
         return $result->result_array();
     }
 
+
+    function update_waktu_soal($id_sub_materi, $waktu_soal){
+        $data = array(
+            'waktu_soal' => $waktu_soal,
+        );
+        $this->db->where('id_sub_materi', $id_sub_materi);
+        $result = $this->db->update('sub_materi', $data);
+
+        return $result;
+    }
+
     function update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal)
     {
         //Update row by id in table sub_materi

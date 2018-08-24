@@ -137,8 +137,7 @@ if ($waktu_sisa < 0) {
                             if ($this->session->userdata('pretest_logged_in')) {
                                 $idsiswa = $this->session->userdata('pretest_id'); ?>
                                 <li><a href="<?= base_url("pretest/logout") ?>">Logout Pretest
-                                        (<?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?>
-                                        )</a></li>
+                                        (<?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?>)</a></li>
                                 <?php
                             } else { ?>
                                 <li class="dropdown">
@@ -537,10 +536,12 @@ if ($waktu_sisa < 0) {
 <script src="<?php echo base_url('assets/pg_user/js/jquery.countdown.js'); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
+<?php if ($this->session->userdata('pretest_logged_in')) {
+    $idsiswa = $this->session->userdata('pretest_id');
+}
+?>
+
 <script type="text/javascript">
-    <?php if (isset($_SESSION['pretest_logged_in']) && $_SESSION['pretest_logged_in']) {
-        $idsiswa = $_SESSION['pretest_id'];
-    }?>
     var cur = 1;
     $('#soal').on('shown.bs.modal', function () {
         hal(cur);
@@ -632,7 +633,7 @@ if ($waktu_sisa < 0) {
     });
     $("#mulai").click(function () {
         <?php
-        if($idsiswa != NULL  ){
+        if($idsiswa != NULL){
         ?>
         var currentURL = 'http://' + window.location.hostname + window.location.pathname;
         var idSubMateri = currentURL.substr(currentURL.lastIndexOf('/') + 1);

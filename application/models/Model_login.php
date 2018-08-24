@@ -122,6 +122,41 @@ class Model_login extends CI_Model
         $id_sesi = $this->db->insert_id();
         return $id_sesi;
     }
+    function update_pretest($nama, $telepon, $email, $alamat, $time){
+        $result     = null;
+        $data_user  = array(
+            "nama_siswa_pretest" => $nama,
+            "telepon_siswa_pretest" => $telepon,
+            "email_siswa_pretest" => $email,
+            "alamat" => $alamat,
+            "timestamp_signup" => $time,
+        );
+        $this->db->where("
+            nama_siswa_pretest= '$nama'
+            AND telepon_siswa_pretest = '$telepon'
+            AND email_siswa_pretest = '$email'
+            AND alamat = '$alamat'");
+        $this->db->update("siswa_pretest", $data_user);
+        $this->db->where("
+            nama_siswa_pretest= '$nama'
+            AND telepon_siswa_pretest = '$telepon'
+            AND email_siswa_pretest = '$email'
+            AND alamat = '$alamat'
+            AND timestamp_signup = '$time'");
+        return $this->db->get('siswa_pretest')->row()->id_siswa_pretest;
+    }
+    function cek_pretest_sebelumnya($nama, $telepon, $email, $alamat){
+        $this->db->select("*");
+        $this->db->from("siswa_pretest");
+        $this->db->where("
+            nama_siswa_pretest= '$nama'
+            AND telepon_siswa_pretest = '$telepon'
+            AND email_siswa_pretest = '$email'
+            AND alamat = '$alamat'");
+        $query = $this->db->get();
+        $data = $query->row();
+        return $data;
+    }
 
     function cek_pretest_namaemail($nama, $email){
         $this->db->select("nama_siswa, email");
