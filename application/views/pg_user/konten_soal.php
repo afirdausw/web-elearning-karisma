@@ -44,7 +44,8 @@
 
 $status_finish = 0;
 $nilai = (float)0.0;
-$waktu_quiz = 0;
+$waktu_quiz = (float)0.0;
+$jam = (float)0.0;
 // Pengaturan waktu countdown
 if (isset($log) AND $log != NULL) {
     $telah_berlalu = time() - strtotime($log->start);

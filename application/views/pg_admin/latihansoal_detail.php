@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class="">
 									<form action="<?=$form_action . 'detail/' . $submateri->id_sub_materi.'/ubah_waktu';?>" method = "post">
-										<label>Waktu Soal <input name="waktu_soal" class="form-control" style="width:inherit !important; display:inherit !important;" type="number" max="999" min="1" value="<?= (isset($submateri->waktu_soal) ? $submateri->waktu_soal : '1' ) ?>"> menit</label>
+										<label>Waktu Soal <input name="waktu_soal" class="form-control" style="width:inherit !important; display:inherit !important;" type="number" max="999" min="0.1" step="0.1" value="<?= (isset($submateri->waktu_soal) ? $submateri->waktu_soal : '1' ) ?>"> menit</label>
 										<input type="submit" class="btn btn-success" value="SIMPAN WAKTU">
 										
 									</form>
