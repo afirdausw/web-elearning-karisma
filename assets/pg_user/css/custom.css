@@ -289,6 +289,9 @@ label {
     background: #337ab7;
     color: #FFF;
 }
+.jawaban .btn-group > .btn-primary.focus:hover {
+    background: #E9AF45 !important;
+}
 .jawaban li span {
     width: 20px;
     display: inline-block
@@ -313,15 +316,15 @@ label {
     outline: 0;
     transition: all .2s linear;
 }
-.jawaban label:hover {
-    text-decoration: none;
-    background: #E9AF45;
-}
 .jawaban label:focus {
     text-decoration: none;
     /*background: #AAA;*/
     background: #337ab7;
     color: #FFF;
+}
+.jawaban label:hover {
+    text-decoration: none;
+    background: #E9AF45;
 }
 .jawaban li span {
     width: 20px;

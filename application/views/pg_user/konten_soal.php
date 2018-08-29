@@ -359,7 +359,6 @@ if ($waktu_sisa < 0) {
                                             <div class="row">
                                                 <span class="badge">Pilihan</span>
                                             </div>
-                                            <br><br>
                                             <div class="row">
                                                 <div class="btn-group" data-toggle="buttons">
                                                 <label class="btn btn-primary btn-block <?php if (isset($data_jawaban)) {
