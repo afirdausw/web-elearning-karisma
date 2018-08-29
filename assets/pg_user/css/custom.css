@@ -330,6 +330,9 @@ label {
 .jawaban li p {
     display: inline-block
 }
+.jawaban .badge {
+    margin-left: 10px;
+}
 
 /* TABLE CUSTOM CSS */
 .table-my {

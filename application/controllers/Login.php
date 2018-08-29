@@ -18,6 +18,11 @@ class Login extends CI_Controller
 //        $this->load->model("model_pembayaran_elearning");
 //        $this->load->model("model_dashboard");
 //        $this->load->helper("socmed_helper");
+//        if($this->session->userdata('siswa_logged_in') != TRUE) {
+//            $this->load->helper('url');
+//            $this->session->set_userdata('last_page', current_url());
+//            redirect('/login');
+//        }
     }
 
     function index()
@@ -52,7 +57,11 @@ class Login extends CI_Controller
                 $this->session->unset_userdata('pretest_logged_in');
                 $this->session->unset_userdata('pretest_email');
                 $this->session->unset_userdata('pretest_nama');
-                redirect(".");  
+                if(isset($_SESSION['RedirectKe'])){
+                    header('location:'.$_SESSION['RedirectKe']);
+                }else{
+                    redirect(".");
+                }
             } else {
                 alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
                 $link_redir="login";
@@ -65,7 +74,11 @@ class Login extends CI_Controller
         $this->session->unset_userdata('siswa_logged_in');
         $this->session->unset_userdata('id_siswa');
         // $this->session->sess_destroy();
-        redirect(".");
+        if(isset($_SESSION['RedirectKe'])){
+            header('location:'.$_SESSION['RedirectKe']);
+        }else{
+            redirect(".");
+        }
     }
 
     // function do_login()

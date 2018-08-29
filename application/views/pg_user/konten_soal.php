@@ -42,6 +42,10 @@
 // $waktu_quiz = date("r",strtotime($log['finish']));
 // $waktu_sisa = $waktu_quiz - $telah_berlalu;
 
+// Session halaman sebelumnya ketika sudah login
+$_SESSION['RedirectKe'] = current_url();
+
+
 $status_finish = 0;
 $nilai = (float)0.0;
 $waktu_quiz = (float)0.0;
@@ -275,7 +279,7 @@ if ($waktu_sisa < 0) {
                         $pretest = $key->pretest_status;
                         ?>
                         <?php
-                        if ($this->session->userdata('id_siswa') != NULL OR ($this->session->userdata('id_siswa') == NULL AND $pretest == 1)) { ?>
+                        if ($this->session->userdata('id_siswa') != NULL OR $this->session->userdata('pretest_id') != NULL) { ?>
                             <button id="mulai" data-toggle="modal" href="#soal" type="button" class="btn
 							<?php if ($test_jum == 0) {
                                 echo 'btn-primary';
@@ -289,7 +293,7 @@ if ($waktu_sisa < 0) {
                                 <?php } ?>
                             </button>
                             <?php
-                        } else if ($this->session->userdata('id_siswa') == NULL) { ?>
+                        } else if ($this->session->userdata('id_siswa') == NULL || $this->session->userdata('pretest_id') == NULL) { ?>
                             <a href="<?= base_url(); ?>login">
                                 <button type="button" class="btn btn-default btn-md" id="mulai">
                                     <i class="ti-lock"></i> Login untuk memulai
@@ -355,7 +359,9 @@ if ($waktu_sisa < 0) {
                                             <div class="row">
                                                 <span class="badge">Pilihan</span>
                                             </div>
-                                            <div class="btn-group" data-toggle="buttons">
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="btn-group" data-toggle="buttons">
                                                 <label class="btn btn-primary btn-block <?php if (isset($data_jawaban)) {
                                                     if (isset($array_terjawab[$no - 1]) AND $array_terjawab[$no - 1] == 1) {
                                                         echo "active";
@@ -432,6 +438,7 @@ if ($waktu_sisa < 0) {
                                                     echo $text;
                                                     ?>
                                                 </label>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
