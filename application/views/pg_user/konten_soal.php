@@ -170,70 +170,74 @@ if ($waktu_sisa < 0) {
     <div class="container fixed-top">
         <div class="row">
             <!-- Sub Materi Kanan -->
-            <!-- Sub Materi Kanan -->
-            <div class="col-lg-4 col-md-5 col-sm-5 materi-kanan" style="float: right">
+            <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right" >
                 <span class="judul-header">Materi</span>
+                <?php $no = 0;
+                    foreach ($materi_pokok as $data) {
+                        $no++;
+                        $idsiswa = $this->session->userdata('id_siswa');
 
-                <?php $no = 1;
-                foreach ($materi_pokok as $data) {
-                    $idsiswa = $this->session->userdata('id_siswa');
-
-                    $disable_class = '';
-                    $pretest_text = '';
-                    $pretest_stat = $data->pretest_status;
-                    $user_akses = 3;
-                    if ($pretest_stat == 0) {
-                        if ($idsiswa == NULL) {
-                            echo "<style>
-                            .not-active {
-                              pointer-events: none;
-                              cursor: default;
-                              color: grey !important;
-                            }
-                            </style>";
-                            $pretest_text = "(Login diperlukan)";
-                            $disable_class = ' not-active';
-                            $user_akses = 0;
-                            // 0 = tidak login dan pretest dilarang
-                        } else {
-                            $user_akses = 1;
-                            // 1 = Login tapi tidak premium
-                        }
-                    }
-                    ?>
-                    <span class="judul-materi"> <!-- Materi 1 -->
-                    <b>BAB <?= $no++ ?> : </b> <?= $data->nama_materi_pokok ?> <?= $pretest_text; ?>
-                </span>
-                    <div class="wrap-media-list">
-                        <?php
-                        foreach ($data->sub_materi as $bab) {
-                            if ($bab->kategori == '1') {
-                                $link = base_url() . 'konten/detail/' . $bab->id_sub_materi;
-                                $icon = '<i class="fa fa-align-left"></i>';
-                                $type = 'Tipe Teks';
-                            } elseif ($bab->kategori == '2') {
-                                $link = base_url() . 'konten/detail_video/' . $bab->id_sub_materi;
-                                $icon = '<i class="fa fa-youtube"></i>';
-                                $type = 'Tipe Video';
+                        $disable_class = '';
+                        $pretest_text = '';
+                        $pretest_stat = $data->pretest_status;
+                        $user_akses = 3;
+                        if ($pretest_stat == 0) {
+                            if ($idsiswa == NULL) {
+                                echo "<style>
+                                .not-active {
+                                  pointer-events: none;
+                                  cursor: default;
+                                  color: grey !important;
+                                }
+                                </style>";
+                                $pretest_text = "<span class='ti-lock' title='Login diperlukan'></i>";
+                                $disable_class = ' not-active';
+                                $user_akses = 0;
+                                // 0 = tidak login dan pretest dilarang
                             } else {
-                                $link = base_url() . 'konten/detail_soal/' . $bab->id_sub_materi;
-                                $icon = '<i class="fa fa-check-square-o"></i>';
-                                $type = 'Tipe Soal';
+                                $user_akses = 1;
+                                // 1 = Login tapi tidak premium
                             }
-                            if ($user_akses == 0) {
-                                $link = "#";
-                                $icon = '<i class="fa fa-lock"></i>';
-                            }
-
-
-                            /*
-                            DEBUG
-                            ---------*/
-                            // if($idsiswa != NULL){
-                            //     $konten = $link;
-                            // }else{
-                            //     $konten = '#';
-                            // }
+                        }
+                ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-konten" role="tab">
+                        <h4 class="panel-title panel-title-konten">
+                            <a class="collapsed"  href="#bab<?= $no; ?>" role="button" data-toggle="collapse">
+                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <b>BAB <?= $no ?> :</b> <?= $data->nama_materi_pokok ?> <?=$pretest_text;?>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="bab<?= $no; ?>" class="panel-collapse collapse" role="tabpanel">
+                        <div class="wrap-media-list">
+                            <?php
+                                foreach ($data->sub_materi as $bab) {
+                                    if ($bab->kategori == '1') {
+                                        $link = base_url() . 'konten/detail/' . $bab->id_sub_materi;
+                                        $icon = '<i class="fa fa-align-left"></i>';
+                                        $type = 'Tipe Teks';
+                                    } elseif ($bab->kategori == '2') {
+                                        $link = base_url() . 'konten/detail_video/' . $bab->id_sub_materi;
+                                        $icon = '<i class="fa fa-youtube"></i>';
+                                        $type = 'Tipe Video';
+                                    } else {
+                                        $link = base_url() . 'konten/detail_soal/' . $bab->id_sub_materi;
+                                        $icon = '<i class="fa fa-check-square-o"></i>';
+                                        $type = 'Tipe Soal';
+                                    }
+                                    if ($user_akses == 0) {
+                                        $link = "#";
+                                        $icon = '<i class="fa fa-lock"></i>';
+                                    }
+                                    /*
+                                    DEBUG
+                                    ---------*/
+                                    // if($idsiswa != NULL){
+                                    //     $konten = $link;
+                                    // }else{
+                                    //     $konten = '#';
+                                    // }
                             ?>
                             <a class="media-link<?= $disable_class ?>" href="<?= $link ?>">
                                 <div class="media">
@@ -247,8 +251,10 @@ if ($waktu_sisa < 0) {
                                     </div>
                                 </div>
                             </a>
-                        <?php } ?>
+                            <?php } ?>
+                        </div>
                     </div>
+                </div>
                 <?php } ?>
             </div>
 

@@ -904,10 +904,10 @@ footer a:hover:not(.logo-footer) {
     display: block;
     background: #0679B0;
     text-align: center;
-    font-size: 34px;
+    font-size: 26px;
     font-weight: 700;
     color: #FFF;
-    padding: 10px 0;
+    padding: 8px 0;
 }
 .judul-materi {
     background: #f5f5f5;
@@ -934,7 +934,6 @@ footer a:hover:not(.logo-footer) {
     color: #0679B0;
     transition: all .2s ease-in-out;
 }
-.media:hover > .media-left .fa,
 .media-link.disable:hover,
 .media-link:focus > .media > .media-left > .fa {
     border: solid 1px #000;
@@ -951,6 +950,7 @@ footer a:hover:not(.logo-footer) {
     text-decoration: none;
     transition: all .2s ease-in-out;
 }
+.media:hover > .media-left .fa,
 .media-link.disable:hover > .media-left .fa,
 .media-link:focus > .media > .media-left > .fa {
     border: solid 1px #0679B0;
@@ -1101,7 +1101,8 @@ footer a:hover:not(.logo-footer) {
 
 
 /* PANEL STYLING */
-.panel-group .panel {
+.panel-group .panel,
+.panel-group-konten .panel {
     border-radius: 0;
     box-shadow: none;
     border-color: #EEEEEE;
@@ -1114,15 +1115,37 @@ footer a:hover:not(.logo-footer) {
     background-color: #F0F0F0;
     border-color: #EEEEEE;
 }
+.panel-default > .panel-heading-konten {
+    background-color: #f4f4f4;
+}
+.panel-group-konten .panel {
+    border: 0;
+}
 .panel-title {
     padding: 5px 0 5px 5px;
     font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
 }
+.panel-title-konten {
+    padding: 5px 0 5px 5px;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+.panel-title-konten .ti-lock {
+    color: #666;
+    margin-left: 5px;
+    font-size: 9pt;
+}
 .panel-title > a {
     display: block;
     padding: 15px;
+    text-decoration: none;
+}
+.panel-title-konten > a {
+    display: block;
+    padding: 10px;
     text-decoration: none;
 }
 .more-less {
@@ -1130,6 +1153,12 @@ footer a:hover:not(.logo-footer) {
     font-weight: 400;
     color: #26AED4;
     font-size: 14px;
+}
+.panel-group-konten .more-less {
+    margin-right: 10px;
+    font-weight: 400;
+    color: #26AED4;
+    font-size: 12px;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
     border-top-color: #EEEEEE;

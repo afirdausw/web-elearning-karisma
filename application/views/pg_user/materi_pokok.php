@@ -231,7 +231,7 @@ if(isset($key->id_materi_pokok)){
                             <h4 class="panel-title">
                                 <a class="collapsed"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
                                     <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> 
-                                <?= (($key->pretest_status) ? "" : "<b>(Premium)</b?>" ); ?>
+                                	<?= (($key->pretest_status) ? "" : "<b>(Premium)</b?>" ); ?>
                                 </a>
                             </h4>
                         </div>
@@ -292,6 +292,7 @@ if(isset($key->id_materi_pokok)){
                         </div>
                     </div> <!-- panel-group -->
                     <?php } ?>
+                </div>
             </div>
         </div><!-- End of Row  -->
 
