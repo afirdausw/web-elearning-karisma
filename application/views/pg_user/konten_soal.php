@@ -756,6 +756,7 @@ if ($waktu_sisa < 0) {
             url: "<?=base_url();?>konten/submit_jawab/" + idSubMateri + "/" + $(this).attr("soal-no") + "/" + this.value,
             success: function (result) {
                 alert(result);
+                next_m();
             }
         });
     });

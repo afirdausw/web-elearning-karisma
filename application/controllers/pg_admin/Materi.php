@@ -327,13 +327,18 @@ class Materi extends CI_Controller
             alert_error("Error", "Data gagal ditambahkan");
             $this->load->view('pg_admin/materi_form2', $data);
         } else {
+
+//            $isi_materi =  $this->convert_base64_to_image($isi_materi, 'materi/');
             //passing input value to Model
-            $insert_id = $this->model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
+            $insert_id = $this->model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, '', $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
 
             //continue passing soal input value to Model
             if ($insert_id && $kategori == 3) {
                 $result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
-            }
+            }elseif ($insert_id && $kategori == 1){
+                $isi_materi =  $this->convert_base64_to_image($isi_materi, 'materi/'.$insert_id.'/');
+                  $this->model_adm->update_manual('konten_materi','sub_materi_id',$insert_id,['isi_materi' => $isi_materi]);
+             }
 
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/materi/listdata/' . $kelas . '/' . $mapel . '/' . $mapok);
@@ -410,27 +415,27 @@ class Materi extends CI_Controller
     {
         $materi = $this->model_adm->fetch_materi_by_id($this->input->post('hidden_row_id'));
 
-            //set form validation rules
-            $this->form_validation->set_rules('hidden_row_id', "Nomor Baris", 'trim|required|numeric');
+        //set form validation rules
+        $this->form_validation->set_rules('hidden_row_id', "Nomor Baris", 'trim|required|numeric');
 
-            if ($this->form_validation->run() != FALSE) {
-                $id = $this->input->post('hidden_row_id');
-                $result = $this->model_adm->delete_materi($id);
-                if ($result) {
-                    alert_success('Sukses', "Data berhasil dihapus");
-                    redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
+        if ($this->form_validation->run() != FALSE) {
+            $id = $this->input->post('hidden_row_id');
+            $result = $this->model_adm->delete_materi($id);
+            if ($result) {
+                alert_success('Sukses', "Data berhasil dihapus");
+                redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
 
-                } else {
-                    alert_error('Error', "Data gagal dihapus");
-                    redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
-
-                }
-            }else {
+            } else {
                 alert_error('Error', "Data gagal dihapus");
                 redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
 
             }
-        
+        } else {
+            alert_error('Error', "Data gagal dihapus");
+            redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
+
+        }
+
     }
 
     function preview_konten($sub_materi_id)
@@ -586,4 +591,77 @@ class Materi extends CI_Controller
         }
     }
 
+    /**
+     * @param $text
+     * @param $dir
+     * @return mixed
+     */
+    private function convert_base64_to_image($text, $dir)
+    {
+        $dir = 'image/' . $dir;
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        $doc = new DOMDocument();
+        @$doc->loadHTML($text);
+
+        $tags = $doc->getElementsByTagName('img');
+        $img = [];
+        $i = 0;
+        $text_lama = $text;
+        foreach ($tags as $tag) {
+            $img[$i]['img'] = $tag->getAttribute('src');
+            $image_parts = explode(";base64,", $tag->getAttribute('src'));
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $img[$i]['tipe'] = $image_type;
+            $img[$i]['tipe_file'] = $this->tipe($image_type);
+            $file = $dir . date('YmdHis') . uniqid() . '.' . $this->tipe($image_type);
+            $image_base64 = base64_decode($image_parts[1]);
+            file_put_contents($file, $image_base64);
+            $img[$i]['file'] = base_url($file);
+            $text = str_replace($tag->getAttribute('src'), base_url($file), $text);
+            $i++;
+        }
+        $img['text'] = $text;
+        $img['text_lama'] = $text_lama;
+
+        return $text;
+    }
+
+    /**
+     * @param $tipe
+     * @return bool|string
+     */
+    private function tipe($tipe)
+    {
+        $tipe = strtolower($tipe);
+        switch ($tipe) {
+            case "gif":
+                return "gif";
+                break;
+            case "jpeg":
+                return "jpg";
+                break;
+            case "png":
+                return "png";
+                break;
+            default :
+                return false;
+                break;
+        }
+    }
+
+    function delete_files($target)
+    {
+        if (is_dir($target)) {
+            $files = glob($target . '*', GLOB_MARK); //GLOB_MARK adds a slash to directories returned
+            foreach ($files as $file) {
+                delete_files($file);
+            }
+            rmdir($target);
+        } elseif (is_file($target)) {
+            unlink($target);
+        }
+    }
 }
