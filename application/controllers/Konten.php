@@ -227,7 +227,7 @@ class Konten extends CI_Controller
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
-        } else if (($siswa_logged AND $siswa->id_premium < 1) AND !$konten->pretest_status) {
+        } else if ($siswa_logged AND $siswa->id_premium < 1) {
             redirect(base_url("profil"));
         } else {
             if($siswa_logged OR $pretest_logged){
