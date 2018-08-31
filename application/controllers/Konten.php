@@ -169,21 +169,23 @@ class Konten extends CI_Controller
         } else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
             redirect(base_url("profil"));
         } else {
-            if($siswa_logged){
-                $id = $this->session->userdata('id_siswa');
-                $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-                $jenis_siswa = "siswa";
-            }else if ($pretest_logged){
-                $id = $this->session->userdata('pretest_id');
-                $siswa = "";
-                $jenis_siswa = "pretest";
-            }
-            $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-            if($cek_exist->baca_total==0){
-                $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            }
-            else if($cek_exist->baca_total>0){
-                $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            if($siswa_logged OR $pretest_logged){
+                if($siswa_logged){
+                    $id = $this->session->userdata('id_siswa');
+                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $jenis_siswa = "siswa";
+                }else if ($pretest_logged){
+                    $id = $this->session->userdata('pretest_id');
+                    $siswa = "";
+                    $jenis_siswa = "pretest";
+                }
+                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                if($cek_exist->baca_total==0){
+                    $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                }
+                else if($cek_exist->baca_total>0){
+                    $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                }
             }
             $data = array(
                 'siswa'          => $siswa,
@@ -228,21 +230,23 @@ class Konten extends CI_Controller
         } else if ($siswa_logged AND $siswa->id_premium < 1) {
             redirect(base_url("profil"));
         } else {
-            if($siswa_logged){
-                $id = $this->session->userdata('id_siswa');
-                $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-                $jenis_siswa = "siswa";
-            }else if ($pretest_logged){
-                $id = $this->session->userdata('pretest_id');
-                $siswa = "";
-                $jenis_siswa = "pretest";
-            }
-            $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-            if($cek_exist->baca_total==0){
-                $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            }
-            else if($cek_exist->baca_total>0){
-                $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            if($siswa_logged OR $pretest_logged){
+                if($siswa_logged){
+                    $id = $this->session->userdata('id_siswa');
+                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $jenis_siswa = "siswa";
+                }else if ($pretest_logged){
+                    $id = $this->session->userdata('pretest_id');
+                    $siswa = "";
+                    $jenis_siswa = "pretest";
+                }
+                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                if($cek_exist->baca_total==0){
+                    $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                }
+                else if($cek_exist->baca_total>0){
+                    $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                }
             }
             $data = array(
                 'siswa'          => $siswa,
