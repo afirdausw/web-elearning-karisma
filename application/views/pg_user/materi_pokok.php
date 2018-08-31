@@ -122,15 +122,22 @@
 // 180824 - Rendy
 $jumlahPretest = 0;
 foreach ($materi as $key){
+    //hitung jumlah pretest
     if($key->pretest_status) $jumlahPretest++;
 }
+// $siswa_status == hak akses premium atau tidak
 if($this->session->userdata("siswa_logged_in") AND $siswa_status){
     //reset kondisi
     $jumlahPretest = 1;
 }
+//jika materi ada
 if(isset($key->id_materi_pokok)){
+    //jika jumlah pretest lebih dari 1 / reset dari status premium
     if ($jumlahPretest>0){
-        if(!empty($status)){
+        //jika telah dibaca
+        if($baca_total!=0){
+            $persen_baca = ($baca_total / $materi_total) * 100;
+            $persen_baca = round($persen_baca, 1);
         ?>
             <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
                 <div class="container">
@@ -139,18 +146,19 @@ if(isset($key->id_materi_pokok)){
                             <h1>Lanjutkan Belajar</h1>
                             <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<?=$persen_baca;?>" aria-valuemin="0" aria-valuemax="100" style="width:<?=$persen_baca;?>%">
                                 </div>
-                                <b>20%</b>
+                                <b><?=$persen_baca;?>%</b>
                             </div>
                         </div>
                         <div class="col-md-4 banner-right">
-                            <a class="btn-continue" href="<?= base_url("konten/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+                            <a class="btn-continue" href="<?= base_url("konten/detail_soal/".$key->id_materi_pokok) ?>">Lanjutkan</a>
                         </div>
                     </div>
                 </div>
             </section> <!-- End of BANNER-->
         <?php
+        //jika belum dibaca
         }else{ ?>
             <section class="banner-top" style="background: #F58634; margin-top: 0;">
                 <div class="container">
@@ -167,6 +175,7 @@ if(isset($key->id_materi_pokok)){
             </section> <!-- End of BANNER-->
         <?php }
     }else{
+    //jika materi sepenuhnya perlu akses premium
     ?>
 
         <section class="banner-top" style="background: #cc3434; margin-top: 0;">
@@ -184,7 +193,10 @@ if(isset($key->id_materi_pokok)){
         </section> <!-- End of BANNER-->
     <?php
     }
-}else{ ?>
+}else{
+    //jika materi tidak ada di db
+?>
+
     <section class="banner-top" style="background: #cc3434; margin-top: 0;">
         <div class="container">
             <div class="row">
@@ -241,22 +253,22 @@ if(isset($key->id_materi_pokok)){
                                 <?php
                                     foreach ($key->mapok as $bab) {
                                         if($bab->kategori == '2'){
-                                            $link = "data-toggle='modal' href='".base_url()."materi/#".$bab->id_konten."'";
+                                            $link = "href='".base_url()."konten/detail_video/".$bab->id_sub_materi."'";
                                             $icon = "<i class='fa fa-youtube'></i>";
-                                            echo '
-                                                    <div class="modal modal-center fade" id="'.$bab->id_konten.'" role="dialog">
-                                                        <div class="modal-dialog modal-dialog-center" style="width: 70%">
-                                                            <div class="modal-content modal-content-youtube">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                    <h4 class="modal-judul">'.$bab->nama_sub_materi.'</h4>
-                                                                </div>
-                                                                <div class="wrap-video embed-responsive embed-responsive-16by9">
-                                                                    <iframe class="embed-responsive-item" src="'.$bab->video_materi.'?rel=0&controls=0&showinfo=0" allowfullscreen></iframe>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>';
+                                            // echo '
+                                            //         <div class="modal modal-center fade" id="'.$bab->id_konten.'" role="dialog">
+                                            //             <div class="modal-dialog modal-dialog-center" style="width: 70%">
+                                            //                 <div class="modal-content modal-content-youtube">
+                                            //                     <div class="modal-header">
+                                            //                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            //                         <h4 class="modal-judul">'.$bab->nama_sub_materi.'</h4>
+                                            //                     </div>
+                                            //                     <div class="wrap-video embed-responsive embed-responsive-16by9">
+                                            //                         <iframe class="embed-responsive-item" src="'.$bab->video_materi.'?rel=0&controls=0&showinfo=0" allowfullscreen></iframe>
+                                            //                     </div>
+                                            //                 </div>
+                                            //             </div>
+                                            //         </div>';
 
                                         } elseif ($bab->kategori == '1'){
                                             $link = "href='".base_url()."konten/detail/".$bab->id_sub_materi."'";

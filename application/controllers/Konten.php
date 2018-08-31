@@ -75,8 +75,17 @@ class Konten extends CI_Controller
 
     public function mapel($id_mapel)
     {
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-        $id = $this->session->userdata('pretest_id');
+        $pretest_logged = $this->session->userdata('pretest_logged_in');
+        $siswa_logged = $this->session->userdata('siswa_logged_in');
+        if($siswa_logged){
+            $id = $this->session->userdata('id_siswa');
+            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $jenis_siswa = "siswa";
+        }else if ($pretest_logged){
+            $id = $this->session->userdata('pretest_id');
+            $siswa = "";
+            $jenis_siswa = "pretest";
+        }
 
         $materi = $this->model_pg->get_materi_by_mapel_one($id_mapel);
         // TODO handle error apabila konten tidak ada di DB
@@ -110,22 +119,25 @@ class Konten extends CI_Controller
                 'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
 
-//            return $this->output
-//                ->set_content_type('application/json')
-//                ->set_status_header(500)
-//                ->set_output(json_encode($data));
-
-            // simpan ke log baca
-            $tanggal = date(DATE_ATOM);
-            $this->model_konten->insert_log_baca($id, $sub_materi_1->id_sub_materi, $tanggal);
-
+            // return $this->output
+            // ->set_content_type('application/json')
+            // ->set_status_header(500)
+            // ->set_output(json_encode($data));
+            $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            $redirect_link="konten/detail";
             if ($konten->kategori == '1') {
-                $this->load->view('pg_user/konten', $data);
+                //detail
+                $redirect_link.="";
             } elseif ($konten->kategori == '2') {
-                $this->load->view('pg_user/konten_video', $data);
+                //video
+                $redirect_link.="_video";
             } elseif ($konten->kategori == '3') {
-                $this->load->view('pg_user/konten_soal', $data);
+                //soal
+                $redirect_link.="_soal";
             }
+            $redirect_link.="/".$id_mapel;
+
+            redirect(base_url($redirect_link));
         } else { ?>
             <div style="text-align:center; font-size:21px; font-weight:bolder; font-family:'Segoe UI'">Konten belum
                 tersedia
@@ -157,6 +169,22 @@ class Konten extends CI_Controller
         } else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
             redirect(base_url("profil"));
         } else {
+            if($siswa_logged){
+                $id = $this->session->userdata('id_siswa');
+                $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                $jenis_siswa = "siswa";
+            }else if ($pretest_logged){
+                $id = $this->session->userdata('pretest_id');
+                $siswa = "";
+                $jenis_siswa = "pretest";
+            }
+            $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+            if($cek_exist->baca_total==0){
+                $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            }
+            else if($cek_exist->baca_total>0){
+                $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            }
             $data = array(
                 'siswa'          => $siswa,
                 'materi'         => $materi,
@@ -200,6 +228,22 @@ class Konten extends CI_Controller
         } else if ($siswa_logged AND $siswa->id_premium < 1) {
             redirect(base_url("profil"));
         } else {
+            if($siswa_logged){
+                $id = $this->session->userdata('id_siswa');
+                $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                $jenis_siswa = "siswa";
+            }else if ($pretest_logged){
+                $id = $this->session->userdata('pretest_id');
+                $siswa = "";
+                $jenis_siswa = "pretest";
+            }
+            $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+            if($cek_exist->baca_total==0){
+                $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            }
+            else if($cek_exist->baca_total>0){
+                $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+            }
             $data = array(
                 'siswa'          => $siswa,
                 'materi'         => $materi,
@@ -252,6 +296,23 @@ class Konten extends CI_Controller
                         "id_siswa"      => NULL,
                         "sub_materi_id" => NULL,
                     ];
+                }
+                if($siswa_logged){
+                    $id = $this->session->userdata('id_siswa');
+                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $jenis_siswa = "siswa";
+                }else if ($pretest_logged){
+                    $id = $this->session->userdata('pretest_id');
+                    $siswa = "";
+                    $jenis_siswa = "pretest";
+                }
+                //pretest
+                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                if($cek_exist->baca_total==0){
+                    $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                }
+                else if($cek_exist->baca_total>0){
+                    $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
                 $data_log = $this->model_konten->select_log_data_result($check);
                 $data = array(
@@ -319,6 +380,22 @@ class Konten extends CI_Controller
                     'log'      => $this->model_konten->select_log_data($check),
                 );
                 if (isset($siswa->id_siswa)) {
+                    if($siswa_logged){
+                        $id = $this->session->userdata('id_siswa');
+                        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                        $jenis_siswa = "siswa";
+                    }else if ($pretest_logged){
+                        $id = $this->session->userdata('pretest_id');
+                        $siswa = "";
+                        $jenis_siswa = "pretest";
+                    }
+                    $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                    if($cek_exist->baca_total==0){
+                        $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                    }
+                    else if($cek_exist->baca_total>0){
+                        $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
+                    }
                     //error
                     $jawab_data = [
                         "id_siswa"      => $siswa->id_siswa,
@@ -719,6 +796,19 @@ class Konten extends CI_Controller
 
         $update = $this->model_konten->update_log($dt_updt);
 
+    }
+
+    public function insert_log_baca($id, $sub_materi, $jenis_siswa){
+        // simpan ke log baca
+        //TODO Log diinsert saat akses klik sidebar
+        $tanggal = date(DATE_ATOM);
+        $this->model_konten->insert_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
+    }
+    public function update_log_baca($id, $sub_materi, $jenis_siswa){
+        // simpan ke log baca
+        //TODO Log diinsert saat akses klik sidebar
+        $tanggal = date(DATE_ATOM);
+        $this->model_konten->update_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
     }
 
     public function DOMinnerHTML(DOMNode $element)

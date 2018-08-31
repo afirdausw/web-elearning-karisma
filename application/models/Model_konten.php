@@ -81,8 +81,8 @@ class Model_konten extends CI_Model
     public function update_log($data)
     {
         $this->db->where('id_siswa', $data["id_siswa"]);
-        $this->db->where('sub_materi_id', $data["sub_materi_id"]);
-        $query = $this->db->update("log_ujian", $data);
+        $this->db->where('sub_materi_ida', $data["sub_materi_id"]);
+        $query = $this->db->update("log_baca", $data);
 
         return $query;
 
@@ -226,14 +226,32 @@ class Model_konten extends CI_Model
         return $result;
     }
 
-    public function insert_log_baca($siswa, $sub_materi, $waktu)
+    //TODO Log diinsert saat akses klik sidebar
+    public function insert_log_baca($siswa, $sub_materi, $waktu, $jenis_siswa)
     {
         $data = array(
             "id_siswa"      => $siswa,
             "sub_materi_id" => $sub_materi,
             "created_at"    => $waktu,
+            "jenis_siswa"    => $jenis_siswa,
         );
         $query = $this->db->insert("log_baca", $data);
+        return $query;
+    }
+    //update jika telah ada
+    public function update_log_baca($siswa, $sub_materi, $waktu, $jenis_siswa)
+    {
+        $data = array(
+            "id_siswa"      => $siswa,
+            "sub_materi_id" => $sub_materi,
+            "created_at"    => $waktu,
+            "jenis_siswa"    => $jenis_siswa,
+        );
+        $this->db->where('id_siswa', $siswa);
+        $this->db->where('sub_materi_id', $sub_materi);
+        $this->db->where('jenis_siswa', $jenis_siswa);
+        $query = $this->db->update("log_baca", $data);
+
         return $query;
     }
 
