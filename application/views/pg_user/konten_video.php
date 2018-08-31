@@ -120,43 +120,58 @@
             <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right" >
                 <span class="judul-header">Materi</span>
                 <?php $no = 0;
-                    foreach ($materi_pokok as $data) {
-                        $no++;
-                        $idsiswa = $this->session->userdata('id_siswa');
+                foreach ($materi_pokok as $data) {
+                    $no++;
+                    $idsiswa = $this->session->userdata('id_siswa');
 
-                        $disable_class = '';
-                        $pretest_text = '';
-                        $pretest_stat = $data->pretest_status;
-                        $user_akses = 3;
-                        if ($pretest_stat == 0) {
-                            if ($idsiswa == NULL) {
-                                echo "<style>
-                                .not-active {
-                                  pointer-events: none;
-                                  cursor: default;
-                                  color: grey !important;
-                                }
-                                </style>";
-                                $pretest_text = "<span class='ti-lock' title='Login diperlukan'></i>";
-                                $disable_class = ' not-active';
-                                $user_akses = 0;
-                                // 0 = tidak login dan pretest dilarang
-                            } else {
-                                $user_akses = 1;
-                                // 1 = Login tapi tidak premium
+                    $disable_class = '';
+                    $pretest_text = '';
+                    $pretest_stat = $data->pretest_status;
+                    $user_akses = 3;
+                    if ($pretest_stat == 0) {
+                        if ($idsiswa == NULL) {
+                            echo "<style>
+                            .not-active {
+                              pointer-events: none;
+                              cursor: default;
+                              color: grey !important;
                             }
+                            </style>";
+                            $pretest_text = "<span class='ti-lock' title='Login diperlukan'></i>";
+                            $disable_class = ' not-active';
+                            $user_akses = 0;
+                            // 0 = tidak login dan pretest dilarang
+                        } else {
+                            $user_akses = 1;
+                            // 1 = Login tapi tidak premium
                         }
+                    }
+                ?>
+                <?php 
+                    //2018-08-31 Rendy
+                    //Current Sidebar already collapsed
+                    //Button Viewed = Glyphicon Plus or Min
+                    //Toogle Sidebar = Ganti mode ditampilan atau tidak (in)
+                    $id_mapok_cur       = $materi->id_materi_pokok;
+                    $side_id_mapok      = $data->id_materi_pokok; //yang diulang
+
+                    $button_viewed      = "glyphicon-plus";
+                    $toogle_sidebar     = "";
+                    if($id_mapok_cur == $side_id_mapok){
+                        $button_viewed = "glyphicon-minus";
+                        $toogle_sidebar = "in";
+                    }
                 ?>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-konten" role="tab">
                         <h4 class="panel-title panel-title-konten">
                             <a class="collapsed"  href="#bab<?= $no; ?>" role="button" data-toggle="collapse">
-                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                <i class="more-less glyphicon <?=$button_viewed?>"></i>
                                 <b>BAB <?= $no ?> :</b> <?= $data->nama_materi_pokok ?> <?=$pretest_text;?>
                             </a>
                         </h4>
                     </div>
-                    <div id="bab<?= $no; ?>" class="panel-collapse collapse" role="tabpanel">
+                    <div id="bab<?= $no; ?>" class="panel-collapse collapse <?=$toogle_sidebar?>" role="tabpanel">
                         <div class="wrap-media-list">
                             <?php
                                 foreach ($data->sub_materi as $bab) {
@@ -185,9 +200,18 @@
                                     // }else{
                                     //     $konten = '#';
                                     // }
+
+                                    //Current materi link is not available and highlighted
+                                    //bg_cur = highlighted html code
+                                    $bg_cur = "";
+                                    $id_sub_cur = $sub_materi->id_sub_materi;
+                                    if($bab->id_sub_materi == $id_sub_cur){
+                                        $bg_cur = "style='background:#26aed442;'";
+                                        $link = "#";
+                                    }
                             ?>
                             <a class="media-link<?= $disable_class ?>" href="<?= $link ?>">
-                                <div class="media">
+                                <div class="media" <?=$bg_cur;?>>
                                     <div class="media-left">
                                         <?= $icon ?>
                                     </div>

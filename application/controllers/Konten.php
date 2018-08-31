@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  */
@@ -21,7 +20,6 @@ class Konten extends CI_Controller
         $list_submateri = $this->model_pg->get_sub_materi_by_materi($id_materi_pokok);
 
         $materi = $this->model_pg->get_mapel_by_materi($id_materi_pokok);
-        // TODO handle error apabila konten tidak ada di DB
         // DEBUG HERE
         error_reporting(0);
         $sub_materi_1 = $this->model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
