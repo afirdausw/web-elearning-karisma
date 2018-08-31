@@ -117,7 +117,7 @@
             <div class="container fixed-top">
                 <div class="row">
                     <!-- Sub Materi Kanan -->
-                    <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right"  id="list-sub-materi">>
+                    <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right" id="list-sub-materi">
                         <span class="judul-header">Materi</span>
                         <?php $no = 0;
                             foreach ($materi_pokok as $data) {

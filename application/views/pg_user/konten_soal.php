@@ -170,7 +170,7 @@ if ($waktu_sisa < 0) {
     <div class="container fixed-top">
         <div class="row">
             <!-- Sub Materi Kanan -->
-            <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right" >
+            <div class="col-lg-4 col-md-5 col-sm-5 panel-group panel-group-konten" style="float: right" id="list-sub-materi">
                 <span class="judul-header">Materi</span>
                 <?php $no = 0;
                     foreach ($materi_pokok as $data) {
@@ -219,7 +219,7 @@ if ($waktu_sisa < 0) {
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-konten" role="tab">
                         <h4 class="panel-title panel-title-konten">
-                            <a class="collapsed"  href="#bab<?= $no; ?>" role="button" data-toggle="collapse">
+                            <a class="collapsed"  href="#bab<?= $no; ?>" role="button" data-toggle="collapse" data-parent="#list-sub-materi">
                                 <i class="more-less glyphicon <?=$button_viewed?>"></i>
                                 <b>BAB <?= $no ?> :</b> <?= $data->nama_materi_pokok ?> <?=$pretest_text;?>
                             </a>
