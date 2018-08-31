@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             <div id="ajax-loading" class="col-xs-1 col-md-1" style="display:none;">
                                                 <img src="<?php echo base_url('assets/img/ajax-loading.gif') ?>"
-                                                     alt="Loading..."></img>
+                                                     alt="Loading...">
                                             </div>
                                         </div>
                                     </div>
@@ -145,6 +145,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                value="<?php echo set_value('konten_video', isset($data->video_materi) ? $data->video_materi : ''); ?>"/>
                                                     </div>
                                                     <div class="tab-pane fade" id="kategori_soal">
+                                                        <!-- WAKTU -->
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Waktu (Menit)<span class="text-danger">*</span></label>
+                                                                    <input type="number" name="waktu" id="waktu"
+                                                                           class="form-control" placeholder="Waktu Mengerjakan Soal"
+                                                                           value=""/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <!-- SOAL -->
                                                         <div class="panel-group" id="accordion">
 
@@ -721,8 +732,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- TinyMCE - WYSIWYG plugin  -->
 <script src="<?php echo base_url('assets/js/plugins/tinymce/tinymce.min.js'); ?>" type="text/javascript"></script>
+<script src="https://cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
 <script type="text/javascript">
-    tinymce.init({
+    CKEDITOR.replaceAll();
+
+    /*tinymce.init({
+        paste_data_images: true,
+        images_upload_handler: function (blobInfo, success, failure) {
+          // no upload, just return the blobInfo.blob() as base64 data
+          success("data:" + blobInfo.blob().type + ";base64," + blobInfo.base64());
+        },
         selector: '.tinymce_textarea',
         skin: 'lightgray',
         menubar: false,
@@ -743,7 +762,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         //Filemanager
         external_filemanager_path: "<?php echo base_url();?>assets/js/plugins/filemanager/",
         filemanager_title: "Data Filemanager",
-        external_plugins: {"filemanager": "<?php echo base_url();?>assets/js/plugins/filemanager/plugin.min.js"},
+        external_plugins: {
+            "filemanager": "<?php echo base_url();?>assets/js/plugins/filemanager/plugin.min.js"
+        },
 
         //integrating tinymce 4 and kcfinder
         file_browser_callback: function (field, url, type, win) {
@@ -761,7 +782,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
             return false;
         }
-    });
+    });*/
 </script>
 
 <!-- Manually open kcfinder -->

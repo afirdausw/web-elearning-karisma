@@ -109,12 +109,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th class="text-center">Urutan</th>
                                         <th class="text-center">Kelas</th>
                                         <th class="text-center">Mata Pelajaran</th>
                                         <th class="text-center">Materi Pokok</th>
                                         <th class="text-center">Materi Pembelajaran</th>
                                         <th class="text-center">Konten</th>
-                                        <th class="text-center">Tipe</th>
+<!--                                        <th class="text-center">Tipe</th>-->
                                         <th class="text-center">Daftar Soal</th>
                                         <th class="text-center" style="width:80px;">Aksi</th>
                                     </tr>
@@ -127,11 +128,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             ?>
                                             <tr>
                                                 <td><?= $i ?></td>
+                                                <td>
+                                                    <a class="sort-link" href="#"><i class="fa fa-chevron-up"></i></a>
+                                                    <a class="sort-link" href="#"><i class="fa fa-chevron-down"></i></a>
+                                                </td>
                                                 <td><?= $row->alias_kelas ?></td>
                                                 <td><?= $row->nama_mapel ?></td>
                                                 <td><?= $row->nama_materi_pokok ?></td>
                                                 <td><?= $row->nama_sub_materi ?></td>
                                                 <td><?= ($row->kategori == 1 ? "<span class='glyphicon glyphicon-file'></span> Teks" : ($row->kategori == 2 ? "<span class='glyphicon glyphicon-play-circle'></span> Video" : ($row->kategori == 3 ? "<span class='glyphicon glyphicon-star'></span> Soal" : '-'))) ?></td>
+<!--
                                                 <td class="text-center">
                                                     <div class="onoffswitch">
                                                         <input type="checkbox"
@@ -146,6 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </label>
                                                     </div>
                                                 </td>
+-->
                                                 <td class="text-center">
                                                     <?php if ($row->kategori == 3) { ?>
                                                         <a href="<?= base_url() . "pg_admin/latihansoal/detail/" . $row->id_sub_materi ?>"
