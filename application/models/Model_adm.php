@@ -48,10 +48,11 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function toogle_akses_materi_pokok($id_materi_pokok, $pretest_status=0){
-        if($pretest_status==1){
+    function toogle_akses_materi_pokok($id_materi_pokok, $pretest_status = 0)
+    {
+        if ($pretest_status == 1) {
             $pretest_change = 0;
-        }else{
+        } else {
             $pretest_change = 1;
         }
         $data = array(
@@ -67,7 +68,7 @@ class Model_adm extends CI_Model
     {
         $this->db->select_max($field);
         $query = $this->db->get($table);
-        
+
         return $query->row();
     }
 
@@ -421,14 +422,14 @@ class Model_adm extends CI_Model
         return $query->row();
     }
 
-    function add_kelas($jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar_kelas=NULL)
+    function add_kelas($jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar_kelas = NULL)
     {
         //Insert data into table kelas
         $data = array(
             'jenjang'         => $jenjang,
             'tingkatan_kelas' => $tingkatan_kelas,
-            'alias_kelas'     => $alias_kelas,    
-            'deskripsi_kelas' => $deskripsi_kelas,        
+            'alias_kelas'     => $alias_kelas,
+            'deskripsi_kelas' => $deskripsi_kelas,
             'gambar_kelas'    => $gambar_kelas,
         );
         $result = $this->db->insert('kelas', $data);
@@ -436,16 +437,16 @@ class Model_adm extends CI_Model
         return $result;
     }
 
-    function update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas,$gambar_kelas)
+    function update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar_kelas)
     {
         //Update row by id in table sub_materi
         $data = array(
             'jenjang'         => $jenjang,
             'tingkatan_kelas' => $tingkatan_kelas,
             'alias_kelas'     => $alias_kelas,
-            'deskripsi_kelas'     => $deskripsi_kelas,
+            'deskripsi_kelas' => $deskripsi_kelas,
         );
-        if($gambar_kelas!=""){
+        if ($gambar_kelas != "") {
             $data["gambar_kelas"] = $gambar_kelas;
         }
         $this->db->where('id_kelas', $id);
@@ -524,7 +525,7 @@ class Model_adm extends CI_Model
             'nama_mapel'      => $nama_mapel,
             'deskripsi_mapel' => $deskripsi_mapel,
         );
-        if($gambar_mapel!=""){
+        if ($gambar_mapel != "") {
             $data["gambar_mapel"] = $gambar_mapel;
         }
         $this->db->where('id_mapel', $id);
@@ -976,7 +977,7 @@ class Model_adm extends CI_Model
             'email'        => $email,
             'telepon'      => $telepon,
             'telepon_ortu' => $telepon_ortu,
-            'id_login'     => $insert_id
+            'id_login'     => $insert_id,
         );
         $result = $this->db->insert('siswa', $data);
 
@@ -1370,9 +1371,9 @@ class Model_adm extends CI_Model
         //tester
         //echo $this->db->_compile_select();exit;
         $query = $this->db->get();
-        if($jenis_fetch==''){
+        if ($jenis_fetch == '') {
             return $query->result();
-        }else if($jenis_fetch=='1'){
+        } else if ($jenis_fetch == '1') {
             return $query->row();
         }
 
@@ -1499,7 +1500,8 @@ class Model_adm extends CI_Model
     }
 
 
-    function update_waktu_soal($id_sub_materi, $waktu_soal){
+    function update_waktu_soal($id_sub_materi, $waktu_soal)
+    {
         $data = array(
             'waktu_soal' => $waktu_soal,
         );
@@ -1972,7 +1974,7 @@ class Model_adm extends CI_Model
     function all_soal_kategori($idkategori)
     {
         $data = array(
-            'id_kategori' => $idkategori
+            'id_kategori' => $idkategori,
         );
         $this->db->where($data);
         $result = $this->db->get('soal_tryout');
@@ -2479,6 +2481,16 @@ class Model_adm extends CI_Model
     {
         $this->db->where('id_adm', $iduser);
         $result = $this->db->delete('login_adm');
+    }
+
+    public function update_manual($table, $column, $id, $data)
+    {
+
+        $this->db->where($column, $id);
+        $query = $this->db->update($table, $data);
+
+        return $query;
+
     }
 //#########################################
 //#########################################
