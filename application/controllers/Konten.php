@@ -152,9 +152,9 @@ class Konten extends CI_Controller
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if ($pretest_logged AND !$konten->pretest_status) {
+        if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
-        } else if ($siswa_logged AND $siswa->id_premium < 1) {
+        } else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
             redirect(base_url("profil"));
         } else {
             $data = array(
@@ -195,7 +195,7 @@ class Konten extends CI_Controller
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if ($pretest_logged AND !$konten->pretest_status) {
+        if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
         } else if ($siswa_logged AND $siswa->id_premium < 1) {
             redirect(base_url("profil"));
@@ -234,7 +234,7 @@ class Konten extends CI_Controller
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if ($pretest_logged AND !$konten->pretest_status) {
+        if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
         }
 //        else if($siswa_logged AND $siswa->id_premium < 1){
