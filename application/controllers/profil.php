@@ -17,12 +17,16 @@ class profil extends CI_Controller
 
     public function index()
     {
-    	if($this->session->userdata('id_siswa')!=NULL){
+    	if($this->session->userdata('id_siswa') != NULL){
 	    	$siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
 	    	$data = array(
 	            'siswa' => $siswa,
 	        );
-	        $this->load->view('pg_user/profil', $data);
+	        $this->load->view('pg_user/profil-siswa', $data);
+            
+    	}elseif($this->session->userdata('pretest_id') != NULL){
+	        $this->load->view('pg_user/profil-pretest');
+            
     	}else{
             redirect(base_url(), 'refresh');
     	}

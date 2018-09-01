@@ -88,7 +88,7 @@
                                 </ul>
                             <?php
                             }else if($this->session->userdata("pretest_logged_in")){ ?>
-                                <a href="<?=base_url("pretest/logout")?>">Logout (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)
+                                <a href="<?=base_url("pretest/logout")?>">Logout (<?=($this->session->userdata('pretest_nama')!=NULL ? $this->session->userdata('pretest_nama') : "Anonim");?>)</a>
                             <?php
                             }
                             ?>

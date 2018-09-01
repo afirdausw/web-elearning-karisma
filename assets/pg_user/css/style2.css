@@ -52,7 +52,8 @@
 }
 .banner-top .banner-left h1,
 .banner-bottom .banner-left h1 {		
-    margin: 30px 0 0 0;
+    margin: 30px 0 5px 0;
+    font-size: 30px;
     font-weight: 400;
 }
 .banner-top .banner-left span,
@@ -72,7 +73,7 @@
     background: #FFF;
     height: 50px;
     padding: 0 25px;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 48px;
     transition: all .3s linear;
 }
@@ -422,6 +423,10 @@
     background-size: cover;
     background-attachment: fixed;
 }
+.banner-profil {
+    background-image: url('../images/bg-profil.png');
+     background-size: auto;
+}
 .banner-materi.darker {
     position: relative;
 }
@@ -447,7 +452,7 @@
 }
 .banner-materi h1 {
     position: relative;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 10px;
     z-index: 1;
 }
@@ -478,11 +483,11 @@
     cursor: pointer;
     margin-left: 10px;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 14px;
     background: #0679B0;
-    color: #FFF;
     border: 0;
-    padding: 8px 20px 10px 20px;
+    color: #FFF;
+    padding: 5px 15px 6px 15px;
 }
 .banner-materi .button:hover {
     background: #056898;
@@ -896,6 +901,16 @@ footer a:hover:not(.logo-footer) {
     margin-top: 5px;
 }
 
+/* STYLE PROFIL */
+.wrap-profil p {
+    font-size: 15px;
+    margin: 0 0 5px;
+}
+.wrap-profil h4 {
+    font-size: 17px;
+    margin: 0 0 15px;
+}
+
 /* ---------------------------------------------------
     MATERI KANAN
 ----------------------------------------------------- */
@@ -930,7 +945,8 @@ footer a:hover:not(.logo-footer) {
     transition: all .2s ease-in-out;
 }
 .media-link:hover,
-.media-link:focus {
+.media-link:focus,
+.media-link:focus > .fa {
     color: #0679B0;
     transition: all .2s ease-in-out;
 }

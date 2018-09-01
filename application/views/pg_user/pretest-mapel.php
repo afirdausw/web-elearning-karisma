@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress JSAnnotator -->
 <html lang="en" class="fullpage-login-html">
 <head>
     <title>Pretest | Lembaga Pendidikan Islam Hidayatullah</title>
@@ -50,6 +51,7 @@
 
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
+                        <li><a href="<?= base_url("profil") ?>">Profil</a>
                         <li><a href="<?= base_url("pretest/logout") ?>">Logout
                                 (<?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?>)</a></li>
                     </ul>
