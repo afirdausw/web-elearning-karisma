@@ -28,7 +28,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
 </head>
-
+<?php $_SESSION['RedirectKe'] = current_url(); ?>
 <body>
 <!-- Sidebar Menu -->
 <div class="overlay"></div>
@@ -242,7 +242,7 @@ if(isset($key->id_materi_pokok)){
                         <div class="panel-heading" role="tab">
                             <h4 class="panel-title">
                                 <a class="collapse"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
-                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<b>(Premium)</b>" ); ?></a>
+                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>" ); ?></a>
                             </h4>
                         </div>
                         

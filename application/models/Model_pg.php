@@ -59,6 +59,23 @@ class Model_pg extends CI_Model
 		$this->db->join('mata_pelajaran', 'mata_pelajaran.id_mapel = materi_pokok.mapel_id', 'left');
 		$this->db->join('kelas', 'mata_pelajaran.kelas_id = kelas.id_kelas', 'left');
 		$this->db->where('materi_pokok.mapel_id', $id_mapel);
+		$this->db->where('materi_pokok.materi_status !=', 'pre');
+		$this->db->order_by('materi_pokok.urutan', 'ASC');
+		//tester
+		//echo $this->db->_compile_select();
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	function get_materi_pre_by_mapel($id_mapel)
+	{
+		$this->db->select('*');
+		$this->db->from('materi_pokok');
+		$this->db->join('mata_pelajaran', 'mata_pelajaran.id_mapel = materi_pokok.mapel_id', 'left');
+		$this->db->join('kelas', 'mata_pelajaran.kelas_id = kelas.id_kelas', 'left');
+		$this->db->where('materi_pokok.mapel_id', $id_mapel);
+		$this->db->where('materi_pokok.materi_status', 'pre');
 		$this->db->order_by('materi_pokok.urutan', 'ASC');
 		//tester
 		//echo $this->db->_compile_select();

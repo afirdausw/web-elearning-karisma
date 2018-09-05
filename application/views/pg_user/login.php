@@ -36,7 +36,8 @@
 	                            </div>
 	                            <div class="col-md-8 text-right">
 	                                <a href='#'>Lupa Password?</a><br>
-	                                Belum punya akun? Daftar <a href="<?php echo base_url().'signup' ?>">di sini</a>
+	                                Belum punya akun? Daftar <a href="<?php echo base_url().'signup' ?>">di sini</a><br>
+<!--                                     Atau anda hanya ingin mencoba <b>pretes</b> dari kami, daftar <a href="<?php echo base_url().'pretest' ?>">di sini</a>-->
 	                            </div>
 	                        </div>
 	                    </form>

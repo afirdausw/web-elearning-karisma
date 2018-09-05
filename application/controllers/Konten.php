@@ -104,12 +104,23 @@ class Konten extends CI_Controller
             }
             $konten = "";
             $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+            // PRE
+            $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+            $mapok_baru_pre = [];
+            foreach ($mapok_pre as $key => $value) {
+                $v = $array = json_decode(json_encode($value), true);
+                $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $mapok_baru_pre[] = $v;
+            }
+            $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+            // END PRE
             $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
             $data = array(
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
+                'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
                 'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
@@ -160,6 +171,16 @@ class Konten extends CI_Controller
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+        // PRE
+        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_baru_pre = [];
+        foreach ($mapok_pre as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru_pre[] = $v;
+        }
+        $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+        // END PRE
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
@@ -191,6 +212,7 @@ class Konten extends CI_Controller
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
+                'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
                 'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
@@ -221,6 +243,16 @@ class Konten extends CI_Controller
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+        // PRE
+        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_baru_pre = [];
+        foreach ($mapok_pre as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru_pre[] = $v;
+        }
+        $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+        // END PRE
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
@@ -252,6 +284,7 @@ class Konten extends CI_Controller
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
+                'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
                 'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
@@ -261,6 +294,10 @@ class Konten extends CI_Controller
                 'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
 
+//            return $this->output
+//                ->set_content_type('application/json')
+//                ->set_status_header(500)
+//                ->set_output(json_encode($data));
             $this->load->view('pg_user/konten_video', $data);
         }
     }
@@ -278,6 +315,16 @@ class Konten extends CI_Controller
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+        // PRE
+        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_baru_pre = [];
+        foreach ($mapok_pre as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru_pre[] = $v;
+        }
+        $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+        // END PRE
         $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
@@ -321,6 +368,7 @@ class Konten extends CI_Controller
                 $data_log = $this->model_konten->select_log_data_result($check);
                 $data = array(
                     'materi_pokok'   => $mapok_baru,
+                    'materi_pokok_pre' => $mapok_baru_pre,
                     'materi'         => $materi,
                     'sub_materi'     => $sub_materi_1,
                     'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
@@ -370,6 +418,7 @@ class Konten extends CI_Controller
                 $data = array(
                     'siswa'          => $siswa,
                     'materi_pokok'   => $mapok_baru,
+                    'materi_pokok_pre' => $mapok_baru_pre,
                     'materi'         => $materi,
                     'sub_materi'     => $sub_materi_1,
                     'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
