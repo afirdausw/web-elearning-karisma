@@ -114,7 +114,6 @@ class Materi extends CI_Controller
         $this->load->view('pg_admin/materi_new', $data);
     }
 
-
     public function tabel_ajax($kelas = 0, $mapel = 0, $mapok = 0, $page = 1)
     {
         $this->load->library('ajax_pagination');
@@ -180,7 +179,6 @@ class Materi extends CI_Controller
 
         $this->load->view('pg_admin/materi_ajaxpage', $data);
     }
-
 
     public function manajemen($aksi, $kelas = 0, $mapel = 0, $mapok = 0)
     {
@@ -335,10 +333,10 @@ class Materi extends CI_Controller
             //continue passing soal input value to Model
             if ($insert_id && $kategori == 3) {
                 $result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
-            }elseif ($insert_id && $kategori == 1){
-                $isi_materi =  $this->convert_base64_to_image($isi_materi, 'materi/'.$insert_id.'/');
-                  $this->model_adm->update_manual('konten_materi','sub_materi_id',$insert_id,['isi_materi' => $isi_materi]);
-             }
+            } elseif ($insert_id && $kategori == 1) {
+                $isi_materi = $this->convert_base64_to_image($isi_materi, 'materi/' . $insert_id . '/');
+                $this->model_adm->update_manual('konten_materi', 'sub_materi_id', $insert_id, ['isi_materi' => $isi_materi]);
+            }
 
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/materi/listdata/' . $kelas . '/' . $mapel . '/' . $mapok);
@@ -405,6 +403,9 @@ class Materi extends CI_Controller
         } else {
             //passing input value to Model
             $result = $this->model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);
+            $this->delete_files('image/materi/' . $id);
+            $isi_materi = $this->convert_base64_to_image($isi_materi, 'materi/' . $id . '/');
+            $this->model_adm->update_manual('konten_materi', 'sub_materi_id', $id, ['isi_materi' => $isi_materi]);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('pg_admin/materi/listdata/' . $kelas . '/' . $mapel . '/' . $mapok);
             // echo "Status Update: " . $result;
@@ -421,6 +422,8 @@ class Materi extends CI_Controller
         if ($this->form_validation->run() != FALSE) {
             $id = $this->input->post('hidden_row_id');
             $result = $this->model_adm->delete_materi($id);
+            $this->delete_files('image/materi/' . $id);
+
             if ($result) {
                 alert_success('Sukses', "Data berhasil dihapus");
                 redirect('pg_admin/materi/listdata/' . $materi->kelas_id . '/' . $materi->id_mapel . '/' . $materi->id_materi_pokok);
@@ -591,6 +594,24 @@ class Materi extends CI_Controller
         }
     }
 
+    private function delete_files($target)
+    {
+        if (is_dir($target)) {
+            $files = glob($target . '*', GLOB_MARK); //GLOB_MARK adds a slash to directories returned
+
+            foreach ($files as $file) {
+                $this->delete_files($file);
+            }
+            if (file_exists($target)) {
+                rmdir($target);
+            }
+        } elseif (is_file($target)) {
+            if (file_exists($target)) {
+                unlink($target);
+            }
+        }
+    }
+
     /**
      * @param $text
      * @param $dir
@@ -649,19 +670,6 @@ class Materi extends CI_Controller
             default :
                 return false;
                 break;
-        }
-    }
-
-    function delete_files($target)
-    {
-        if (is_dir($target)) {
-            $files = glob($target . '*', GLOB_MARK); //GLOB_MARK adds a slash to directories returned
-            foreach ($files as $file) {
-                delete_files($file);
-            }
-            rmdir($target);
-        } elseif (is_file($target)) {
-            unlink($target);
         }
     }
 }
