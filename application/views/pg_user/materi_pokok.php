@@ -250,7 +250,7 @@ if(isset($key->id_materi_pokok)){
                         <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse" role="tabpanel">
                             <div class="panel-body">
                                 <?php
-                                    foreach ($key->mapok as $bab) {
+                                    foreach ($key->sub_materi as $bab) {
                                         if($bab->kategori == '2'){
                                             $link = "href='".base_url()."konten/detail_video/".$bab->id_sub_materi."'";
                                             $icon = "<i class='fa fa-youtube'></i>";

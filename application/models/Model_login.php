@@ -20,10 +20,10 @@ class Model_login extends CI_Model
         // 	"password" => md5($password)
         // 	);
 
-        $this->db->select("siswa.id_siswa, siswa.nama_siswa, siswa.kelas, siswa.email, siswa.foto, siswa.last_login, login_siswa.username");
+        $this->db->select("*");
         $this->db->from("login_siswa");
         $this->db->join("siswa", "siswa.id_login = login_siswa.id_login");
-        $this->db->where("(username = '$username' OR email = '$username' OR siswa.NISN = '$username')");
+        $this->db->where("(username = '$username' OR email = '$username')");
         // $this->db->where('username', $username);
         // $this->db->or_where('email', $username);
         $this->db->where('password', md5($password));
