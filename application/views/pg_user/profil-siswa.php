@@ -107,7 +107,7 @@
                 <img src="<?= base_url('assets/pg_user/images/foto-siswa/siswa.jpg'); ?>" alt="Foto Profil Siswa">
             </div>
             <div class="col-md-9 col-sm-12">
-                <h1>Nama Siswa</h1>
+                <h1><?= $siswa->nama_siswa ?></h1>
                 <h3>Akun Regular <a class="button">Daftar Premium</a></h3>
                 <span>Mengikuti kelas <b>Web Design</b> di Karisma Academy</span>
             </div>
@@ -130,19 +130,19 @@
                 </div>
                 <div class="col-md-12">
                     <p>Tempat, Tanggal Lahir</p>
-                    <h4>Surabaya, 08-10-1993</h4>
+                    <h4><?= $siswa->tempat_lahir.", ".date('d-m-Y', strtotime($siswa->tanggal_lahir)) ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Alamat</p>
-                    <h4>Kota Malang, Jawa Timur</h4>
+                    <h4><?= $siswa->alamat ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Pekerjaan</p>
-                    <h4>Mahasiswa</h4>
+                    <h4><?= $siswa->pekerjaan ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Nomor Telepon</p>
-                    <h4>+62 8221 2389 77</h4>
+                    <h4><?= $siswa->telepon ?></h4>
                 </div>
             </div>
         </div>
@@ -153,15 +153,15 @@
                 </div>
                 <div class="col-md-12">
                     <p>Username</p>
-                    <h4>siswa1</h4>
+                    <h4><?= $siswa->username ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Email</p>
-                    <h4>emailsiswa@gmail.com</h4>
+                    <h4><?= $siswa->email ?></h4>
                 </div>
                 <div class="col-md-12">
-                    <p>Tanggal Daftar</p>
-                    <h4>29 Agustus 2018</h4>
+                    <p>Tanggal Mendaftar</p>
+                    <h4><?= $siswa->timestamp ?></h4>
                 </div>
             </div><!-- End of Row  -->
         </div>

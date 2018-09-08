@@ -22,10 +22,16 @@ class profil extends CI_Controller
 	    	$data = array(
 	            'siswa' => $siswa,
 	        );
+
 	        $this->load->view('pg_user/profil-siswa', $data);
             
     	}elseif($this->session->userdata('pretest_id') != NULL){
-	        $this->load->view('pg_user/profil-pretest');
+	    	$pretest = $this->model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
+	    	$data = array(
+	            'pretest' => $pretest,
+	        );
+
+	        $this->load->view('pg_user/profil-pretest', $data);
             
     	}else{
             redirect(base_url(), 'refresh');

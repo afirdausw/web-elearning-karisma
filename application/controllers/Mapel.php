@@ -33,6 +33,17 @@ class Mapel extends CI_Controller
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
         
+        // PRE
+        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($id_materi);
+        $mapok_baru_pre = [];
+        foreach ($mapok_pre as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru_pre[] = $v;
+        }
+        $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+        // END PRE
+
         //remove last comma
         $mapok_ids_in = rtrim($mapok_ids_in,",");
         $materi_ids =  $this->model_pg->get_count_submateri($mapok_ids_in);
@@ -43,6 +54,7 @@ class Mapel extends CI_Controller
         $data = array(
             "kelas" => $mapel,
             'materi' => $mapok_baru,
+            'materi_pre' => $mapok_baru_pre,
             'mapel_lain' => $this->model_pg->get_mapel_random(),
             'materi_total' => $materi_ids->jumlah_sub,
             'baca_total' => $cek->baca_total,
@@ -53,10 +65,10 @@ class Mapel extends CI_Controller
             $data['siswa_status'] = $siswa->id_premium;
         }
 
-        // return $this->output
-        //      ->set_content_type('application/json')
-        //      ->set_status_header(500)
-        //      ->set_output(json_encode($data));
+         return $this->output
+              ->set_content_type('application/json')
+              ->set_status_header(500)
+              ->set_output(json_encode($data));
 
 
         $this->load->view('pg_user/materi_pokok', $data);

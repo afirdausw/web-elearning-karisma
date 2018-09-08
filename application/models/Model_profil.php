@@ -14,4 +14,13 @@ class Model_profil extends CI_Model {
 		return $query;
 	}
 
+    public function get_data_user_pretest($id_pretest){
+		$this->db->select('*');
+		$this->db->from('siswa_pretest');
+		$this->db->where('id_siswa_pretest', $id_pretest);
+
+		$query = $this->db->get();
+		return $query->row();
+    }
+
 }

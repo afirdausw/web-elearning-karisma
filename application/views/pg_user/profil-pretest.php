@@ -143,8 +143,8 @@
                 <img src="<?= base_url('assets/pg_user/images/foto-siswa/siswa.jpg'); ?>" alt="Foto Profil Siswa">
             </div>
             <div class="col-md-9 col-sm-12">
-                <h1>Nama Siswa Pretest</h1>
-                <h3>Mendaftar pada 29-08-2018</h3>
+                <h1><?= $pretest->nama_siswa_pretest ?></h1>
+                <h3>Siswa Pretest</h3>
                 <span>Mengambil pretest <b>Web Design</b> dengan materi <b>HTML</b> di Karisma Academy</span>
             </div>
         </div>
@@ -162,15 +162,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <p>Email</p>
-                    <h4>emailsiswa@gmail.com</h4>
+                    <h4><?= $pretest->email_siswa_pretest ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Alamat</p>
-                    <h4>Kota Malang, Jawa Timur</h4>
+                    <h4><?= $pretest->alamat ?></h4>
                 </div>
                 <div class="col-md-12">
                     <p>Waktu Mendaftar</p>
-                    <h4>22:19 ,29 Agustus 2018</h4>
+                    <h4><?= date('H:i, d-m-Y', strtotime($pretest->timestamp_signup)) ?></h4>
                 </div>
             </div>
         </div>

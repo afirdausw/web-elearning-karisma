@@ -688,11 +688,11 @@ class Model_pg extends CI_Model
 	//USER
 	function get_data_user($id_siswa)
 	{
-		$this->db->select('login_siswa.*, siswa.*, sekolah.nama_sekolah, kelas.*');
+		$this->db->select('*');
 		$this->db->from('siswa');
 		$this->db->join('login_siswa', 'login_siswa.id_login = siswa.id_login', 'left');
-		$this->db->join('sekolah', 'sekolah.id_sekolah = siswa.sekolah_id', 'left');
-		$this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
+//		$this->db->join('sekolah', 'sekolah.id_sekolah = siswa.sekolah_id', 'left');
+//		$this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
 		$this->db->where('siswa.id_siswa', $id_siswa);
 		//tester
 		// echo $this->db->_compile_select();

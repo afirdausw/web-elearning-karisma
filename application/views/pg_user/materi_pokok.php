@@ -234,6 +234,61 @@ if(isset($key->id_materi_pokok)){
             </div>
             <div class="col-md-12">
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <!-- MATERI PRE -->
+                    <?php
+                        $no = 1;
+                        foreach ($materi_pre as $key) {
+                    ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                                <a class="collapse"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
+                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>" ); ?></a>
+                            </h4>
+                        </div>
+
+                        <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse" role="tabpanel">
+                            <div class="panel-body">
+                                <?php
+                                    foreach ($key->mapok as $bab) {
+                                        if($bab->kategori == '2'){
+                                            $link = "href='".base_url()."konten/detail_video/".$bab->id_sub_materi."'";
+                                            $icon = "<i class='fa fa-youtube'></i>";
+                                        } elseif ($bab->kategori == '1'){
+                                            $link = "href='".base_url()."konten/detail/".$bab->id_sub_materi."'";
+                                            $icon = "<i class='fa fa-align-left'></i>";
+                                        } else {
+                                            $link = "href='".base_url()."konten/detail_soal/".$bab->id_sub_materi."'";
+                                            $icon = "<i class='fa fa-check-square-o'></i>";
+                                        }
+                                        //jika premium
+                                        if(!$key->pretest_status){
+                                            if($this->session->userdata("siswa_logged_in")){
+                                                if($siswa_status < 1){
+                                                    $link = "href='".base_url()."profil'";
+                                                    $icon = "<i class='fa fa-lock'></i>";
+                                                }
+                                            }else if($this->session->userdata("pretest_logged_in")){
+                                                $link = "href='".base_url()."login'";
+                                                $icon = "<i class='fa fa-lock'></i>";
+                                            }
+
+                                        }
+                                ?>
+                                <div class="media">
+                                    <a <?= $link; ?>>
+                                        <div class="media-left"><?= $icon ?></div>
+                                        <div class="media-body">
+                                            <p><?= $bab->nama_sub_materi ?></p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div> <!-- panel-group -->
+                    <?php } ?>
+                    <!-- MATERI FREE/BUY -->
                     <?php
                         $no = 1;
                         foreach ($materi as $key) {
