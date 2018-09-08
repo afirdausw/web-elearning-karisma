@@ -16,26 +16,61 @@ class Materi extends CI_Controller
 
     public function index($id_materi)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
         $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
         $mapel = $this->model_pg->get_mapel_by_id($id_materi);
 //        var_dump($mapok->kelas_id);
 //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
         $mapok_baru = [];
+        $mapok_ids_in = "";
         foreach ($mapok as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
             $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru[] = $v;
+
+            //create string for IN statement on sql
+            $mapok_ids_in .= $value->id_materi_pokok;
+            $mapok_ids_in .= ",";
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+        
+        // PRE
+        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($id_materi);
+        $mapok_baru_pre = [];
+        foreach ($mapok_pre as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru_pre[] = $v;
+        }
+        $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+        // END PRE
+
+        //remove last comma
+        $mapok_ids_in = rtrim($mapok_ids_in,",");
+        $materi_ids =  $this->model_pg->get_count_submateri($mapok_ids_in);
 
         $data = array(
             "kelas" => $mapel,
+            "kelas_navbar" => $kelas_navbar,
             'materi' => $mapok_baru,
+            'materi_pre' => $mapok_baru_pre,
             'materi_lain' => $this->model_pg->get_materi_random(),
+            'materi_total' => $materi_ids->jumlah_sub,
         );
-        if($this->session->userdata('siswa_logged_in')){
-            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-            $data["siswa_status"] = $siswa->id_premium;
+
+        $idsiswa = $this->session->userdata('id_siswa');
+        if($idsiswa != NULL){
+            $cek = $this->model_pg->get_log_baca($idsiswa,'', $id_materi);
+            $siswa = $this->model_pg->get_data_user($idsiswa);
+            //DEBUG PREMIUM //DEBUG PREMIUM
+            $data["siswa_status"] = 0;
+            //DEBUG PREMIUM //DEBUG PREMIUM
+
+            $data['siswa'] = $siswa;
+            $data['baca_total'] = $cek->baca_total;
+        }else{
+            $data["siswa_status"] = 0;
+            $data['baca_total'] = 0;
         }
         // return $this->output
         //      ->set_content_type('application/json')

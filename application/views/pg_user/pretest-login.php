@@ -1,62 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" class="fullpage-login-html">
-<head>
-    <title>Pretest | Lembaga Pendidikan Islam Hidayatullah</title>
-
-    <!-- Meta Tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta http-equiv="cache-control" content="max-age=0"/>
-    <meta http-equiv="cache-control" content="no-cache"/>
-    <meta http-equiv="expires" content="0"/>
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
-    <meta http-equiv="pragma" content="no-cache"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Icon -->
-    <link rel="shortcut icon" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-
-    <!-- Stylesheets -->
-
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
-
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bootstrap.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
-
-</head>
-<body>
-    <!-- HEADER -->  
-    <header class="top-header">
-        <div class="container">
-            <nav class="navbar navbar-default navbar-custom" role="navigation">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                          </button>
-                          <a class="navbar-brand logo" href="." ></a>
-                    </div>
-
-                    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li><a href="<?php echo base_url().'signup' ?>">Daftar</a></li>
-                            <li><a href="<?php echo base_url().'login' ?>">Masuk</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+<?php
+$judul_tab = "Pretest Log In";
+include('header.php');
+?>
 
     <section>
         <div class="container">
@@ -98,11 +43,6 @@
     </section>
 <?php include('footer.php'); ?>
 
-<!-- Javascript -->
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery-1.11.3.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/awesomplete.js'); ?>" async></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/megamenu.js'); ?>"></script>
 <!-- Validasi -->
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/formValidation.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/bootstrap.js'); ?>"></script>

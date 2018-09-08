@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Karisma Academy - Sertifikasi Online</title>
+    <title><?= ((isset($judul_tab) AND $judul_tab != '') ? $judul_tab." - " : "" ) ?>Karisma Academy - Sertifikasi Online</title>
     
     <meta charset="utf-8">
     <meta http-equiv="cache-control" content="max-age=0"/>
@@ -26,6 +26,50 @@
 </head>
 
 <body>
+    <?php
+    if($this->uri->segment(1) != ''){ ?>
+        <div class="overlay"></div>
+        <nav id="sidebar">
+            <div id="wrap-sidebar">
+                <div id="dismiss">
+                    <span class="ti-close"></span>
+                </div>
+
+                <div class="sidebar-header">
+                    <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px" height="38px" alt="Karisma Academy">
+                </div>
+
+                <ul class="list-unstyled components">
+                    <li><a href="#">Beranda</a></li>
+                    <li><a href="#">Kelas</a></li>
+                    <li><a href="#">Quiz</a></li>
+                    <li><a href="#">Tanya Jawab</a></li>
+                </ul>
+            </div>
+        </nav> <!-- Sidebar Menu -->
+
+    <?php
+    }
+    ?>
+
+    <nav id="sidebar">
+        <div id="wrap-sidebar">
+            <div id="dismiss">
+                <span class="ti-close"></span>
+            </div>
+
+            <div class="sidebar-header">
+                <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px" height="38px" alt="Karisma Academy">
+            </div>
+
+            <ul class="list-unstyled components">
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Kelas</a></li>
+                <li><a href="#">Quiz</a></li>
+                <li><a href="#">Tanya Jawab</a></li>
+            </ul>
+        </div>
+    </nav> <!-- Sidebar Menu -->
     <!-- HEADER -->  
     <header class="top-header">
         <div class="container">
@@ -38,6 +82,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <?php
+                        if($this->uri->segment(1) != ''){ ?>
+                            <button type="button" id="sidebarCollapse" class="open-sidebar">
+                                <span class="ti-menu"></span>
+                            </button>
+                        <?php }  ?>
+
+
                         <a class="navbar-brand logo" href="<?php echo base_url(); ?>"></a>
                     </div>
 
@@ -61,8 +113,8 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Kursus <span class="arrow-down ti-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <?php
-                                    foreach($kelas as $key) :
-                                        echo "<li><a href='kelas/$key->id_kelas'>$key->alias_kelas</a> </li>";
+                                    foreach($kelas_navbar as $key) :
+                                        echo "<li><a href='".base_url("kelas/$key->id_kelas")."'>$key->alias_kelas</a> </li>";
                                     endforeach;
                                     ?>
                                 </ul>
@@ -79,7 +131,7 @@
                                 if($idsiswa != NULL){
                                 ?>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="arrow-down ti-angle-down"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="ti-face-smile" style="color:green;" data-toggle="tooltip"  data-placement="bottom" title="Anda telah terdaftar sebagai siswa"></span> <span class="arrow-down ti-angle-down"></span></a>
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="#">Akun</a></li>
                                         <li><a href="<?=base_url('profil') ?>">Profil</a></li>
@@ -87,6 +139,17 @@
                                         <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
                                     </ul>
                                 </li>
+                            <?php } else if ($this->session->userdata('pretest_logged_in')){ ?>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= ($this->session->userdata('pretest_nama') != NULL ? $this->session->userdata('pretest_nama') : "Anonim"); ?> <span class="ti-face-sad" style="color:red;" data-toggle="tooltip"  data-placement="bottom" title="Anda hanya terdaftar sebagai siswa pretest"></span> <span class="arrow-down ti-angle-down"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?=base_url('profil') ?>">Profil</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?= base_url("pretest/logout") ?>">Logout</a></li>
+                                    </ul>
+                                </li>
+
                             <?php } else { ?>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="arrow-down ti-angle-down"></span></a>
@@ -105,4 +168,3 @@
             </nav>
         </div>
     </header>
-    

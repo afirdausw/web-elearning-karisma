@@ -63,3 +63,23 @@
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery.CustomScrollbar.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-sidebar.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-collapse.js');?>"></script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
+<?php
+if($this->uri->segment(1) != ''){ ?>
+<script type="text/javascript">
+    height = $('.top-header').height();
+    $( window ).on( "load", function() {
+        $(".top-header").next().css("margin-top", height);
+    });
+    $( window ).resize(function() {
+        height = $('.top-header').height();
+        $(".top-header").next().css("margin-top", height);
+    });
+</script>
+<?php } ?>

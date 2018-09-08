@@ -26,11 +26,14 @@ class Pretest extends CI_Controller
         }else if ($siswa_logged){
             redirect(base_url()."#materi_list");
         }else{
+            $kelas_navbar = $this->model_pg->fetch_all_kelas();
             $data = array(
                 'title' => 'Judul',
                 'form_aksi' => base_url(uri_string())."/daftar",
+
+                "kelas_navbar" => $kelas_navbar, 
             );
-            $this->load->view("pg_user/datadiri", $data);
+            $this->load->view("pg_user/pretest-login", $data);
         }
     }
 
@@ -38,11 +41,11 @@ class Pretest extends CI_Controller
     {
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         if($pretest_logged){ //jika siswa telah login dan mendaftar pretest
+            $kelas_navbar = $this->model_pg->fetch_all_kelas();
             if($id_materi){
                 $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
                 $mapel = $this->model_pg->get_mapel_by_id($id_materi);
-                //        var_dump($mapok->kelas_id);
-                //        $kelas = $this->model_pg->get_mapel_by_kelas($mapok->kelas_id);
+
                 $mapok_baru = [];
                 $mapok_ids_in = "";
                 foreach ($mapok as $key => $value) {
@@ -55,6 +58,18 @@ class Pretest extends CI_Controller
                     $mapok_ids_in .= ",";
                 }
                 $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+
+                // PRE
+                $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($id_materi);
+                $mapok_baru_pre = [];
+                foreach ($mapok_pre as $key => $value) {
+                    $v = $array = json_decode(json_encode($value), true);
+                    $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                    $mapok_baru_pre[] = $v;
+                }
+                $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
+                // END PRE
+
                 //remove last comma
                 $mapok_ids_in = rtrim($mapok_ids_in,",");
                 $materi_ids =  $this->model_pg->get_count_submateri($mapok_ids_in);
@@ -62,19 +77,20 @@ class Pretest extends CI_Controller
                 $id = $this->session->userdata('pretest_id');
                 $cek = $this->model_pg->get_log_baca($id);
 
-                $data = array(
+                $data = [
                     "kelas" => $mapel,
                     'status' => $cek,
                     'materi' => $mapok_baru,
+                    'materi_pre' => $mapok_baru_pre,
                     'mapel_lain' => $this->model_pg->get_mapel_random(),
                     'materi_total' => $materi_ids->jumlah_sub,
                     'baca_total' => $cek->baca_total,
-                );
 
-//                return $this->output
-//                      ->set_content_type('application/json')
-//                      ->set_status_header(500)
-//                      ->set_output(json_encode($data));
+                    "kelas_navbar" => $kelas_navbar, 
+                ];
+
+                //otomatis bukan premium
+                $data["siswa_status"] = 0;
 
                 //Jika kode pretest tidak ada
                 if($mapel == NULL){
@@ -82,7 +98,7 @@ class Pretest extends CI_Controller
                     alert_error("Terjadi Kesalahan", "Kode Pretest tidak ditemukan");
                 }
                 $this->load->view('pg_user/materi_pokok', $data);
-            }else{            
+            }else{
                 $start = 0;
                 $limit = 6;
                 $start-=1;
@@ -97,6 +113,8 @@ class Pretest extends CI_Controller
                     "kelas" => $kelas, 
                     "limit" => $limit,
                     "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
+
+                    "kelas_navbar" => $kelas_navbar, 
                 ];
 
                 $siswa_logged = $this->session->userdata('siswa_logged_in');
@@ -113,6 +131,7 @@ class Pretest extends CI_Controller
                //     ->set_output(json_encode($data));
                 $this->load->view("pg_user/pretest-mapel", $data);
             }
+
         }else{
             alert_error("Daftar Pretest Terlebih Dahulu", "Diperlukan nama lengkap, e-mail, nomor telepon, dan alamat");
             redirect(base_url("pretest"));

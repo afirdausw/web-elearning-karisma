@@ -923,14 +923,17 @@ function ganti_password($idlogin, $newpassword){
         return $query->row();
     }
 
-    function get_log_baca($id, $id_sub = ''){
-        $this->db->select('*, COUNT(*) as baca_total');
+    function get_log_baca($id, $id_sub = '', $id_mapok = ''){
+        $this->db->select('COUNT(*) as baca_total');
         $this->db->from('log_baca');
         $this->db->join('sub_materi', 'sub_materi.id_sub_materi = log_baca.sub_materi_id');
         $this->db->join('materi_pokok', 'sub_materi.materi_pokok_id = materi_pokok.id_materi_pokok');
         $this->db->where('id_siswa', $id);
         if($id_sub != ''){
         	$this->db->where('sub_materi_id', $id_sub);
+        }
+        if($id_mapok != ''){
+        	$this->db->where('materi_pokok_id', $id_mapok);
         }
 
         $query = $this->db->get();

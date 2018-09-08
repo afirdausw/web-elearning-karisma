@@ -15,6 +15,8 @@ class Konten extends CI_Controller
 
     public function index($id_materi_pokok)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+
         $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
 
         $list_submateri = $this->model_pg->get_sub_materi_by_materi($id_materi_pokok);
@@ -36,10 +38,8 @@ class Konten extends CI_Controller
             $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
             $data = array(
-                //            'materi' => $this->model_pg->get_mapel_by_materi($id_materi_pokok),
-                //            'list_submateri' => $list_submateri,
-                //            'sub_materi' => $sub_materi_1,
-                //            'konten' => $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0],
+                "kelas_navbar" => $kelas_navbar,
+                
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
@@ -75,6 +75,8 @@ class Konten extends CI_Controller
 
     public function mapel($id_mapel)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if($siswa_logged){
@@ -117,6 +119,8 @@ class Konten extends CI_Controller
             $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
             $data = array(
+                "kelas_navbar" => $kelas_navbar,
+
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
@@ -160,6 +164,8 @@ class Konten extends CI_Controller
 
     public function detail($id_sub_materi)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+
         $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
         $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi)[0];
         $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
@@ -187,8 +193,9 @@ class Konten extends CI_Controller
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
-        } else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
-            redirect(base_url("profil"));
+        //} else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
+            //DEBUG PREMIUM //DEBUG PREMIUM 
+            // redirect(base_url("profil"));
         } else {
             if($siswa_logged OR $pretest_logged){
                 if($siswa_logged){
@@ -209,6 +216,8 @@ class Konten extends CI_Controller
                 }
             }
             $data = array(
+                "kelas_navbar" => $kelas_navbar,
+
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
@@ -232,6 +241,8 @@ class Konten extends CI_Controller
 
     public function detail_video($id_sub_materi)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+
         $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
         $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi, "Video")[0];
         $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
@@ -259,8 +270,9 @@ class Konten extends CI_Controller
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if (($pretest_logged OR (!$pretest_logged AND !$siswa_logged)) AND  !$konten->pretest_status) {
             redirect(base_url("login"));
-        } else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
-            redirect(base_url("profil"));
+        //} else if (($siswa_logged AND $siswa->id_premium < 1) AND  !$konten->pretest_status) {
+            //DEBUG PREMIUM //DEBUG PREMIUM 
+            // redirect(base_url("profil"));
         } else {
             if($siswa_logged OR $pretest_logged){
                 if($siswa_logged){
@@ -281,6 +293,8 @@ class Konten extends CI_Controller
                 }
             }
             $data = array(
+                "kelas_navbar" => $kelas_navbar,
+
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
@@ -304,6 +318,8 @@ class Konten extends CI_Controller
 
     public function detail_soal($id_sub_materi)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+
         $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
         $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi, "Soal")[0];
         $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
@@ -333,7 +349,8 @@ class Konten extends CI_Controller
             redirect(base_url("login"));
         }
 //        else if($siswa_logged AND $siswa->id_premium < 1){
-//            redirect(base_url("profil"));
+            //DEBUG PREMIUM //DEBUG PREMIUM
+//          redirect(base_url("profil"));
 //        }
         else {
             if (isset($_SESSION['pretest_logged_in']) && $_SESSION['pretest_logged_in']) {
@@ -367,6 +384,8 @@ class Konten extends CI_Controller
                 }
                 $data_log = $this->model_konten->select_log_data_result($check);
                 $data = array(
+                    "kelas_navbar" => $kelas_navbar,
+
                     'materi_pokok'   => $mapok_baru,
                     'materi_pokok_pre' => $mapok_baru_pre,
                     'materi'         => $materi,
@@ -416,6 +435,8 @@ class Konten extends CI_Controller
                 }
                 $data_log = $this->model_konten->select_log_data_result($check);
                 $data = array(
+                    "kelas_navbar" => $kelas_navbar,
+
                     'siswa'          => $siswa,
                     'materi_pokok'   => $mapok_baru,
                     'materi_pokok_pre' => $mapok_baru_pre,
