@@ -206,7 +206,8 @@ if(isset($key->id_materi_pokok)){
                         <div class="panel-heading" role="tab">
                             <h4 class="panel-title">
                                 <a class="collapse"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
-                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : (($siswa_status > 0) ? "<span class='ti-unlock'></span>" : "<span class='ti-lock' style='color:#cc3434 !important;'></span>" ) ); ?></a>
+                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>" ); ?>
+                                </a>
                             </h4>
                         </div>
                         

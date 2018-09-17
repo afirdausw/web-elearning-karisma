@@ -55,9 +55,7 @@ class Home extends CI_Controller {
         	$siswa = $this->model_pg->get_data_user($idsiswa);
         	$data['siswa'] = $siswa;
         }
-       //     ->set_content_type('application/json')
-       //     ->set_status_header(500)
-       //     ->set_output(json_encode($data));
+
         $this->load->view('pg_user/homebaru', $data);
 
     }

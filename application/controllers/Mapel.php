@@ -60,15 +60,21 @@ class Mapel extends CI_Controller
             'baca_total' => $cek->baca_total,
         );
 
+        $idsiswa = $this->session->userdata('id_siswa');
+        if($idsiswa != NULL){
+            $siswa = $this->model_pg->get_data_user($idsiswa);
+            $data['siswa'] = $siswa;
+        }
+
         if ($this->session->userdata("siswa_logged_in")){
             $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
             $data['siswa_status'] = $siswa->id_premium;
         }
 
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(500)
-                ->set_output(json_encode($data));
+//            return $this->output
+//                ->set_content_type('application/json')
+//                ->set_status_header(500)
+//                ->set_output(json_encode($data));
 
         $this->load->view('pg_user/materi_pokok', $data);
     }
