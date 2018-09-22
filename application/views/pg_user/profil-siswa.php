@@ -12,8 +12,12 @@ include('header.php');
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $siswa->nama_siswa ?></h1>
-                <h3>Akun Regular <a class="button">Daftar Premium</a></h3>
+                <h3>Akun Regular</h3>
                 <span>Mengikuti kelas <b>Web Design</b> di Karisma Academy</span>
+                <p>
+                    <a class="button button-link"><i class="fa fa-credit-card"></i> Daftar Premium</a>
+                    <a class="button button-link"><i class="fa fa-thumbs-o-up"></i> Nilai Kami</a>
+                </p>
             </div>
         </div>
     </div>
@@ -66,6 +70,17 @@ include('header.php');
                 <div class="col-md-12">
                     <p>Tanggal Mendaftar</p>
                     <h4><?= $siswa->timestamp ?></h4>
+                </div>
+            </div><!-- End of Row  -->
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Riwayat Pembelajaran</h1>
+                </div>
+                <div class="col-md-12">
+                    <p>Empty</p>
+                    <?= $history ?>
                 </div>
             </div><!-- End of Row  -->
         </div>

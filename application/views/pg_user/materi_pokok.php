@@ -174,7 +174,7 @@ if(isset($key->id_materi_pokok)){
                                         if(!$key->pretest_status){
                                             if($this->session->userdata("siswa_logged_in")){
                                                 if($siswa_status < 1){
-                                                    $link = "href='".base_url()."profil'";
+                                                    $link = "href='".base_url()."profil' title='Konten ini hanya untuk siswa premium'";
                                                     $icon = "<i class='fa fa-lock'></i>";
                                                 }
                                             }else if($this->session->userdata("pretest_logged_in")){

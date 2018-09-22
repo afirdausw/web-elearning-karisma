@@ -44,7 +44,10 @@ class Home extends CI_Controller {
 
         $kelas = $this->model_pg->fetch_all_kelas();
 
+        $testimoni = $this->model_pg->fetch_all_testimoni(0, 3, 2);
+
         $data = [
+            "testimoni" => $testimoni,
             "mapel" => $mapel,
             "kelas" => $kelas, 
             "limit" => $limit,

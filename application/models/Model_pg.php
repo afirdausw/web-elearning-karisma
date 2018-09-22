@@ -596,6 +596,21 @@ class Model_pg extends CI_Model
 		return $this->db->count_all_results('soal');
 	}
 
+    function fetch_all_testimoni($bool = "", $maxperpage = "", $start = "" )
+    {
+        $this->db->select('*');
+        $this->db->from('testimoni');
+        $this->db->order_by('id_testimoni', 'DESC');
+        if($bool == 1){
+            $this->db->limit($maxperpage, $start);
+        }
+
+        $query = $this->db->get();
+        $result = $query->result();
+
+        return $result;
+    }
+
 	function fetch_soal_by_submateri($id_sub_materi)
 	{
 		$this->db->select('*');
@@ -950,5 +965,16 @@ function ganti_password($idlogin, $newpassword){
         $query = $this->db->get();
 
         return $query->row();
+    }
+
+
+    function fetch_all_siswa_by_quiz_mapel()
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->order_by('id_siswa', 'ASC');
+        $query = $this->db->get();
+
+        return $query->result();
     }
 }

@@ -69,19 +69,25 @@
                 <h2>Dengarkan pengalaman mereka belajar online dengan Karisma Academy</h2>
                 <div class="row">
                     <div class="col-md-12">
+                        <?php
+                            foreach ($testimoni as $testi){
+                        ?>
+                        ?>
                         <div class="col-md-4">
                             <div class="card">
                                 <a href="#">
                                     <div class="card-header" style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg1.png'); ?>)">
-                                        <span>Dinda Adinda</span>
+                                        <span><?= $testi->id_siswa ?></span>
                                     </div>
-                                    <span class="card-profile">D</span>
+                                    <span class="card-profile">S</span>
                                     <div class="card-text">
-                                        <p>“Saya kursus disini punya ketertarikan sendiri karena di karisma watu kursusnya sangat fleksibal, saya pulang kerja bisa langsung belajar, tentor proffesional”</p>
+                                        <p>“<?= $testi->testimoni ?>”</p>
                                     </div>
                                 </a>
                             </div>
                         </div>
+                        <?php } ?>
+                        <!--
                         <div class="col-md-4">
                             <div class="card">
                                 <a href="#">
@@ -107,7 +113,7 @@
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

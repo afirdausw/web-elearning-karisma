@@ -469,11 +469,20 @@
     color: #DDD;
     z-index: 1;
 }
+.banner-materi p {
+    position: relative;
+    margin: 0;
+    z-index: 1;
+}
 .banner-materi a {
     position: relative;
     border-bottom: dotted 1px #EEE;
     color: #FFF;
     z-index: 1;
+}
+.banner-materi .button-link {
+    margin: 10px 0 0 0 !important;
+    display: inline-block;
 }
 .banner-materi a:hover {
     text-decoration: none;
@@ -902,11 +911,13 @@ footer a:hover:not(.logo-footer) {
 
 /* STYLE PROFIL */
 .wrap-profil p {
+    color: #666;
     font-size: 15px;
     margin: 0 0 5px;
 }
 .wrap-profil h4 {
     font-size: 17px;
+    font-weight: 600;
     margin: 0 0 15px;
 }
 
