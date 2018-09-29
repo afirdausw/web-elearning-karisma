@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    <div id="navtop" style="opacity:0;width:0;height:0"></div>
     <?php
     if($this->uri->segment(1) != ''){ ?>
         <div class="overlay"></div>
@@ -70,8 +71,8 @@
             </ul>
         </div>
     </nav> <!-- Sidebar Menu -->
-    <!-- HEADER -->  
-    <header class="top-header">
+    <!-- HEADER -->
+    <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> data-spy="affix" data-offset-top="60" <?php }?>>
         <div class="container">
             <nav class="navbar navbar-default navbar-custom" role="navigation">
                 <div class="container-fluid">
@@ -88,8 +89,6 @@
                                 <span class="ti-menu"></span>
                             </button>
                         <?php }  ?>
-
-
                         <a class="navbar-brand logo" href="<?php echo base_url(); ?>"></a>
                     </div>
 

@@ -58,6 +58,12 @@
     </div>
 </footer>
 
+<div class="to-top" id="to-top">
+    <a href="#navtop">
+        <span class="glyphicon glyphicon-arrow-up" style="position:absolute;top:33%;left:30%;"></span>
+    </a>
+</div>
+
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery-1.11.3.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery.CustomScrollbar.min.js');?>"></script>
@@ -70,16 +76,33 @@ $(document).ready(function(){
 });
 </script>
 
-<?php
-if($this->uri->segment(1) != ''){ ?>
 <script type="text/javascript">
+<?php
+if($this->uri->segment(1) == ''){ ?>
     height = $('.top-header').height();
     $( window ).on( "load", function() {
-        $(".top-header").next().css("margin-top", height);
+        $(".top-header").next().css("padding-top", height);
     });
     $( window ).resize(function() {
         height = $('.top-header').height();
-        $(".top-header").next().css("margin-top", height);
+        $(".top-header").next().css("padding-top", height);
+    });
+<?php } ?>
+    window.onload = function() {scrollFunction()};
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
+            document.getElementById("to-top").style.display = "block";
+        } else {
+            document.getElementById("to-top").style.display = "none";
+        }
+    }
+    $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault();
+
+        $('html, body').animate({
+            scrollTop: $($.attr(this, 'href')).offset().top
+        }, 500);
     });
 </script>
-<?php } ?>

@@ -1,5 +1,4 @@
 .top-header {
-	position: fixed;
     top: 0;
 	width: 100%;
 	background: rgba(16,23,29,1);
@@ -23,7 +22,6 @@
 	margin: 0;
 	width: 260px;
     z-index: 4;
-    position: fixed;
     transition: all 0.5s ease-out 0s;
 }
 .logo-footer {
@@ -31,6 +29,22 @@
     display: inline-block;
     margin: 0;
     width: 300px;
+}
+div.to-top{
+    display:none;
+    position:fixed;
+    width: 50px;
+    height: 50px;
+    display:block;
+    background: #10171D;
+    border: 2px solid white;
+    border-radius: 25%;
+    right:10px;
+    bottom:10px;
+}
+div.to-top a{
+    color: white;
+    font-size:large;
 }
 
 .fixed-top {
@@ -89,10 +103,10 @@
     background-image: url(../images/banner-home.JPG);
     background-repeat: no-repeat;
     background-attachment: inherit;
-    background-position: center right ;
-    background-size: cover;
+    background-position: top right;
+    background-size: 75%;
     display: block;
-    position: relative;
+    position: relative; 
 }
 .btn-continue:link {
     margin-top: -15px !important;
@@ -597,7 +611,7 @@
 
 
 .daftar {
-	margin-top: 100px !important;
+	margin-top: 60px !important;
 	border: solid 1px #BBB;
 	padding: 20px 30px;
 }
