@@ -968,11 +968,22 @@ function ganti_password($idlogin, $newpassword){
     }
 
 
-    function fetch_all_siswa_by_quiz_mapel()
+    function fetch_all_quiz_by_mapel()
     {
         $this->db->select('*');
-        $this->db->from('siswa');
-        $this->db->order_by('id_siswa', 'ASC');
+        $this->db->from('log_ujian');
+        $this->db->join('siswa', 'siswa.id_siswa= log_ujian.id_siswa');
+        $this->db->order_by('id_log_ujian', 'ASC');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function get_nilai_siswa_pretest_by_mapel(){
+        $this->db->select('*');
+        $this->db->from('log_ujian_pretest');
+        $this->db->join('siswa_pretest', 'siswa_pretest.id_siswa_pretest = log_ujian_pretest.id_siswa');
+        $this->db->order_by('id_log_ujian', 'ASC');
         $query = $this->db->get();
 
         return $query->result();

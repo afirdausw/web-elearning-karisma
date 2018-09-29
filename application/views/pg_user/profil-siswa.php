@@ -16,6 +16,7 @@ include('header.php');
                 <span>Mengikuti kelas <b>Web Design</b> di Karisma Academy</span>
                 <p>
                     <a class="button button-link"><i class="fa fa-credit-card"></i> Daftar Premium</a>
+                    <a class="button button-link"><i class="fa fa-bar-chart"></i> Hasil Quiz</a>
                     <a class="button button-link"><i class="fa fa-thumbs-o-up"></i> Nilai Kami</a>
                 </p>
             </div>

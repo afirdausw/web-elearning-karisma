@@ -30,15 +30,15 @@
                             <table class="table table-my table-striped">
                                 <tbody><tr>
                                     <td width='35%'>Instruktur</td>
-                                    <td>: <a href="#"> </a></td>
+                                    <td>: <a href="#"> Guru 1</a></td>
                                 </tr>
                                 <tr>
                                     <td>Durasi</td>
-                                    <td>: 20 Menit</td>
+                                    <td>: 90 Menit</td>
                                 </tr>
                                 <tr>
                                     <td>Jumlah Soal</td>
-                                    <td>: 5 Soal</td>
+                                    <td>: 4 Soal</td>
                                 </tr>
                                 <tr>
                                     <td>Jenis Soal</td>
@@ -76,8 +76,9 @@
                                 <td width='30%'><a href="<?php echo base_url()."quiz/riwayat" ?>">22 Jun 2018 at 11.14 WIB</a></td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-riwayat progress-merah" role="progressbar" style="width:60%"></div>
-                                        <span>60</span>
+                                        <div class="progress-bar progress-riwayat progress-merah" role="progressbar" style="width:60%">
+                                            <span>60%</span>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -117,7 +118,8 @@
                     <div class="col-lg-12">
                         <h3>Hasil Test</h3>
 
-                        <table class="table table-hasil hasil-merah">
+                        <!--<table class="table table-hasil hasil-merah">-->
+                        <table class="table table-hasil hasil-hijau">
                             <thead>
                                 <tr>
                                     <th colspan="2" style="text-align: center">Pertanyaan</th>
@@ -128,40 +130,35 @@
                             <tbody>
                                 <tr>
                                     <td>1.</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a pharetra erat. Cras varius velit nec eros dapibus, eu porttitor est pretium?</td>
-                                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing</td>
+                                    <td>Versi terbaru dari HTML adalah?</td>
+                                    <td>5.0</td>
                                     <td align='center'><b>20</b></td>
                                 </tr>
                                 <tr>
                                     <td>2.</td>
-                                    <td>Aliquam leo erat, imperdiet vel tortor auctor, mattis porta massa. Morbi pretium tellus in nisi sodales eleifend?</td>
-                                    <td>Morbi pretium tellus in nisi</td>
+                                    <td>HTML adalah singkatan dari?</td>
+                                    <td>Hyper Text Markup Language</td>
                                     <td align='center'><b>20</b></td>
                                 </tr>
+                                <!--<tr class="null">-->
                                 <tr class="null">
                                     <td>3.</td>
-                                    <td>Etiam ut dolor et sapien feugiat aliquam nec vitae elit. Sed in iaculis dolor. Donec mattis rutrum lacus nec porta?</td>
-                                    <td>Sed in iaculis dolor</td>
+                                    <td>Untuk melihat hasil dari web kita bisa menggunakan?</td>
+                                    <td>Media Player</td>
                                     <td align='center'><b>0</b></td>
                                 </tr>
                                 <tr>
                                     <td>4.</td>
-                                    <td>Aliquam leo erat, imperdiet vel tortor auctor, mattis porta massa. Morbi pretium tellus in nisi sodales eleifend?</td>
-                                    <td>Morbi pretium tellus in nisi</td>
+                                    <td>Untuk mempercantik dan memperbagus tampilan sebuah web atau HTML, yang diperlukan adalah?</td>
+                                    <td>Style</td>
                                     <td align='center'><b>20</b></td>
-                                </tr>
-                                <tr class="null">
-                                    <td>5.</td>
-                                    <td>Curabitur a mauris quam. Nunc pharetra orci dolor, sed ornare mi elementum sed?</td>
-                                    <td>Ut commodo feugiat elit id dictum</td>
-                                    <td align='center'><b>0</b></td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td colspan="2">Nilai Total</td>
                                     <td></td>
-                                    <td><b>Message: Invalid argument supplied for foreach()</b></td>
+                                    <td><b>80</b></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -186,20 +183,20 @@
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float: right">
                 <span class="judul-header">
                     Hasil Test
-                    <p>dari 25 peserta di Kelas</p>
+                    <p>dari 10 peserta di Kelas</p>
                 </span>
 
                 <ul class="peserta-list">
                     <?php foreach ($siswa_quiz as $data){ ?>
                         <li><a href="#">
                             <div class="wrap-left">
-                                <span class="blue"><?= substr($data->nama_siswa, 6,1) ?></span>
+                                <span class="blue"><?= substr($data->nama_siswa, 0,1) ?></span>
                             </div>
                             <div class="wrap-center">
                                 <?= $data->nama_siswa ?>
                                 <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
                             </div>
-                            <span class="nilai">85</span>
+                            <span class="nilai"><?= str_replace(".","",substr($data->nilai, 0, 2)) ?></span>
                         </a></li>
                     <?php } ?>
                     <!--

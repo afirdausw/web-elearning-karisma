@@ -228,8 +228,8 @@ div.to-top a{
 .table-riwayat span {
     font-size: 14px;
     font-weight: 500;
-    color: #333;
-    float: right;
+    color: #FFF;
+    /*float: right;*/
     padding: 0;
 }
 

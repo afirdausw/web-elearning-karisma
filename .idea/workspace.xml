@@ -1,228 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b9375d09-27c7-469f-b614-ace09e3023c9" name="Default" comment="" />
-    <ignored path="prime_beta.iws" />
-    <ignored path=".idea/workspace.xml" />
-    <ignored path=".idea/dataSources.local.xml" />
+    <list default="true" id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Hasil.php" afterPath="$PROJECT_DIR$/application/controllers/Hasil.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Home.php" afterPath="$PROJECT_DIR$/application/controllers/Home.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Model_pg.php" afterPath="$PROJECT_DIR$/application/models/Model_pg.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pg_user/hasil.php" afterPath="$PROJECT_DIR$/application/views/pg_user/hasil.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pg_user/profil-siswa.php" afterPath="$PROJECT_DIR$/application/views/pg_user/profil-siswa.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/pg_user/css/style2.css" afterPath="$PROJECT_DIR$/assets/pg_user/css/style2.css" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-  </component>
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-66049838">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="prime_beta" />
-  </component>
   <component name="FileEditorManager">
-<<<<<<< Updated upstream
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model_pg.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="54" column="32" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="32" />
+            <state relative-caret-position="595">
+              <caret line="35" column="36" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="Hasil.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="44" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hasil.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="191" column="51" lean-forward="true" selection-start-line="191" selection-start-column="51" selection-end-line="191" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hasil_pretest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="216" column="49" lean-forward="true" selection-start-line="216" selection-start-column="49" selection-end-line="216" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profil-siswa.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/pg_user/profil-siswa.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Materi.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Materi.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="5" selection-start-column="5" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="materi_pokok.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+            <state relative-caret-position="68">
+              <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Pretest.php">
+      <file leaf-file-name="Home.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Home.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="100" column="14" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
+            <state relative-caret-position="799">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/pg_user/datadiri.php">
+      <file leaf-file-name="Kelas.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Kelas.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+            <state relative-caret-position="204">
+              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/pg_user/pretest-mapel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Konten.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/pg_user/konten_soal.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="359" column="46" selection-start-line="359" selection-start-column="46" selection-end-line="359" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file leaf-file-name="style2.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/pg_user/css/style2.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="928" column="1" selection-start-line="928" selection-start-column="1" selection-end-line="928" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/pg_user/css/custom.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            <state relative-caret-position="62">
+              <caret line="221" column="26" lean-forward="true" selection-start-line="221" selection-start-column="26" selection-end-line="221" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-=======
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
->>>>>>> Stashed changes
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upload</find>
-      <find>cek_login</find>
-      <find>alert</find>
-      <find>session</find>
-      <find>logout</find>
-      <find>drop</find>
-      <find>set_userdata</find>
-      <find>do</find>
-      <find>id_siswa</find>
-      <find>siswa</find>
-      <find>get_info_siswa</find>
-      <find>value</find>
-      <find>user_po</find>
-      <find>get_data_user</find>
-      <find>infosiswa</find>
-      <find>timer</find>
-      <find>logot</find>
-      <find>progress</find>
-      <find>bar</find>
-      <find>progr</find>
-      <find>progressb</find>
-      <find>stopwatch</find>
-      <find>mapel_by_id</find>
-      <find>puta</find>
-      <find>putra</find>
-      <find>finalButton</find>
-      <find>add</find>
-      <find>sign</find>
-      <find>get_mapel_by</find>
-      <find>get_materi_by</find>
+      <find>$siswa</find>
+      <find>siswa_qui</find>
+      <find>20</find>
+      <find>strt</find>
+      <find>get_mapel</find>
+      <find>soal</find>
+      <find>get_konten</find>
+      <find>sub</find>
     </findStrings>
-    <replaceStrings>
-      <replace>mapel</replace>
-      <replace>&lt;?php</replace>
-      <replace>materi</replace>
-      <replace>materi_pokok</replace>
-    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Admin_materi_bulk.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Dashboard.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Latihansoal.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Materi-16122016.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Materi_old.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Model_materi_bulk.php" />
-        <option value="$PROJECT_DIR$/application/controllers/psep_sekolah/Materi_guru.php" />
-        <option value="$PROJECT_DIR$/application/controllers/psep_sekolah/Materi_pokok_guru.php" />
-        <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/materi_new.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Materi.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Soal.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/soal.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/latihansoal_form.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/materi_form.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/materi_form - OLD (Before pembatasan input teks ATAU video).php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/materi_form2.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/latihansoal_form.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/materi_form.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/materi_guru_form.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/materi_pokok_form.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/materi_pokok_form_edit.php" />
-        <option value="$PROJECT_DIR$/application/views/psep_sekolah/materi_pokok_form_guru.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_admin/materi_pokok_form.php" />
-        <option value="$PROJECT_DIR$/application/models/Model_adm.php" />
-        <option value="$PROJECT_DIR$/application/controllers/pg_admin/Materi_pokok.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Home.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/homebaru.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/login_old.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/login.php" />
-        <option value="$PROJECT_DIR$/application/models/Model_login.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Login.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Quiz.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/footer.php" />
-        <option value="$PROJECT_DIR$/assets/pg_user/css/custom.css" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/text.txt" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/quiz_destroy_time.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/quiz.php" />
-        <option value="$PROJECT_DIR$/assets/quiz_destroy_time.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Tryout.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Materi.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/konten.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/konten_video.php" />
-        <option value="$PROJECT_DIR$/assets/pg_user/css/style2.css" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/konten_soal.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/materi_pokok.php" />
         <option value="$PROJECT_DIR$/application/models/Model_pg.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Pretest.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/datadiri.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Konten.php" />
-        <option value="$PROJECT_DIR$/application/views/pg_user/pretest-mapel.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Home.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Hasil.php" />
+        <option value="$PROJECT_DIR$/application/views/pg_user/profil-siswa.php" />
+        <option value="$PROJECT_DIR$/application/views/pg_user/hasil.php" />
+        <option value="$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php" />
+        <option value="$PROJECT_DIR$/assets/pg_user/css/style2.css" />
       </list>
     </option>
   </component>
@@ -232,65 +156,72 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths>
-      <path value="$PROJECT_DIR$/assets/js/jquery-ui/package.json" />
-      <path value="$PROJECT_DIR$/assets/js/plugins/filemanager/js/jPlayer/package.json" />
-      <path value="$PROJECT_DIR$/assets/js/plugins/tinymce/plugins/youtube/package.json" />
-    </packageJsonPaths>
-  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="654" />
-    <option name="height" value="788" />
+    <option name="x" value="-235" />
+    <option name="y" value="-11" />
+    <option name="width" value="1261" />
+    <option name="height" value="698" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>AngularJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< Updated upstream
       <pane id="Scope" />
-=======
-      <pane id="Scratches" />
->>>>>>> Stashed changes
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-<<<<<<< Updated upstream
-              <item name="E-Learning_Karisma" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="pg_user" type="462c0819:PsiDirectoryNode" />
-=======
               <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="!DB" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
               <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
@@ -301,36 +232,139 @@
             <path>
               <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
               <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
->>>>>>> Stashed changes
+              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="pg_user" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-<<<<<<< Updated upstream
-=======
-      <pane id="Scope" />
->>>>>>> Stashed changes
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="profil&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/profil-siswa.php&#10;style2&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/style2.css&#10;style&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/style.css&#10;hasil&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/hasil.php&#10;Hom&#9;null&#9;null&#10;materi_pokok&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/materi_pokok.php&#10;mapel&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\elearning-karisma\assets" />
-      <recent name="C:\xampp\htdocs\elearning-karisma\assets\pg_user\js" />
+      <recent name="C:\xampp\htdocs\E-Learning_Karisma\application\views\pg_user" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/pg_user/footer.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/pg_user/header.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/assets/pg_user/css/style2.css</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -344,236 +378,54 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-<<<<<<< Updated upstream
-    <configuration name="Model_pg.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/elearning-karisma/application/models/Model_pg.php">
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method v="2" />
-    </configuration>
-=======
-    <configuration name="Model_pg.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/elearning-karisma/application/models/Model_pg.php" />
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
->>>>>>> Stashed changes
-    <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.Model_pg.php" />
-      </list>
-    </recent_temporary>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration" cleanupOnStartRun="true">
-    <configuration>C:\Users\karisma-12\AppData\Roaming\Subversion</configuration>
-    <supportedVersion>125</supportedVersion>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b9375d09-27c7-469f-b614-ace09e3023c9" name="Default" comment="" />
-      <created>1496819036033</created>
+      <changelist id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="" />
+      <created>1537853376075</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1496819036033</updated>
-      <workItem from="1496819038238" duration="4153000" />
-      <workItem from="1496887457738" duration="3880000" />
-      <workItem from="1497058943752" duration="623000" />
-      <workItem from="1497330030009" duration="5008000" />
-      <workItem from="1497405844305" duration="603000" />
-      <workItem from="1497582975011" duration="8000" />
-      <workItem from="1497582990319" duration="553000" />
-      <workItem from="1522210406969" duration="3207000" />
-      <workItem from="1522287870880" duration="905000" />
-      <workItem from="1522291852446" duration="479000" />
-      <workItem from="1522301867938" duration="5077000" />
-      <workItem from="1522461981538" duration="5948000" />
-      <workItem from="1522469127101" duration="2001000" />
-      <workItem from="1522636611870" duration="10173000" />
-      <workItem from="1522720570326" duration="3757000" />
-      <workItem from="1522733499374" duration="2217000" />
-      <workItem from="1522815691416" duration="37000" />
-      <workItem from="1522892725521" duration="5000" />
-      <workItem from="1522892798044" duration="9640000" />
-      <workItem from="1522978702125" duration="599000" />
-      <workItem from="1522982249860" duration="2604000" />
-      <workItem from="1523064772740" duration="3811000" />
-      <workItem from="1523074356187" duration="2447000" />
-      <workItem from="1523241345377" duration="11126000" />
-      <workItem from="1523268385124" duration="476000" />
-      <workItem from="1523325933261" duration="5731000" />
-      <workItem from="1523333401974" duration="3355000" />
-      <workItem from="1525333537656" duration="2177000" />
-      <workItem from="1525414779275" duration="11625000" />
-      <workItem from="1525488082114" duration="3618000" />
-      <workItem from="1525657424587" duration="12403000" />
-      <workItem from="1525757656024" duration="20254000" />
-      <workItem from="1525829562941" duration="8966000" />
-      <workItem from="1526019623891" duration="6595000" />
-      <workItem from="1526089050923" duration="3359000" />
-      <workItem from="1526262518791" duration="13131000" />
-      <workItem from="1526363895393" duration="8624000" />
-      <workItem from="1526388073147" duration="1739000" />
-      <workItem from="1526434563762" duration="17161000" />
-      <workItem from="1526519394653" duration="139000" />
-      <workItem from="1526519559826" duration="7799000" />
-      <workItem from="1526605578224" duration="10340000" />
-      <workItem from="1526693556066" duration="6562000" />
-      <workItem from="1526865748336" duration="5725000" />
-      <workItem from="1526950735577" duration="5065000" />
-      <workItem from="1526978392514" duration="599000" />
-      <workItem from="1527038088897" duration="7962000" />
-      <workItem from="1527124263075" duration="6961000" />
-      <workItem from="1527210588502" duration="3443000" />
-      <workItem from="1527297693070" duration="8735000" />
-      <workItem from="1527472270762" duration="4196000" />
-      <workItem from="1527642839261" duration="1330000" />
-      <workItem from="1527657523618" duration="2961000" />
-      <workItem from="1527730941149" duration="2426000" />
-      <workItem from="1527910054807" duration="6225000" />
-      <workItem from="1528074086412" duration="12905000" />
-      <workItem from="1528162365613" duration="2685000" />
-      <workItem from="1528246280104" duration="3810000" />
-      <workItem from="1528334874707" duration="7449000" />
-      <workItem from="1528420524316" duration="9073000" />
-      <workItem from="1528510450582" duration="2451000" />
-      <workItem from="1528681094303" duration="8124000" />
-      <workItem from="1528769694524" duration="3249000" />
-      <workItem from="1528787048245" duration="4394000" />
-      <workItem from="1529553864637" duration="1470000" />
-      <workItem from="1529631919342" duration="9740000" />
-      <workItem from="1529718298248" duration="7693000" />
-      <workItem from="1529890819646" duration="24560000" />
-      <workItem from="1529977505932" duration="15307000" />
-      <workItem from="1530152072116" duration="5705000" />
-      <workItem from="1530236450824" duration="1376000" />
-      <workItem from="1530932140637" duration="2076000" />
-      <workItem from="1533197695125" duration="609000" />
-      <workItem from="1533534699891" duration="5656000" />
-      <workItem from="1533620523435" duration="1885000" />
-      <workItem from="1533634342197" duration="692000" />
-      <workItem from="1533707555707" duration="2528000" />
-      <workItem from="1533793224717" duration="10161000" />
-      <workItem from="1533814101251" duration="354000" />
-      <workItem from="1533881308817" duration="504000" />
-      <workItem from="1533894245087" duration="1028000" />
-<<<<<<< Updated upstream
-      <workItem from="1534729405035" duration="781000" />
-=======
-      <workItem from="1534745260703" duration="157000" />
->>>>>>> Stashed changes
+      <updated>1537853376075</updated>
+      <workItem from="1537853380467" duration="24000" />
+      <workItem from="1537853422992" duration="101000" />
+      <workItem from="1537853547484" duration="2523000" />
+      <workItem from="1537968150711" duration="955000" />
+      <workItem from="1538027414566" duration="8258000" />
+      <workItem from="1538113161422" duration="2881000" />
+      <workItem from="1538185644206" duration="1447000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< Updated upstream
-    <option name="totallyTimeSpent" value="424808000" />
+    <option name="totallyTimeSpent" value="16189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19062027" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.92865103" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32903227" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32917318" />
-      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="11" visible="true" weight="0.32694477" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.25234374" />
-      <window_info anchor="right" id="Database" order="4" />
-=======
-    <option name="totallyTimeSpent" value="424184000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <layout>
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25234374" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20703125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18003026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32694477" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.92865103" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
->>>>>>> Stashed changes
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18828125" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.92865103" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32998884" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="File Transfer" order="10" visible="true" weight="0.32694477" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Remote Host" order="3" weight="0.25234374" />
-      <window_info anchor="right" id="Database" order="4" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -581,173 +433,408 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/pg_admin/Materi.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Home.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/signup.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/login_old.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/alert_modal.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Signup.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/navbar.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/materi_pokok.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/login_page.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/pg_admin/Login.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/models/Model_adm.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/models/Model_login.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/models/Model_dashboard.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/user_profil.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Siswa.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/sidebar.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_admin/materi_pokok_form.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Quiz.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/footer.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Login.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/login.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/custom.css" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/text.txt" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/style2.css" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/tryout_selesai.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/User.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/quiz_destroy_time.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/quiz.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/assets/quiz_destroy_time.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/tryout.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/tryoutanu.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/models/Model_pg.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Tryout.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Materi.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Konten.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Soal.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/soal.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/konten_video.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/konten.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/konten_soal.php" />
-    <entry file="file:$PROJECT_DIR$/../..//C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Paket.php" />
     <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="54" column="32" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="32" />
-=======
-        <state relative-caret-position="357">
-          <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="595">
+          <caret line="35" column="36" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="36" />
           <folding />
->>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="32" lean-forward="false" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="80" column="46" lean-forward="false" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Materi.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-=======
-        <state relative-caret-position="15776">
-          <caret line="928" column="1" lean-forward="false" selection-start-line="928" selection-start-column="1" selection-end-line="928" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
-=======
-        <state relative-caret-position="6001">
-          <caret line="359" column="46" lean-forward="false" selection-start-line="359" selection-start-column="46" selection-end-line="359" selection-end-column="46" />
+        <state relative-caret-position="68">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
           <folding />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Pretest.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/Home.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="100" column="14" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
-=======
-        <state relative-caret-position="0">
-          <caret line="54" column="32" lean-forward="false" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="32" />
+        <state relative-caret-position="799">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/datadiri.php">
+    <entry file="file://$PROJECT_DIR$/application/controllers/Kelas.php">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="68" column="38" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Konten.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-=======
-        <state relative-caret-position="1700">
-          <caret line="100" column="14" lean-forward="false" selection-start-line="100" selection-start-column="14" selection-end-line="100" selection-end-column="14" />
+        <state relative-caret-position="204">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding />
->>>>>>> Stashed changes
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/konten_soal.php">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="359" column="46" selection-start-line="359" selection-start-column="46" selection-end-line="359" selection-end-column="46" />
-=======
-        <state relative-caret-position="2040">
-          <caret line="120" column="5" lean-forward="false" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
-          <folding />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/pg_user/css/style2.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="928" column="1" selection-start-line="928" selection-start-column="1" selection-end-line="928" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/pg_user/css/custom.css">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state>
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-=======
-        <state relative-caret-position="765">
-          <caret line="45" column="36" lean-forward="false" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-          <folding />
->>>>>>> Stashed changes
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/pretest-mapel.php">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< Updated upstream
-        <state relative-caret-position="298">
-          <caret line="59" column="13" lean-forward="true" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-=======
-        <state relative-caret-position="434">
-          <caret line="152" column="26" lean-forward="true" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
+        <state relative-caret-position="3672">
+          <caret line="216" column="15" lean-forward="false" selection-start-line="216" selection-start-column="15" selection-end-line="216" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/datadiri.php">
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="68" column="38" lean-forward="false" selection-start-line="68" selection-start-column="38" selection-end-line="68" selection-end-column="38" />
+        <state relative-caret-position="459">
+          <caret line="27" column="54" lean-forward="false" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="54" />
           <folding />
->>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="65" lean-forward="false" selection-start-line="16" selection-start-column="65" selection-end-line="17" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Mapel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3618">
+          <caret line="201" column="52" lean-forward="false" selection-start-line="201" selection-start-column="52" selection-end-line="201" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="65" lean-forward="true" selection-start-line="16" selection-start-column="65" selection-end-line="17" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Mapel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Mapel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image/materi/62/201808311710035b8913fba155f.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/fancybox/blank.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/fancybox/fancybox_overlay.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/css/animate.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/css/animate.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="20" lean-forward="true" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/fancybox/fancybox_overlay.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dashboard/fancybox/blank.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image/materi/62/201808311710035b8913fba155f.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/materi_pokok.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="36" lean-forward="false" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Mapel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Materi.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Pretest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-918">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/profil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/pg_user/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="214" column="38" lean-forward="true" selection-start-line="214" selection-start-column="38" selection-end-line="214" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="36" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Kelas.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="21" lean-forward="false" selection-start-line="41" selection-start-column="21" selection-end-line="44" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/profil-siswa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="29" lean-forward="true" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="191" column="51" lean-forward="true" selection-start-line="191" selection-start-column="51" selection-end-line="191" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="216" column="49" lean-forward="true" selection-start-line="216" selection-start-column="49" selection-end-line="216" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/pg_user/css/style2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="221" column="26" lean-forward="true" selection-start-line="221" selection-start-column="26" selection-end-line="221" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
