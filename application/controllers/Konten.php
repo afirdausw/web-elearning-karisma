@@ -566,19 +566,19 @@ class Konten extends CI_Controller
             ];
 
             if ($this->model_konten->select_log_count($ins) >= 1) {
-                $ins["updated_at"] = $start;
-                $update = $this->model_konten->update_log($ins);
+                // $ins["updated_at"] = $start;
+                // $update = $this->model_konten->update_log($ins);
 
-                if ($update) {
-                    $data = [
-                        "success" => true,
-                    ];
-                } else {
-                    $data = [
-                        "success" => false,
-                        "message" => "Terjadi Kesalahan",
-                    ];
-                }
+                // if ($update) {
+                //     $data = [
+                //         "success" => true,
+                //     ];
+                // } else {
+                //     $data = [
+                //         "success" => false,
+                //         "message" => "Terjadi Kesalahan",
+                //     ];
+                // }
 
 
             } else if ($this->model_konten->select_log_count($ins) < 1) {
@@ -593,7 +593,7 @@ class Konten extends CI_Controller
                 $ins["finish"] = date('Y-m-d H:i:s', $estimasi_finish);
                 echo var_dump($soal);
 
-                $simpan = $this->model_konten->insert_log($ins);
+                $simpan = $this->model_konten->insert_log($ins, "ujian");
 
                 if ($simpan) {
                     $data = [
@@ -841,7 +841,7 @@ class Konten extends CI_Controller
             ];
 
             //aksi2
-            $update_log = $this->model_konten->update_log($data_updt);
+            $update_log = $this->model_konten->update_log($data_updt, "ujian");
 
             //DEBUG
             // if($update_log){
@@ -868,7 +868,7 @@ class Konten extends CI_Controller
             "finish_ujian"  => $end,
         ];
 
-        $update = $this->model_konten->update_log($dt_updt);
+        $update = $this->model_konten->update_log($dt_updt, "ujian");
 
     }
 

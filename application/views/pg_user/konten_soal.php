@@ -670,6 +670,7 @@ if ($waktu_sisa < 0) {
             $("#nilaiContainer span.nilainya").html("<?=$innerHTMLnya?>");
         }
     });
+    //fix tekan esc tidak meghilangkan class modal notifikasi
     $(document).keyup(function (e) {
         if (e.keyCode == 27 && <?=$status_finish;?>== 1) {
             $("body").removeClass("modal-open");
@@ -742,7 +743,7 @@ if ($waktu_sisa < 0) {
                         type: 'POST',
                         url: "<?=base_url();?>konten/end_soal/" + idSubMateri + "/",
                         success: function (result) {
-                            alert("Selesai");
+                            alert("Anda telah menyelesaikan '"+<?="'".$sub_materi->nama_sub_materi."'"?>+"'");
                             window.location.reload(true);
                         }
                     });

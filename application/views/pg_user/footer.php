@@ -98,11 +98,11 @@ if($this->uri->segment(1) == ''){ ?>
             document.getElementById("to-top").style.display = "none";
         }
     }
-    $(document).on('click', 'a[href^="#"]', function (event) {
+    $(document).on('click', 'a[href="#navtop"]', function (event) {
         event.preventDefault();
 
         $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top
+            scrollTop: $($.attr(this, 'href')).offset().top,
         }, 500);
     });
 </script>

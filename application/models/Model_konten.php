@@ -71,19 +71,30 @@ class Model_konten extends CI_Model
         return $result;
     }
 
-    public function insert_log($data)
+    public function insert_log($data, $jenis = "")
     {
-        $query = $this->db->insert("log_ujian", $data);
+        if($jenis!=""){
+            if($jenis == "ujian"){
+                $query = $this->db->insert("log_ujian", $data);
+            }
+        }else if($jenis==""){
+            $query = $this->db->insert("log_baca", $data);
+        }
         return $query;
 
     }
 
-    public function update_log($data)
+    public function update_log($data, $jenis = "")
     {
         $this->db->where('id_siswa', $data["id_siswa"]);
-        $this->db->where('sub_materi_ida', $data["sub_materi_id"]);
-        $query = $this->db->update("log_baca", $data);
-
+        $this->db->where('sub_materi_id', $data["sub_materi_id"]);
+        if($jenis!=""){
+            if($jenis == "ujian"){
+                $query = $this->db->update("log_ujian", $data);
+            }
+        }else if($jenis==""){
+            $query = $this->db->update("log_baca", $data);
+        }
         return $query;
 
     }
