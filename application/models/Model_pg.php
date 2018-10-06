@@ -968,7 +968,7 @@ function ganti_password($idlogin, $newpassword){
     }
 
 
-    function fetch_all_quiz_by_mapel()
+    function get_nilai_siswa_by_mapel()
     {
         $this->db->select('*');
         $this->db->from('log_ujian');
@@ -984,6 +984,20 @@ function ganti_password($idlogin, $newpassword){
         $this->db->from('log_ujian_pretest');
         $this->db->join('siswa_pretest', 'siswa_pretest.id_siswa_pretest = log_ujian_pretest.id_siswa');
         $this->db->order_by('id_log_ujian', 'ASC');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    function get_soal_by_konten($idsubmateri, $idsiswa){
+        $this->db->select('*');
+        $this->db->from('jawaban_siswa');
+        $this->db->join('log_ujian', 'log_ujian.id_log_ujian = jawaban_siswa.id_log_ujian');
+        $this->db->join('soal', 'jawaban_siswa.soal_id = `soal`.`id_soal');
+        $this->db->join('sub_materi', 'jawaban_siswa.sub_materi_id = sub_materi.id_sub_materi');
+        $this->db->join('jawaban', 'jawaban_siswa.soal_id = jawaban.soal_id');
+        $this->db->where('jawaban_siswa.sub_materi_id', $idsubmateri);
+        $this->db->where('jawaban_siswa.id_siswa', $idsiswa);
         $query = $this->db->get();
 
         return $query->result();

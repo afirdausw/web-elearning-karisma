@@ -16,6 +16,7 @@ class Mapel extends CI_Controller
 
     public function index($id_materi)
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
         $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
         $mapel = $this->model_pg->get_mapel_by_id($id_materi);
 //        var_dump($mapok->kelas_id);
@@ -52,6 +53,7 @@ class Mapel extends CI_Controller
         $cek = $this->model_pg->get_log_baca($id);
 
         $data = array(
+            'kelas_navbar' => $kelas_navbar,
             "kelas" => $mapel,
             'materi' => $mapok_baru,
             'materi_pre' => $mapok_baru_pre,

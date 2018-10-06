@@ -1,7 +1,7 @@
 <?php
-    $judul_tab = "Hasil Quiz";
+$judul_tab = "Hasil Quiz";
 
-    include('header.php');
+include('header.php');
 ?>
 
 <section class="banner-top banner-quiz-hasil" style="margin-bottom: 30px;"> <!-- BANNER-->
@@ -25,10 +25,11 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="float: left">
                 <div class="row wrap-quiz">
                     <div class="col-lg-7 col-md-7">
-                        <h1>Quiz 1 Materi Apa itu HTML</h1>
+                        <h1>Quiz 1 <?= $konten->nama_sub_materi ?></h1>
                         <div class="row">
                             <table class="table table-my table-striped">
-                                <tbody><tr>
+                                <tbody>
+                                <tr>
                                     <td width='35%'>Instruktur</td>
                                     <td>: <a href="#"> Guru 1</a></td>
                                 </tr>
@@ -43,7 +44,8 @@
                                 <tr>
                                     <td>Jenis Soal</td>
                                     <td>: Pilihan Ganda</td>
-                                </tr></tbody>
+                                </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -73,10 +75,12 @@
                         <table class="table table-riwayat table-striped">
                             <tbody>
                             <tr>
-                                <td width='30%'><a href="<?php echo base_url()."quiz/riwayat" ?>">22 Jun 2018 at 11.14 WIB</a></td>
+                                <td width='30%'><a href="<?php echo base_url() . "quiz/riwayat" ?>">22 Jun 2018 at 11.14
+                                        WIB</a></td>
                                 <td>
                                     <div class="progress">
-                                        <div class="progress-bar progress-riwayat progress-merah" role="progressbar" style="width:60%">
+                                        <div class="progress-bar progress-riwayat progress-merah" role="progressbar"
+                                             style="width:60%">
                                             <span>60%</span>
                                         </div>
                                     </div>
@@ -121,45 +125,41 @@
                         <!--<table class="table table-hasil hasil-merah">-->
                         <table class="table table-hasil hasil-hijau">
                             <thead>
-                                <tr>
-                                    <th colspan="2" style="text-align: center">Pertanyaan</th>
-                                    <th width='35%'>Jawaban</th>
-                                    <th width='10%'>Nilai</th>
-                                </tr>
+                            <tr>
+                                <th colspan="2" style="text-align: center">Pertanyaan</th>
+                                <th width='35%'>Jawaban</th>
+                                <th width='10%'>Nilai</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Versi terbaru dari HTML adalah?</td>
-                                    <td>5.0</td>
-                                    <td align='center'><b>20</b></td>
+                            <?php
+                            $no = 1;
+                            $jumsoal=0;
+                            $benar  =0;
+                            foreach ($soal as $data) {$jumsoal++;}
+                            foreach ($soal as $data) {
+                                ?>
+                                <tr class="<?= $data->jawaban != $data->kunci_jawaban ? "null" : ""?>">
+                                    <td><?= $no++ ?>.</td>
+                                    <td><?= $data->isi_soal ?></td>
+                                    <?php $kolom_jawaban = "jawab_" . $data->jawaban; ?>
+                                    <td><?= $data->$kolom_jawaban ?></td>
+                                    <?php
+                                        if($data->jawaban == $data->kunci_jawaban) $benar++;
+                                    ?>
+                                    <td align='center'><b><?= $data->jawaban != $data->kunci_jawaban ? "0" : round(1/$jumsoal*100,2,PHP_ROUND_HALF_UP) ?></b></td>
                                 </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>HTML adalah singkatan dari?</td>
-                                    <td>Hyper Text Markup Language</td>
-                                    <td align='center'><b>20</b></td>
-                                </tr>
-                                <!--<tr class="null">-->
-                                <tr class="null">
-                                    <td>3.</td>
-                                    <td>Untuk melihat hasil dari web kita bisa menggunakan?</td>
-                                    <td>Media Player</td>
-                                    <td align='center'><b>0</b></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Untuk mempercantik dan memperbagus tampilan sebuah web atau HTML, yang diperlukan adalah?</td>
-                                    <td>Style</td>
-                                    <td align='center'><b>20</b></td>
-                                </tr>
+                            <?php
+                            }
+                            $nilai = round($benar/$jumsoal*100, 2, PHP_ROUND_HALF_UP);
+                            ?>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="2">Nilai Total</td>
-                                    <td></td>
-                                    <td><b>80</b></td>
-                                </tr>
+                            <tr>
+                                <td colspan="2">Nilai Total</td>
+                                <td></td>
+                                <td><b><?= $nilai ?></b></td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -168,10 +168,12 @@
                 <!-- WRAP DETAIL MATERI -->
                 <div class="row wrap-detail-materi">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 text-right">
-                        <img class="centered-cover" src="<?php echo base_url('assets/js/plugins/kcfinder/upload/images/html.jpg') ?>" alt="Logo Materi">
+                        <img class="centered-cover"
+                             src="<?= (isset($konten->gambar_mapel) ? (!empty($konten->gambar_mapel) && substr($konten->gambar_mapel, 0, 5) == 'data:' ? $konten->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                             alt="Logo Materi">
                     </div>
                     <div class="col-lg-11 col-md-10 col-sm-10 col-xs-10">
-                        <h3>Apa itu HTML</h3>
+                        <h3><?= $konten->nama_mapel ?></h3>
                         <span class="badge">12 Materi</span>
                         <span class="badge">50 Peserta</span>
                         <p>Oleh <a href="">Putra Daroini</a> . 12/02/2018</p>
@@ -187,17 +189,17 @@
                 </span>
 
                 <ul class="peserta-list">
-                    <?php foreach ($siswa_quiz as $data){ ?>
+                    <?php foreach ($siswa_quiz as $data) { ?>
                         <li><a href="#">
-                            <div class="wrap-left">
-                                <span class="blue"><?= substr($data->nama_siswa, 0,1) ?></span>
-                            </div>
-                            <div class="wrap-center">
-                                <?= $data->nama_siswa ?>
-                                <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
-                            </div>
-                            <span class="nilai"><?= str_replace(".","",substr($data->nilai, 0, 2)) ?></span>
-                        </a></li>
+                                <div class="wrap-left">
+                                    <span class="blue"><?= substr($data->nama_siswa, 0, 1) ?></span>
+                                </div>
+                                <div class="wrap-center">
+                                    <?= $data->nama_siswa ?>
+                                    <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
+                                </div>
+                                <span class="nilai"><?= str_replace(".", "", substr($data->nilai, 0, 2)) ?></span>
+                            </a></li>
                     <?php } ?>
                     <!--
                     <li><a href="#">
