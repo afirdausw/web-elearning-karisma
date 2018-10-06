@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="Hasil Quiz (Siswa, Pretest) dan perbaikan profil">
+    <list default="true" id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Hasil.php" afterPath="$PROJECT_DIR$/application/controllers/Hasil.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Mapel.php" afterPath="$PROJECT_DIR$/application/controllers/Mapel.php" />
@@ -49,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hasil.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hasil.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -62,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hasil_pretest.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hasil_pretest.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="199">
@@ -282,7 +282,7 @@
       <workItem from="1538632170699" duration="5692000" />
       <workItem from="1538717462632" duration="5179000" />
       <workItem from="1538738901179" duration="3226000" />
-      <workItem from="1538791157388" duration="8602000" />
+      <workItem from="1538791157388" duration="8650000" />
     </task>
     <task id="LOCAL-00001" summary="Hasil Quiz (Siswa, Pretest) dan perbaikan profil">
       <created>1538198955425</created>
@@ -291,11 +291,18 @@
       <option name="project" value="LOCAL" />
       <updated>1538198955426</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fix hasil dari soal log ujian">
+      <created>1538804607767</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1538804607767</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49492000" />
+    <option name="totallyTimeSpent" value="49540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -330,7 +337,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hasil Quiz (Siswa, Pretest) dan perbaikan profil" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hasil Quiz (Siswa, Pretest) dan perbaikan profil" />
+    <MESSAGE value="Fix hasil dari soal log ujian" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix hasil dari soal log ujian" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,14 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="143" column="47" lean-forward="false" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -694,6 +694,14 @@
             <marker date="1538804421337" expanded="true" signature="7900:7978" ph="..." />
             <marker date="1538804421337" expanded="true" signature="7933:7978" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="143" column="47" lean-forward="false" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
