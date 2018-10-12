@@ -19,7 +19,7 @@ class Hasil extends CI_Controller
 
         $konten = $this->model_pg->get_konten_materi_by_id( 8,3 );
 
-        $soal = $this->model_pg->get_soal_by_konten(4, 2);
+        $soal = $this->model_pg->get_soal_by_sub_materi(4, 2);
 
         $data = array(
             'siswa' => $siswa,
@@ -44,11 +44,14 @@ class Hasil extends CI_Controller
 
         $konten = $this->model_pg->get_konten_materi_by_id( 8,3 );
 
+        $soal = $this->model_pg->get_soal_by_sub_materi( 4,2 );
+
         $data = array(
             'siswa' => $siswa,
             'siswa_nilai' => $siswa_nilai,
             'kelas_navbar' => $kelas_navbar,
-            'konten' =>$konten
+            'konten' =>$konten,
+            'soal' => $soal,
         );
 //         return $this->output
 //             ->set_content_type('application/json')

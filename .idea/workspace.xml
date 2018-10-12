@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="">
+    <list default="true" id="5ee803a5-e065-45e5-acfe-e9f405760338" name="Default" comment="Hasil pretest">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Hasil.php" afterPath="$PROJECT_DIR$/application/controllers/Hasil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Mapel.php" afterPath="$PROJECT_DIR$/application/controllers/Mapel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/Model_pg.php" afterPath="$PROJECT_DIR$/application/models/Model_pg.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/pg_user/hasil.php" afterPath="$PROJECT_DIR$/application/views/pg_user/hasil.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/pg_user/css/style2.css" afterPath="$PROJECT_DIR$/assets/pg_user/css/style2.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/lpihiday_belajar.sql" afterPath="$PROJECT_DIR$/database/lpihiday_belajar.sql" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,64 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Model_pg.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="999" column="61" lean-forward="false" selection-start-line="999" selection-start-column="61" selection-end-line="999" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Hasil.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Hasil.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hasil.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="143" column="60" lean-forward="true" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
-              <folding>
-                <marker date="1538804421337" expanded="true" signature="7900:7978" ph="..." />
-                <marker date="1538804421337" expanded="true" signature="7933:7978" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="hasil_pretest.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="143" column="47" lean-forward="false" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="course.php" pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/course.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="135" column="66" lean-forward="true" selection-start-line="135" selection-start-column="66" selection-end-line="135" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="course-packet.css" pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/css/course-packet.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="3321" column="1" lean-forward="true" selection-start-line="3321" selection-start-column="1" selection-end-line="3321" selection-end-column="1" />
+            <state relative-caret-position="559">
+              <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -106,19 +51,21 @@
       <find>sub</find>
       <find>get_konten_materi_by_id</find>
       <find>btn</find>
-      <find>btnku</find>
       <find>btnku2</find>
       <find>.judul</find>
       <find>deskripsi</find>
       <find>get_soal_by_konten</find>
+      <find>btnku</find>
+      <find>deskri</find>
+      <find>icon-course</find>
+      <find>300px</find>
+      <find>code_html_paket</find>
+      <find>paket pro</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -128,11 +75,12 @@
         <option value="$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php" />
         <option value="$PROJECT_DIR$/assets/pg_user/css/style2.css" />
         <option value="$PROJECT_DIR$/application/controllers/Mapel.php" />
-        <option value="&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/course.php" />
-        <option value="&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/css/course-packet.css" />
-        <option value="$PROJECT_DIR$/application/controllers/Hasil.php" />
         <option value="$PROJECT_DIR$/application/views/pg_user/hasil.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Hasil.php" />
+        <option value="&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/css/course-packet.css" />
+        <option value="&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/enroll_page.php" />
         <option value="$PROJECT_DIR$/application/models/Model_pg.php" />
+        <option value="&lt;b63120b0-16a9-4f4b-962a-a926849098e1&gt;/public_html/wp-content/themes/karisma-academy/course.php" />
       </list>
     </option>
   </component>
@@ -183,7 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -203,33 +150,15 @@
               <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controllers" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="models" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="E-Learning_Karisma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="E-Learning_Karisma" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="application" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="pg_user" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mts-khair" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="SearchEverywhereHistoryKey" value="hasil&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/hasil_pretest.php&#10;model&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/models/Model_pg.php&#10;mapel&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/controllers/Mapel.php&#10;style&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/style2.css&#10;profil&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/profil-siswa.php&#10;style2&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/assets/pg_user/css/style2.css&#10;Hom&#9;null&#9;null&#10;materi_pokok&#9;FILE&#9;file://C:/xampp/htdocs/E-Learning_Karisma/application/views/pg_user/materi_pokok.php" />
@@ -241,6 +170,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\firda\Desktop" />
       <recent name="C:\xampp\htdocs\E-Learning_Karisma\application\views\pg_user" />
     </key>
   </component>
@@ -282,7 +212,14 @@
       <workItem from="1538632170699" duration="5692000" />
       <workItem from="1538717462632" duration="5179000" />
       <workItem from="1538738901179" duration="3226000" />
-      <workItem from="1538791157388" duration="8650000" />
+      <workItem from="1538791157388" duration="13656000" />
+      <workItem from="1538976970084" duration="8978000" />
+      <workItem from="1538994769421" duration="4216000" />
+      <workItem from="1539063672085" duration="6866000" />
+      <workItem from="1539149592137" duration="5915000" />
+      <workItem from="1539164951521" duration="1866000" />
+      <workItem from="1539235928533" duration="13785000" />
+      <workItem from="1539322148052" duration="667000" />
     </task>
     <task id="LOCAL-00001" summary="Hasil Quiz (Siswa, Pretest) dan perbaikan profil">
       <created>1538198955425</created>
@@ -298,22 +235,28 @@
       <option name="project" value="LOCAL" />
       <updated>1538804607767</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Hasil pretest">
+      <created>1538804642464</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1538804642465</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49540000" />
+    <option name="totallyTimeSpent" value="96839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Remote Host" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21785174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23827533" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18532526" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1860817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -324,6 +267,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32847896" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -338,7 +283,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hasil Quiz (Siswa, Pretest) dan perbaikan profil" />
     <MESSAGE value="Fix hasil dari soal log ujian" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix hasil dari soal log ujian" />
+    <MESSAGE value="Hasil pretest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hasil pretest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -670,37 +616,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
+    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="999" column="61" lean-forward="false" selection-start-line="999" selection-start-column="61" selection-end-line="999" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="131" column="47" lean-forward="false" selection-start-line="131" selection-start-column="47" selection-end-line="131" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="143" column="60" lean-forward="true" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
-          <folding>
-            <marker date="1538804421337" expanded="true" signature="7900:7978" ph="..." />
-            <marker date="1538804421337" expanded="true" signature="7933:7978" ph="..." />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="143" column="60" lean-forward="false" selection-start-line="143" selection-start-column="60" selection-end-line="143" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/pg_user/hasil_pretest.php">
+    <entry file="file://$PROJECT_DIR$/application/models/Model_pg.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="143" column="47" lean-forward="false" selection-start-line="143" selection-start-column="43" selection-end-line="143" selection-end-column="47" />
+        <state relative-caret-position="352">
+          <caret line="999" column="48" lean-forward="true" selection-start-line="999" selection-start-column="48" selection-end-line="999" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Hasil.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="46" column="55" lean-forward="false" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
           <folding />
         </state>
       </provider>

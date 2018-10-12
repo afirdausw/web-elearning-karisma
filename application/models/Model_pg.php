@@ -989,7 +989,7 @@ function ganti_password($idlogin, $newpassword){
         return $query->result();
     }
 
-    function get_soal_by_konten($idsubmateri, $idsiswa){
+    function get_soal_by_sub_materi($idsubmateri, $idsiswa){
         $this->db->select('*');
         $this->db->from('jawaban_siswa');
         $this->db->join('log_ujian', 'log_ujian.id_log_ujian = jawaban_siswa.id_log_ujian');
