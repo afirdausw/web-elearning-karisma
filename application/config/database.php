@@ -76,10 +76,10 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
     'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',
+    'username' => 'u5113057_sertifikat',
+    'password' => '@S3RT1F1K4S1@',
 //    'database' => 'elearning_karisma',
-    'database' => 'lpihiday_belajar',
+    'database' => 'u5113057_sertifikat',
     'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -95,4 +95,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
+	
 );
