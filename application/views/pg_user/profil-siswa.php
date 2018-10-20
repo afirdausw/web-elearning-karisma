@@ -80,8 +80,25 @@ include('header.php');
                     <h1>Riwayat Pembelajaran</h1>
                 </div>
                 <div class="col-md-12">
-                    <p>Empty</p>
-                    <?= $history ?>
+                    <table class="table table-responsive table-bordered table-striped table-hover">
+                        <tr>
+                            <th>No</th>
+                            <th>Sub Materi</th>
+                            <th>Tanggal akses pertama</th>
+                        </tr>
+                    <?php
+                    $no = 1;
+                    foreach($log_baca as $log){
+                        ?>
+                        <tr>
+                            <td><?=$no++?></td>
+                            <td><?=$log->nama_sub_materi?></td>
+                            <td><?=$log->created_at?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    </table>
                 </div>
             </div><!-- End of Row  -->
         </div>

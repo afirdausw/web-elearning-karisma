@@ -19,12 +19,12 @@ class profil extends CI_Controller
     {
     	if($this->session->userdata('id_siswa') != NULL){
 	    	$siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-            $history = 'A';
+            $log_baca = $this->model_pg->get_log_baca_detail($this->session->userdata('id_siswa'));
 
             $kelas_navbar = $this->model_pg->fetch_all_kelas();
 	    	$data = array(
 	            'siswa' => $siswa,
-                'history' => $history,
+                'log_baca' => $log_baca,
                 "kelas_navbar" => $kelas_navbar, 
 	        );
 
