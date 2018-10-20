@@ -190,7 +190,7 @@ include('header.php');
 
                 <ul class="peserta-list">
                     <?php foreach ($siswa_quiz as $data) { ?>
-                        <li><a href="#">
+                        <li style="cursor:default;">
                                 <div class="wrap-left">
                                     <span class="blue"><?= substr($data->nama_siswa, 0, 1) ?></span>
                                 </div>
@@ -199,7 +199,7 @@ include('header.php');
                                     <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
                                 </div>
                                 <span class="nilai"><?= str_replace(".", "", substr($data->nilai, 0, 2)) ?></span>
-                            </a></li>
+                            </li>
                     <?php } ?>
                     <!--
                     <li><a href="#">

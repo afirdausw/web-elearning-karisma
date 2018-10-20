@@ -184,7 +184,7 @@
 
                 <ul class="peserta-list">
                     <?php foreach ($pretest_nilai as $data){ ?>
-                        <li><a href="#">
+                        <li style="cursor:default;">
                             <div class="wrap-left">
                                 <span class="blue"><?= substr($data->nama_siswa_pretest, 0,1) ?></span>
                             </div>
@@ -193,7 +193,7 @@
                                 <p>pada <?= date('H:i, d/m/Y', strtotime($data->finish)) ?></p>
                             </div>
                             <span class="nilai"><?= str_replace(".","",substr($data->nilai, 0, 2)) ?></span>
-                        </a></li>
+                        </li>
                     <?php } ?>
                     <!--
                     <li><a href="#">
