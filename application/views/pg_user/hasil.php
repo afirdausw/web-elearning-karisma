@@ -21,6 +21,18 @@ include('header.php');
 <section> <!-- konten-->
     <div class="container">
         <div class="row">
+            <select name="id_submateri" id="id_submateri">
+            <?php
+            foreach($log_ujian as $log) {?>
+                <option value="<?=$log->sub_materi_id?>"><?=$log->sub_materi_id?></option>
+            <?php
+            } ?>
+            </select>
+            <input type="button" onClick="window.location.href='<?=base_url()?>'+'hasil/'+id_submateri.value;" value="Cek nilai">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <!-- Sub Materi Kiri -->
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="float: left">
                 <div class="row wrap-quiz">

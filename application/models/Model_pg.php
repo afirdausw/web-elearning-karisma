@@ -985,12 +985,15 @@ function ganti_password($idlogin, $newpassword){
     }
 
 
-    function get_nilai_siswa_by_mapel()
+    function get_nilai_siswa_by_mapel($id_siswa='')
     {
         $this->db->select('*');
         $this->db->from('log_ujian');
         $this->db->join('siswa', 'siswa.id_siswa= log_ujian.id_siswa');
         $this->db->order_by('id_log_ujian', 'ASC');
+        if($id_siswa!=''){
+        	$this->db->where('log_ujian.id_siswa', $id_siswa);
+        }
         $query = $this->db->get();
 
         return $query->result();
