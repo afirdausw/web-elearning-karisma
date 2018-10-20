@@ -1,5 +1,5 @@
 <?php
-    $judul_tab = "Hasil Quiz";
+    $judul_tab = "Hasil Quiz Pretest";
 
     include('header.php');
 ?>
@@ -182,12 +182,12 @@
             <!-- Peserta Kanan -->
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float: right">
                 <span class="judul-header">
-                    Hasil Test
+                    Hasil PreTest
                     <p>dari 4 peserta di Kelas</p>
                 </span>
 
                 <ul class="peserta-list">
-                    <?php foreach ($siswa_nilai as $data){ ?>
+                    <?php foreach ($pretest_nilai as $data){ ?>
                         <li><a href="#">
                             <div class="wrap-left">
                                 <span class="blue"><?= substr($data->nama_siswa_pretest, 0,1) ?></span>
