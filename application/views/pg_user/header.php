@@ -132,7 +132,6 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="ti-face-smile" style="color:green;" data-toggle="tooltip"  data-placement="bottom" title="Anda telah terdaftar sebagai siswa"></span> <span class="arrow-down ti-angle-down"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Akun</a></li>
                                         <li><a href="<?=base_url('profil') ?>">Profil</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>

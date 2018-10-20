@@ -40,7 +40,7 @@ include('header.php');
 </section> <!-- End of BANNER-->
 <?php } ?>
 
-<section class="banner-materi darker"> <!-- konten Judul -->
+<section class="banner-top banner-materi banner-profil darker"> <!-- konten Judul -->
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
