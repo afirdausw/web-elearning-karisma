@@ -93,7 +93,7 @@ include('header.php');
                         <tr>
                             <td><?=$no++?></td>
                             <td><?=$log->nama_sub_materi?></td>
-                            <td><?=$log->created_at?></td>
+                            <td><?=date("d F, Y | H:i:s", strtotime($log->created_at))?></td>
                         </tr>
                         <?php
                     }
