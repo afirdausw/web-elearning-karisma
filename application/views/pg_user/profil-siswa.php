@@ -15,8 +15,8 @@ include('header.php');
                 <h3>Akun <?=($siswa->id_premium) ? "Premium" : "Regular" ?></h3>
                 <span>Mengikuti kelas <b>Web Design</b> di Karisma Academy</span>
                 <p>
-                    <a class="button button-link" href="profil/premium"><i class="fa fa-credit-card"></i> Daftar Premium</a>
-                    <a class="button button-link" href="hasil"><i class="fa fa-bar-chart"></i> Hasil Quiz</a>
+                    <a class="button button-link" href="<?=base_url('profil/premium')?>"><i class="fa fa-credit-card"></i> Daftar Premium</a>
+                    <a class="button button-link" href="<?=base_url('hasil')?>"><i class="fa fa-bar-chart"></i> Hasil Quiz</a>
                     <a class="button button-link" href="#"><i class="fa fa-thumbs-o-up"></i> Nilai Kami</a>
                 </p>
             </div>
