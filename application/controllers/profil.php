@@ -17,11 +17,10 @@ class profil extends CI_Controller
 
     public function index()
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
     	if($this->session->userdata('id_siswa') != NULL){
 	    	$siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
             $log_baca = $this->model_pg->get_log_baca_detail($this->session->userdata('id_siswa'));
-
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
 	    	$data = array(
 	            'siswa' => $siswa,
                 'log_baca' => $log_baca,
@@ -30,10 +29,11 @@ class profil extends CI_Controller
 
 	        $this->load->view('pg_user/profil-siswa', $data);
             
-    	}elseif($this->session->userdata('pretest_id') != NULL){
+    	}else if($this->session->userdata('pretest_id') != NULL){
 	    	$pretest = $this->model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
 	    	$data = array(
 	            'pretest' => $pretest,
+                "kelas_navbar" => $kelas_navbar, 
 	        );
 
 	        $this->load->view('pg_user/profil-pretest', $data);
