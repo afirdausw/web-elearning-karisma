@@ -16,7 +16,7 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-  	$this->model_security->is_logged_in();
+  		$this->model_security->is_logged_in();
 	}
 
 	public function index()

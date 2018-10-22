@@ -78,6 +78,8 @@ class Login extends CI_Controller {
 			redirect('pg_admin/dashboard');
 		}
 		
+		// var_dump($_SESSION);
+
 		// echo "Status Insert: " . $result;
 	}
 	

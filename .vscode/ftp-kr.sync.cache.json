@@ -1,0 +1,290 @@
+{
+  "ftp://ftp.kursusonline.org:21@u5113057": {
+    ".bash_logout": {
+      "type": "-",
+      "size": 18,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bash_profile": {
+      "type": "-",
+      "size": 193,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".bashrc": {
+      "type": "-",
+      "size": 231,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".cagefs": {},
+    ".cl.selector": {},
+    ".contactemail": {
+      "type": "-",
+      "size": 22,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".cpanel": {},
+    ".cphorde": {},
+    ".htpasswds": {},
+    ".jbm": {},
+    ".lastlogin": {
+      "type": "-",
+      "size": 87,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".softaculous": {},
+    ".spamassassin": {},
+    ".spamassassinenable": {
+      "type": "-",
+      "size": 0,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".trash": {},
+    "access-logs": {
+      "type": "l",
+      "size": 34,
+      "lmtime": 0,
+      "modified": false
+    },
+    "etc": {},
+    "logs": {},
+    "mail": {},
+    "public_ftp": {},
+    "public_html": {
+      "!DB": {},
+      ".ftpquota": {
+        "type": "-",
+        "size": 17,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".git": {},
+      ".gitignore": {
+        "type": "-",
+        "size": 11,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".htaccess": {
+        "type": "-",
+        "size": 1234,
+        "lmtime": 0,
+        "modified": false
+      },
+      ".idea": {},
+      "Based on CodeIgniter-3.0.6.txt": {
+        "type": "-",
+        "size": 0,
+        "lmtime": 0,
+        "modified": false
+      },
+      "E-Learning_Karisma.zip": {
+        "type": "-",
+        "size": 185528339,
+        "lmtime": 0,
+        "modified": false
+      },
+      "application": {
+        "controllers": {
+          "pg_admin": {
+            "Dashboard.php": {
+              "type": "-",
+              "size": 4691,
+              "lmtime": 1539828692177,
+              "modified": false
+            }
+          }
+        },
+        "config": {
+          "autoload.php": {
+            "type": "-",
+            "size": 4321,
+            "lmtime": 0,
+            "modified": false
+          },
+          "config.php": {
+            "type": "-",
+            "size": 19948,
+            "lmtime": 1539829078689,
+            "modified": false
+          },
+          "constants.php": {
+            "type": "-",
+            "size": 4492,
+            "lmtime": 0,
+            "modified": false
+          },
+          "database.php": {
+            "type": "-",
+            "size": 4674,
+            "lmtime": 0,
+            "modified": false
+          },
+          "doctypes.php": {
+            "type": "-",
+            "size": 2489,
+            "lmtime": 0,
+            "modified": false
+          },
+          "foreign_chars.php": {
+            "type": "-",
+            "size": 3199,
+            "lmtime": 0,
+            "modified": false
+          },
+          "hooks.php": {
+            "type": "-",
+            "size": 443,
+            "lmtime": 0,
+            "modified": false
+          },
+          "index.html": {
+            "type": "-",
+            "size": 153,
+            "lmtime": 0,
+            "modified": false
+          },
+          "memcached.php": {
+            "type": "-",
+            "size": 536,
+            "lmtime": 0,
+            "modified": false
+          },
+          "migration.php": {
+            "type": "-",
+            "size": 3200,
+            "lmtime": 0,
+            "modified": false
+          },
+          "mimes.php": {
+            "type": "-",
+            "size": 9421,
+            "lmtime": 0,
+            "modified": false
+          },
+          "profiler.php": {
+            "type": "-",
+            "size": 505,
+            "lmtime": 0,
+            "modified": false
+          },
+          "routes.php": {
+            "type": "-",
+            "size": 2540,
+            "lmtime": 0,
+            "modified": false
+          },
+          "smileys.php": {
+            "type": "-",
+            "size": 3309,
+            "lmtime": 0,
+            "modified": false
+          },
+          "user_agents.php": {
+            "type": "-",
+            "size": 6458,
+            "lmtime": 0,
+            "modified": false
+          },
+          "usertracking_config.php": {
+            "type": "-",
+            "size": 5172,
+            "lmtime": 0,
+            "modified": false
+          }
+        }
+      },
+      "assets": {},
+      "class.phpmailer.php": {
+        "type": "-",
+        "size": 74463,
+        "lmtime": 0,
+        "modified": false
+      },
+      "class.smtp.php": {
+        "type": "-",
+        "size": 25613,
+        "lmtime": 0,
+        "modified": false
+      },
+      "composer.json": {
+        "type": "-",
+        "size": 578,
+        "lmtime": 0,
+        "modified": false
+      },
+      "contributing.md": {
+        "type": "-",
+        "size": 6598,
+        "lmtime": 0,
+        "modified": false
+      },
+      "database": {},
+      "editedit.txt": {
+        "type": "-",
+        "size": 249,
+        "lmtime": 0,
+        "modified": false
+      },
+      "error_log": {
+        "type": "-",
+        "size": 332906,
+        "lmtime": 0,
+        "modified": false
+      },
+      "home": {},
+      "image": {},
+      "index.php": {
+        "type": "-",
+        "size": 10570,
+        "lmtime": 0,
+        "modified": false
+      },
+      "karismaplay": {},
+      "license.txt": {
+        "type": "-",
+        "size": 1143,
+        "lmtime": 0,
+        "modified": false
+      },
+      "phpinfo.php": {
+        "type": "-",
+        "size": 25,
+        "lmtime": 0,
+        "modified": false
+      },
+      "primemobile.co.id": {},
+      "public_html": {},
+      "readme.rst": {
+        "type": "-",
+        "size": 2421,
+        "lmtime": 0,
+        "modified": false
+      },
+      "system": {},
+      "template": {},
+      "try": {
+        "type": "-",
+        "size": 0,
+        "lmtime": 0,
+        "modified": false
+      },
+      "tryyy.html": {
+        "type": "-",
+        "size": 141,
+        "lmtime": 0,
+        "modified": false
+      },
+      "webase": {}
+    },
+    "ssl": {},
+    "tmp": {},
+    "www": {}
+  },
+  "$version": 1
+}
