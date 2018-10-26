@@ -30,7 +30,9 @@ label {
 }
 
 
-
+.navbar{
+    margin:5px 0;
+}
 .navbar-default {
     background-color: transparent;
     border-color: #e7e7e7;
@@ -96,9 +98,6 @@ label {
         padding-top: 20px;
         padding-bottom: 20px;
         line-height: 20px;
-    }
-    .navbar, .top-header .container {
-        height: 60px;
     }
     .btn-continue:link {
         margin-top: 60px !important;
