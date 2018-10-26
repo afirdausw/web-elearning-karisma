@@ -74,7 +74,6 @@
 
 @media (max-width: 768px) {
     .banner-home {
-        margin-top: 85px;
         height: 28em;
     }
     .banner-top {
@@ -113,7 +112,6 @@
         font-size: 18px;
     }
     .banner-top {
-        margin-top: 85px;
     }
     .banner-top .banner-right a {
         height: 40px;
