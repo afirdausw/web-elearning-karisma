@@ -77,17 +77,6 @@ $(document).ready(function(){
 </script>
 
 <script type="text/javascript">
-<?php
-if($this->uri->segment(1) == ''){ ?>
-	height = $('.top-header').height();
-	$( window ).on( "load", function() {
-		$(".top-header").next().css("padding-top", height);
-	});
-	$( window ).resize(function() {
-		height = $('.top-header').height();
-		$(".top-header").next().css("padding-top", height);
-	});
-<?php } ?>
 	window.onload = function() {scrollFunction()};
 	window.onscroll = function() {scrollFunction()};
 

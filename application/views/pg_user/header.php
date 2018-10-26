@@ -72,7 +72,7 @@
         </div>
     </nav> <!-- Sidebar Menu -->
     <!-- HEADER -->
-    <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> data-spy="affix" data-offset-top="60" <?php }?>>
+    <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> style="position:sticky;top:5;" <?php }?>>
         <div class="container">
             <nav class="navbar navbar-default navbar-custom" role="navigation">
                 <div class="container-fluid">
