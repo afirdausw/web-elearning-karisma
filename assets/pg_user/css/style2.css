@@ -771,7 +771,7 @@ footer a:hover:not(.logo-footer) {
     top: 8px;
     left: 30px;
     font-size: 18px;
-    margin-left: 43px;
+    /*margin-left: 43px;*/
     border-bottom: none;
     cursor: pointer;
     transition: all 0.2s linear;
@@ -784,7 +784,8 @@ footer a:hover:not(.logo-footer) {
     padding: 10px;
 }
 #sidebar .sidebar-header img {
-    margin-left: 125px;
+    /*margin-left: 125px;*/
+    margin-left: 80px;
 }
 
 #sidebar ul.components {
@@ -792,7 +793,7 @@ footer a:hover:not(.logo-footer) {
     border-top: solid 1px #273D54;
 }
 #sidebar ul li a {
-    padding: 16px 8px 16px 135px;
+    padding: 16px 8px 16px 87.5px
     text-decoration: none;
     font-size: 14px;
     font-weight: normal;
