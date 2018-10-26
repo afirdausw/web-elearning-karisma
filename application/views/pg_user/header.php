@@ -75,7 +75,7 @@
     <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> style="position:sticky;top:5;" <?php }?>>
         <div class="container">
             <nav class="navbar navbar-default navbar-custom" role="navigation">
-                <div class="container-fluid">
+                <div class="">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>

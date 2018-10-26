@@ -33,6 +33,9 @@
     }
 }
 @media (max-width: 1000px) {
+    .nav > li > a{
+        padding:20px 7px;
+    }
     .banner-quiz-hasil .banner-left,
     .banner-top .banner-left {
         padding: 0;
