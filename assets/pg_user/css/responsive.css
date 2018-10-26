@@ -59,7 +59,7 @@
         background: transparent url('../images/footer-logo.png') left center no-repeat;
         background-size: 123px 43px;
         display: inline-block;
-        height: 43px;
+        /*height: 43px;*/
         width: 123px;
     }
     .materi-lainnya h3 {
