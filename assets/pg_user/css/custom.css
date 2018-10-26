@@ -57,6 +57,9 @@ label {
 .navbar-nav > li > .dropdown-menu {
     margin-top: -1px;
 }
+.nav > li > a{
+    padding:10px;
+}
 .dropdown-menu li > a {
     padding: 8px 20px;
     transition: all 0.1s linear;
