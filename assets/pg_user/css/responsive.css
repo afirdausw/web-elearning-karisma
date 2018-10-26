@@ -59,8 +59,8 @@
         background: transparent url('../images/footer-logo.png') left center no-repeat;
         background-size: 123px 43px;
         display: inline-block;
-        height: 59px;
-        width: 260px;
+        height: 43px;
+        width: 123px;
     }
     .materi-lainnya h3 {
         font-size: 14px;
@@ -69,6 +69,14 @@
     .materi-lainnya p {
         font-size: 12px;
         font-weight: 500px;
+    }
+}
+
+
+@media (max-width: 426px) {
+    .logo {
+        height: 60px;
+        width: 123px;
     }
 }
 
