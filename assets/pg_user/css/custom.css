@@ -93,7 +93,7 @@ label {
     line-height: 80px;
 }
 .navbar-toggle {
-    margin-top: 23px;
+    margin-top: 12.5px;
     padding: 9px 10px !important;
 }
 @media (min-width: 768px) {
