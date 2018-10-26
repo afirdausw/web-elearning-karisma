@@ -10,6 +10,11 @@ label {
 	outline: none !important;
     transition: all .2s ease-in-out;
 }
+.panel-group{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
 .nav > li > a:focus,
 .nav > li > a:hover {
     transition: all 0.2s linear;
