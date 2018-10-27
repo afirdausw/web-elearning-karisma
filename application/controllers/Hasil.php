@@ -14,7 +14,7 @@ class Hasil extends CI_Controller
         $this->load->helper('alert_helper');
     }
 
-    function index($id_soal = "") {
+    function index($id_submateri = "") {
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         if($pretest_logged){
@@ -22,21 +22,25 @@ class Hasil extends CI_Controller
         }else if($siswa_logged){
             $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
             $log_ujian = $this->model_pg->get_nilai_siswa_by_mapel($this->session->userdata('id_siswa'));
-            $siswa_quiz = $this->model_pg->get_nilai_siswa_by_mapel();
             $kelas_navbar = $this->model_pg->fetch_all_kelas();
-
-            $konten = $this->model_pg->get_konten_materi_by_id( 8,3 );
-
-            $soal = $this->model_pg->get_soal_by_sub_materi(4, 2);
 
             $data = array(
                 'siswa' => $siswa,
                 'log_ujian' => $log_ujian,
-                'siswa_quiz' => $siswa_quiz,
                 'kelas_navbar' => $kelas_navbar,
-                'konten' =>$konten,
-                'soal' => $soal,
             );
+            if($id_submateri!=""){
+                $konten = $this->model_pg->get_konten_materi_by_id($id_submateri,3);
+                $soal = $this->model_pg->get_soal_by_sub_materi($id_submateri, $siswa->id_siswa);
+                $siswa_quiz = $this->model_pg->get_nilai_siswa_by_mapel("", "", $id_submateri) ;
+
+                $data['siswa_quiz'] = $siswa_quiz;
+                $data['konten'] = $konten;
+                $data['soal'] = $soal;
+
+            }else{
+                $data['konten'] = "";
+            }
 
     //         return $this->output
     //             ->set_content_type('application/json')

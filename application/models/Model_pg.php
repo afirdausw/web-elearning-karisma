@@ -985,15 +985,26 @@ function ganti_password($idlogin, $newpassword){
     }
 
 
-    function get_nilai_siswa_by_mapel($id_siswa='')
+//ada error di id_siswa masih terbaca
+    function get_nilai_siswa_by_mapel($id_siswanya='', $mode = '', $id_sub_materi = '')
     {
         $this->db->select('*');
         $this->db->from('log_ujian');
         $this->db->join('siswa', 'siswa.id_siswa= log_ujian.id_siswa');
-        $this->db->order_by('id_log_ujian', 'ASC');
-        if($id_siswa!=''){
-        	$this->db->where('log_ujian.id_siswa', $id_siswa);
+        $this->db->join('sub_materi', 'sub_materi.id_sub_materi= log_ujian.sub_materi_id');
+        if($id_sub_materi!=''){
+        	$this->db->where('log_ujian.sub_materi_id', $id_sub_materi);
         }
+        if($id_siswanya!=''){
+        	//filter
+        	if($mode == ''){
+        		$this->db->where('log_ujian.id_siswa', $id_siswanya);
+        	}
+        	else if($mode == '!='){
+        		$this->db->where('log_ujian.id_siswa '.$mode, $id_siswanya);
+        	}
+        }
+        $this->db->order_by("log_ujian.nilai", "DESC");
         $query = $this->db->get();
 
         return $query->result();

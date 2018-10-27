@@ -3,6 +3,39 @@ $judul_tab = "Hasil Quiz";
 
 include('header.php');
 ?>
+<?php if($konten == ""){ ?>
+
+
+<section class="banner-top banner-quiz-hasil" style="margin-bottom: 30px;"> <!-- BANNER-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 banner-left">
+                <h1>Silahkan Pilih</h1>
+                <span>Pilihan terdapat pada dropdown di bawah</span>
+            </div>
+        </div>
+    </div>
+</section> <!-- End of BANNER-->
+<section> <!-- konten-->
+    <div class="container">
+        <div class="row">
+            <div class="input-group">
+                <select name="id_submateri" class="form-control" id="id_submateri">
+                <?php
+                foreach($log_ujian as $log) {?>
+                    <option value="<?=$log->sub_materi_id?>" ><?=$log->nama_sub_materi." (".$log->sub_materi_id.")"?></option>
+                <?php
+                } ?>
+                </select>
+                <span class="input-group-btn">
+                    <input type="button" class="btn btn-primary" onClick="window.location.href='<?=base_url()?>'+'hasil/'+id_submateri.value;" value="Cek nilai">
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php } else if($konten != ""){ ?>
 <style type="text/css">
 .mCSB_inside>.mCSB_container{
     margin:0 !important;
@@ -26,17 +59,22 @@ include('header.php');
     </div>
 </section> <!-- End of BANNER-->
 
+
 <section> <!-- konten-->
     <div class="container">
         <div class="row">
-            <select name="id_submateri" id="id_submateri">
-            <?php
-            foreach($log_ujian as $log) {?>
-                <option value="<?=$log->sub_materi_id?>"><?=$log->sub_materi_id?></option>
-            <?php
-            } ?>
-            </select>
-            <input type="button" onClick="window.location.href='<?=base_url()?>'+'hasil/'+id_submateri.value;" value="Cek nilai">
+            <div class="input-group">
+                <select name="id_submateri" class="form-control" id="id_submateri">
+                <?php
+                foreach($log_ujian as $log) {?>
+                    <option value="<?=$log->sub_materi_id?>" <?=($log->sub_materi_id==$konten->sub_materi_id) ? "selected" : "" ?>><?=$log->nama_sub_materi." (".$log->sub_materi_id.")"?></option>
+                <?php
+                } ?>
+                </select>
+                <span class="input-group-btn">
+                    <input type="button" class="btn btn-primary" onClick="window.location.href='<?=base_url()?>'+'hasil/'+id_submateri.value;" value="Cek nilai">
+                </span>
+            </div>
         </div>
     </div>
     <div class="container">
@@ -349,7 +387,11 @@ include('header.php');
     </div>
 </section> <!-- End of konten-->
 
+<?php } ?>
+
 <?php include('footer.php'); ?>
+
+<?php if($konten != ""){ ?>
 <script>
     $("#tab-peserta-isi").mCustomScrollbar({
         setHeight:"200px",
@@ -357,5 +399,7 @@ include('header.php');
         scrollbarPosition: "inside",
     });
 </script>
+}
+<?php } ?>
 </body>
 </html>
