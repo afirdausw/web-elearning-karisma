@@ -3,6 +3,14 @@ $judul_tab = "Hasil Quiz";
 
 include('header.php');
 ?>
+<style type="text/css">
+.mCSB_inside>.mCSB_container{
+    margin:0 !important;
+}
+.mCSB_scrollTools{
+    width:2.5%;
+}
+</style>
 
 <section class="banner-top banner-quiz-hasil" style="margin-bottom: 30px;"> <!-- BANNER-->
     <div class="container">
@@ -199,148 +207,155 @@ include('header.php');
                     Hasil Test
                     <p>dari 10 peserta di Kelas</p>
                 </span>
-
-                <ul class="peserta-list">
-                    <?php foreach ($siswa_quiz as $data) { ?>
-                        <li style="cursor:default;">
-                                <div class="wrap-left">
-                                    <span class="blue"><?= substr($data->nama_siswa, 0, 1) ?></span>
-                                </div>
-                                <div class="wrap-center">
-                                    <?= $data->nama_siswa ?>
-                                    <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
-                                </div>
-                                <span class="nilai"><?= str_replace(".", "", substr($data->nilai, 0, 2)) ?></span>
-                            </li>
-                    <?php } ?>
-                    <!--
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="blue">N</span>
-                        </div>
-                        <div class="wrap-center">
-                            Nur Rohman
-                            <p>at 20 November 2017</p>
-                        </div>
-                        <span class="nilai">85</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <img class="user-male" src="<?php echo base_url('assets/pg_user/images/user-male.png') ?>">
-                        </div>
-                        <div class="wrap-center">
-                            Agus Budiyanto
-                            <p>at 18 Desember 2017</p>
-                        </div>
-                        <span class="nilai">89</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="red">E</span>
-                        </div>
-                        <div class="wrap-center">
-                            Elma
-                            <p>8 January 2018</p>
-                        </div>
-                        <span class="nilai">82</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <img class="user-female" src="<?php echo base_url('assets/pg_user/images/user-female.png') ?>">
-                        </div>
-                        <div class="wrap-center">
-                            Fitri Handayani
-                            <p>15 February 2018</p>
-                        </div>
-                        <span class="nilai">84</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="blue">N</span>
-                        </div>
-                        <div class="wrap-center">
-                            Nur Rohman
-                            <p>at 20 November 2017</p>
-                        </div>
-                        <span class="nilai">85</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="blue">A</span>
-                        </div>
-                        <div class="wrap-center">
-                            Agus Budiyanto
-                            <p>at 18 Desember 2017</p>
-                        </div>
-                        <span class="nilai">89</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="red">E</span>
-                        </div>
-                        <div class="wrap-center">
-                            Elma
-                            <p>8 January 2018</p>
-                        </div>
-                        <span class="nilai">82</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="red">F</span>
-                        </div>
-                        <div class="wrap-center">
-                            Fitri Handayani
-                            <p>15 February 2018</p>
-                        </div>
-                        <span class="nilai">84</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="blue">N</span>
-                        </div>
-                        <div class="wrap-center">
-                            Nur Rohman
-                            <p>at 20 November 2017</p>
-                        </div>
-                        <span class="nilai">85</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="blue">A</span>
-                        </div>
-                        <div class="wrap-center">
-                            Agus Budiyanto
-                            <p>at 18 Desember 2017</p>
-                        </div>
-                        <span class="nilai">89</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="red">E</span>
-                        </div>
-                        <div class="wrap-center">
-                            Elma
-                            <p>8 January 2018</p>
-                        </div>
-                        <span class="nilai">82</span>
-                    </a></li>
-                    <li><a href="#">
-                        <div class="wrap-left">
-                            <span class="red">F</span>
-                        </div>
-                        <div class="wrap-center">
-                            Fitri Handayani
-                            <p>15 February 2018</p>
-                        </div>
-                        <span class="nilai">84</span>
-                    </a></li>
--->
-                </ul> <!-- End Peserta -->
+                <div id="tab-peserta-isi">
+                    <ul class="peserta-list">
+                        <?php foreach ($siswa_quiz as $data) { ?>
+                            <li style="cursor:default;">
+                                    <div class="wrap-left">
+                                        <span class="blue"><?= substr($data->nama_siswa, 0, 1) ?></span>
+                                    </div>
+                                    <div class="wrap-center">
+                                        <?= $data->nama_siswa ?>
+                                        <p>pada <?= date('H:i, d-m-Y', strtotime($data->timestamp)) ?></p>
+                                    </div>
+                                    <span class="nilai"><?= str_replace(".", "", substr($data->nilai, 0, 2)) ?></span>
+                                </li>
+                        <?php } ?>
+                        <!--
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="blue">N</span>
+                            </div>
+                            <div class="wrap-center">
+                                Nur Rohman
+                                <p>at 20 November 2017</p>
+                            </div>
+                            <span class="nilai">85</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <img class="user-male" src="<?php echo base_url('assets/pg_user/images/user-male.png') ?>">
+                            </div>
+                            <div class="wrap-center">
+                                Agus Budiyanto
+                                <p>at 18 Desember 2017</p>
+                            </div>
+                            <span class="nilai">89</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="red">E</span>
+                            </div>
+                            <div class="wrap-center">
+                                Elma
+                                <p>8 January 2018</p>
+                            </div>
+                            <span class="nilai">82</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <img class="user-female" src="<?php echo base_url('assets/pg_user/images/user-female.png') ?>">
+                            </div>
+                            <div class="wrap-center">
+                                Fitri Handayani
+                                <p>15 February 2018</p>
+                            </div>
+                            <span class="nilai">84</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="blue">N</span>
+                            </div>
+                            <div class="wrap-center">
+                                Nur Rohman
+                                <p>at 20 November 2017</p>
+                            </div>
+                            <span class="nilai">85</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="blue">A</span>
+                            </div>
+                            <div class="wrap-center">
+                                Agus Budiyanto
+                                <p>at 18 Desember 2017</p>
+                            </div>
+                            <span class="nilai">89</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="red">E</span>
+                            </div>
+                            <div class="wrap-center">
+                                Elma
+                                <p>8 January 2018</p>
+                            </div>
+                            <span class="nilai">82</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="red">F</span>
+                            </div>
+                            <div class="wrap-center">
+                                Fitri Handayani
+                                <p>15 February 2018</p>
+                            </div>
+                            <span class="nilai">84</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="blue">N</span>
+                            </div>
+                            <div class="wrap-center">
+                                Nur Rohman
+                                <p>at 20 November 2017</p>
+                            </div>
+                            <span class="nilai">85</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="blue">A</span>
+                            </div>
+                            <div class="wrap-center">
+                                Agus Budiyanto
+                                <p>at 18 Desember 2017</p>
+                            </div>
+                            <span class="nilai">89</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="red">E</span>
+                            </div>
+                            <div class="wrap-center">
+                                Elma
+                                <p>8 January 2018</p>
+                            </div>
+                            <span class="nilai">82</span>
+                        </a></li>
+                        <li><a href="#">
+                            <div class="wrap-left">
+                                <span class="red">F</span>
+                            </div>
+                            <div class="wrap-center">
+                                Fitri Handayani
+                                <p>15 February 2018</p>
+                            </div>
+                            <span class="nilai">84</span>
+                        </a></li>-->
+                    </ul> <!-- End Peserta -->
+                </div> <!-- End custom ScrollBar -->
             </div>
         </div>
     </div>
 </section> <!-- End of konten-->
 
 <?php include('footer.php'); ?>
+<script>
+    $("#tab-peserta-isi").mCustomScrollbar({
+        setHeight:"200px",
+        theme: "dark-thick",
+        scrollbarPosition: "inside",
+    });
+</script>
 </body>
 </html>
