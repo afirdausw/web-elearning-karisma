@@ -194,7 +194,7 @@ include('header.php');
             </div>
 
             <!-- Peserta Kanan -->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float: right">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 tab-peserta" style="float: right">
                 <span class="judul-header">
                     Hasil Test
                     <p>dari 10 peserta di Kelas</p>

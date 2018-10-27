@@ -10,7 +10,7 @@ label {
 	outline: none !important;
     transition: all .2s ease-in-out;
 }
-.panel-group{
+.panel-group, .tab-peserta{
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
