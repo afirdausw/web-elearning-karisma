@@ -10,6 +10,11 @@ label {
 	outline: none !important;
     transition: all .2s ease-in-out;
 }
+.panel-group, .tab-peserta{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+}
 .nav > li > a:focus,
 .nav > li > a:hover {
     transition: all 0.2s linear;
@@ -30,7 +35,9 @@ label {
 }
 
 
-
+.navbar{
+    margin:5px 0;
+}
 .navbar-default {
     background-color: transparent;
     border-color: #e7e7e7;
@@ -54,6 +61,9 @@ label {
 }
 .navbar-nav > li > .dropdown-menu {
     margin-top: -1px;
+}
+.nav > li > a{
+    padding:10px;
 }
 .dropdown-menu li > a {
     padding: 8px 20px;
@@ -88,7 +98,7 @@ label {
     line-height: 80px;
 }
 .navbar-toggle {
-    margin-top: 23px;
+    margin-top: 12.5px;
     padding: 9px 10px !important;
 }
 @media (min-width: 768px) {
@@ -96,9 +106,6 @@ label {
         padding-top: 20px;
         padding-bottom: 20px;
         line-height: 20px;
-    }
-    .navbar, .top-header .container {
-        height: 60px;
     }
     .btn-continue:link {
         margin-top: 60px !important;

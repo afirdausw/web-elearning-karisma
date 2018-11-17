@@ -17,23 +17,23 @@ class profil extends CI_Controller
 
     public function index()
     {
+        $kelas_navbar = $this->model_pg->fetch_all_kelas();
     	if($this->session->userdata('id_siswa') != NULL){
 	    	$siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-            $history = 'A';
-
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $log_baca = $this->model_pg->get_log_baca_detail($this->session->userdata('id_siswa'));
 	    	$data = array(
 	            'siswa' => $siswa,
-                'history' => $history,
+                'log_baca' => $log_baca,
                 "kelas_navbar" => $kelas_navbar, 
 	        );
 
 	        $this->load->view('pg_user/profil-siswa', $data);
             
-    	}elseif($this->session->userdata('pretest_id') != NULL){
+    	}else if($this->session->userdata('pretest_id') != NULL){
 	    	$pretest = $this->model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
 	    	$data = array(
 	            'pretest' => $pretest,
+                "kelas_navbar" => $kelas_navbar, 
 	        );
 
 	        $this->load->view('pg_user/profil-pretest', $data);

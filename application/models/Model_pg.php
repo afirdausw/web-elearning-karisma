@@ -956,6 +956,23 @@ function ganti_password($idlogin, $newpassword){
         return $query->row();
     }
 
+    function get_log_baca_detail($id, $id_sub = '', $id_mapok = ''){
+        $this->db->select('*');
+        $this->db->from('log_baca');
+        $this->db->join('sub_materi', 'sub_materi.id_sub_materi = log_baca.sub_materi_id');
+        $this->db->join('materi_pokok', 'sub_materi.materi_pokok_id = materi_pokok.id_materi_pokok');
+        $this->db->where('id_siswa', $id);
+        if($id_sub != ''){
+        	$this->db->where('sub_materi_id', $id_sub);
+        }
+        if($id_mapok != ''){
+        	$this->db->where('materi_pokok_id', $id_mapok);
+        }
+
+        $query = $this->db->get();
+		return $query->result();
+    }
+
     function get_count_submateri($in_query){
     	$in_query = explode(",",$in_query);
         $this->db->select('COUNT(*) as jumlah_sub');
@@ -968,12 +985,26 @@ function ganti_password($idlogin, $newpassword){
     }
 
 
-    function get_nilai_siswa_by_mapel()
+//ada error di id_siswa masih terbaca
+    function get_nilai_siswa_by_mapel($id_siswanya='', $mode = '', $id_sub_materi = '')
     {
         $this->db->select('*');
         $this->db->from('log_ujian');
         $this->db->join('siswa', 'siswa.id_siswa= log_ujian.id_siswa');
-        $this->db->order_by('id_log_ujian', 'ASC');
+        $this->db->join('sub_materi', 'sub_materi.id_sub_materi= log_ujian.sub_materi_id');
+        if($id_sub_materi!=''){
+        	$this->db->where('log_ujian.sub_materi_id', $id_sub_materi);
+        }
+        if($id_siswanya!=''){
+        	//filter
+        	if($mode == ''){
+        		$this->db->where('log_ujian.id_siswa', $id_siswanya);
+        	}
+        	else if($mode == '!='){
+        		$this->db->where('log_ujian.id_siswa '.$mode, $id_siswanya);
+        	}
+        }
+        $this->db->order_by("log_ujian.nilai", "DESC");
         $query = $this->db->get();
 
         return $query->result();

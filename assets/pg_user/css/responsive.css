@@ -33,6 +33,9 @@
     }
 }
 @media (max-width: 1000px) {
+    .nav > li > a{
+        padding:20px 7px;
+    }
     .banner-quiz-hasil .banner-left,
     .banner-top .banner-left {
         padding: 0;
@@ -59,8 +62,8 @@
         background: transparent url('../images/footer-logo.png') left center no-repeat;
         background-size: 123px 43px;
         display: inline-block;
-        height: 59px;
-        width: 260px;
+        /*height: 43px;*/
+        width: 123px;
     }
     .materi-lainnya h3 {
         font-size: 14px;
@@ -72,9 +75,16 @@
     }
 }
 
+
+@media (max-width: 426px) {
+    .logo {
+        height: 60px;
+        width: 123px;
+    }
+}
+
 @media (max-width: 768px) {
     .banner-home {
-        margin-top: 85px;
         height: 28em;
     }
     .banner-top {
@@ -113,20 +123,12 @@
         font-size: 18px;
     }
     .banner-top {
-        margin-top: 85px;
     }
     .banner-top .banner-right a {
         height: 40px;
         padding: 0 20px;
         font-size: 16px;
         line-height: 38px;
-    }
-    .logo {
-        margin-top: 10px;
-    }
-    .open-sidebar {
-        top: 8px;
-        position: relative;
     }
     .img-soal {
         width: 100%;

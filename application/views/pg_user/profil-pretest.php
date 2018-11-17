@@ -40,7 +40,7 @@ include('header.php');
 </section> <!-- End of BANNER-->
 <?php } ?>
 
-<section class="banner-materi darker"> <!-- konten Judul -->
+<section class="banner-top banner-materi banner-profil darker"> <!-- konten Judul -->
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
@@ -50,6 +50,10 @@ include('header.php');
                 <h1><?= $pretest->nama_siswa_pretest ?></h1>
                 <h3>Siswa Pretest</h3>
                 <span>Mengambil pretest <b>Web Design</b> dengan materi <b>HTML</b> di Karisma Academy</span>
+                <p>
+                    <a class="button button-link" href="<?=base_url('hasil/pretest')?>"><i class="fa fa-bar-chart"></i> Hasil Quiz</a>
+                    <a class="button button-link" href="#"><i class="fa fa-thumbs-o-up"></i> Nilai Kami</a>
+                </p>
             </div>
         </div>
     </div>

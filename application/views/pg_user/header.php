@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bootstrap.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/jquery.mCustomScrollbar.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
@@ -72,10 +73,10 @@
         </div>
     </nav> <!-- Sidebar Menu -->
     <!-- HEADER -->
-    <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> data-spy="affix" data-offset-top="60" <?php }?>>
+    <header class="top-header" <?php if($this->uri->segment(1) == ''){ ?> style="position:sticky;top:5;" <?php }?>>
         <div class="container">
             <nav class="navbar navbar-default navbar-custom" role="navigation">
-                <div class="container-fluid">
+                <div class="">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>
@@ -132,7 +133,6 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?= $siswa->nama_siswa ?> <span class="ti-face-smile" style="color:green;" data-toggle="tooltip"  data-placement="bottom" title="Anda telah terdaftar sebagai siswa"></span> <span class="arrow-down ti-angle-down"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Akun</a></li>
                                         <li><a href="<?=base_url('profil') ?>">Profil</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>

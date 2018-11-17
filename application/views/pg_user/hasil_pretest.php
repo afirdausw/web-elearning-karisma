@@ -1,5 +1,5 @@
 <?php
-    $judul_tab = "Hasil Quiz";
+    $judul_tab = "Hasil Quiz Pretest";
 
     include('header.php');
 ?>
@@ -116,50 +116,46 @@
 
                 <div class="row wrap-konten"> <!-- KONTEN HASIL -->
                     <div class="col-lg-12">
-                        <h3>Hasil Test</h3>
+                        <h3>Hasil PreTest</h3>
 
                         <!--<table class="table table-hasil hasil-merah">-->
                         <table class="table table-hasil hasil-hijau">
                             <thead>
-                                <tr>
-                                    <th colspan="2" style="text-align: center">Pertanyaan</th>
-                                    <th width='35%'>Jawaban</th>
-                                    <th width='10%'>Nilai</th>
-                                </tr>
+                            <tr>
+                                <th colspan="2" style="text-align: center">Pertanyaan</th>
+                                <th width='35%'>Jawaban</th>
+                                <th width='10%'>Nilai</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Versi terbaru dari HTML adalah?</td>
-                                    <td>5.0</td>
-                                    <td align='center'><b>25</b></td>
+                            <?php
+                            $no = 1;
+                            $jumsoal=0;
+                            $benar  =0;
+                            foreach ($soal as $data) {$jumsoal++;}
+                            foreach ($soal as $data) {
+                                ?>
+                                <tr class="<?= $data->jawaban != $data->kunci_jawaban ? "null" : ""?>">
+                                    <td><?= $no++ ?>.</td>
+                                    <td><?= $data->isi_soal ?></td>
+                                    <?php $kolom_jawaban = "jawab_" . $data->jawaban; ?>
+                                    <td><?= $data->$kolom_jawaban ?></td>
+                                    <?php
+                                        if($data->jawaban == $data->kunci_jawaban) $benar++;
+                                    ?>
+                                    <td align='center'><b><?= $data->jawaban != $data->kunci_jawaban ? "0" : round(1/$jumsoal*100,2,PHP_ROUND_HALF_UP) ?></b></td>
                                 </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>HTML adalah singkatan dari?</td>
-                                    <td>Hyper Text Markup Language</td>
-                                    <td align='center'><b>25</b></td>
-                                </tr>
-                                <!--<tr class="null">-->
-                                <tr class="null">
-                                    <td>3.</td>
-                                    <td>Untuk melihat hasil dari web kita bisa menggunakan?</td>
-                                    <td>Media Player</td>
-                                    <td align='center'><b>0</b></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Untuk mempercantik dan memperbagus tampilan sebuah web atau HTML, yang diperlukan adalah?</td>
-                                    <td>Style</td>
-                                    <td align='center'><b>25</b></td>
-                                </tr>
+                            <?php
+                            }
+                            $nilai = round($benar/$jumsoal*100, 2, PHP_ROUND_HALF_UP);
+                            ?>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td colspan="2">Nilai Total</td>
-                                    <td></td>
-                                    <td><b>80</b></td>
-                                </tr>
+                            <tr>
+                                <td colspan="2">Nilai Total</td>
+                                <td></td>
+                                <td><b><?= $nilai ?></b></td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -182,13 +178,13 @@
             <!-- Peserta Kanan -->
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="float: right">
                 <span class="judul-header">
-                    Hasil Test
+                    Hasil PreTest
                     <p>dari 4 peserta di Kelas</p>
                 </span>
 
                 <ul class="peserta-list">
-                    <?php foreach ($siswa_nilai as $data){ ?>
-                        <li><a href="#">
+                    <?php foreach ($pretest_nilai as $data){ ?>
+                        <li style="cursor:default;">
                             <div class="wrap-left">
                                 <span class="blue"><?= substr($data->nama_siswa_pretest, 0,1) ?></span>
                             </div>
@@ -197,7 +193,7 @@
                                 <p>pada <?= date('H:i, d/m/Y', strtotime($data->finish)) ?></p>
                             </div>
                             <span class="nilai"><?= str_replace(".","",substr($data->nilai, 0, 2)) ?></span>
-                        </a></li>
+                        </li>
                     <?php } ?>
                     <!--
                     <li><a href="#">
