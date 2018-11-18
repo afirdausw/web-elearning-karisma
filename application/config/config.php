@@ -54,7 +54,7 @@ if ( function_exists( 'date_default_timezone_set' ) ) {
 
 */
 
-$config['base_url'] = "http://kursusonline.org/";
+$config['base_url'] = "https://kursusonline.org/";
 
 
 
