@@ -17,8 +17,16 @@ include('header.php');
                 <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>">
             </div>
             <div class="col-md-9 col-sm-12">
-                <h1><?= $data->nama_mapel ?></h1>
-                <h3>Created by <a href="#">Muhammad Nur Alfiyan</a> <a class="button">Contact</a></h3>
+                <h1><?= $data->nama_mapel ?></h1>                
+                <h3>Created by 
+                <?php if($instruktur!=null):?>
+                    <a target="_blank" href="<?=base_url('instruktur/'.$instruktur[0]->id_instruktur)?>"><?=$instruktur[0]->nama_instruktur?></a> <a class="button" href="tel:<?=$instruktur[0]->telepon?>">Contact</a>
+                <?php
+                else: ?>
+                    <a>Karisma Academy</a> <a class="button">Contact</a>
+                <?php
+                endif;?>
+                </h3>
                 <span><b><?= $data->alias_kelas ?></b> Karisma Academy</span>
             </div>
         </div>

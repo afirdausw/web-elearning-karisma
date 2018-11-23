@@ -29,23 +29,22 @@ class Hasil extends CI_Controller
                 'log_ujian' => $log_ujian,
                 'kelas_navbar' => $kelas_navbar,
             );
-            if($id_submateri!=""){
-                $konten = $this->model_pg->get_konten_materi_by_id($id_submateri,3);
-                $soal = $this->model_pg->get_soal_by_sub_materi($id_submateri, $siswa->id_siswa);
-                $siswa_quiz = $this->model_pg->get_nilai_siswa_by_mapel("", "", $id_submateri) ;
-
-                $data['siswa_quiz'] = $siswa_quiz;
-                $data['konten'] = $konten;
-                $data['soal'] = $soal;
-
-            }else{
-                $data['konten'] = "";
+            if($id_submateri==""){
+                $id_submateri = $log_ujian[0]->sub_materi_id;
             }
+            $konten = $this->model_pg->get_konten_materi_by_id($id_submateri,3);
+            $soal = $this->model_pg->get_soal_by_sub_materi($id_submateri, $siswa->id_siswa);
+            $siswa_quiz = $this->model_pg->get_nilai_siswa_by_mapel("", "", $id_submateri) ;
+
+            $data['siswa_quiz'] = $siswa_quiz;
+            $data['konten'] = $konten;
+            $data['soal'] = $soal;
 
     //         return $this->output
     //             ->set_content_type('application/json')
     //             ->set_status_header(500)
     //             ->set_output(json_encode($data));
+
 
             $this->load->view("pg_user/hasil", $data);
         }else{

@@ -59,6 +59,8 @@ $admin = 'pg_admin';
 $route[$admin . '/materi/manajemen/tambah-bulk'] = 'pg_admin/admin_materi_bulk/materi';
 $route[$admin . '/materi/manajemen/tambah-soal-bulk'] = 'pg_admin/admin_materi_bulk/soal';
 
+$route['instruktur/(:any)'] = 'instruktur/index/$1';
+
 $route['konten/(:any)'] = 'konten/index/$1';
 $route['materi/(:any)'] = 'materi/index/$1';
 $route['mapel/(:any)']  = 'mapel/index/$1';
