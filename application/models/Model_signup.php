@@ -52,9 +52,6 @@ class Model_signup extends CI_Model
 					"nama_siswa"		=> $nama,
 					"email"				=> $email,
 					"telepon"			=> $telepon,
-					"telepon_ortu"		=> $telepon_ortu,
-					"sekolah_id"		=> $sekolah,
-					"kelas"				=> $kelas,
 					"id_login"			=> $id_login,
 					'timestamp'			=> $timestamp,
 					'jenis_kelamin'		=> $jeniskelamin

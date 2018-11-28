@@ -1,8 +1,8 @@
 <?php
-$data = $kelas ;
+$data = $kelas;
 $judul_tab = "Materi ";
-if(isset($data->nama_mapel)){
-   $judul_tab .= $data->nama_mapel ;
+if (isset($data->nama_mapel)) {
+    $judul_tab .= $data->nama_mapel;
 }
 
 include('header.php');
@@ -14,11 +14,21 @@ include('header.php');
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>">
+                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>">
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $data->nama_mapel ?></h1>
-                <h3>Created by <a href="#">Muhammad Nur Alfiyan</a> <a class="button">Contact</a></h3>
+                <h3>Created by
+                    <?php if ($instruktur != null): ?>
+                        <a target="_blank"
+                           href="<?= base_url('instruktur/' . $instruktur[0]->id_instruktur) ?>"><?= $instruktur[0]->nama_instruktur ?></a>
+                        <a class="button" href="tel:<?= $instruktur[0]->telepon ?>">Contact</a>
+                        <?php
+                    else: ?>
+                        <a>Karisma Academy</a> <a class="button">Contact</a>
+                        <?php
+                    endif; ?>
+                </h3>
                 <span><b><?= $data->alias_kelas ?></b> Karisma Academy</span>
             </div>
         </div>
@@ -30,24 +40,24 @@ include('header.php');
 
 // 180824 - Rendy
 $jumlahPretest = 0;
-foreach ($materi as $key){
+foreach ($materi as $key) {
     //hitung jumlah pretest
-    if($key->pretest_status) $jumlahPretest++;
+    if ($key->pretest_status) $jumlahPretest++;
 }
 // $siswa_status == hak akses premium atau tidak
-if($this->session->userdata("siswa_logged_in") AND $siswa_status){
+if ($this->session->userdata("siswa_logged_in") AND $siswa_status) {
     //reset kondisi
     $jumlahPretest = 1;
 }
 //jika materi ada
-if(isset($key->id_materi_pokok)){
+if (isset($key->id_materi_pokok)) {
     //jika jumlah pretest lebih dari 1 / reset dari status premium
-    if ($jumlahPretest>0){
+    if ($jumlahPretest > 0) {
         //jika telah dibaca
-        if($baca_total!=0){
+        if ($baca_total != 0) {
             $persen_baca = ($baca_total / $materi_total) * 100;
             $persen_baca = round($persen_baca, 1);
-        ?>
+            ?>
             <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
                 <div class="container">
                     <div class="row">
@@ -55,20 +65,22 @@ if(isset($key->id_materi_pokok)){
                             <h1>Lanjutkan Belajar</h1>
                             <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                             <div class="progress">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="<?=$persen_baca;?>" aria-valuemin="0" aria-valuemax="100" style="width:<?=$persen_baca;?>%">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="<?= $persen_baca; ?>"
+                                     aria-valuemin="0" aria-valuemax="100" style="width:<?= $persen_baca; ?>%">
                                 </div>
-                                <b><?=$persen_baca;?>%</b>
+                                <b><?= $persen_baca; ?>%</b>
                             </div>
                         </div>
                         <div class="col-md-4 banner-right">
-                            <a class="btn-continue" href="<?= base_url("konten/detail_soal/".$key->id_materi_pokok) ?>">Lanjutkan</a>
+                            <a class="btn-continue"
+                               href="<?= base_url("konten/detail_soal/" . $key->id_materi_pokok) ?>">Lanjutkan</a>
                         </div>
                     </div>
                 </div>
             </section> <!-- End of BANNER-->
-        <?php
-        //jika belum dibaca
-        }else{ ?>
+            <?php
+            //jika belum dibaca
+        } else { ?>
             <section class="banner-top" style="background: #F58634; margin-top: 0;">
                 <div class="container">
                     <div class="row">
@@ -77,15 +89,15 @@ if(isset($key->id_materi_pokok)){
                             <span>dan diskusi langsung dengan instruktur</span>
                         </div>
                         <div class="col-md-4 banner-right">
-                            <a href="<?= base_url("konten/mapel/".$key->mapel_id) ?>">Mulai Belajar</a>
+                            <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
                         </div>
                     </div>
                 </div>
             </section> <!-- End of BANNER-->
         <?php }
-    }else{
-    //jika materi sepenuhnya perlu akses premium
-    ?>
+    } else {
+        //jika materi sepenuhnya perlu akses premium
+        ?>
 
         <section class="banner-top" style="background: #cc3434; margin-top: 0;">
             <div class="container">
@@ -100,11 +112,11 @@ if(isset($key->id_materi_pokok)){
                 </div>
             </div>
         </section> <!-- End of BANNER-->
-    <?php
+        <?php
     }
-}else{
+} else {
     //jika materi tidak ada di db
-?>
+    ?>
 
     <section class="banner-top" style="background: #cc3434; margin-top: 0;">
         <div class="container">
@@ -119,7 +131,7 @@ if(isset($key->id_materi_pokok)){
             </div>
         </div>
     </section> <!-- End of BANNER-->
-<?php
+    <?php
 } ?>
 
 <section class="wrap-deskripsi"> <!-- konten -->
@@ -134,152 +146,156 @@ if(isset($key->id_materi_pokok)){
         </div><!-- End of Row  -->
 
         <?php
-        if (isset($materi) AND $materi != NULL){
-        ?>
+        if (isset($materi) AND $materi != NULL) {
+            ?>
 
-        <div class="row">
-            <div class="col-md-5">
-                <h1>Materi <?= $data->nama_mapel ?></h1>
-            </div>
-            <div class="col-md-12">
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <!-- MATERI PRE -->
-                    <?php
+            <div class="row">
+                <div class="col-md-5">
+                    <h1>Materi <?= $data->nama_mapel ?></h1>
+                </div>
+                <div class="col-md-12">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <!-- MATERI PRE -->
+                        <?php
                         $no = 1;
                         foreach ($materi_pre as $key) {
-                    ?>
+                            ?>
 
 
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a class="collapse" role="button" data-toggle="collapse"
+                                           data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
+                                            <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>"); ?>
+                                        </a>
+                                    </h4>
+                                </div>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab">
-                            <h4 class="panel-title">
-                                <a class="collapse"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
-                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>" ); ?></a>
-                            </h4>
-                        </div>
-
-                        <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse" role="tabpanel">
-                            <div class="panel-body">
-                                <?php
-                                    foreach ($key->sub_materi as $bab) {
-                                        if($bab->kategori == '2'){
-                                            $link = "href='".base_url()."konten/detail_video/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-youtube'></i>";
-                                        } elseif ($bab->kategori == '1'){
-                                            $link = "href='".base_url()."konten/detail/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-align-left'></i>";
-                                        } else {
-                                            $link = "href='".base_url()."konten/detail_soal/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-check-square-o'></i>";
-                                        }
-                                        //jika premium
-                                        if(!$key->pretest_status){
-                                            if($this->session->userdata("siswa_logged_in")){
-                                                if($siswa_status < 1){
-                                                    $link = "href='".base_url()."profil' title='Konten ini hanya untuk siswa premium'";
+                                <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse"
+                                     role="tabpanel">
+                                    <div class="panel-body">
+                                        <?php
+                                        foreach ($key->sub_materi as $bab) {
+                                            if ($bab->kategori == '2') {
+                                                $link = "href='" . base_url() . "konten/detail_video/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-youtube'></i>";
+                                            } elseif ($bab->kategori == '1') {
+                                                $link = "href='" . base_url() . "konten/detail/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-align-left'></i>";
+                                            } else {
+                                                $link = "href='" . base_url() . "konten/detail_soal/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-check-square-o'></i>";
+                                            }
+                                            //jika premium
+                                            if (!$key->pretest_status) {
+                                                if ($this->session->userdata("siswa_logged_in")) {
+                                                    if ($siswa_status < 1) {
+                                                        $link = "href='" . base_url() . "profil' title='Konten ini hanya untuk siswa premium'";
+                                                        $icon = "<i class='fa fa-lock'></i>";
+                                                    }
+                                                } else if ($this->session->userdata("pretest_logged_in")) {
+                                                    $link = "href='" . base_url() . "login'";
                                                     $icon = "<i class='fa fa-lock'></i>";
                                                 }
-                                            }else if($this->session->userdata("pretest_logged_in")){
-                                                $link = "href='".base_url()."login'";
-                                                $icon = "<i class='fa fa-lock'></i>";
-                                            }
 
-                                        }
-                                ?>
-                                <div class="media">
-                                    <a <?= $link; ?>>
-                                        <div class="media-left"><?= $icon ?></div>
-                                        <div class="media-body">
-                                            <p><?= $bab->nama_sub_materi ?></p>
-                                        </div>
-                                    </a>
+                                            }
+                                            ?>
+                                            <div class="media">
+                                                <a <?= $link; ?>>
+                                                    <div class="media-left"><?= $icon ?></div>
+                                                    <div class="media-body">
+                                                        <p><?= $bab->nama_sub_materi ?></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
                                 </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div> <!-- panel-group -->
-                    <?php } ?>
-                    <!-- MATERI FREE/BUY -->
-                    <?php
+                            </div> <!-- panel-group -->
+                        <?php } ?>
+                        <!-- MATERI FREE/BUY -->
+                        <?php
                         $no = 1;
                         foreach ($materi as $key) {
-                    ?>
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab">
-                            <h4 class="panel-title">
-                                <a class="collapse"  role="button" data-toggle="collapse" data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
-                                    <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>" ); ?>
-                                </a>
-                            </h4>
-                        </div>
-                        
-                        <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse" role="tabpanel">
-                            <div class="panel-body">
-                                <?php
-                                    foreach ($key->mapok as $bab) {
-                                        if($bab->kategori == '2'){
-                                            $link = "href='".base_url()."konten/detail_video/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-youtube'></i>";
-                                            // echo '
-                                            //         <div class="modal modal-center fade" id="'.$bab->id_konten.'" role="dialog">
-                                            //             <div class="modal-dialog modal-dialog-center" style="width: 70%">
-                                            //                 <div class="modal-content modal-content-youtube">
-                                            //                     <div class="modal-header">
-                                            //                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            //                         <h4 class="modal-judul">'.$bab->nama_sub_materi.'</h4>
-                                            //                     </div>
-                                            //                     <div class="wrap-video embed-responsive embed-responsive-16by9">
-                                            //                         <iframe class="embed-responsive-item" src="'.$bab->video_materi.'?rel=0&controls=0&showinfo=0" allowfullscreen></iframe>
-                                            //                     </div>
-                                            //                 </div>
-                                            //             </div>
-                                            //         </div>';
+                            ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a class="collapse" role="button" data-toggle="collapse"
+                                           data-parent="#accordion" href="#materi<?= $key->id_materi_pokok ?>">
+                                            <i class="more-less glyphicon glyphicon-plus"></i> <?= $key->nama_materi_pokok ?> <?= (($key->pretest_status) ? "" : "<span class='ti-lock'></span>"); ?>
+                                        </a>
+                                    </h4>
+                                </div>
 
-                                        } elseif ($bab->kategori == '1'){
-                                            $link = "href='".base_url()."konten/detail/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-align-left'></i>";
-                                        } else {
-                                            $link = "href='".base_url()."konten/detail_soal/".$bab->id_sub_materi."'";
-                                            $icon = "<i class='fa fa-check-square-o'></i>";
-                                        }
-                                        //jika premium
-                                        if(!$key->pretest_status){
-                                            if($this->session->userdata("siswa_logged_in")){
-                                                if($siswa_status < 1){
-                                                    $link = "href='".base_url()."profil'";
+                                <div id="materi<?= $key->id_materi_pokok ?>" class="panel-collapse collapse"
+                                     role="tabpanel">
+                                    <div class="panel-body">
+                                        <?php
+                                        foreach ($key->mapok as $bab) {
+                                            if ($bab->kategori == '2') {
+                                                $link = "href='" . base_url() . "konten/detail_video/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-youtube'></i>";
+                                                // echo '
+                                                //         <div class="modal modal-center fade" id="'.$bab->id_konten.'" role="dialog">
+                                                //             <div class="modal-dialog modal-dialog-center" style="width: 70%">
+                                                //                 <div class="modal-content modal-content-youtube">
+                                                //                     <div class="modal-header">
+                                                //                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                //                         <h4 class="modal-judul">'.$bab->nama_sub_materi.'</h4>
+                                                //                     </div>
+                                                //                     <div class="wrap-video embed-responsive embed-responsive-16by9">
+                                                //                         <iframe class="embed-responsive-item" src="'.$bab->video_materi.'?rel=0&controls=0&showinfo=0" allowfullscreen></iframe>
+                                                //                     </div>
+                                                //                 </div>
+                                                //             </div>
+                                                //         </div>';
+
+                                            } elseif ($bab->kategori == '1') {
+                                                $link = "href='" . base_url() . "konten/detail/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-align-left'></i>";
+                                            } else {
+                                                $link = "href='" . base_url() . "konten/detail_soal/" . $bab->id_sub_materi . "'";
+                                                $icon = "<i class='fa fa-check-square-o'></i>";
+                                            }
+                                            //jika premium
+                                            if (!$key->pretest_status) {
+                                                if ($this->session->userdata("siswa_logged_in")) {
+                                                    if ($siswa_status < 1) {
+                                                        $link = "href='" . base_url() . "profil'";
+                                                        $icon = "<i class='fa fa-lock'></i>";
+                                                    }
+                                                } else if ($this->session->userdata("pretest_logged_in")) {
+                                                    $link = "href='" . base_url() . "login'";
                                                     $icon = "<i class='fa fa-lock'></i>";
                                                 }
-                                            }else if($this->session->userdata("pretest_logged_in")){
-                                                $link = "href='".base_url()."login'";
-                                                $icon = "<i class='fa fa-lock'></i>";
-                                            }
-                                            
-                                        }
-                                ?>
-                                <div class="media">
-                                    <a <?= $link; ?>>
-                                        <div class="media-left"><?= $icon ?></div>
-                                        <div class="media-body">
-                                            <p><?= $bab->nama_sub_materi ?></p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div> <!-- panel-group -->
-                    <?php } ?>
-                </div>
-            </div>
-        </div><!-- End of Row  -->
 
-        <?php
+                                            }
+                                            ?>
+                                            <div class="media">
+                                                <a <?= $link; ?>>
+                                                    <div class="media-left"><?= $icon ?></div>
+                                                    <div class="media-body">
+                                                        <p><?= $bab->nama_sub_materi ?></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div> <!-- panel-group -->
+                        <?php } ?>
+                    </div>
+                </div>
+            </div><!-- End of Row  -->
+
+            <?php
         }
         ?>
 
         <?php
-        if(isset($mapel_lain)){ ?>
+        if (isset($mapel_lain)){ ?>
 
         <div class="row">
             <div class="col-md-4">
@@ -287,21 +303,22 @@ if(isset($key->id_materi_pokok)){
             </div>
         </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <?php foreach ($mapel_lain as $data) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <?php foreach ($mapel_lain as $data) { ?>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="thumbnail materi-lainnya">
                             <?php
-                                $linkmaterilain=base_url();
-                                if($this->session->userdata("pretest_logged_in")){
-                                    $linkmaterilain .= "pretest/";
-                                }
-                                $linkmaterilain .= 'mapel/'.$data->id_mapel;
+                            $linkmaterilain = base_url();
+                            if ($this->session->userdata("pretest_logged_in")) {
+                                $linkmaterilain .= "pretest/";
+                            }
+                            $linkmaterilain .= 'mapel/' . $data->id_mapel;
                             ?>
                             <a href="<?= $linkmaterilain; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
-                                <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel, 0, 5) == 'data:' ? $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                     alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
                                     <h3><?= $data->nama_mapel ?> . . .</h3>
                                     <p>Pelajari lebih lanjut ...</p>
@@ -309,14 +326,14 @@ if(isset($key->id_materi_pokok)){
                             </a>
                         </div>
                     </div>
-                    <?php } ?>
-                </div>
-            </div><!-- End of Row  -->
-        </div>
+                <?php } ?>
+            </div>
+        </div><!-- End of Row  -->
+    </div>
 
-        <?php
-        }
-        ?>
+    <?php
+    }
+    ?>
 </section> <!-- End of konten-->
 
 <?php include('footer.php'); ?>

@@ -36,7 +36,7 @@ include('header.php');
 			<div class="row">
 				<div class="col-md-12">
 					<p>Jenis Kelamin</p>
-					<h4>Laki-laki</h4>
+					<h4><?=($siswa->jenis_kelamin-1) ? "Perempuan" : "Laki-Laki" ?></h4>
 				</div>
 				<div class="col-md-12">
 					<p>Tempat, Tanggal Lahir</p>

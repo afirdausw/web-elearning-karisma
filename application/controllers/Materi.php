@@ -12,6 +12,7 @@ class Materi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('model_pg');
+        $this->load->model('model_instruktur');
     }
 
     public function index($id_materi)
@@ -49,6 +50,11 @@ class Materi extends CI_Controller
         $mapok_ids_in = rtrim($mapok_ids_in,",");
         $materi_ids =  $this->model_pg->get_count_submateri($mapok_ids_in);
 
+
+        //tambah definisi tabelnya karena join
+        $where = array("materi_pokok.id_materi_pokok" => $id_materi);
+        $instruktur = $this->model_instruktur->get_instruktur_by_materi($where);
+
         $data = array(
             "kelas" => $mapel,
             "kelas_navbar" => $kelas_navbar,
@@ -56,6 +62,7 @@ class Materi extends CI_Controller
             'materi_pre' => $mapok_baru_pre,
             'materi_lain' => $this->model_pg->get_materi_random(),
             'materi_total' => $materi_ids->jumlah_sub,
+            "instruktur" => $instruktur,
         );
 
         $idsiswa = $this->session->userdata('id_siswa');

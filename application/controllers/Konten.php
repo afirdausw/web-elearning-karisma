@@ -10,6 +10,7 @@ class Konten extends CI_Controller
         parent::__construct();
         $this->load->model('model_pg');
         $this->load->model('model_konten');
+        $this->load->model('model_instruktur');
         $this->load->helper('url');
     }
 
@@ -215,10 +216,18 @@ class Konten extends CI_Controller
                     $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
             }
+
+            $where = array(
+                "materi_pokok.id_materi_pokok" => $mapok_baru[0]->id_materi_pokok,
+            );
+
+            $instruktur = $this->model_instruktur->get_instruktur_by_materi($where);
+
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
 
                 'siswa'          => $siswa,
+                'instruktur'     => $instruktur,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
                 'materi_pokok_pre' => $mapok_baru_pre,
