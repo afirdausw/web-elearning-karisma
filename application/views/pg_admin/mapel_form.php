@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <?php if($page_title == "Ubah Mata Pelajaran"){?>
                     <div class="col-md-6">
                       <label for="gambar_mapel">Gambar Thumbnail Sekarang</label>
-                      <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="Gambar Mapel" style="display:block;max-width: 10vw;">
+                      <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel)  ? base_url().'image/mapel/'.$data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="Gambar Mapel" style="display:block;max-width: 10vw;">
                     </div>
                     <?php } ?>
                   </div>

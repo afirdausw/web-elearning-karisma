@@ -134,45 +134,24 @@ class Mapel extends CI_Controller
 
         $gambar_mapel = "";
 
-        if(isset($_FILES['gambar_mapel'])){
-            $errors=array();
-            $allowed_ext= array('jpg','jpeg','png','gif');
-            $file_name =$_FILES['gambar_mapel']['name'];
-            $explo = explode('.',$file_name);
-            $file_ext = strtolower(end($explo));
+        $file_element_name = "gambar_mapel";
 
+        if (isset($_FILES[$file_element_name]['name']) && $_FILES[$file_element_name]['name'] != "") {
+            $config['upload_path'] = './image/mapel/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['remove_spaces'] = TRUE;  //it will remove all spaces
+            $config['encrypt_name'] = TRUE;   //it wil encrypte the original file name
+            $this->load->library('upload', $config);
 
-            $file_size=$_FILES['gambar_mapel']['size'];
-            $file_tmp= $_FILES['gambar_mapel']['tmp_name'];
-
-            $type = pathinfo($file_name, PATHINFO_EXTENSION);
-            $data = file_get_contents($file_tmp);
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-
-
-
-            if(in_array($file_ext,$allowed_ext) === false)
-            {
-                $errors[]='Extension not allowed';
+            if (!$this->upload->do_upload($file_element_name)) {
+                $error = array('error' => $this->upload->display_errors());
+                alert_error('danger', ul($error));
+            } else {
+                $data_upload = $this->upload->data();
+                $gambar_mapel = $data_upload['file_name'];
             }
-            if(empty($errors))
-            {
-               // if( move_uploaded_file($file_tmp, 'images/'.$file_name));
-               // {
-               //  echo 'File uploaded';
-               // }
-            }
-            else
-            {
-                foreach($errors as $error)
-                {
-                    echo $error , '<br/>'; 
-                }
-            }
-           print_r($errors);
-
-           $gambar_mapel = $base64;
-
+        } else {
+            $gambar_mapel = null;
         }
 
         //run the validation
@@ -196,7 +175,7 @@ class Mapel extends CI_Controller
             'form_action'    => current_url() . "?id=$id",
             'select_options' => $this->model_adm->fetch_all_kelas(),
         );
-
+        $mapel = $this->fetch_mapel_by_id($id);
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
         $kelas_id = $params['kelas'];
@@ -204,46 +183,24 @@ class Mapel extends CI_Controller
         $deskripsi_mapel = isset($params['deskripsi_mapel']) ? $params['deskripsi_mapel'] : '';
 
 
-        $gambar_mapel = "";
+        $file_element_name = "gambar_mapel";
 
-        if($_FILES['gambar_mapel']['error'] == 0){
-            $errors=array();
-            $allowed_ext= array('jpg','jpeg','png','gif');
-            $file_name =$_FILES['gambar_mapel']['name'];
-            $explo = explode('.',$file_name);
-            $file_ext = strtolower(end($explo));
+        if (isset($_FILES[$file_element_name]['name']) && $_FILES[$file_element_name]['name'] != "") {
+            $config['upload_path'] = './image/mapel/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['remove_spaces'] = TRUE;  //it will remove all spaces
+            $config['encrypt_name'] = TRUE;   //it wil encrypte the original file name
+            $this->load->library('upload', $config);
 
-
-            $file_size=$_FILES['gambar_mapel']['size'];
-            $file_tmp= $_FILES['gambar_mapel']['tmp_name'];
-
-            $type = pathinfo($file_name, PATHINFO_EXTENSION);
-            $data = file_get_contents($file_tmp);
-            $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-
-
-
-            if(in_array($file_ext,$allowed_ext) === false)
-            {
-                $errors[]='Extension not allowed';
+            if (!$this->upload->do_upload($file_element_name)) {
+                $error = array('error' => $this->upload->display_errors());
+                alert_error('danger', ul($error));
+            } else {
+                $data_upload = $this->upload->data();
+                $gambar_mapel = $data_upload['file_name'];
             }
-            if(empty($errors))
-            {
-               // if( move_uploaded_file($file_tmp, 'images/'.$file_name));
-               // {
-               //  echo 'File uploaded';
-               // }
-            }
-            else
-            {
-                foreach($errors as $error)
-                {
-                    echo $error , '<br/>'; 
-                }
-            }
-           print_r($errors);
-
-           $gambar_mapel = $base64;
+        } else {
+            $gambar_mapel = $mapel->gambar_mapel;
         }
 
         //run the validation
@@ -251,18 +208,17 @@ class Mapel extends CI_Controller
             alert_error("Error", "Data gagal diubah");
             $this->load->view('pg_admin/mapel_form', $data);
         } else {
-            if(empty($errors)){
+            if (empty($errors)) {
                 //passing input value to Model
                 $result = $this->model_adm->update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel);
                 alert_success("Sukses", "Data berhasil diubah");
                 redirect('pg_admin/mapel/kelas/' . $kelas_id);
                 // echo "Status Update: " . $result;
 
-            }else{
+            } else {
                 $error_msg = '';
-                foreach($errors as $error)
-                {
-                    $error_msg .= $error.'<br/>'; 
+                foreach ($errors as $error) {
+                    $error_msg .= $error . '<br/>';
                 }
                 alert_error("Error", $error_msg);
                 $this->load->view('pg_admin/mapel_form', $data);
