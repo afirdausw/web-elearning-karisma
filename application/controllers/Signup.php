@@ -20,9 +20,9 @@ class Signup extends CI_Controller
     function index()
     {
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if ($siswa_logged){
+        if ($siswa_logged) {
             redirect(base_url("profil"));
-        }else{
+        } else {
             $kelas_navbar = $this->model_pg->fetch_all_kelas();
             $data = array(
                 'navbar_links'    => $this->model_pg->get_navbar_links(),
@@ -32,7 +32,7 @@ class Signup extends CI_Controller
                 'select_kelas'    => $this->model_pg->fetch_all_kelas(),
                 'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
 
-                "kelas_navbar" => $kelas_navbar, 
+                "kelas_navbar" => $kelas_navbar,
             );
             $this->load->view("pg_user/signup", $data);
         }
@@ -87,8 +87,8 @@ class Signup extends CI_Controller
         $this->form_validation_rules();
 
         $params = $this->input->post(null, true);
-        $nama = isset($params["namalengkap"]) ? $params["namalengkap"] : '';
-        $username = isset($params["pengguna"]) ? $params["pengguna"] : '';
+        $nama = isset($params["nama"]) ? $params["nama"] : '';
+        $username = isset($params["username"]) ? $params["username"] : '';
         $email = isset($params["email"]) ? $params["email"] : '';
         $jeniskelamin = isset($params["gender"]) ? $params["gender"] : '';
         $telepon = isset($params["nohp"]) ? $params["nohp"] : '';
@@ -100,15 +100,15 @@ class Signup extends CI_Controller
         $sekolahbaru = isset($params["sekolahbaru"]) ? $params["sekolahbaru"] : '';
         $nis = isset($params["nis"]) ? $params["nis"] : '';
         $nisn = isset($params["nisn"]) ? $params["nisn"] : '';
-        $password = md5($params["katasandi"]);
+        $password = md5($params["password"]);
         $timestamp = date('Y-m-d H:i:s');
 
-        if ($this->form_validation->run() == FALSE || $this->cek_password($params['katasandi'], $params['konfirmasi']) == FALSE) {
+        if ($this->form_validation->run() == FALSE || $this->cek_password($params['password'], $params['password']) == FALSE) {
             alert_error("Error", "Terjadi Kesalahan Saat Signup");
             $this->load->view("pg_user/signup", $data);
             // redirect("signup");
         } else {
-            $result = $this->model_signup->add_user($username, $password, $nama, $email, $telepon, $telepon_ortu, $sekolah, $kelas, $timestamp, $jeniskelamin, $kota, $jenjang, $sekolahbaru,$nis,$nisn);
+            $result = $this->model_signup->add_user($username, $password, $nama, $email, $telepon, $telepon_ortu, $sekolah, $kelas, $timestamp, $jeniskelamin, $kota, $jenjang, $sekolahbaru, $nis, $nisn);
 
             $insert_ortu = $this->model_parent->daftar($result, $nama, $email, $telepon_ortu, $username, $password);
 
@@ -116,17 +116,17 @@ class Signup extends CI_Controller
             $data = [
                 'id_kelas' => $kelas,
                 'id_siswa' => $last_id,
-                'isaktif' => 0,
+                'isaktif'  => 0,
 
             ];
             $this->model_signup->add_paket($data);
 
 
-            //alert_success("berhasil", "Selamat datang, ".$nama.". Akun anda telah terdaftar, Silahkan melakukan aktivasi untuk memulai belajar di Prime Mobile");
-            //redirect("signup");
+            alert_success("berhasil", "Selamat datang, ".$nama.". Akun anda telah terdaftar, Silahkan melakukan aktivasi untuk memulai belajar di Karisma Academy");
+            redirect("login");
 
 
-            redirect("login/login_from_signup/" . $username . "/" . $params["katasandi"] . "/" . $nama);
+//            redirect("login/login_from_signup/" . $username . "/" . $params["katasandi"] . "/" . $nama);
         }
 
     }
@@ -145,15 +145,12 @@ class Signup extends CI_Controller
     private function form_validation_rules()
     {
         //set validation rules for each input
-        $this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'trim|required');
-        $this->form_validation->set_rules('pengguna', 'Username', 'trim|required');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('email', 'email', 'trim|required');
-        $this->form_validation->set_rules('katasandi', 'Kata Sandi', 'required');
-        $this->form_validation->set_rules('konfirmasi', 'Konfirmasi Password', 'required');
+        $this->form_validation->set_rules('password', 'Kata Sandi', 'required');
         $this->form_validation->set_rules('nohp', 'Telepon', 'trim|numeric');
         $this->form_validation->set_rules('nohp_ortu', 'Telepon Orang Tua', 'trim|numeric');
-        $this->form_validation->set_rules('sekolah', 'Sekolah', 'trim|required');
-        $this->form_validation->set_rules('kelas', 'Kelas', 'trim|required');
 
         //set custom error message
         $this->form_validation->set_message('required', '%s tidak boleh kosong');

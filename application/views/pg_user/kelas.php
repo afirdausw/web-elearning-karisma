@@ -60,7 +60,7 @@ include('header.php');
                         <div class="thumbnail materi-lainnya">
                             <a href="<?= base_url() . 'materi/' . $data->id_mapel ?>">
                                 <!-- <span class="badge-diskon">Diskon 25%</span> -->
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel)   ? base_url().'image/mapel/'.$data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                      alt="Thumbnail Kursus <?= $data->nama_mapel ?>" style="width:100%; height: 50px">
                                 <div class="caption">
                                     <h3><?= $data->nama_mapel ?></h3>
