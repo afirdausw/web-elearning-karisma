@@ -18,12 +18,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <a href="<?php echo site_url('pg_admin/mapel/manajemen/tambah/'.$kelas) ?>"
+                                <a href="<?php echo site_url('pg_admin/mapel/manajemen/tambah/' . $kelas) ?>"
                                    class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Tambah
                                     Mapel</a>
                                 <h4 class="title">
                                     <a href="<?php echo site_url('pg_admin/kelas') ?>"
-                                       class="btn btn-success"><i class="fa fa-arrow-left"></i></a> Semua Mata Pelajaran</h4>
+                                       class="btn btn-success"><i class="fa fa-arrow-left"></i></a> Semua Mata Pelajaran
+                                </h4>
                                 <p class="category">Daftar Mata Pelajaran per Tingkatan Kelas</p>
                             </div>
                             <div class="content">
@@ -34,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <th>#</th>
                                             <th>Kelas</th>
                                             <th>Mata Pelajaran</th>
+                                            <th>Harga</th>
                                             <th class="text-center">Aksi</th>
                                         </tr>
                                         </thead>
@@ -47,12 +49,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td><?php echo $no; ?></td>
                                                     <td><?php echo $item->alias_kelas ?></td>
                                                     <td><?php echo $item->nama_mapel ?></td>
+                                                    <td>Rp. <?php echo money($item->harga) ?></td>
                                                     <td class="text-center">
                                                         <div class="button-group">
-                                                            <a href="<?php echo $form_action . 'manajemen/ubah/'.$kelas.'?id=' . $item->id_mapel ?>"
+                                                            <a href="<?php echo $form_action . 'manajemen/ubah/' . $kelas . '?id=' . $item->id_mapel ?>"
                                                                class="btn btn-warning btn-xs" title="Ubah"><i
                                                                         class="glyphicon glyphicon-pencil"></i></a>
-                                                            <a href="<?php echo base_url('pg_admin/materi_pokok/mapel/'.$kelas.'/'.$item->id_mapel) ?>"
+                                                            <a href="<?php echo base_url('pg_admin/materi_pokok/mapel/' . $kelas . '/' . $item->id_mapel) ?>"
                                                                class="btn btn-primary btn-xs" title="Materi Pokok"><i
                                                                         class="glyphicon glyphicon-arrow-right"></i></a>
                                                             <button type="button" class="btn btn-danger btn-xs"

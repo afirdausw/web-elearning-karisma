@@ -257,7 +257,7 @@ include('header.php');
                 <div class="row wrap-detail-materi">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 text-right">
                         <a href="<?= base_url().'mapel/'.$materi->mapel_id ?>">
-                            <img class="centered-cover" src="<?= $materi->gambar_mapel ?>" alt="Logo Materi">
+                            <img class="centered-cover" src="<?= base_url()?>/image/mapel/<?= $materi->gambar_mapel ?>" alt="Logo Materi">
                         </a>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10">

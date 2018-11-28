@@ -503,7 +503,7 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel)
+    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
     {
         //Insert data into table mata_pelajaran
         $data = array(
@@ -511,19 +511,21 @@ class Model_adm extends CI_Model
             'nama_mapel'      => $nama_mapel,
             'deskripsi_mapel' => $deskripsi_mapel,
             'gambar_mapel'    => $gambar_mapel,
+            'harga'    => $harga,
         );
         $result = $this->db->insert('mata_pelajaran', $data);
 
         return $result;
     }
 
-    function update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel)
+    function update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
     {
         //Update row by id in table mata_pelajaran
         $data = array(
             'kelas_id'        => $kelas_id,
             'nama_mapel'      => $nama_mapel,
             'deskripsi_mapel' => $deskripsi_mapel,
+            'harga'    => $harga,
         );
         if ($gambar_mapel != "") {
             $data["gambar_mapel"] = $gambar_mapel;
