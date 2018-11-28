@@ -165,7 +165,7 @@
         nav = $("nav.navbar");
         $("html, body").animate({ scrollTop: bnner.height()-nav.height() }, "slow");
         $.ajax({
-            url: "<?=base_url();?>home/ajax_load_listmapel/"+<?=$limit?>+"/"+num,
+            url: "<?= base_url() ;?>home/ajax_load_listmapel/"+<?=$limit?>+"/"+num,
             success: function(result){
                 lst.html(result);
             }

@@ -1,7 +1,7 @@
 <?php
 $judul_tab = "Kelas ";
-if(isset($kelas->alias_kelas)){
-   $judul_tab .= $kelas->alias_kelas ;
+if (isset($kelas->alias_kelas)) {
+    $judul_tab .= $kelas->alias_kelas;
 }
 
 include('header.php');
@@ -19,12 +19,12 @@ include('header.php');
         </div>
     </div>
 </section> <!-- End of BANNER-->
-<?php $background = (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) && substr($kelas->gambar_kelas,0,5) == 'data:' ? $kelas->gambar_kelas : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>
-<section class="banner-materi darker" style="background-image: url('<?=$background?>')" > <!-- konten Judul -->
+<?php $background = (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>
+<section class="banner-materi darker" style="background-image: url('<?= $background ?>')"> <!-- konten Judul -->
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <img src="<?=(isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) && substr($kelas->gambar_kelas,0,5) == 'data:' ? $kelas->gambar_kelas : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>">
+                <img src="<?= (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>">
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $kelas->alias_kelas ?></h1>
@@ -43,7 +43,7 @@ include('header.php');
         </div>
         <div class="row">
             <div class="col-md-12" style="margin-top: 20px">
-                <?=(isset($kelas->deskripsi_kelas) && $kelas->deskripsi_kelas != '' ? $kelas->deskripsi_kelas : 'Ini adalah kelas dari kelompok kursus '.$kelas->alias_kelas )?>
+                <?= (isset($kelas->deskripsi_kelas) && $kelas->deskripsi_kelas != '' ? $kelas->deskripsi_kelas : 'Ini adalah kelas dari kelompok kursus ' . $kelas->alias_kelas) ?>
             </div>
         </div><!-- End of Row  -->
 
@@ -53,24 +53,25 @@ include('header.php');
             </div>
         </div>
         <div class="row">
-            <?php 
-            if($mapel!=NULL){ ?>
-                <?php foreach ($mapel as $data) { ?>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <div class="thumbnail materi-lainnya">
-                        <a href="<?= base_url().'materi/'.$data->id_mapel ?>">
-                            <!-- <span class="badge-diskon">Diskon 25%</span> -->
-                            <img src="<?=(isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel,0,5) == 'data:' ? $data->gambar_mapel : base_url().'assets/img/no-image.jpg') : base_url().'assets/img/no-image.jpg') ?>" alt="Thumbnail Kursus <?=$data->nama_mapel?>" style="width:100%; height: 50px">
-                            <div class="caption">
-                                <h3><?= $data->nama_mapel ?></h3>
-                                <p>Pelajari lebih lanjut ...</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <?php } ?>
             <?php
-            }else{ ?>
+            if ($mapel != NULL) { ?>
+                <?php foreach ($mapel as $data) { ?>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumbnail materi-lainnya">
+                            <a href="<?= base_url() . 'materi/' . $data->id_mapel ?>">
+                                <!-- <span class="badge-diskon">Diskon 25%</span> -->
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel, 0, 5) == 'data:' ? $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                     alt="Thumbnail Kursus <?= $data->nama_mapel ?>" style="width:100%; height: 50px">
+                                <div class="caption">
+                                    <h3><?= $data->nama_mapel ?></h3>
+                                    <p>Pelajari lebih lanjut ...</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php
+            } else { ?>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="thumbnail text-center">
                         <!-- <span class="badge-diskon">Diskon 25%</span> -->
@@ -79,7 +80,7 @@ include('header.php');
                         </div>
                     </div>
                 </div>
-            <?php
+                <?php
             }
             ?>
 
