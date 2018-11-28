@@ -18,4 +18,5 @@ yarn-error.log
 .phpunit.result.cache
 
 application/config/database.php
+application/config/config.php
 *.rar
