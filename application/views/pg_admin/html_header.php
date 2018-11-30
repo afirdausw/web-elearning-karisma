@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<title>
 	<?php if(isset($page_title))
 	{echo $page_title." - ";}
-	?>LPIH 
+	?>Karisma 
 	<?php if(uri_string()== "psep_sekolah/login"){
 			echo "Sekolah / Guru";
 		}else{
@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
 
 		
-		<!--  CSS for BintangSekolah PG_Admin  -->
+		<!--  CSS for Karisma PG_Admin  -->
 		<link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />
 		
 		<link href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
@@ -67,6 +67,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<!-- Progress -->
 		<link href="<?php echo base_url('assets/css/nprogress.css'); ?>" rel='stylesheet' />
+		<!-- BS 4 Margin -->
+	    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
 
 		<!--   Core JS Files   -->
 	 <script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>

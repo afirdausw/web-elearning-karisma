@@ -46,61 +46,11 @@ class Instruktur extends CI_Controller
             "basic_info"      => $gVar,
             "navbar_title"    => "Daftar {$gVar['title']}",
             "form_action"     => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            "table_data"      => $this->model_adm->fetch_all_table_data("{$gVar['slug']}"),
             "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
+            "data_instruktur"      => $this->model_adm->fetch_all_table_data("{$gVar['slug']}"),
         );
 
         $this->load->view("pg_admin/{$gVar['slug']}_daftar", $data);
-    }
-
-    function kota($idprovinsi)
-    {
-        $carikota = $this->model_signup->get_kota_by_provinsi($idprovinsi);
-
-        foreach ($carikota as $kota) {
-            echo "
-			<option value='$kota->id_kota'>$kota->nama_kota</option>
-		";
-        }
-    }
-
-    function kelas($idsekolah)
-    {
-        if ($idsekolah !== 'sekolahbaru') {
-            $carijenjang = $this->model_signup->cari_jenjang($idsekolah);
-
-            $carikelas = $this->model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
-
-            foreach ($carikelas as $kelas) {
-                echo "
-				<option value='$kelas->id_kelas'>$kelas->alias_kelas</option>
-			";
-            }
-        }
-    }
-
-    function ajax_siswa_by_jenjang($kelas, $sekolah)
-    {
-        //$idsekolah = $this->session->userdata('idsekolah');
-
-        $carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $sekolah);
-
-
-        $no = 1;
-        foreach ($carisiswa as $siswa) {
-            ?>
-            <tr>
-                <td><?php echo $no; ?></td>
-                <td><?php echo $siswa->nama_siswa; ?></td>
-                <td><?php echo $siswa->alias_kelas; ?></td>
-                <td><?php echo $siswa->email; ?></td>
-                <td><?php echo $siswa->telepon; ?></td>
-                <td><?php echo $siswa->telepon_ortu; ?></td>
-
-            </tr>
-            <?php
-            $no++;
-        }
     }
 
     public function manajemen($aksi)
