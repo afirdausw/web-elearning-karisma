@@ -117,6 +117,7 @@ class Instruktur extends CI_Controller
                         "basic_info"      => $gVar,
                         "navbar_title"    => "Manajemen {$gVar['title']}",
                         "page_title"      => "Tambah {$gVar['title']}",
+                        "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
                         "form_action"     => current_url(),
                     );
 
