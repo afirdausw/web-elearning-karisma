@@ -41,11 +41,11 @@ Tip 2: you can also add an image using data-image tag
 	    display:none;
 	}
 </style>
-
-<div class="sidebar" data-color="turquoise" data-image="<?php echo base_url('assets/dashboard/images/bg-reason.png');?>">
+<!-- Light Bootstrap Dashboard CSS -->
+<div class="sidebar" data-color="blue" data-image="<?php echo base_url('assets/dashboard/images/bg-reason.png');?>">
 	<div class="sidebar-wrapper">
 		<div class="logo">
-			<img src="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="filter:invert(1); margin:0 auto; width:20%;">
+			<img src="<?php echo base_url('assets/pg_user/images/header-logo.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="margin:0 auto;">
 			<a href="<?=base_url();?>" class="simple-text">
 				Selamat datang, <?php 
 						echo $this->session->userdata("level");
