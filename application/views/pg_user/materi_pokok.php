@@ -19,7 +19,7 @@ include('header.php');
             <div class="col-md-9 col-sm-12">
                 <h1><?= $data->nama_mapel ?></h1>
                 <h3>Created by
-                    <?php if ($instruktur != null): ?>
+                    <?php if (isset($instruktur) && count($instruktur) > 0 && $instruktur != null): ?>
                         <a target="_blank"
                            href="<?= base_url('instruktur/' . $instruktur[0]->id_instruktur) ?>"><?= $instruktur[0]->nama_instruktur ?></a>
                         <a class="button" href="tel:<?= $instruktur[0]->telepon ?>">Contact</a>
@@ -81,7 +81,7 @@ if (isset($key->id_materi_pokok)) {
             <?php
             //jika belum dibaca
         } else { ?>
-            <section class="banner-top" style="background: #F58634; margin-top: 0;">
+            <section class="banner-top mt-0 pb-3" style="background: #F58634;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 banner-left">
@@ -90,6 +90,9 @@ if (isset($key->id_materi_pokok)) {
                         </div>
                         <div class="col-md-4 banner-right">
                             <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
+                            <h3 class="text-white mt-2 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                            <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                Rp. <?= money($data->harga) ?></h4>
                         </div>
                     </div>
                 </div>
@@ -108,9 +111,11 @@ if (isset($key->id_materi_pokok)) {
                     </div>
                     <div class="col-md-4 banner-right">
                         <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                        <h3 class="text-white mt-2 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                        <h4 class="text-gray text-line-through mt-1 mb-2 font-w600">Rp. <?= money($data->harga) ?></h4>
                     </div>
                 </div>
-            </div>
+            </div>                                                                                             
         </section> <!-- End of BANNER-->
         <?php
     }
