@@ -160,7 +160,22 @@
                             <?php
                             } ?>
 
-                            <li><i class="ti-cart"></i></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="ti-shopping-cart"></i><span class="badge">0</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuCart">
+                                  <li class="dropdown-header">
+                                    Ini contoh dropdown
+                                  </li>
+                                  <div class="dropdown-divider"></div>
+                                  <li>
+                                    <a href="">
+                                      Ini Menu Bawahnya
+                                    </a>
+                                  </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
