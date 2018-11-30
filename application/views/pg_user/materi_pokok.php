@@ -317,7 +317,7 @@ if (isset($key->id_materi_pokok)) {
                             ?>
                             <a href="<?= $linkmaterilain; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel, 0, 5) == 'data:' ? $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                      alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
                                     <h3><?= $data->nama_mapel ?> . . .</h3>
