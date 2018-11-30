@@ -23,6 +23,8 @@ include('header.php');
 
                 <form action="<?= base_url('signup/save') ?>" method="post" id="form-signup"
                       enctype="multipart/form-data">
+                    <input type="hidden" name="mapel_id"
+                           value="<?= isset($_GET['mapel_id']) ? $_GET['mapel_id'] : 0 ?>">
                     <label>Nama Lengkap</label>
                     <div class="form-group has-feedback">
                         <span class="ti-id-badge form-control-feedback"></span>

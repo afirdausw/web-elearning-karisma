@@ -56,7 +56,6 @@ function money($val)
 function delete_files($directory)
 {
 
-
     if (substr($directory, strlen($directory) - 1, 1) != '/') {
         $directory .= '/';
     }
