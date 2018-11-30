@@ -86,21 +86,21 @@ class Instruktur extends CI_Controller
                     $id = $this->input->get("id") ? $this->input->get("id") : null;
 
                     $data = array(
-                        "navbar_title"   => "Manajemen Siswa",
-                        "page_title"     => "Ubah Siswa",
+                        "basic_info"      => $gVar,
+                        "navbar_title"    => "Manajemen {$gVar['title']}",
+                        "page_title"      => "Ubah {$gVar['title']}",
                         "form_action"    => current_url() . "?id=$id",
-                        "data_siswa"     => $this->model_adm->fetch_siswa_by_id($id),
-                        "select_sekolah" => $this->model_adm->fetch_all_sekolah(),
-                        "select_options" => $this->model_adm->fetch_all_kelas()
+                        "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
+                        "data_instruktur"     => $this->model_adm->fetch_instruktur_by_id($id),
                     );
 
-                    //Redirect to siswa if id is not exist
+                    //Redirect to instruktur if id is not exist
                     if (!$id) {
-                        redirect("pg_admin/siswa");
+                        redirect("pg_admin/{$gVar['slug']}");
                     } else {
                         //Calling values from database by id and pass them to View
-                        //fetching siswa by id
-                        $data["data"] = $this->fetch_siswa_by_id($id);
+                        //fetching instruktur by id
+                        $data["data"] =  $this->model_adm->fetch_instruktur_by_id($id);
 
                         //Form submit handler. See if the user is attempting to submit a form or not
                         if ($this->input->post("form_submit")) {
@@ -108,51 +108,19 @@ class Instruktur extends CI_Controller
                             $this->proses_ubah($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/siswa_form", $data);
+                            $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
 //                            var_dump($data);
 //                            echo json_encode($data);
                         }
                     }
                     break;
 
-                case "ubah_aktif":
-                    //Passing id value from GET "?id" to variable "$id"
-                    $id = $this->input->get("id") ? $this->input->get("id") : null;
-
-                    $data = array(
-                        "navbar_title"   => "Manajemen Siswa",
-                        "page_title"     => "Ubah Siswa",
-                        "form_action"    => current_url() . "?id=$id",
-                        "data_siswa"     => $this->model_adm->fetch_siswa_by_id($id),
-                        "select_sekolah" => $this->model_adm->fetch_all_sekolah(),
-                        "select_options" => $this->model_adm->fetch_all_kelas()
-                    );
-
-                    //Redirect to siswa if id is not exist
-                    if (!$id) {
-                        redirect("pg_admin/siswa");
-                    } else {
-                        //Calling values from database by id and pass them to View
-                        //fetching siswa by id
-                        $data["data"] = $this->fetch_siswa_by_id($id);
-
-                        //Form submit handler. See if the user is attempting to submit a form or not
-                        if ($this->input->post("form_submit")) {
-                            //Form is submitted. Now routing to proses_tambah method
-                            $this->proses_ubah_aktif($id);
-                        } else {
-                            //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/siswa_form", $data);
-                        }
-                    }
-                    break;
-
                 default:
-                    redirect("pg_admin/siswa");
+                    redirect("pg_admin/{$gVar['slug']}");
                     break;
             }
         } else {
-            redirect("pg_admin/siswa");
+            redirect("pg_admin/{$gVar['slug']}");
         }
 
     }
@@ -310,100 +278,12 @@ class Instruktur extends CI_Controller
     private function form_validation_rules()
     {
         //set validation rules for each input
-        $this->form_validation->set_rules('nama', 'Nama Siswa', 'trim|required');
+        $this->form_validation->set_rules('nama', 'Nama Instruktur', 'trim|required');
         $this->form_validation->set_rules('email', 'Email', 'trim|required');
         $this->form_validation->set_rules('telepon', 'Telepon', 'trim|numeric|required');
-        $this->form_validation->set_rules('telepon_ortu', 'Telepon Orang Tua', 'trim|numeric|required');
         $this->form_validation->set_rules('kelas', 'Kelas', 'trim|required');
-        // $this->form_validation->set_rules('sekolah', 'Sekolah', 'trim|required');
-        // $this->form_validation->set_rules('asal_sekolah', 'Asal Sekolah', 'trim|required');
 
         //set custom error message
         $this->form_validation->set_message('required', '%s tidak boleh kosong');
     }
-
-    private function fetch_siswa_by_id($id)
-    {
-        $data = new stdClass();
-        $table_data = $this->model_adm->fetch_siswa_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields("siswa");
-        //tester
-        // var_dump($table_data);
-        // var_dump($table_fields);
-        if ($table_data) {
-            foreach ($table_fields as $field) {
-                $data->{$field} = $table_data->{$field} ? $table_data->{$field} : "";
-                // echo "$field -> " . ${$field} . ", ";
-            }
-        } else {
-            $data = null;
-        }
-
-        return $data;
-    }
-
-    function ajax_select_sekolah()
-    {
-        $id = $this->input->post("id", true) ? $this->input->post("id", true) : null;
-        $id = "ALL"; //remove this if you want to select sekolah by kota
-
-        if ($id) {
-            // $dynamic_options = $this->model_pg->fetch_sekolah_by_kota($id);
-            $dynamic_options = $this->model_adm->fetch_all_sekolah($id);
-
-            if ($dynamic_options) {
-                echo "<option value='' disabled selected>Pilih Sekolah...</option>";
-                foreach ($dynamic_options as $item) {
-                    echo "<option value='" . $item->id_sekolah . "'> $item->nama_sekolah </option>";
-                }
-            } else {
-                echo "<option value='' disabled='disabled' selected>Data sekolah tidak ditemukan...</option>";
-            }
-        } else {
-            return false;
-        }
-    }
-
-    function ajax_select_kelas()
-    {
-        $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
-
-        if ($id) {
-            $sekolah = $this->model_adm->fetch_sekolah_by_id($id);
-            $dynamic_options = $this->model_adm->fetch_kelas_by_jenjang($sekolah->jenjang);
-
-            if ($dynamic_options) {
-                foreach ($dynamic_options as $item) {
-                    echo "<option value=''></option>";
-                    echo "<option value='" . $item->id_kelas . "'> $item->alias_kelas </option>";
-                }
-            } else {
-                echo "<option value=''></option>";
-                echo "<option value='' disabled='disabled'>Tidak ada data</option>";
-            }
-        } else {
-            return false;
-        }
-    }
-
-    function ajax_tambah_sekolah()
-    {
-        $result_id = 0;
-        $id_kota = $this->input->post('id_kota');
-        $jenjang = $this->input->post('jenjang');
-        $sekolah = $this->input->post('sekolah');
-        $email = $this->input->post('email');
-        $telepon = $this->input->post('telepon');
-        $alamat = $this->input->post('alamat');
-
-        if (!empty($id_kota) AND !empty($jenjang) AND !empty($sekolah) AND !empty($email)) {
-            //checking if nama sekolah is already exist
-            $sekolah_found = $this->model_adm->check_sekolah_by_nama($sekolah);
-            if (empty($sekolah_found)) {
-                $result_id = $this->model_adm->add_sekolah($sekolah, $jenjang, $email, $telepon, $id_kota, $alamat);
-            }
-        }
-        echo json_encode($result_id);
-    }
-
 }
