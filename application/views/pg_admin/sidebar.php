@@ -188,7 +188,30 @@ Tip 2: you can also add an image using data-image tag
 				</a>
 			</li>
 		<!-- end menu agcu test -->
-		
+
+		<!-- START INSTRUKTUR -->
+		<?php
+			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
+				$menuSlug = "instruktur";
+				$menuTitle = ucwords(strtolower($menuSlug));
+		?>
+				<li class="sidebar-header"><span><?="{$menuTitle}"?></span></li>
+				<li class="<?php echo (($active=="{$menuSlug}" && $tambah=='tambah') ? 'active' : '')?>">
+					<a href="<?php echo site_url("pg_admin/{$menuSlug}/manajemen/tambah") ?>">
+						<i class="pe-7s-add-user"></i>
+						<p>Tambah <?="{$menuTitle}"?></p>
+					</a>
+				</li>
+				<li class="<?php echo ($active=="{$menuSlug}" && $active2=='daftar' ? 'active' : '')?>">
+					<a href="<?php echo site_url("pg_admin/{$menuSlug}/daftar")?>">
+						<i class="pe-7s-menu"></i>						
+						<p>Semua <?="{$menuTitle}"?></p>
+					</a>
+				</li>
+		<?php
+			}
+		?>
+		<!-- END INSTRUKTUR -->
 		<?php
 			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
 		?>
@@ -229,7 +252,7 @@ Tip 2: you can also add an image using data-image tag
 						</li>
 						<?php 
 						if($hide2 == false) { ?>
-						<<li></li>>
+						<li>
 							<a href="<?php echo site_url('pg_admin/siswa/manajemen/tambah')?>">Tambah Baru</a>
 						</li>
 						<?php } ?>
