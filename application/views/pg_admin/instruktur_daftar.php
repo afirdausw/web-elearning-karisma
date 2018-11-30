@@ -36,80 +36,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <a href="<?php echo site_url('pg_admin/siswa/manajemen/tambah') ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Tambah Instruktur</a>
-                                <h4 class="title">Semua Pendaftar</h4>
-                                <p class="category">Daftar siswa pendaftar</p>
+                                <a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/tambah") ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Tambah <?="{$basic_info['title']}"?></a>
+                                <h4 class="title">Semua <?="{$basic_info['title']}"?></h4>
+                                <p class="category">Daftar semua <?="{$basic_info['slug']}"?></p>
 
                             </div>
 
                             <table class="table table-striped table-hover">
-
-                                <td>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select id="provinsi" placeholder="Pilih Provinsi..." name="provinsi" class="chosen-select form-control" onchange="fetch_select_kota(this.value)" style="width: 100%;" tabindex="1" required="required">
-                                                <option value="" disabled selected>-- Pilih Provinsi --</option>
-                                                <?php
-                                                foreach ($select_provinsi as $provinsi)
-                                                { ?>
-                                                    <option value="<?php echo $provinsi->id_provinsi?>"><?php echo $provinsi->nama_provinsi;?></option>
-                                                    <?php
-                                                } ?>
-                                            </select>
-
-                                </td>
-
-                                <td>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select id="kota" data-placeholder="Pilih Kota/Kabupaten..." name="kota" class="form-control chosen-select" onchange="fetch_select_sekolah(this.value)" style="width: 100%;" tabindex="1" required="required" disabled="disabled">
-                                                <option value="" disabled selected>-- Pilih Kota/Kabupaten --</option>
-                                                <?php
-                                                foreach ($select_kota as $kota)
-                                                { ?>
-                                                    <option value="<?php echo $kota->id_kota?>"><?php echo $kota->nama_kota;?></option>
-                                                    <?php
-                                                } ?>
-                                            </select>
-
-                                </td>
-
-                                <td>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select id="sekolah" data-placeholder="Pilih Sekolah..." name="sekolah" class="form-control chosen-select" onchange="fetch_select_kelas(this.value)" style="width: 100%;" tabindex="1" required="required" disabled="disabled">
-                                                <option value="" disabled selected>-- Pilih Sekolah --</option>
-                                                <?php
-                                                foreach ($select_sekolah as $opt) { ?>
-                                                    <option <?php echo set_select('sekolah', $opt->id_sekolah, (!isset($data_siswa->sekolah_id) ? FALSE : ($data_siswa->sekolah_id == $opt->id_sekolah ? TRUE : FALSE)) );?>
-                                                        value="<?php echo $opt->id_sekolah ?>"> <?php echo $opt->nama_sekolah ?>
-                                                    </option>
-                                                <?php } ?>
-                                            </select>
-
-                                </td>
-
-                                <td>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select id="kelas" data-placeholder="Pilih Kelas..." name="kelas" id="kelas" class="form-control chosen-select" style="width: 100%;" tabindex="1" required="required" disabled="disabled">
-                                                <option value="" disabled selected>-- Pilih Kelas --</option>
-                                                <?php
-                                                foreach ($select_kelas as $item) { ?>
-                                                    <option <?php echo set_select('kelas', $item->id_kelas, (!isset($data_siswa->id_kelas) ? FALSE : ($data_siswa->kelas == $item->id_kelas ? TRUE : FALSE)) );?>
-                                                        value="<?php echo $item->id_kelas ?>" > <?php echo $item->alias_kelas ?>
-                                                    </option>
-                                                <?php } ?>
-                                            </select>
-
-                                </td>
-
-                        </div>
-
-                    </div>
-
-                    </form>
-                    </table>
+                            </table>
 
                     <div class="content">
                         <div class="row">
