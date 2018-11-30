@@ -61,7 +61,7 @@ if (isset($key->id_materi_pokok)) {
             <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 banner-left">
+                        <div class="col-md-6 banner-left">
                             <h1>Lanjutkan Belajar</h1>
                             <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                             <div class="progress">
@@ -71,7 +71,8 @@ if (isset($key->id_materi_pokok)) {
                                 <b><?= $persen_baca; ?>%</b>
                             </div>
                         </div>
-                        <div class="col-md-4 banner-right">
+                        <div class="col-md-6 banner-right">
+
                             <a class="btn-continue"
                                href="<?= base_url("konten/detail_soal/" . $key->id_materi_pokok) ?>">Lanjutkan</a>
                         </div>
@@ -84,15 +85,19 @@ if (isset($key->id_materi_pokok)) {
             <section class="banner-top mt-0 pb-3" style="background: #F58634;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 banner-left">
+                        <div class="col-md-6 banner-left">
                             <h1>Ayo mulai belajar dengan kami</h1>
                             <span>dan diskusi langsung dengan instruktur</span>
                         </div>
-                        <div class="col-md-4 banner-right">
-                            <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
-                            <h3 class="text-white mt-2 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
-                            <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
-                                Rp. <?= money($data->harga) ?></h4>
+                        <div class="col-md-6 banner-right row">
+                            <div class="col-md-8 text-right mr-0">
+                                <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                                <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                    Rp. <?= money($data->harga) ?></h4>
+                            </div>
+                            <div class="col-md-4 ml-0">
+                                <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,17 +110,22 @@ if (isset($key->id_materi_pokok)) {
         <section class="banner-top" style="background: #cc3434; margin-top: 0;">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 banner-left">
+                    <div class="col-md-6 banner-left">
                         <h1>Mohon maaf, materi berikut hanya berlaku bagi pengguna <b>Premium</b></h1>
                         <span>Daftar sekarang dan daftar sebagai siswa premium</span>
                     </div>
-                    <div class="col-md-4 banner-right">
-                        <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
-                        <h3 class="text-white mt-2 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
-                        <h4 class="text-gray text-line-through mt-1 mb-2 font-w600">Rp. <?= money($data->harga) ?></h4>
+                    <div class="col-md-6 banner-right">
+                        <div class="col-md-8 text-right mr-0">
+                            <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                            <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                Rp. <?= money($data->harga) ?></h4>
+                        </div>
+                        <div class="col-md-4 ml-0">
+                            <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                        </div>
                     </div>
                 </div>
-            </div>                                                                                             
+            </div>
         </section> <!-- End of BANNER-->
         <?php
     }
