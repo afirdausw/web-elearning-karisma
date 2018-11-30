@@ -159,6 +159,8 @@
                                 </li>
                             <?php
                             } ?>
+
+                            <li><i class="ti-cart"></i></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

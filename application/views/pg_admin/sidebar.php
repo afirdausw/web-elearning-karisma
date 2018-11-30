@@ -46,7 +46,7 @@ Tip 2: you can also add an image using data-image tag
 	<div class="sidebar-wrapper">
 		<div class="logo">
 			<img src="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="filter:invert(1); margin:0 auto; width:20%;">
-			<a href="http://lpi-hidayatullah.or.id/" class="simple-text">
+			<a href="<?=base_url();?>" class="simple-text">
 				Selamat datang, <?php 
 						echo $this->session->userdata("level");
 				?>
