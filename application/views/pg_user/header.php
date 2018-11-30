@@ -165,14 +165,27 @@
                                     <i class="ti-shopping-cart"></i><span class="badge">0</span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuCart">
-                                  <li class="dropdown-header">
-                                    Ini contoh dropdown
-                                  </li>
-                                  <div class="dropdown-divider"></div>
-                                  <li>
-                                    <a href="">
-                                      Ini Menu Bawahnya
+                                  <li class="cart-dropdown">
+                                    <a href="#">
+                                        <span>
+                                            <img src="http://lorempixel.com/75/50/abstract/">
+                                        </span>
+                                        <span>
+                                            Web Design
+                                        </span>
+                                        <span class="badge">
+                                            Rp 200
+                                        </span>
+                                        <span>
+                                            <button class="btn btn-danger">
+                                                <i class="ti-trash" style="margin-left: -3px;"></i>
+                                            </button>
+                                        </span>
                                     </a>
+                                  </li>
+                                  <div class="divider"></div>
+                                  <li class="text-center">
+                                   <a href="#"><i class="ti-money"></i>Checkout Cart</a>
                                   </li>
                                 </ul>
                             </li>
