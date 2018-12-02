@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							}
 							?>
 							<div class="content">
-								<form method="post" action="<?php echo $form_action ?>">
+								<form method="post" action="<?php echo $form_action ?>" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-5">
 											<div class="form-group">
@@ -89,6 +89,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													   required="required">
 												<?php echo form_error("$table_fields[$i]", '<div class="text-danger">', '</div>'); ?>
 											</div>
+											<?php $i++; ?>
+											<div class="form-group">
+												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
+												<input type="file" name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
+													   placeholder="Pilih <?=$table_label[$i]?>"
+													   required="required" accept="image/*">
+												<?php echo form_error("$table_fields[$i]", '<div class="text-danger">', '</div>'); ?>
+											</div>
+											<?php if (isset($data_instruktur)) { ?>
+                          <div class="form-group">
+                              <label for="gambar_mapel">Gambar Thumbnail Sekarang</label>
+                              <img src="<?= (isset($data_instruktur->$table_fields[$i]) ? (!empty($data_instruktur->$table_fields[$i]) ? base_url() . 'image/instruktur/' . $data_instruktur->$table_fields[$i] : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>" alt="Foto Instruktur <?=str_replace(' ','',$data_instruktur->nama_instruktur)?>" style="display:block;max-width: 10vw;">
+                          </div>
+                      <?php } ?>
 										</div>
 									</div>
 

@@ -66,26 +66,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</tr>
 									</thead>
 									<tbody id="listsiswa">
-									<tr>
-										<?php
-										foreach($data_instruktur as $val){
-											foreach($table_fields as  $field):?>
-												<td><?php
-													if($field == "foto")
-														echo "<img src='{$val->$field}' width='20px'>";
-													else if($field == "jenis_kelamin")
-														echo ($val->$field==1) ? "Laki-laki" : "Perempuan";
-													else
-														echo $val->$field;
-												?></td>
-											<?php
-											endforeach;
-											?>
-											<td><a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/ubah?id=$val->id_instruktur")?>" class="btn btn-block btn-warning"><i class="pe-7s-pen"></i>Edit</a></td>
+									<?php
+									if($data_instruktur){
+										foreach($data_instruktur as $val){ ?>
+											<tr> <?php
+													foreach($table_fields as  $field):?>
+														<td><?php
+															if($field == "foto"){
+																echo "<img src='".base_url();
+																if($val->$field)
+																	echo "image/instruktur/"."{$val->$field}";
+																else
+																	echo "assets/img/no-image.jpg";
+																echo "' width='75px' class='img-responsive'>";
+
+															}else if($field == "jenis_kelamin")
+																echo ($val->$field==1) ? "Laki-laki" : "Perempuan";
+															else
+																echo $val->$field;
+														?></td>
+													<?php
+													endforeach;
+													?>
+													<td>
+														<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/ubah?id=$val->id_instruktur")?>" class="btn btn-block btn-warning"><i class="pe-7s-pen"></i>Edit</a>
+														<a href="<?=site_url("pg_admin/{$basic_info['slug']}/proses_hapus?id=$val->id_instruktur");?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-block btn-danger"><i class="pe-7s-trash"></i>Hapus</a>
+													</td>
+											</tr>
 											<?php
 										}
-										?>
-									</tr>
+									}else{ ?>
+										<tr>
+											<td class="text-center" colspan="<?=count($table_label)+1;?>">Data masih kosong</td>
+										</tr>
+									<?php
+									}
+									?>
 									</tbody>
 								</table>
 							</div>

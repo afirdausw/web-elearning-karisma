@@ -8,7 +8,7 @@ include('header.php');
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 col-sm-12">
-				<img src="<?=$instruktur->foto?>" alt="Foto Profil Instruktur">
+				<img src="<?=base_url('image/instruktur/'.$instruktur->foto)?>" alt="Foto Profil Instruktur">
 			</div>
 			<div class="col-md-9 col-sm-12">
 				<h1><?=$instruktur->nama_instruktur?></h1>

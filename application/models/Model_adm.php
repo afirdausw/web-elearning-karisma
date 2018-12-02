@@ -179,8 +179,10 @@ class Model_adm extends CI_Model
 
 
     // KELAS
-    function fetch_all_table_data($tabel)
+    function fetch_all_table_data($tabel,$where = "")
     {
+        if($where!="")
+            $this->db->where($where);
         $query = $this->db->get($tabel);
 
         return $query->result();
@@ -2528,27 +2530,15 @@ class Model_adm extends CI_Model
 
     function update_instruktur($data, $where)
     {
-        //Update row by id in table mata_pelajaran
-        $data = array(
-            'nama_siswa'   => $nama,
-            'kelas'        => $kelas,
-            'sekolah_id'   => $sekolah_id,
-            'alamat'       => $alamat,
-            'email'        => $email,
-            'telepon'      => $telepon,
-            'telepon_ortu' => $telepon_ortu,
-            'NIS'          => $nis,
-            'NISN'         => $nisn,
-        );
-        $this->db->where('id_siswa', $id);
-        $result = $this->db->update('siswa', $data);
+        $this->db->where("id_instruktur",$where);
+        $result = $this->db->update('instruktur', $data);
 
         return $result;
     }
 
     function delete_instruktur($data)
     {
-        $this->db->where($data);
+        $this->db->where("id_instruktur",$data);
         $result = $this->db->delete('instruktur');
 
         return $result;

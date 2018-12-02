@@ -103,7 +103,7 @@ class Instruktur extends CI_Controller
                         $data["data"] =  $this->model_adm->fetch_instruktur_by_id($id);
 
                         //Form submit handler. See if the user is attempting to submit a form or not
-                        if ($this->input->post("form_submit")) {
+                        if ($this->input->post()) {
                             //Form is submitted. Now routing to proses_tambah method
                             $this->proses_ubah($id);
                         } else {
@@ -136,9 +136,30 @@ class Instruktur extends CI_Controller
             "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
         );
 
+        $file_element_name = "foto";
+
+        if (isset($_FILES[$file_element_name]['name']) && $_FILES[$file_element_name]['name'] != "") {
+            $config['upload_path'] = './image/instruktur/';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['remove_spaces'] = TRUE;  //it will remove all spaces
+            $config['encrypt_name'] = TRUE;   //it wil encrypte the original file name
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload($file_element_name)) {
+                $error = array('error' => $this->upload->display_errors());
+                alert_error('danger', ul($error));
+            } else {
+                $data_upload = $this->upload->data();
+                $gambar_instruktur = $data_upload['file_name'];
+            }
+        } else {
+            $gambar_instruktur = null;
+        }
+
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
         // var_dump($params);
+        $params["foto"] = $gambar_instruktur;
 
         // //run the validation
         if ($this->form_validation->run() == FALSE) {
@@ -154,107 +175,67 @@ class Instruktur extends CI_Controller
 
     public function proses_ubah($id)
     {
-        //set the page title
-        $data = array(
-            "page_title"     => "Ubah Data Siswa",
-            "select_sekolah" => $this->model_adm->fetch_all_sekolah(),
-            "select_options" => $this->model_adm->fetch_all_kelas(),
-            "form_action"    => current_url() . "?id=$id"
-        );
+        $gVar = $this->gVar;
+        //set form validation rules
+        $id = $this->input->get("id");
 
-        $siswa = $this->model_adm->fetch_siswa_by_id($id);
-        //fetch input (make sure that the variable name is the same as column name in database!)
-        $params = $this->input->post(null, true);
-        $nama = $params['nama'] ? $params['nama'] : $siswa->nama;
-        $nis = $params['nis'] ? $params['nis'] : $siswa->nis;
-        $nisn = $params['nisn'] ? $params['nisn'] : $siswa->nisn;
-        $email = $params['email'] ? $params['email'] : $siswa->email;
-        $telepon = $params['telepon'] ? $params['telepon'] : $siswa->telepon;
-        $telepon_ortu = $params['telepon_ortu'] ? $params['telepon_ortu'] : $siswa->telepon_ortu;
-        $alamat = $params['alamat'] ? $params['alamat'] : $siswa->alamat;
-        $sekolah_id = $params['sekolah'] ? $params['sekolah'] : $siswa->sekolah_id;
-        $kelas = $params['kelas'] ? $params['kelas'] : $siswa->kelas;
-        $username = $params['username'] ? $params['username'] : $siswa->username;
-        $password_raw = $params['password'] ? md5($params['password']) : $siswa->password;
-        $password = $password_raw;
-        //$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
-        if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
-            $sekolah_id = $insert_id;
+        if ($id!=null) {
+            $where = array("id_instruktur" => $id);
+            $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            
+            if($data_instruktur !== null){
+                unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
+            }
+
+            $file_element_name = "foto";
+
+            if (isset($_FILES[$file_element_name]['name']) && $_FILES[$file_element_name]['name'] != "") {
+                $config['upload_path'] = './image/instruktur/';
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['remove_spaces'] = TRUE;  //it will remove all spaces
+                $config['encrypt_name'] = TRUE;   //it wil encrypte the original file name
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload($file_element_name)) {
+                    $error = array('error' => $this->upload->display_errors());
+                    alert_error('danger', ul($error));
+                } else {
+                    $data_upload = $this->upload->data();
+                    $gambar_instruktur = $data_upload['file_name'];
+                }
+            } else {
+                $gambar_instruktur = null;
+            }
+
+            //fetch input (make sure that the variable name is the same as column name in database!)
+            $params = $this->input->post(null, true);
+            $params["foto"] = $gambar_instruktur;
+            $this->model_adm->update_instruktur($params, $id);
+            alert_success("Sukses", "Data berhasil diupdate");
+        }else{
+            alert_error("Error", "Data gagal diupdate");
         }
-
-        //run the validation
-        if ($this->form_validation->run() == FALSE) {
-            alert_error("Error", "Data gagal diubah");
-            $this->load->view("pg_admin/siswa_form", $data);
-        } else {
-            //passing input value to Model
-            $result = $this->model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis,$username,$username,$password);
-            alert_success("Sukses", "Data berhasil diubah");
-            redirect("pg_admin/siswa");
-            // echo "Status Update: " . $result;
-        }
-    }
-
-    public function proses_ubah_aktif($id)
-    {
-        //set the page title
-        $data = array(
-            "page_title"     => "Ubah Data Siswa",
-            "select_sekolah" => $this->model_adm->fetch_all_sekolah(),
-            "select_options" => $this->model_adm->fetch_all_kelas(),
-            "form_action"    => current_url() . "?id=$id"
-        );
-
-        //fetch input (make sure that the variable name is the same as column name in database!)
-        $params = $this->input->post(null, true);
-        $nama = $params['nama'] ? $params['nama'] : '';
-        $email = $params['email'] ? $params['email'] : '';
-        $telepon = $params['telepon'] ? $params['telepon'] : '';
-        $telepon_ortu = $params['telepon_ortu'] ? $params['telepon_ortu'] : '';
-        $alamat = $params['alamat'] ? $params['alamat'] : '';
-        $sekolah_id = $params['sekolah'] ? $params['sekolah'] : '';
-        $kelas = $params['kelas'] ? $params['kelas'] : '';
-        //$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
-
-        if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
-            $sekolah_id = $insert_id;
-        }
-
-        //run the validation
-        if ($this->form_validation->run() == FALSE) {
-            alert_error("Error", "Data gagal diubah");
-            $this->load->view("pg_admin/siswa_form", $data);
-        } else {
-            //passing input value to Model
-            $result = $this->model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas);
-            alert_success("Sukses", "Data berhasil diubah");
-            redirect("pg_admin/siswa/aktif");
-            // echo "Status Update: " . $result;
-        }
+        redirect("pg_admin/{$gVar['slug']}");
     }
 
     public function proses_hapus()
     {
-
-
+        $gVar = $this->gVar;
         //set form validation rules
-        $this->form_validation->set_rules("hidden_row_id", "Nomor Baris", "trim|required|numeric");
+        $id = $this->input->get("id");
 
-        if ($this->form_validation->run()) {
-            $id = $this->input->post("hidden_row_id");
-            $result = $this->model_adm->delete_siswa($id);
-
+        if ($id!=null) {
+            $where = array("id_instruktur" => $id);
+            $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            if($data_instruktur !== null){
+                unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
+            }
+            $this->model_adm->delete_instruktur($id);
             alert_success("Sukses", "Data berhasil dihapus");
-            redirect("pg_admin/siswa");
+        }else{
+            alert_error("Error", "Data gagal dihapus");
         }
-
-
-        alert_error("Error", "Data gagal dihapus");
-//        redirect("pg_admin/siswa");
+        redirect("pg_admin/{$gVar['slug']}");
     }
 
     private function form_validation_rules()
