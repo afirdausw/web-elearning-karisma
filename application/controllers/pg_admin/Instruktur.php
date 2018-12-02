@@ -61,21 +61,20 @@ class Instruktur extends CI_Controller
                         $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur", $where);
 
                         $where = array(
-                            "instruktur_materi.id_instruktur" => "{$id_instruktur}",
+                            "instruktur_mapel.id_instruktur" => "{$id_instruktur}",
                         );
                         $joinArray = array(
-                            array("instruktur", "instruktur_materi.id_instruktur = instruktur.id_instruktur", "right"),
-                            array('materi_pokok', "instruktur_materi.id_materi_pokok = materi_pokok.id_materi_pokok", "left"),
-                            array('mata_pelajaran', "mata_pelajaran.id_mapel = materi_pokok.mapel_id", ""),
+                            array("instruktur", "instruktur_mapel.id_instruktur = instruktur.id_instruktur", ""),
+                            array('mata_pelajaran', "instruktur_mapel.id_mapel = mata_pelajaran.id_mapel", ""),
                         );
                         $data["table_fields"] = array(
-                            "id_instruktur_materi",
-                            "nama_materi_pokok",
+                            "id_instruktur_mapel",
+                            "nama_mapel",
                             "gambar_mapel",
                         );
                         $data["main_title"] = "Semua Materi Pelajaran";
                         $data["navbar_title"] = "{$data['data_instruktur'][0]->nama_instruktur}";
-                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur_materi", $where, "=", "*" , $joinArray);
+                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur_mapel", $where, "=", "*" , $joinArray);
                     }
                 break;
                 default:

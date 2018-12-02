@@ -52,8 +52,8 @@ class Materi extends CI_Controller
 
 
         //tambah definisi tabelnya karena join
-        $where = array("materi_pokok.id_materi_pokok" => $id_materi);
-        $instruktur = $this->model_instruktur->get_instruktur_by_materi($where);
+        $where = array("mata_pelajaran.id_mapel" => $mapel->id_mapel);
+        $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
 
         $data = array(
             "kelas" => $mapel,

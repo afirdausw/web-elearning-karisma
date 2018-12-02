@@ -27,8 +27,8 @@ class Instruktur extends CI_Controller
         $instruktur = $this->model_instruktur->fetch_instruktur($where);
 
         //tambah definisi tabelnya karena join
-        $where = array("instruktur_materi.id_instruktur" => $id_instruktur);
-        $materi_list = $this->model_instruktur->get_materi_by_instruktur($where);
+        $where = array("instruktur_mapel.id_instruktur" => $id_instruktur);
+        $materi_list = $this->model_instruktur->get_mapel_by_instruktur($where);
         $data = array(
             "siswa" => $siswa,
             "instruktur" => $instruktur,

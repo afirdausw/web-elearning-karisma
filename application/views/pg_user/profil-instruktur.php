@@ -66,16 +66,16 @@ include('header.php');
 					<table class="table table-responsive table-bordered table-striped table-hover">
 						<tr>
 							<th>No</th>
-							<th>Materi Pokok</th>
+							<th>Mata Pelajaran</th>
 							<th>Link</th>
 						</tr>
 						<?php
 						foreach($materi_list as $m_l):
 						?>
 						<tr>
-							<td><?=$m_l->id_materi_pokok?></td>
-							<td><?=$m_l->nama_materi_pokok?></td>
-							<td><a href="<?=base_url('materi/'.$m_l->id_materi_pokok)?>" class="btn btn-primary btn-block">Menuju ke Materi</a></td>
+							<td><?=$m_l->id_mapel?></td>
+							<td><?=$m_l->nama_mapel?></td>
+							<td><a href="<?=base_url('materi/'.$m_l->id_mapel)?>" class="btn btn-primary btn-block">Menuju ke Mata Pelajaran</a></td>
 						</tr>
 						<?php
 						endforeach;?>
