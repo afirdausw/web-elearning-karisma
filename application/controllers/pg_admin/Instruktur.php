@@ -53,12 +53,12 @@ class Instruktur extends CI_Controller
         );
         if(!empty($aksi)){
             switch($aksi):
-                case "instruktur":
+                case "mapel":
                     if(!empty($id_instruktur)){
                         $where = array(
                             "id_instruktur" => "{$id_instruktur}",
                         );
-                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur", $where);
+                        $data["data_instruktur_main"] = $this->model_adm->fetch_all_table_data("instruktur", $where);
 
                         $where = array(
                             "instruktur_mapel.id_instruktur" => "{$id_instruktur}",
@@ -73,7 +73,7 @@ class Instruktur extends CI_Controller
                             "gambar_mapel",
                         );
                         $data["main_title"] = "Semua Materi Pelajaran";
-                        $data["navbar_title"] = "{$data['data_instruktur'][0]->nama_instruktur}";
+                        $data["navbar_title"] = "{$data['data_instruktur_main'][0]->nama_instruktur}";
                         $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur_mapel", $where, "=", "*" , $joinArray);
                     }
                 break;
@@ -86,15 +86,15 @@ class Instruktur extends CI_Controller
         $this->load->view("pg_admin/{$gVar['slug']}_daftar", $data);
     }
 
-    public function manajemen($aksi)
+    public function manajemen($aksi, $id_instruktur = "")
     {
         $gVar = $this->gVar;
         //$aksi contains the value needed (tambah/ubah) to direct user to Add/Edit form
         if ($aksi) {
             //Trigger form submission validation rules
-            $this->form_validation_rules();
             switch ($aksi) {
                 case "tambah":
+                    $this->form_validation_rules();
                     $data = array(
                         "basic_info"      => $gVar,
                         "navbar_title"    => "Manajemen {$gVar['title']}",
@@ -114,25 +114,22 @@ class Instruktur extends CI_Controller
                     break;
 
                 case "ubah":
+                    $this->form_validation_rules();
                     //Passing id value from GET "?id" to variable "$id"
                     $id = $this->input->get("id") ? $this->input->get("id") : null;
-
-                    $data = array(
-                        "basic_info"      => $gVar,
-                        "navbar_title"    => "Manajemen {$gVar['title']}",
-                        "page_title"      => "Ubah {$gVar['title']}",
-                        "form_action"    => current_url() . "?id=$id",
-                        "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
-                        "data_instruktur"     => $this->model_adm->fetch_instruktur_by_id($id),
-                    );
 
                     //Redirect to instruktur if id is not exist
                     if (!$id) {
                         redirect("pg_admin/{$gVar['slug']}");
                     } else {
-                        //Calling values from database by id and pass them to View
-                        //fetching instruktur by id
-                        $data["data"] =  $this->model_adm->fetch_instruktur_by_id($id);
+                        $data = array(
+                            "basic_info"      => $gVar,
+                            "navbar_title"    => "Manajemen {$gVar['title']}",
+                            "page_title"      => "Ubah {$gVar['title']}",
+                            "form_action"    => current_url() . "?id=$id",
+                            "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
+                            "data_instruktur"     => $this->model_adm->fetch_instruktur_by_id($id),
+                        );
 
                         //Form submit handler. See if the user is attempting to submit a form or not
                         if ($this->input->post()) {
@@ -141,15 +138,47 @@ class Instruktur extends CI_Controller
                         } else {
                             //No form is submitted. Displaying the form page
                             $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
-//                            var_dump($data);
-//                            echo json_encode($data);
                         }
                     }
                     break;
+                case "mapel":
+                    if(!empty($id_instruktur)){
+                        $where = array(
+                            "id_instruktur" => "{$id_instruktur}",
+                        );
+                        $data_instruktur = $this->model_adm->fetch_instruktur_by_id($id_instruktur);
+                        $table_fields = array("id_mapel", "nama_mapel", "gambar_mapel", "harga");
+                        $data = array(
+                            "basic_info"      => $gVar,
+                            "navbar_title"      => "Materi Pelajaran",
+                            "main_title"    => "{$data_instruktur->nama_instruktur}",
+                            "page_title"      => "Ubah {$gVar['title']}",
+                            "form_action"    => current_url() . "?id=$id_instruktur",
+                            "table_fields"    => $table_fields,
+                            "data_instruktur"     => $data_instruktur,
+                            "data_mapel"     =>  $this->model_adm->fetch_all_table_data("mata_pelajaran"),                            
+                            "data_instruktur_mapel"     => $this->model_adm->fetch_all_table_data("instruktur_mapel", $where),
+                        );
+
+
+
+                        //Form submit handler. See if the user is attempting to submit a form or not
+                        if ($this->input->post()) {
+                            //Form is submitted. Now routing to proses_tambah method
+                            $this->proses_mapel($id);
+                        } else {
+                            //No form is submitted. Displaying the form page
+                            $this->load->view("pg_admin/{$gVar['slug']}_form_mapel", $data);
+                        }
+                    }else{
+                        redirect("pg_admin/{$gVar['slug']}");
+                    }
+
+                break;
 
                 default:
                     redirect("pg_admin/{$gVar['slug']}");
-                    break;
+                break;
             }
         } else {
             redirect("pg_admin/{$gVar['slug']}");
@@ -268,6 +297,27 @@ class Instruktur extends CI_Controller
             alert_error("Error", "Data gagal dihapus");
         }
         redirect("pg_admin/{$gVar['slug']}");
+    }
+
+    public function proses_mapel(){
+        $params = $this->input->post(null, true);
+        var_dump($params);
+        // $gVar = $this->gVar;
+        // //set form validation rules
+        // $id = $this->input->get("id");
+
+        // if ($id!=null) {
+        //     $where = array("id_instruktur" => $id);
+        //     $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+        //     if($data_instruktur !== null){
+        //         unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
+        //     }
+        //     $this->model_adm->delete_instruktur($id);
+        //     alert_success("Sukses", "Data berhasil dihapus");
+        // }else{
+        //     alert_error("Error", "Data gagal dihapus");
+        // }
+        // redirect("pg_admin/{$gVar['slug']}");
     }
 
     private function form_validation_rules()

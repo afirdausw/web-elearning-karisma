@@ -6,20 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <script>
-	// $("#pilihprovinsi").change(function(){
-	//     $("#pilihkota").load("pg_admin/siswa/kota/" + $("#pilihprovinsi").val());
-	// });
-
-	// $("#pilihkota").change(function(){
-	//     $("#btnTambahSekolah").prop('disabled', false);
-	//     $("#pilihsekolah").load("pg_admin/siswa/sekolah/" + $("#pilihkota").val());
-	// });
-
-	// $(function(){
-	//     $("#kelas").change(function(){
-	//         $("#listsiswa").load("ajax_siswa_by_jenjang/" + $("#kelas").val() +"/"+ $("#sekolah").val());
-	//     });
-	// });
 </script>
 
 <div class="wrapper">
@@ -39,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php if(!in_array("gambar_mapel", $table_fields)): ?>
 									<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/tambah") ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i> Tambah <?="{$basic_info['title']}"?></a>
 								<?php else: ?>
-									<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/materi") ?>" class="btn btn-primary btn-fill pull-right"><i class="fa fa-pencil"></i> Edit Materi</a>
+									<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/mapel/".$data_instruktur_main[0]->id_instruktur) ?>" class="btn btn-primary btn-fill pull-right"><i class="fa fa-pencil"></i> Edit Mata Pelajaran</a>
 								<?php endif; ?>
 								<h4 class="title"><?="{$main_title}"?></h4>
 								<p class="category"><?="{$navbar_title}"?></p>
@@ -106,7 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<td>
 															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/ubah?id=$val->id_instruktur")?>" class="btn btn-block btn-warning"><i class="pe-7s-pen"></i>Edit</a>
 															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/proses_hapus?id=$val->id_instruktur");?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-block btn-danger"><i class="pe-7s-trash"></i>Hapus</a>
-															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/daftar/instruktur/$val->id_instruktur")?>" class="btn btn-block btn-primary"><i class="pe-7s-eye"></i>Lihat Mapel</a>
+															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/daftar/mapel/$val->id_instruktur")?>" class="btn btn-block btn-primary"><i class="pe-7s-eye"></i>Lihat Mapel</a>
 														</td>
 													<?php
 													else:
@@ -162,76 +148,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
-
-
-
-<script type="text/javascript">
-	function fetch_select_kota(val)
-	{
-		if($("#provinsi option:selected").val() != '') {
-			$("#kota").attr('disabled', false);
-			$("#btnTambahSekolah").attr('disabled', 'disabled');
-			$.ajax({
-				type: 'POST',
-				url: "<?=base_url('pg_admin/agcu/ajax_select_kota')?>",
-				data: { id:val },
-				success: function(response){
-					document.getElementById('kota').innerHTML=response;
-					$("#kota").trigger("chosen:updated");
-				}
-			});
-		}
-		else {
-			$("#kota").attr('disabled', 'disabled');
-		}
-	}
-
-	function fetch_select_sekolah(val)
-	{
-		$('#hidden_id_kota').val(val);
-		if($("#kota option:selected").val() != '') {
-			$("#sekolah").attr('disabled', false);
-			$("#btnTambahSekolah").attr('disabled', false);
-			$.ajax({
-				type: 'POST',
-				url: "<?=base_url('pg_admin/agcu/ajax_select_sekolah')?>",
-				data: { id:val },
-				success: function(response){
-					document.getElementById('sekolah').innerHTML=response;
-					$("#sekolah").trigger("chosen:updated");
-				}
-			});
-		}
-		else {
-			$("#sekolah").attr('disabled', 'disabled');
-			$("#btnTambahSekolah").attr('disabled', 'disabled');
-		}
-	}
-
-	function fetch_select_kelas(val)
-	{
-		if($("#sekolah option:selected").val() != '') {
-			$("#kelas").attr('disabled', false);
-			$.ajax({
-				type: 'POST',
-				url: "<?=base_url('pg_admin/agcu/ajax_select_kelas')?>",
-				data: { id:val },
-				success: function(response){
-					document.getElementById('kelas').innerHTML=response;
-
-					$("#kelas").trigger("chosen:updated");
-				}
-			});
-		}
-		else {
-			$("#kelas").attr('disabled', 'disabled');
-		}
-	}
-
-
-
-
-</script>
 
 
 <!-- JS Function for this Modal -->

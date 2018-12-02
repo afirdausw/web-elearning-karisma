@@ -33,7 +33,7 @@ class Instruktur extends CI_Controller
             "siswa" => $siswa,
             "instruktur" => $instruktur,
             "kelas_navbar" => $kelas_navbar, 
-            "materi_list" => $materi_list, 
+            "materi_list" => $materi_list,
         );
         if($instruktur==null){
             redirect(base_url(),"refresh");
