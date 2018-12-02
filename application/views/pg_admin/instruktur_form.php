@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
 												<input type="text" name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
 													   placeholder="<?=$table_label[$i]?>"
-													   value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?>"
+													   value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : 'Rendy Yofana')); ?>"
 													   required="required">
 												<?php echo form_error('<?=$table_fields[$i]?>', '<div class="text-danger">', '</div>'); ?>
 											</div>
@@ -51,21 +51,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
 												<input type="text" name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
 													   placeholder="<?=$table_label[$i]?>" required="required"
-													   value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?>">
+													   value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : 'Malang')); ?>">
 												<?php echo form_error('<?=$table_fields[$i]?>', '<div class="text-danger">', '</div>'); ?>
 											</div>
 											<?php $i++; ?>
 											<div class="form-group">
 												<label for="tanggallahir"><?=$table_label[$i]?><span class="text-danger">*</span></label>
-												<input class="form-control" type="text" id="<?=$table_fields[$i]?>" name="<?=$table_fields[$i]?>" placeholder="TTTT-BB-HH" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])/(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])/(?:30))|(?:(?:0[13578]|1[02])-31))" title="Masukkan tanggal dengan format TTTT/BB/HH"
-											   	value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?>"/>
+												<input class="form-control" type="text" id="<?=$table_fields[$i]?>" name="<?=$table_fields[$i]?>" placeholder="TTTT-BB-HH" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))" title="Masukkan tanggal dengan format TTTT-BB-HH"
+											   	value="<?php echo set_value('nama', (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '1998-07-15')); ?>"/>
 											</div>
 											<?php $i++; ?>
 											<div class="form-group">
 												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
 												<textarea name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
 														  placeholder="<?=$table_label[$i]?>"
-														  required="required"><?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?></textarea>
+														  required="required"><?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : 'Jl. Bantaran')); ?></textarea>
 												<?php echo form_error("$table_fields[$i]", '<div class="text-danger">', '</div>'); ?>
 											</div>
 										</div>
@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
 												<input type="number" name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
 													   placeholder="<?=$table_label[$i]?>"
-													   value="<?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?>"
+													   value="<?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '081233233233')); ?>"
 													   required="required">
 												<?php echo form_error("$table_fields[$i]", '<div class="text-danger">', '</div>'); ?>
 											</div>
@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label><?=$table_label[$i]?><span class="text-danger">*</span></label>
 												<input type="email" name="<?=$table_fields[$i]?>" id="<?=$table_fields[$i]?>" class="form-control"
 													   placeholder="<?=$table_label[$i]?>"
-													   value="<?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : '')); ?>"
+													   value="<?php echo set_value($table_fields[$i], (isset($data_instruktur->$table_fields[$i]) ? $data_instruktur->$table_fields[$i] : 'rendy@email.com')); ?>"
 													   required="required">
 												<?php echo form_error("$table_fields[$i]", '<div class="text-danger">', '</div>'); ?>
 											</div>
@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 									<div class="row">
 										<div class="col-md-12">
-											<button type="submit" name="form_submit" value="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit
+											<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit
 											</button>
 											<a class="btn btn-danger pull-right" href="<?php echo site_url("pg_admin/{$basic_info['slug']}/daftar") ?>"><i
 														class="fa fa-times"></i> Cancel</></a>

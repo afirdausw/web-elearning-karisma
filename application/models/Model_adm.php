@@ -2518,6 +2518,41 @@ class Model_adm extends CI_Model
 
         return $query->row();
     }
+
+
+    function add_instruktur($data)
+    {
+        $result = $this->db->insert('instruktur', $data);
+        return $result;
+    }
+
+    function update_instruktur($data, $where)
+    {
+        //Update row by id in table mata_pelajaran
+        $data = array(
+            'nama_siswa'   => $nama,
+            'kelas'        => $kelas,
+            'sekolah_id'   => $sekolah_id,
+            'alamat'       => $alamat,
+            'email'        => $email,
+            'telepon'      => $telepon,
+            'telepon_ortu' => $telepon_ortu,
+            'NIS'          => $nis,
+            'NISN'         => $nisn,
+        );
+        $this->db->where('id_siswa', $id);
+        $result = $this->db->update('siswa', $data);
+
+        return $result;
+    }
+
+    function delete_instruktur($data)
+    {
+        $this->db->where($data);
+        $result = $this->db->delete('instruktur');
+
+        return $result;
+    }
     //#########################################
     //#########################################
     //#########################################

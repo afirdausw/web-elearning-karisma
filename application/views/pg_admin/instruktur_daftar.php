@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div class="content">
 			<div class="container-fluid">
-				<?php echo $this->session->flashdata('alert');?>
+				<?=$this->session->flashdata('alert');?>
 
 				<div class="row">
 					<div class="col-md-12">

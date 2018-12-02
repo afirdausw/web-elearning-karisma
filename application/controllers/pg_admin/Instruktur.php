@@ -72,7 +72,7 @@ class Instruktur extends CI_Controller
                     );
 
                     //Form materi submit handler. See if the user is attempting to submit a form or not
-                    if ($this->input->post("form_submit")) {
+                    if ($this->input->post()) {
                         //Form is submitted. Now routing to proses_tambah method
                         $this->proses_tambah();
                     } else {
@@ -127,46 +127,28 @@ class Instruktur extends CI_Controller
 
     public function proses_tambah()
     {
+        $gVar = $this->gVar;
         //set the page title
         $data = array(
+            "basic_info"      => $gVar,
             "page_title"     => "Pendaftaran Siswa",
             "form_action"    => current_url(),
-            "select_sekolah" => $this->model_adm->fetch_all_sekolah(),
-            "select_options" => $this->model_adm->fetch_all_kelas()
+            "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
-        $nama = $params['nama'] ? $params['nama'] : '';
-        $nis = $params['nis'] ? $params['nis'] : '';
-        $nisn = $params['nisn'] ? $params['nisn'] : '';
-        $username = $params['username'] ? $params['username'] : '';
-        $email = $params['email'] ? $params['email'] : '';
-        $telepon = $params['telepon'] ? $params['telepon'] : '';
-        $telepon_ortu = $params['telepon_ortu'] ? $params['telepon_ortu'] : '';
-        $alamat = $params['alamat'] ? $params['alamat'] : '';
-        $sekolah_id = $params['sekolah'] ? $params['sekolah'] : '';
-        $kelas = $params['kelas'] ? $params['kelas'] : '';
-        $password_raw = $params['password'] ? $params['password'] : $nisn;
-        $password = $password_raw;
-        //$tambah_sekolah   = $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
+        // var_dump($params);
 
-        if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
-            $sekolah_id = $insert_id;
-        }
-
-        //run the validation
+        // //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view("pg_admin/siswa_form", $data);
+            $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis, $username, $password);
+            $result = $this->model_adm->add_instruktur($params);
             alert_success("Sukses", "Data berhasil ditambahkan");
-            redirect("pg_admin/siswa");
-            // echo "Status Insert: " . $result;
+            redirect("pg_admin/{$gVar['slug']}");
         }
     }
 
@@ -278,10 +260,13 @@ class Instruktur extends CI_Controller
     private function form_validation_rules()
     {
         //set validation rules for each input
-        $this->form_validation->set_rules('nama', 'Nama Instruktur', 'trim|required');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required');
+        $this->form_validation->set_rules('nama_instruktur', 'Nama Instruktur', 'trim|required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'trim|required');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'trim|required');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim|required');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
         $this->form_validation->set_rules('telepon', 'Telepon', 'trim|numeric|required');
-        $this->form_validation->set_rules('kelas', 'Kelas', 'trim|required');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required');
 
         //set custom error message
         $this->form_validation->set_message('required', '%s tidak boleh kosong');
