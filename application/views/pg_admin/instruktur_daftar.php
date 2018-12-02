@@ -36,9 +36,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-12">
 						<div class="card">
 							<div class="header">
-								<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/tambah") ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i>Tambah <?="{$basic_info['title']}"?></a>
-								<h4 class="title">Semua <?="{$basic_info['title']}"?></h4>
-								<p class="category">Daftar semua <?="{$basic_info['slug']}"?></p>
+								<?php if(!in_array("gambar_mapel", $table_fields)): ?>
+									<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/tambah") ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-plus"></i> Tambah <?="{$basic_info['title']}"?></a>
+								<?php else: ?>
+									<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/materi") ?>" class="btn btn-primary btn-fill pull-right"><i class="fa fa-pencil"></i> Edit Materi</a>
+								<?php endif; ?>
+								<h4 class="title"><?="{$main_title}"?></h4>
+								<p class="category"><?="{$navbar_title}"?></p>
 
 							</div>
 
@@ -61,13 +65,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										foreach($table_label as $val):?>
 											<th><?=(strlen($val) > 4) ? "<span title='$val'>".substr($val, 0, 4)."...</span>" : $val ;?></th>
 										<?php
-										endforeach;?>
-										<th class="text-center">Aksi</th>
+										endforeach;
+										if(!in_array("gambar_mapel", $table_fields)):?>
+											<th class="text-center">Aksi</th>
+										<?php
+										endif;
+										?>
 									</tr>
 									</thead>
 									<tbody id="listsiswa">
 									<?php
-									if($data_instruktur){
+									if(!empty($data_instruktur)){
 										foreach($data_instruktur as $val){ ?>
 											<tr> <?php
 													foreach($table_fields as  $field):?>
@@ -78,8 +86,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																	echo "image/instruktur/"."{$val->$field}";
 																else
 																	echo "assets/img/no-image.jpg";
-																echo "' width='75px' class='img-responsive'>";
-
+																echo "' width='75px' class='img-responsive m-auto'>";
+															}else if ($field == "gambar_mapel"){
+																echo "<img src='".base_url();
+																if($val->$field)
+																	echo "image/mapel/"."{$val->$field}";
+																else
+																	echo "assets/img/no-image.jpg";
+																echo "' width='75px' class='img-responsive m-auto'>";
 															}else if($field == "jenis_kelamin")
 																echo ($val->$field==1) ? "Laki-laki" : "Perempuan";
 															else
@@ -87,11 +101,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														?></td>
 													<?php
 													endforeach;
+													if(!in_array("gambar_mapel", $table_fields)):
 													?>
-													<td>
-														<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/ubah?id=$val->id_instruktur")?>" class="btn btn-block btn-warning"><i class="pe-7s-pen"></i>Edit</a>
-														<a href="<?=site_url("pg_admin/{$basic_info['slug']}/proses_hapus?id=$val->id_instruktur");?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-block btn-danger"><i class="pe-7s-trash"></i>Hapus</a>
-													</td>
+														<td>
+															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/manajemen/ubah?id=$val->id_instruktur")?>" class="btn btn-block btn-warning"><i class="pe-7s-pen"></i>Edit</a>
+															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/proses_hapus?id=$val->id_instruktur");?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-block btn-danger"><i class="pe-7s-trash"></i>Hapus</a>
+															<a href="<?=site_url("pg_admin/{$basic_info['slug']}/daftar/instruktur/$val->id_instruktur")?>" class="btn btn-block btn-primary"><i class="pe-7s-eye"></i>Lihat Mapel</a>
+														</td>
+													<?php
+													else:
+
+													endif;
+													?>
 											</tr>
 											<?php
 										}

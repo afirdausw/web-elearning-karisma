@@ -39,16 +39,50 @@ class Instruktur extends CI_Controller
         redirect("pg_admin/{$gVar['slug']}/daftar/");
     }
 
-    public function daftar()
+    public function daftar($aksi="",$id_instruktur="")
     {
         $gVar = $this->gVar;
         $data = array(
             "basic_info"      => $gVar,
+            "main_title"    => "Semua {$gVar['title']}",
             "navbar_title"    => "Daftar {$gVar['title']}",
             "form_action"     => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
             "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
-            "data_instruktur"      => $this->model_adm->fetch_all_table_data("{$gVar['slug']}"),
+            "data_materi_pokok"    => $this->model_adm->fetch_all_table_data("materi_pokok"),
+            "data_instruktur" => $this->model_adm->fetch_all_table_data("{$gVar['slug']}"),
         );
+        if(!empty($aksi)){
+            switch($aksi):
+                case "instruktur":
+                    if(!empty($id_instruktur)){
+                        $where = array(
+                            "id_instruktur" => "{$id_instruktur}",
+                        );
+                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur", $where);
+
+                        $where = array(
+                            "instruktur_materi.id_instruktur" => "{$id_instruktur}",
+                        );
+                        $joinArray = array(
+                            array("instruktur", "instruktur_materi.id_instruktur = instruktur.id_instruktur", "right"),
+                            array('materi_pokok', "instruktur_materi.id_materi_pokok = materi_pokok.id_materi_pokok", "left"),
+                            array('mata_pelajaran', "mata_pelajaran.id_mapel = materi_pokok.mapel_id", ""),
+                        );
+                        $data["table_fields"] = array(
+                            "id_instruktur_materi",
+                            "nama_materi_pokok",
+                            "gambar_mapel",
+                        );
+                        $data["main_title"] = "Semua Materi Pelajaran";
+                        $data["navbar_title"] = "{$data['data_instruktur'][0]->nama_instruktur}";
+                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur_materi", $where, "=", "*" , $joinArray);
+                    }
+                break;
+                default:
+                    redirect("pg_admin/{$gVar['slug']}");
+                break;
+            endswitch;
+        }
 
         $this->load->view("pg_admin/{$gVar['slug']}_daftar", $data);
     }
@@ -60,7 +94,6 @@ class Instruktur extends CI_Controller
         if ($aksi) {
             //Trigger form submission validation rules
             $this->form_validation_rules();
-
             switch ($aksi) {
                 case "tambah":
                     $data = array(

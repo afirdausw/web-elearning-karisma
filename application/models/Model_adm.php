@@ -178,15 +178,36 @@ class Model_adm extends CI_Model
     }
 
 
-    // KELAS
-    function fetch_all_table_data($tabel,$where = "")
-    {
-        if($where!="")
-            $this->db->where($where);
-        $query = $this->db->get($tabel);
+    // Basic
+    function fetch_all_table_data($tabel="", $cred="", $equal = "=", $column = "*", $join = "", $group="", $wherein=""){
+        //sesuaikan database
+        $this->db->select($column);
+        $this->db->from($tabel);
+        if(isset($cred) AND $cred!=""){
+            if($equal == "="){
+                if(isset($wherein) AND $wherein!=""){
+                    $this->db->where_in($wherein, $cred);
+                }else{                  
+                    $this->db->where($cred);
+                }
+            }
+            else if($equal == "LIKE"){
+                $this->db->like($cred);
+            }
+        }
+        if(isset($join) AND $join!=""){
+            foreach($join as $j=>$val)
+                $this->db->join($val[0],$val[1],$val[2]);
+        }
+        if(isset($group) AND $group!=""){
+            foreach($group as $g=>$val)
+                $this->db->group_by($val[0]);
+        }
 
+        $query = $this->db->get();
         return $query->result();
     }
+
 
     function get_table_fields()
     {
@@ -199,6 +220,7 @@ class Model_adm extends CI_Model
         return $fields;
     }
 
+    //Kelas
     function get_specific_kelas()
     {
         $result = $this->db->where("id_kelas !=", "0");
