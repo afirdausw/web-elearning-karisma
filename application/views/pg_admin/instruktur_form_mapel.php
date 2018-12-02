@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="col-md-12">
 						<div class="card">
 							<div class="header">
-								<a href="<?=site_url("pg_admin/{$basic_info['slug']}/daftar/mapel/{$data_instruktur->id_instruktur}") ?>" class="btn btn-success btn-fill pull-right"><i class="fa fa-back"></i> Kembali</a>
+								<a href="<?=site_url("pg_admin/{$basic_info['slug']}/daftar/mapel/{$data_instruktur->id_instruktur}") ?>" class="btn btn-success btn-fill pull-right"><i class="glyphicon glyphicon-arrow-left"></i> Kembali</a>
 								<h4 class="title"><?="{$main_title}"?></h4>
 								<p class="category"><?="{$navbar_title}"?></p>
 
