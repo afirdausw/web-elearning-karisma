@@ -264,7 +264,14 @@ include('header.php');
                         <h3><?= $data->nama_materi_pokok ?></h3>
                         <span class="badge">12 Materi</span>
                         <span class="badge">50 Peserta</span>
-                        <p>Oleh <a href="">Muhammad Nur Alfiyan</a> . 12/02/2018</p>
+                        <p>Oleh
+                            <?php if ($instruktur != null): ?>
+                                <a href="<?= base_url('instruktur/' . $instruktur[0]->id_instruktur) ?>"
+                                   target="_blank"><?= $instruktur[0]->nama_instruktur ?></a>
+                            <?php else: ?>
+                                <a href="#">Instruktur Karisma Academy</a>
+                            <?php endif; ?>
+                            . 12/02/2018</p>
                     </div>
                     <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12">
                         <ul class="pager">
