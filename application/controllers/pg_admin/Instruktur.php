@@ -68,7 +68,7 @@ class Instruktur extends CI_Controller
                             array('mata_pelajaran', "instruktur_mapel.id_mapel = mata_pelajaran.id_mapel", ""),
                         );
                         $data["table_fields"] = array(
-                            "id_instruktur_mapel",
+                            "id_mapel",
                             "nama_mapel",
                             "gambar_mapel",
                         );
@@ -153,7 +153,7 @@ class Instruktur extends CI_Controller
                             "navbar_title"      => "Materi Pelajaran",
                             "main_title"    => "{$data_instruktur->nama_instruktur}",
                             "page_title"      => "Ubah {$gVar['title']}",
-                            "form_action"    => current_url() . "?id=$id_instruktur",
+                            "form_action"    => current_url(),
                             "table_fields"    => $table_fields,
                             "data_instruktur"     => $data_instruktur,
                             "data_mapel"     =>  $this->model_adm->fetch_all_table_data("mata_pelajaran"),                            
@@ -163,9 +163,9 @@ class Instruktur extends CI_Controller
 
 
                         //Form submit handler. See if the user is attempting to submit a form or not
-                        if ($this->input->post()) {
+                        if ($this->input->post("submit_batch") == TRUE) {
                             //Form is submitted. Now routing to proses_tambah method
-                            $this->proses_mapel($id);
+                            $this->proses_mapel($id_instruktur);
                         } else {
                             //No form is submitted. Displaying the form page
                             $this->load->view("pg_admin/{$gVar['slug']}_form_mapel", $data);
@@ -299,25 +299,26 @@ class Instruktur extends CI_Controller
         redirect("pg_admin/{$gVar['slug']}");
     }
 
-    public function proses_mapel(){
-        $params = $this->input->post(null, true);
-        var_dump($params);
-        // $gVar = $this->gVar;
-        // //set form validation rules
-        // $id = $this->input->get("id");
+    public function proses_mapel($id_instruktur){
+        $where = array(
+            "id_instruktur" => "{$id_instruktur}",
+        );
+        $act = $this->model_adm->delete_instruktur_mapel($where);
 
-        // if ($id!=null) {
-        //     $where = array("id_instruktur" => $id);
-        //     $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
-        //     if($data_instruktur !== null){
-        //         unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
-        //     }
-        //     $this->model_adm->delete_instruktur($id);
-        //     alert_success("Sukses", "Data berhasil dihapus");
-        // }else{
-        //     alert_error("Error", "Data gagal dihapus");
-        // }
-        // redirect("pg_admin/{$gVar['slug']}");
+        if($act){
+            $data_insert = array();
+            $params = $this->input->post(null, true);
+            if(!empty($params['id_mapel'])){
+                foreach($params['id_mapel'] as $key=>$val):
+                    $data_insert[] = array(
+                        "id_instruktur" => $id_instruktur,
+                        "id_mapel" => $key,
+                    );
+                endforeach;
+                $act = $this->model_adm->add_instruktur_mapel($data_insert);
+            }
+        }
+        redirect("pg_admin/instruktur/manajemen/mapel/{$id_instruktur}");
     }
 
     private function form_validation_rules()

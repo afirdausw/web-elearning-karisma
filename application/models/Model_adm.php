@@ -2565,6 +2565,22 @@ class Model_adm extends CI_Model
 
         return $result;
     }
+
+
+    function delete_instruktur_mapel($data)
+    {
+        $this->db->where($data);
+        $result = $this->db->delete('instruktur_mapel');
+
+        return $result;
+    }
+
+
+    function add_instruktur_mapel($data)
+    {
+        $result = $this->db->insert_batch("instruktur_mapel", $data);
+        return $result;
+    }
     //#########################################
     //#########################################
     //#########################################

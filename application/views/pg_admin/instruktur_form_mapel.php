@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<p class="category"><?="{$navbar_title}"?></p>
 
 							</div>
-							<form action="<?=$form_action?>" method="POST" enctype="multipart/form-data">
+							<form action="<?=$form_action?>" method="POST" enctype="multipart/form-data" onsubmit="return confirm('Anda Yakin Update?');">
 								<div class="content">
 									<div class="row">
 										<div class="table-responsive">
@@ -108,6 +108,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 								</div>
+
+								<input type="hidden" value="<?=$data_instruktur->id_instruktur;?>" readonly>
+								<button type="submit" class="btn btn-warning btn-lg btn-block" name="submit_batch" value="TRUE"><i class="fa fa-cogs"></i> Batch Edit Mata Pelajaran</a>
 							</form>
 						</div>
 					</div>
