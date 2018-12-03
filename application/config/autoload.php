@@ -258,5 +258,41 @@ $autoload['language'] = array();
 
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array(
+    "Model_adm",
+    "Model_adm1",
+    "Model_agcu",
+    "Model_agcusoal",
+    "Model_api",
+    "Model_bank",
+    "Model_banksoal",
+    "Model_bonus",
+    "Model_Cart",
+    "Model_dashboard",
+    "Model_encrypt",
+    "Model_eqtest",
+    "Model_fronttryout",
+    "Model_instruktur",
+    "Model_konfirmasi",
+    "Model_kontak",
+    "Model_konten",
+    "Model_kontendownload",
+    "Model_login",
+    "Model_lstest",
+    "Model_lupa_password",
+    "Model_materi_bulk",
+    "Model_modul",
+    "Model_paket",
+    "Model_parent",
+    "Model_paud",
+    "Model_pembayaran",
+    "Model_pg",
+    "Model_poin",
+    "Model_profil",
+    "Model_psep",
+    "Model_security",
+    "Model_signup",
+    "Model_tryout",
+    "Model_voucher",
+    "Model_voucher_baru",);
 
