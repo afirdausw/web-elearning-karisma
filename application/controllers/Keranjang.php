@@ -6,7 +6,9 @@
  * Time: 09:27
  */
 
-class Keranjang
+class Keranjang extends CI_Controller
 {
+
+
 
 }
