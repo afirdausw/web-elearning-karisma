@@ -1,21 +1,14 @@
 var loading = false;
-
+var url = base_url + "/keranjang/simpan";
 var tambahCart = function (id_mapel) {
     if (!loading) {
         loading = true;
         var berhasil = false;
-        jQuery('#error').addClass('d-none');
-        btn_simpan.removeClass('btn-alt-primary').addClass('btn-alt-secondary disabled').attr("disabled", true);
-        btn_back.removeClass('btn-alt-primary').addClass('btn-alt-secondary disabled').attr("disabled", true);
-        icon_btn_simpan.removeClass('si si-login d-none').addClass('fa fa-sun-o fa-spin mr-5');
-        text_btn_simpan.html('Menyimpan');
-        block.addClass('block-mode-loading');
-        var formData = new FormData(formToko[0]);
 
         var request = $.ajax({
             url: url,
-            data: formData,
-            type: 'POST',
+            type: 'GET',
+            data: {id_mapel: id_mapel},
             contentType: false,
             processData: false
         });
