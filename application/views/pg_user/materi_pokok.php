@@ -19,7 +19,7 @@ include('header.php');
             <div class="col-md-9 col-sm-12">
                 <h1><?= $data->nama_mapel ?></h1>
                 <h3>Created by
-                    <?php if ($instruktur != null): ?>
+                    <?php if (isset($instruktur) && count($instruktur) > 0 && $instruktur != null): ?>
                         <a target="_blank"
                            href="<?= base_url('instruktur/' . $instruktur[0]->id_instruktur) ?>"><?= $instruktur[0]->nama_instruktur ?></a>
                         <a class="button" href="tel:<?= $instruktur[0]->telepon ?>">Contact</a>
@@ -61,7 +61,7 @@ if (isset($key->id_materi_pokok)) {
             <section class="banner-bottom" style="background: #90BB35;"> <!-- BANNER-->
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 banner-left">
+                        <div class="col-md-6 banner-left">
                             <h1>Lanjutkan Belajar</h1>
                             <span>Selesaikan belajar anda untuk memperdalam materi pelajaran ini</span>
                             <div class="progress">
@@ -71,7 +71,8 @@ if (isset($key->id_materi_pokok)) {
                                 <b><?= $persen_baca; ?>%</b>
                             </div>
                         </div>
-                        <div class="col-md-4 banner-right">
+                        <div class="col-md-6 banner-right">
+
                             <a class="btn-continue"
                                href="<?= base_url("konten/detail_soal/" . $key->id_materi_pokok) ?>">Lanjutkan</a>
                         </div>
@@ -81,15 +82,28 @@ if (isset($key->id_materi_pokok)) {
             <?php
             //jika belum dibaca
         } else { ?>
-            <section class="banner-top" style="background: #F58634; margin-top: 0;">
+            <section class="banner-top mt-0 pb-3" style="background: #F58634;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-8 banner-left">
+                        <div class="col-md-6 banner-left">
                             <h1>Ayo mulai belajar dengan kami</h1>
                             <span>dan diskusi langsung dengan instruktur</span>
                         </div>
-                        <div class="col-md-4 banner-right">
-                            <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
+                        <div class="col-md-6 banner-right row">
+                            <div class="col-md-8 text-right mr-0">
+                                <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                                <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                    Rp. <?= money($data->harga) ?></h4>
+                            </div>
+                            <div class="col-md-4 ml-0">
+                                <?php
+                                $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $key->mapel_id);
+                                if (count($mapel) <= 0) { ?>
+                                    <a href="javascript:tambahCart(<?= $key->mapel_id ?>);">Mulai Belajar</a>
+                                <?php } else { ?>
+                                    <a href="#">Go To Cart</a>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -102,12 +116,19 @@ if (isset($key->id_materi_pokok)) {
         <section class="banner-top" style="background: #cc3434; margin-top: 0;">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 banner-left">
+                    <div class="col-md-6 banner-left">
                         <h1>Mohon maaf, materi berikut hanya berlaku bagi pengguna <b>Premium</b></h1>
                         <span>Daftar sekarang dan daftar sebagai siswa premium</span>
                     </div>
-                    <div class="col-md-4 banner-right">
-                        <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                    <div class="col-md-6 banner-right">
+                        <div class="col-md-8 text-right mr-0">
+                            <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                            <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                Rp. <?= money($data->harga) ?></h4>
+                        </div>
+                        <div class="col-md-4 ml-0">
+                            <a href="<?= base_url("signup") ?>" style="color:#cc3434 !important;">Mulai Daftar</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -317,11 +338,11 @@ if (isset($key->id_materi_pokok)) {
                             ?>
                             <a href="<?= $linkmaterilain; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) && substr($data->gambar_mapel, 0, 5) == 'data:' ? $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                      alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
-                                    <h3><?= $data->nama_mapel ?> . . .</h3>
-                                    <p>Pelajari lebih lanjut ...</p>
+                                    <h4><?= $data->nama_mapel ?></h4>
+                                    <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($data->harga) ?></span></h5>
                                 </div>
                             </a>
                         </div>

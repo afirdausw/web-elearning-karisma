@@ -178,13 +178,36 @@ class Model_adm extends CI_Model
     }
 
 
-    // KELAS
-    function fetch_all_table_data($tabel)
-    {
-        $query = $this->db->get($tabel);
+    // Basic
+    function fetch_all_table_data($tabel="", $cred="", $equal = "=", $column = "*", $join = "", $group="", $wherein=""){
+        //sesuaikan database
+        $this->db->select($column);
+        $this->db->from($tabel);
+        if(isset($cred) AND $cred!=""){
+            if($equal == "="){
+                if(isset($wherein) AND $wherein!=""){
+                    $this->db->where_in($wherein, $cred);
+                }else{                  
+                    $this->db->where($cred);
+                }
+            }
+            else if($equal == "LIKE"){
+                $this->db->like($cred);
+            }
+        }
+        if(isset($join) AND $join!=""){
+            foreach($join as $j=>$val)
+                $this->db->join($val[0],$val[1],$val[2]);
+        }
+        if(isset($group) AND $group!=""){
+            foreach($group as $g=>$val)
+                $this->db->group_by($val[0]);
+        }
 
+        $query = $this->db->get();
         return $query->result();
     }
+
 
     function get_table_fields()
     {
@@ -197,6 +220,7 @@ class Model_adm extends CI_Model
         return $fields;
     }
 
+    //Kelas
     function get_specific_kelas()
     {
         $result = $this->db->where("id_kelas !=", "0");
@@ -503,7 +527,7 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel)
+    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
     {
         //Insert data into table mata_pelajaran
         $data = array(
@@ -511,19 +535,21 @@ class Model_adm extends CI_Model
             'nama_mapel'      => $nama_mapel,
             'deskripsi_mapel' => $deskripsi_mapel,
             'gambar_mapel'    => $gambar_mapel,
+            'harga'    => $harga,
         );
         $result = $this->db->insert('mata_pelajaran', $data);
 
         return $result;
     }
 
-    function update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel)
+    function update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
     {
         //Update row by id in table mata_pelajaran
         $data = array(
             'kelas_id'        => $kelas_id,
             'nama_mapel'      => $nama_mapel,
             'deskripsi_mapel' => $deskripsi_mapel,
+            'harga'    => $harga,
         );
         if ($gambar_mapel != "") {
             $data["gambar_mapel"] = $gambar_mapel;
@@ -2495,6 +2521,69 @@ class Model_adm extends CI_Model
 //#########################################
 //#########################################
 //#########################################
+
+
+    //#########################################
+    //#########################################
+    //#########################################
+
+    //MODEL UNTUK MANAJEMEN INSTRUKTUR
+    //########################################
+    //########################################
+    //########################################
+
+    function fetch_instruktur_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('instruktur');
+        $this->db->where('id_instruktur', $id);
+
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+
+
+    function add_instruktur($data)
+    {
+        $result = $this->db->insert('instruktur', $data);
+        return $result;
+    }
+
+    function update_instruktur($data, $where)
+    {
+        $this->db->where("id_instruktur",$where);
+        $result = $this->db->update('instruktur', $data);
+
+        return $result;
+    }
+
+    function delete_instruktur($data)
+    {
+        $this->db->where("id_instruktur",$data);
+        $result = $this->db->delete('instruktur');
+
+        return $result;
+    }
+
+
+    function delete_instruktur_mapel($data)
+    {
+        $this->db->where($data);
+        $result = $this->db->delete('instruktur_mapel');
+
+        return $result;
+    }
+
+
+    function add_instruktur_mapel($data)
+    {
+        $result = $this->db->insert_batch("instruktur_mapel", $data);
+        return $result;
+    }
+    //#########################################
+    //#########################################
+    //#########################################
 
 
 }

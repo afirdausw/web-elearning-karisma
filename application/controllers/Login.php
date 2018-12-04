@@ -31,14 +31,15 @@ class Login extends CI_Controller
 //            'navbar_links' => $this->model_pg->get_navbar_links(),
 //        );
 
-        if($this->session->userdata('id_siswa')){
+        if ($this->session->userdata('id_siswa')) {
             redirect(base_url());
-        }else{
+        } else {
             $this->load->view("pg_user/login");
         }
     }
 
-    function login_submit() {
+    function login_submit()
+    {
         $this->form_validation_rules();
 
         if ($this->form_validation->run() == FALSE) {
@@ -46,37 +47,44 @@ class Login extends CI_Controller
             redirect("login");
         } else {
             $params = $this->input->post(null, true);
-            $username 	= $params['username'];
-            $password	= $params['password'];
+            $username = $params['username'];
+            $password = $params['password'];
 
             $result = $this->model_login->cek_login($username, $password);
             if ($result != null) {
+                $cart = $this->Model_Cart->getCartByIdSiswa($result->id_siswa);
+                $cart = obj_to_arr($cart);
+                $jumlah_cart = count($cart);
                 $this->session->set_userdata('siswa_logged_in', TRUE);
                 $this->session->set_userdata('id_siswa', $result->id_siswa);
+                $this->session->set_userdata('cart', $cart);
+                $this->session->set_userdata('jumlah_cart', $jumlah_cart);
                 $this->session->set_userdata('siswa_nama', $result->nama_siswa);
                 $this->session->unset_userdata('pretest_logged_in');
                 $this->session->unset_userdata('pretest_email');
                 $this->session->unset_userdata('pretest_nama');
-                if(isset($_SESSION['RedirectKe'])){
-                    header('location:'.$_SESSION['RedirectKe']);
-                }else{
+                if (isset($_SESSION['RedirectKe'])) {
+                    header('location:' . $_SESSION['RedirectKe']);
+                } else {
                     redirect(".");
                 }
             } else {
                 alert_error("Gagal Login", "Username dan/atau password yang anda masukan tidak sesuai");
-                $link_redir="login";
+                $link_redir = "login";
                 redirect($link_redir);
             }
         }
     }
 
-    function logout() {
+    function logout()
+    {
         $this->session->unset_userdata('siswa_logged_in');
         $this->session->unset_userdata('id_siswa');
+        session_destroy();
         // $this->session->sess_destroy();
-        if(isset($_SESSION['RedirectKe'])){
-            header('location:'.$_SESSION['RedirectKe']);
-        }else{
+        if (isset($_SESSION['RedirectKe'])) {
+            header('location:' . $_SESSION['RedirectKe']);
+        } else {
             redirect(".");
         }
     }

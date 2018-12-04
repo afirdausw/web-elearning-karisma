@@ -218,10 +218,10 @@ class Konten extends CI_Controller
             }
 
             $where = array(
-                "materi_pokok.id_materi_pokok" => $mapok_baru[0]->id_materi_pokok,
+                "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
             );
 
-            $instruktur = $this->model_instruktur->get_instruktur_by_materi($where);
+            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
 
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
@@ -301,10 +301,17 @@ class Konten extends CI_Controller
                     $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
             }
+
+            $where = array(
+                "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
+            );
+
+            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
 
                 'siswa'          => $siswa,
+                'instruktur'     => $instruktur,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
                 'materi_pokok_pre' => $mapok_baru_pre,
@@ -502,10 +509,12 @@ class Konten extends CI_Controller
                 // $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
 
             }
-//            return $this->output
-//                ->set_content_type('application/json')
-//                ->set_status_header(500)
-//                ->set_output(json_encode($data));
+            
+            $where = array(
+                "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
+            );
+            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
+            $data["instruktur"] = $instruktur;
             $this->load->view('pg_user/konten_soal', $data);
         }
     }

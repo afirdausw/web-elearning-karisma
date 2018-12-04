@@ -20,26 +20,26 @@ class Model_instruktur extends CI_Model
     }
 
     
-    function get_materi_by_instruktur($where="")
+    function get_mapel_by_instruktur($where="")
     {
         $this->db->select('*');
-        $this->db->from('instruktur_materi');
-        $this->db->join('instruktur','instruktur_materi.id_instruktur = instruktur.id_instruktur');
-        $this->db->join('materi_pokok','instruktur_materi.id_materi_pokok = materi_pokok.id_materi_pokok');
+        $this->db->from('instruktur_mapel');
+        $this->db->join('instruktur','instruktur_mapel.id_instruktur = instruktur.id_instruktur');
+        $this->db->join('mata_pelajaran','instruktur_mapel.id_mapel = mata_pelajaran.id_mapel');
         $this->db->where($where);
-        $this->db->order_by('instruktur_materi.id_materi_pokok', 'ASC');
+        $this->db->order_by('instruktur_mapel.id_mapel', 'ASC');
 
         $query = $this->db->get();
         return $query->result();
     }
-    function get_instruktur_by_materi($where="")
+    function get_instruktur_by_mapel($where="")
     {
         $this->db->select('*');
-        $this->db->from('instruktur_materi');
-        $this->db->join('instruktur','instruktur_materi.id_instruktur = instruktur.id_instruktur');
-        $this->db->join('materi_pokok','instruktur_materi.id_materi_pokok = materi_pokok.id_materi_pokok');
+        $this->db->from('instruktur_mapel');
+        $this->db->join('instruktur','instruktur_mapel.id_instruktur = instruktur.id_instruktur');
+        $this->db->join('mata_pelajaran','instruktur_mapel.id_mapel = mata_pelajaran.id_mapel');
         $this->db->where($where);
-        $this->db->order_by('instruktur_materi.id_materi_pokok', 'ASC');
+        $this->db->order_by('instruktur_mapel.id_mapel', 'ASC');
 
         $query = $this->db->get();
         return $query->result();

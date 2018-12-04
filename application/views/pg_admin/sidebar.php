@@ -41,12 +41,12 @@ Tip 2: you can also add an image using data-image tag
 	    display:none;
 	}
 </style>
-
-<div class="sidebar" data-color="turquoise" data-image="<?php echo base_url('assets/dashboard/images/bg-reason.png');?>">
+<!-- Light Bootstrap Dashboard CSS -->
+<div class="sidebar" data-color="blue" data-image="<?php echo base_url('assets/dashboard/images/bg-reason.png');?>">
 	<div class="sidebar-wrapper">
 		<div class="logo">
-			<img src="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="filter:invert(1); margin:0 auto; width:20%;">
-			<a href="http://lpi-hidayatullah.or.id/" class="simple-text">
+			<img src="<?php echo base_url('assets/pg_user/images/header-logo.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="margin:0 auto;">
+			<a href="<?=base_url();?>" class="simple-text">
 				Selamat datang, <?php 
 						echo $this->session->userdata("level");
 				?>
@@ -188,7 +188,30 @@ Tip 2: you can also add an image using data-image tag
 				</a>
 			</li>
 		<!-- end menu agcu test -->
-		
+
+		<!-- START INSTRUKTUR -->
+		<?php
+			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
+				$menuSlug = "instruktur";
+				$menuTitle = ucwords(strtolower($menuSlug));
+		?>
+				<li class="sidebar-header"><span><?="{$menuTitle}"?></span></li>
+				<li class="<?php echo (($active=="{$menuSlug}" && $tambah=='tambah') ? 'active' : '')?>">
+					<a href="<?php echo site_url("pg_admin/{$menuSlug}/manajemen/tambah") ?>">
+						<i class="pe-7s-add-user"></i>
+						<p>Tambah <?="{$menuTitle}"?></p>
+					</a>
+				</li>
+				<li class="<?php echo ($active=="{$menuSlug}" && $active2=='daftar' ? 'active' : '')?>">
+					<a href="<?php echo site_url("pg_admin/{$menuSlug}/daftar")?>">
+						<i class="pe-7s-menu"></i>						
+						<p>Semua <?="{$menuTitle}"?></p>
+					</a>
+				</li>
+		<?php
+			}
+		?>
+		<!-- END INSTRUKTUR -->
 		<?php
 			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
 		?>
@@ -229,7 +252,7 @@ Tip 2: you can also add an image using data-image tag
 						</li>
 						<?php 
 						if($hide2 == false) { ?>
-						<<li></li>>
+						<li>
 							<a href="<?php echo site_url('pg_admin/siswa/manajemen/tambah')?>">Tambah Baru</a>
 						</li>
 						<?php } ?>

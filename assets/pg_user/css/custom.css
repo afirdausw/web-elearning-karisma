@@ -77,6 +77,20 @@ label {
 .dropdown-menu .divider {
     margin: 3px 0;
 }
+/*//cart*/
+.dropdown-menu li.cart-dropdown{
+    text-transform: initial !important;
+}
+.dropdown-menu li.cart-dropdown > a {
+    padding: 0 5px;
+    transition: all 0.1s linear;
+}
+.dropdown-menu li.cart-dropdown > a:hover {
+    /*background: #E5E5E5;*/
+    background: #c6e5f7;
+    color: inherit;
+}
+/*//cart end*/
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #BBB;
 }
