@@ -186,8 +186,8 @@ class Home extends CI_Controller {
                             <a href="<?= base_url().'kelas/'.$value->kelas_id; ?>" class="badge-kelas">
                                 <?= $value->alias_kelas ?>
                             </a>
-                            <h3><?= $mapel ?></h3>
-                            <p>Pelajari lebih lanjut ...</p>
+                            <h4><?= $mapel ?></h4>
+                            <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($value->harga) ?></span></h5>
                         </div>
                     </a>
                 </div>

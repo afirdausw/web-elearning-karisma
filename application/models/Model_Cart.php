@@ -13,7 +13,17 @@ class Model_Cart extends CI_Model
     {
         $data = $this->db
             ->where('siswa_id', $id_siswa)
-            ->join('mapel', 'mapel.id_mapel = siswa.mapel_id')
+            ->join('mata_pelajaran', 'mata_pelajaran.id_mapel = cart.mapel_id')
+            ->get('cart');
+
+        return $data->result();
+    }
+
+    public function getCartByIdSiswaIdMapel($id_siswa, $id_mapel)
+    {
+        $data = $this->db
+            ->where('siswa_id', $id_siswa)
+            ->where('mapel_id', $id_mapel)
             ->get('cart');
 
         return $data->result();
@@ -37,7 +47,7 @@ class Model_Cart extends CI_Model
     public function deleteCartSiswa($id_siswa, $id_mapel)
     {
         $this->db->where('siswa_id', $id_siswa);
-        $this->db->where('id_konten', $id_siswa);
+        $this->db->where('id_mapel', $id_mapel);
         $result = $this->db->delete('bonus_konten');
 
         return $result;

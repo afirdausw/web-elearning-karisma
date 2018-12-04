@@ -2257,3 +2257,67 @@
 .pull-left {
     float: left;
 }
+
+
+.font-size-h1 {
+    font-size: 2.571429rem;
+}
+
+.font-size-h2 {
+    font-size: 2.142857rem;
+}
+
+.font-size-h3 {
+    font-size: 1.857143rem;
+}
+
+.font-size-h4 {
+    font-size: 1.571429rem;
+}
+
+.font-size-h5 {
+    font-size: 1.285714rem;
+}
+
+.font-size-h6 {
+    font-size: 1rem;
+}
+
+@media (max-width: 767px) {
+    .display-1 {
+        font-size: 3.429rem;
+    }
+
+    .display-2 {
+        font-size: 3.143rem;
+    }
+
+    .display-3 {
+        font-size: 2.857rem;
+    }
+
+    .display-4 {
+        font-size: 2.571429rem;
+    }
+
+    h1, .h1, .font-size-h1 {
+        font-size: 2.142857rem;
+    }
+
+    h2, .h2, .font-size-h2 {
+        font-size: 1.857143rem;
+    }
+
+    h3, .h3, .font-size-h3 {
+        font-size: 1.571429rem;
+    }
+
+    h4, .h4, .font-size-h4 {
+        font-size: 1.285714rem;
+    }
+
+    h5, .h5, .font-size-h5,
+    h6, .h6, .font-size-h6 {
+        font-size: 1rem;
+    }
+}

@@ -7,10 +7,8 @@ var tambahCart = function (id_mapel) {
 
         var request = $.ajax({
             url: url,
-            type: 'GET',
+            type: 'POST',
             data: {id_mapel: id_mapel},
-            contentType: false,
-            processData: false
         });
         request.fail(function (xhr, status, error) {
             berhasil = false;

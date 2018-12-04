@@ -47,7 +47,7 @@ function ribuan($val)
 
 function money($val)
 {
-    $hasil_rupiah = number_format($val, 2, ',', '.');
+    $hasil_rupiah = number_format($val, 0, ',', '.');
     return $hasil_rupiah;
 
 }

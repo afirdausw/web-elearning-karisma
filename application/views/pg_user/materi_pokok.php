@@ -96,7 +96,13 @@ if (isset($key->id_materi_pokok)) {
                                     Rp. <?= money($data->harga) ?></h4>
                             </div>
                             <div class="col-md-4 ml-0">
-                                <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
+                                <?php
+                                $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $key->mapel_id);
+                                if (count($mapel) <= 0) { ?>
+                                    <a href="javascript:tambahCart(<?= $key->mapel_id ?>);">Mulai Belajar</a>
+                                <?php } else { ?>
+                                    <a href="#">Go To Cart</a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -335,8 +341,8 @@ if (isset($key->id_materi_pokok)) {
                                 <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                      alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
-                                    <h3><?= $data->nama_mapel ?> . . .</h3>
-                                    <p>Pelajari lebih lanjut ...</p>
+                                    <h4><?= $data->nama_mapel ?></h4>
+                                    <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($data->harga) ?></span></h5>
                                 </div>
                             </a>
                         </div>

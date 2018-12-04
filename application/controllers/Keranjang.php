@@ -11,17 +11,11 @@ class Keranjang extends CI_Controller
 
     public function simpan()
     {
+        $id_mapel = $_POST['id_mapel'];
 
-        $this->simpan_rules();
-        if ($this->form_validation->run() == FALSE) {
-            $error = $this->form_validation->error_array();
-            $status = 422;
-            $result = [
-                "success" => true,
-                "message" => $error,
-            ];
-        } else {
-            $id_mapel = $_POST['id_mapel'];
+        $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $id_mapel);
+
+        if (count($mapel) <= 0) {
             $create = $this->Model_Cart->addCartSiswa($_SESSION['id_siswa'], $id_mapel);
             if ($create) {
                 $status = 200;
@@ -29,6 +23,11 @@ class Keranjang extends CI_Controller
                     "success" => true,
                     "message" => "Berhasil Menyimpan Data",
                 ];
+                $cart = $this->Model_Cart->getCartByIdSiswa($_SESSION['id_siswa']);
+                $cart = obj_to_arr($cart);
+                $jumlah_cart = count($cart);
+                $this->session->set_userdata('cart', $cart);
+                $this->session->set_userdata('jumlah_cart', $jumlah_cart);
             } else {
                 $status = 500;
                 $result = [
@@ -36,6 +35,12 @@ class Keranjang extends CI_Controller
                     "message" => "Gagal Menyimpan Data",
                 ];
             }
+        } else {
+            $status = 200;
+            $result = [
+                "success" => true,
+                "message" => "Berhasil Menyimpan Data",
+            ];
         }
 
         $this->output
@@ -45,9 +50,5 @@ class Keranjang extends CI_Controller
 
     }
 
-    private function simpan_rules()
-    {
-        $this->form_validation->set_rules('id_mapel', 'Mapel Belum Di Pilih', 'required|trim');
-    }
 
 }

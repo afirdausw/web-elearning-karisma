@@ -52,9 +52,9 @@ class Login extends CI_Controller
 
             $result = $this->model_login->cek_login($username, $password);
             if ($result != null) {
-                $cart = $this->Model_cart->getCartByIdSiswa($result->id_siswa);
-                $jumlah_cart = count($cart);
+                $cart = $this->Model_Cart->getCartByIdSiswa($result->id_siswa);
                 $cart = obj_to_arr($cart);
+                $jumlah_cart = count($cart);
                 $this->session->set_userdata('siswa_logged_in', TRUE);
                 $this->session->set_userdata('id_siswa', $result->id_siswa);
                 $this->session->set_userdata('cart', $cart);

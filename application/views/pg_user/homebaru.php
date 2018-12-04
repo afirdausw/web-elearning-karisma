@@ -43,8 +43,8 @@
                                 <a href="<?= base_url() . 'kelas/' . $value->kelas_id; ?>" class="badge-kelas">
                                     <?= $value->alias_kelas ?>
                                 </a>
-                                <h3><?= $mapel ?></h3>
-                                <p>Pelajari lebih lanjut ...</p>
+                                <h4><?= $mapel ?></h4>
+                                <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($value->harga) ?></span></h5>
                             </div>
                         </a>
                     </div>
@@ -150,6 +150,7 @@
         src="https://cdn.rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
 
 <script>
+    var base_url = "<?= base_url() ?>";
     // init bootpag
     $('#home_materi_pagination_top,#home_materi_pagination_bot').bootpag({
         total: <?=ceil($jumlah_mapel / $limit);?>,
@@ -167,12 +168,13 @@
         lastClass: 'last',
         firstClass: 'first'
     }).on("page", function (event, /* page number here */ num) {
+        var url = base_url + "home/ajax_load_listmapel/<?= $limit ?>/" + num;
         bnner = $("section.banner-home");
         lst = $("#home_list_materi");
         nav = $("nav.navbar");
         $("html, body").animate({scrollTop: bnner.height() - nav.height()}, "slow");
         $.ajax({
-            url: "<?= base_url();?>home/ajax_load_listmapel/"+<?=$limit?>+"/"+num,
+            url: url,
             success: function (result) {
                 lst.html(result);
             }
