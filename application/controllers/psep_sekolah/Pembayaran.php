@@ -23,7 +23,7 @@ class Pembayaran extends CI_Controller
 		$data = array(
 			'navbar_title' 	=> "Pembayaran",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 	=> $this->model_adm->fetch_all_pembayaran()
+			'table_data' 	=> $this->Model_adm->fetch_all_pembayaran()
 			);
 		// tester
 		// alert_success('', "");
@@ -74,8 +74,8 @@ class Pembayaran extends CI_Controller
 
 	function beli_paket(){
 		$data = array(
-			'data_reguler'				=> $this->model_paket->get_paket_reguler(),
-			'data_premium'				=> $this->model_paket->get_paket_premium(),
+			'data_reguler'				=> $this->Model_paket->get_paket_reguler(),
+			'data_premium'				=> $this->Model_paket->get_paket_premium(),
 			'nama'								=> '',
 			'hp'									=> '',
 			'email'								=> '',
@@ -111,7 +111,7 @@ class Pembayaran extends CI_Controller
 		//PERSIAPAN 3
 		//fetching post with name contains 'paket_'
 		$assoc_keys = preg_grep('/^paket_/', array_keys($params));
-		$data_paket = $this->model_paket->get_all_paket();
+		$data_paket = $this->Model_paket->get_all_paket();
 		$detail_pembelian = array();
 		foreach ($assoc_keys as $index) {
 			if($params["{$index}"] > 0)
@@ -129,9 +129,9 @@ class Pembayaran extends CI_Controller
 		{
 			$this->session->set_flashdata('sukses','Data pembelian berhasil ditambahkan');
 
-			$result = $this->model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
+			$result = $this->Model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
 			if($result > 0){
-				$dt = $this->model_pembayaran->get_pembelian_umum($result);
+				$dt = $this->Model_pembayaran->get_pembelian_umum($result);
 				$this->terima($result);
 			}
 			redirect('psep_sekolah/pembayaran');
@@ -140,8 +140,8 @@ class Pembayaran extends CI_Controller
 		{
 			$this->session->set_flashdata('msgpaket','Pilih paket minimal 1 paket yang ingin dibeli');
 			$data = array(
-				'data_reguler'				=> $this->model_paket->get_paket_reguler(),
-				'data_premium'				=> $this->model_paket->get_paket_premium(),
+				'data_reguler'				=> $this->Model_paket->get_paket_reguler(),
+				'data_premium'				=> $this->Model_paket->get_paket_premium(),
 				'nama'								=> $params["nama"],
 				'hp'									=> $params["hp"],
 				'email'								=> $params["email"],
@@ -162,11 +162,11 @@ class Pembayaran extends CI_Controller
 	}
 
 	function terima($id_pembayaran){
-		$pembayaran=$this->model_pembayaran->get_info_pembayaran($id_pembayaran);
+		$pembayaran=$this->Model_pembayaran->get_info_pembayaran($id_pembayaran);
 		foreach($pembayaran as $item){
 			for($i=1; $i <= $item->jumlah; $i++){
 					//echo "<p>".$item->paket_id . "akan digenerate voucher sbb: ";
-					$result = $this->model_pembayaran->aktivasi_voucher($item->paket_id, $item->kelas_id, "online", $id_pembayaran);
+					$result = $this->Model_pembayaran->aktivasi_voucher($item->paket_id, $item->kelas_id, "online", $id_pembayaran);
 			}
 			if ($item->siswa_id > 0){
 				$email = $item->email;
@@ -175,7 +175,7 @@ class Pembayaran extends CI_Controller
 			}
 		}
 		//echo base_url();
-		$result = $this->model_pembayaran->update_status("2", $id_pembayaran);
+		$result = $this->Model_pembayaran->update_status("2", $id_pembayaran);
 //		$this->send_Postmark($id_pembayaran, $email); //POSTMARK
 		//$this->send_MailGrid($id_pembayaran, $email);
 		//$this->send_Gmail($id_pembayaran, $email); //Gmail
@@ -200,16 +200,16 @@ class Pembayaran extends CI_Controller
 	}
 	
 	function terimaall($id_pembayaran){
-		$pembayaran=$this->model_pembayaran->get_info_pembayaran($id_pembayaran);
+		$pembayaran=$this->Model_pembayaran->get_info_pembayaran($id_pembayaran);
 		foreach($pembayaran as $item){
 			for($i=1; $i <= $item->jumlah; $i++){
 					//echo "<p>".$item->paket_id . "akan digenerate voucher sbb: ";
-					$result = $this->model_pembayaran->aktivasi_voucher($item->paket_id, $item->kelas_id, "online", $id_pembayaran);
+					$result = $this->Model_pembayaran->aktivasi_voucher($item->paket_id, $item->kelas_id, "online", $id_pembayaran);
 			}
 			$email = $item->email;
 		}
 		//echo base_url();
-		$result = $this->model_pembayaran->update_status("2", $id_pembayaran);
+		$result = $this->Model_pembayaran->update_status("2", $id_pembayaran);
 		$this->send_MailGridAll($id_pembayaran, $email);
 	}
 	
@@ -220,7 +220,7 @@ class Pembayaran extends CI_Controller
 		if(isset($_POST['confirm'])) {
 			for($i=0; $i<=$jumlahcheck - 1; $i++){
 				//echo "<p>".$idbeli[$i];
-				$pembayaran=$this->model_pembayaran->get_info_pembayaran($idbeli[$i]);
+				$pembayaran=$this->Model_pembayaran->get_info_pembayaran($idbeli[$i]);
 				foreach($pembayaran as $item){
 					if($item->status == "1"){
 					$this->terimaall($idbeli[$i]);
@@ -229,7 +229,7 @@ class Pembayaran extends CI_Controller
 			}
 		}elseif(isset($_POST['delete'])) {
 				for($i=0; $i<=$jumlahcheck - 1; $i++){
-				$hapus=$this->model_pembayaran->hapus_pembayaran($idbeli[$i]);
+				$hapus=$this->Model_pembayaran->hapus_pembayaran($idbeli[$i]);
 			}
 		}
 		
@@ -256,7 +256,7 @@ class Pembayaran extends CI_Controller
 			$this->email->to($email);// change it to yours
 			$this->email->subject('Prime Mobile Activation Code');
 			$dataemail = array (
-				'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+				'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 			);
 			$body = $this->load->view('psep_sekolah/email.php',$dataemail,TRUE);
 			$this->email->message($body);
@@ -291,7 +291,7 @@ class Pembayaran extends CI_Controller
 	       $this->email->to($email);// change it to yours
 	       $this->email->subject('Prime Mobile Activation Code');
 	       $dataemail = array (
-			'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+			'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 		);
 			$body = $this->load->view('psep_sekolah/email.php',$dataemail,TRUE);
 			$this->email->message($body);
@@ -326,7 +326,7 @@ class Pembayaran extends CI_Controller
 	       $this->email->to($email);// change it to yours
 	       $this->email->subject('Prime Mobile Activation Code');
 	       $dataemail = array (
-			'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+			'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 		);
 			$body = $this->load->view('psep_sekolah/email.php',$dataemail,TRUE);
 			$this->email->message($body);
@@ -360,7 +360,7 @@ class Pembayaran extends CI_Controller
 			$this->email->to($email);// change it to yours
 			$this->email->subject('Prime Mobile Activation Code');
 			$dataemail = array (
-				'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+				'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 			);
 
 			$body = $this->load->view('pg_admin/email.php',$dataemail,TRUE);
@@ -397,7 +397,7 @@ class Pembayaran extends CI_Controller
 			$this->email->to($email);// change it to yours
 			$this->email->subject('Prime Mobile Activation Code');
 			$dataemail = array (
-				'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+				'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 			);
 
 			$body = $this->load->view('pg_admin/email.php',$dataemail,TRUE);

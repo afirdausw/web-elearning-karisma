@@ -21,7 +21,7 @@ class Siswa extends CI_Controller
         $this->load->model('model_banksoal');
         $this->load->model('model_pg');
         $this->load->model('model_psep');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
 
     }
 
@@ -30,7 +30,7 @@ class Siswa extends CI_Controller
         $data = array(
             'navbar_title' => "Siswa",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_all_siswa()
+            'table_data'   => $this->Model_adm->fetch_all_siswa()
         );
 
 
@@ -228,7 +228,7 @@ class Siswa extends CI_Controller
 
             }
 
-            $import = $this->model_adm->import_siswa($data_sekolah);
+            $import = $this->Model_adm->import_siswa($data_sekolah);
             if ($import) {
                 alert_success('Sukses', "Data berhasil diimport!");
             }
@@ -248,7 +248,7 @@ class Siswa extends CI_Controller
     {
         $data = array(
             'navbar_title'         => 'Upload Excel Siswa',
-            'select_options_mapel' => $this->model_banksoal->get_kelas()
+            'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/siswaupload', $data);
     }
@@ -272,12 +272,12 @@ class Siswa extends CI_Controller
         $data = array(
             'navbar_title'    => "Pendaftar",
             'form_action'     => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'      => $this->model_adm->fetch_siswa_pendaftar(),
-            'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-            'select_kota'     => $this->model_pg->fetch_all_kota(),
-            'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-            'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-            'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+            'table_data'      => $this->Model_adm->fetch_siswa_pendaftar(),
+            'select_provinsi' => $this->Model_pg->fetch_all_provinsi(),
+            'select_kota'     => $this->Model_pg->fetch_all_kota(),
+            'select_sekolah'  => $this->Model_pg->fetch_all_sekolah(),
+            'select_kelas'    => $this->Model_pg->fetch_all_kelas(),
+            'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
         );
 
         $this->load->view('pg_admin/siswa_pendaftar', $data);
@@ -285,7 +285,7 @@ class Siswa extends CI_Controller
 
     function kota($idprovinsi)
     {
-        $carikota = $this->model_signup->get_kota_by_provinsi($idprovinsi);
+        $carikota = $this->Model_signup->get_kota_by_provinsi($idprovinsi);
 
         foreach ($carikota as $kota) {
             echo "
@@ -297,7 +297,7 @@ class Siswa extends CI_Controller
 
     function sekolah($idkota)
     {
-        $carisekolah = $this->model_signup->get_sekolah_by_kota($idkota);
+        $carisekolah = $this->Model_signup->get_sekolah_by_kota($idkota);
 
         echo "
 		<option value=''>Pilih Sekolah...</option>
@@ -312,9 +312,9 @@ class Siswa extends CI_Controller
     function kelas($idsekolah)
     {
         if ($idsekolah !== 'sekolahbaru') {
-            $carijenjang = $this->model_signup->cari_jenjang($idsekolah);
+            $carijenjang = $this->Model_signup->cari_jenjang($idsekolah);
 
-            $carikelas = $this->model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
+            $carikelas = $this->Model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
 
             foreach ($carikelas as $kelas) {
                 echo "
@@ -328,7 +328,7 @@ class Siswa extends CI_Controller
     {
         //$idsekolah = $this->session->userdata('idsekolah');
 
-        $carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $sekolah);
+        $carisiswa = $this->Model_psep->cari_siswa_by_kelas($kelas, $sekolah);
 
 
         $no = 1;
@@ -353,7 +353,7 @@ class Siswa extends CI_Controller
         $data = array(
             'navbar_title' => "Siswa Aktif",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_siswa_aktif()
+            'table_data'   => $this->Model_adm->fetch_siswa_aktif()
         );
 
         $this->load->view('pg_admin/siswa_aktif', $data);
@@ -372,11 +372,11 @@ class Siswa extends CI_Controller
                         'navbar_title'    => "Manajemen Siswa",
                         'page_title'      => "Tambah Siswa",
                         'form_action'     => current_url(),
-                        'select_sekolah'  => $this->model_adm->fetch_all_sekolah(),
-                        'select_options'  => $this->model_adm->fetch_all_kelas(),
-                        'select_jenjang'  => $this->model_adm->fetch_options_jenjang(),
-                        'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-                        'select_kota'     => $this->model_adm->fetch_options_kota()
+                        'select_sekolah'  => $this->Model_adm->fetch_all_sekolah(),
+                        'select_options'  => $this->Model_adm->fetch_all_kelas(),
+                        'select_jenjang'  => $this->Model_adm->fetch_options_jenjang(),
+                        'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+                        'select_kota'     => $this->Model_adm->fetch_options_kota()
                     );
 
                     //Form materi submit handler. See if the user is attempting to submit a form or not
@@ -397,9 +397,9 @@ class Siswa extends CI_Controller
                         'navbar_title'   => "Manajemen Siswa",
                         'page_title'     => "Ubah Siswa",
                         'form_action'    => current_url() . "?id=$id",
-                        'data_siswa'     => $this->model_adm->fetch_siswa_by_id($id),
-                        'select_sekolah' => $this->model_adm->fetch_all_sekolah(),
-                        'select_options' => $this->model_adm->fetch_all_kelas()
+                        'data_siswa'     => $this->Model_adm->fetch_siswa_by_id($id),
+                        'select_sekolah' => $this->Model_adm->fetch_all_sekolah(),
+                        'select_options' => $this->Model_adm->fetch_all_kelas()
                     );
 
                     //Redirect to siswa if id is not exist
@@ -431,9 +431,9 @@ class Siswa extends CI_Controller
                         'navbar_title'   => "Manajemen Siswa",
                         'page_title'     => "Ubah Siswa",
                         'form_action'    => current_url() . "?id=$id",
-                        'data_siswa'     => $this->model_adm->fetch_siswa_by_id($id),
-                        'select_sekolah' => $this->model_adm->fetch_all_sekolah(),
-                        'select_options' => $this->model_adm->fetch_all_kelas()
+                        'data_siswa'     => $this->Model_adm->fetch_siswa_by_id($id),
+                        'select_sekolah' => $this->Model_adm->fetch_all_sekolah(),
+                        'select_options' => $this->Model_adm->fetch_all_kelas()
                     );
 
                     //Redirect to siswa if id is not exist
@@ -471,8 +471,8 @@ class Siswa extends CI_Controller
         $data = array(
             'page_title'     => "Pendaftaran Siswa",
             'form_action'    => current_url(),
-            'select_sekolah' => $this->model_adm->fetch_all_sekolah(),
-            'select_options' => $this->model_adm->fetch_all_kelas()
+            'select_sekolah' => $this->Model_adm->fetch_all_sekolah(),
+            'select_options' => $this->Model_adm->fetch_all_kelas()
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -492,8 +492,8 @@ class Siswa extends CI_Controller
         //$tambah_sekolah   = $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
 
         if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
+            $jenjang = $this->Model_adm->fetch_kelas_by_id($kelas)->jenjang;
+            $insert_id = $this->Model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
             $sekolah_id = $insert_id;
         }
 
@@ -503,7 +503,7 @@ class Siswa extends CI_Controller
             $this->load->view('pg_admin/siswa_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis, $username, $password);
+            $result = $this->Model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis, $username, $password);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/siswa');
             // echo "Status Insert: " . $result;
@@ -515,12 +515,12 @@ class Siswa extends CI_Controller
         //set the page title
         $data = array(
             'page_title'     => "Ubah Data Siswa",
-            'select_sekolah' => $this->model_adm->fetch_all_sekolah(),
-            'select_options' => $this->model_adm->fetch_all_kelas(),
+            'select_sekolah' => $this->Model_adm->fetch_all_sekolah(),
+            'select_options' => $this->Model_adm->fetch_all_kelas(),
             'form_action'    => current_url() . "?id=$id"
         );
 
-        $siswa = $this->model_adm->fetch_siswa_by_id($id);
+        $siswa = $this->Model_adm->fetch_siswa_by_id($id);
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
         $nama = $params['nama'] ? $params['nama'] : $siswa->nama;
@@ -537,8 +537,8 @@ class Siswa extends CI_Controller
         $password = $password_raw;
         //$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
         if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
+            $jenjang = $this->Model_adm->fetch_kelas_by_id($kelas)->jenjang;
+            $insert_id = $this->Model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
             $sekolah_id = $insert_id;
         }
 
@@ -548,7 +548,7 @@ class Siswa extends CI_Controller
             $this->load->view('pg_admin/siswa_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis,$username,$username,$password);
+            $result = $this->Model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis,$username,$username,$password);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('pg_admin/siswa');
             // echo "Status Update: " . $result;
@@ -560,8 +560,8 @@ class Siswa extends CI_Controller
         //set the page title
         $data = array(
             'page_title'     => "Ubah Data Siswa",
-            'select_sekolah' => $this->model_adm->fetch_all_sekolah(),
-            'select_options' => $this->model_adm->fetch_all_kelas(),
+            'select_sekolah' => $this->Model_adm->fetch_all_sekolah(),
+            'select_options' => $this->Model_adm->fetch_all_kelas(),
             'form_action'    => current_url() . "?id=$id"
         );
 
@@ -577,8 +577,8 @@ class Siswa extends CI_Controller
         //$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
 
         if (!empty($tambah_sekolah)) {
-            $jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-            $insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
+            $jenjang = $this->Model_adm->fetch_kelas_by_id($kelas)->jenjang;
+            $insert_id = $this->Model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
             $sekolah_id = $insert_id;
         }
 
@@ -588,7 +588,7 @@ class Siswa extends CI_Controller
             $this->load->view('pg_admin/siswa_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas);
+            $result = $this->Model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('pg_admin/siswa/aktif');
             // echo "Status Update: " . $result;
@@ -604,7 +604,7 @@ class Siswa extends CI_Controller
 
         if ($this->form_validation->run()) {
             $id = $this->input->post('hidden_row_id');
-            $result = $this->model_adm->delete_siswa($id);
+            $result = $this->Model_adm->delete_siswa($id);
 
             alert_success('Sukses', "Data berhasil dihapus");
             redirect('pg_admin/siswa');
@@ -633,8 +633,8 @@ class Siswa extends CI_Controller
     private function fetch_siswa_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_siswa_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('siswa');
+        $table_data = $this->Model_adm->fetch_siswa_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('siswa');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);
@@ -657,7 +657,7 @@ class Siswa extends CI_Controller
 
         if ($id) {
             // $dynamic_options = $this->model_pg->fetch_sekolah_by_kota($id);
-            $dynamic_options = $this->model_adm->fetch_all_sekolah($id);
+            $dynamic_options = $this->Model_adm->fetch_all_sekolah($id);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Sekolah...</option>";
@@ -677,8 +677,8 @@ class Siswa extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $sekolah = $this->model_adm->fetch_sekolah_by_id($id);
-            $dynamic_options = $this->model_adm->fetch_kelas_by_jenjang($sekolah->jenjang);
+            $sekolah = $this->Model_adm->fetch_sekolah_by_id($id);
+            $dynamic_options = $this->Model_adm->fetch_kelas_by_jenjang($sekolah->jenjang);
 
             if ($dynamic_options) {
                 foreach ($dynamic_options as $item) {
@@ -706,9 +706,9 @@ class Siswa extends CI_Controller
 
         if (!empty($id_kota) AND !empty($jenjang) AND !empty($sekolah) AND !empty($email)) {
             //checking if nama sekolah is already exist
-            $sekolah_found = $this->model_adm->check_sekolah_by_nama($sekolah);
+            $sekolah_found = $this->Model_adm->check_sekolah_by_nama($sekolah);
             if (empty($sekolah_found)) {
-                $result_id = $this->model_adm->add_sekolah($sekolah, $jenjang, $email, $telepon, $id_kota, $alamat);
+                $result_id = $this->Model_adm->add_sekolah($sekolah, $jenjang, $email, $telepon, $id_kota, $alamat);
             }
         }
         echo json_encode($result_id);

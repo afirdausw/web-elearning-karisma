@@ -21,7 +21,7 @@ class Instruktur extends CI_Controller
         $this->load->model('model_banksoal');
         $this->load->model('model_pg');
         $this->load->model('model_psep');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
 
         //global variable
         $slug = $this->router->fetch_class();
@@ -47,9 +47,9 @@ class Instruktur extends CI_Controller
             "main_title"    => "Semua {$gVar['title']}",
             "navbar_title"    => "Daftar {$gVar['title']}",
             "form_action"     => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
-            "data_materi_pokok"    => $this->model_adm->fetch_all_table_data("materi_pokok"),
-            "data_instruktur" => $this->model_adm->fetch_all_table_data("{$gVar['slug']}"),
+            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+            "data_materi_pokok"    => $this->Model_adm->fetch_all_table_data("materi_pokok"),
+            "data_instruktur" => $this->Model_adm->fetch_all_table_data("{$gVar['slug']}"),
         );
         if(!empty($aksi)){
             switch($aksi):
@@ -58,7 +58,7 @@ class Instruktur extends CI_Controller
                         $where = array(
                             "id_instruktur" => "{$id_instruktur}",
                         );
-                        $data["data_instruktur_main"] = $this->model_adm->fetch_all_table_data("instruktur", $where);
+                        $data["data_instruktur_main"] = $this->Model_adm->fetch_all_table_data("instruktur", $where);
 
                         $where = array(
                             "instruktur_mapel.id_instruktur" => "{$id_instruktur}",
@@ -74,7 +74,7 @@ class Instruktur extends CI_Controller
                         );
                         $data["main_title"] = "Semua Materi Pelajaran";
                         $data["navbar_title"] = "{$data['data_instruktur_main'][0]->nama_instruktur}";
-                        $data["data_instruktur"] = $this->model_adm->fetch_all_table_data("instruktur_mapel", $where, "=", "*" , $joinArray);
+                        $data["data_instruktur"] = $this->Model_adm->fetch_all_table_data("instruktur_mapel", $where, "=", "*" , $joinArray);
                     }
                 break;
                 default:
@@ -99,7 +99,7 @@ class Instruktur extends CI_Controller
                         "basic_info"      => $gVar,
                         "navbar_title"    => "Manajemen {$gVar['title']}",
                         "page_title"      => "Tambah {$gVar['title']}",
-                        "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
+                        "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
                         "form_action"     => current_url(),
                     );
 
@@ -127,8 +127,8 @@ class Instruktur extends CI_Controller
                             "navbar_title"    => "Manajemen {$gVar['title']}",
                             "page_title"      => "Ubah {$gVar['title']}",
                             "form_action"    => current_url() . "?id=$id",
-                            "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
-                            "data_instruktur"     => $this->model_adm->fetch_instruktur_by_id($id),
+                            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+                            "data_instruktur"     => $this->Model_adm->fetch_instruktur_by_id($id),
                         );
 
                         //Form submit handler. See if the user is attempting to submit a form or not
@@ -146,7 +146,7 @@ class Instruktur extends CI_Controller
                         $where = array(
                             "id_instruktur" => "{$id_instruktur}",
                         );
-                        $data_instruktur = $this->model_adm->fetch_instruktur_by_id($id_instruktur);
+                        $data_instruktur = $this->Model_adm->fetch_instruktur_by_id($id_instruktur);
                         $table_fields = array("id_mapel", "nama_mapel", "gambar_mapel", "harga");
                         $data = array(
                             "basic_info"      => $gVar,
@@ -156,8 +156,8 @@ class Instruktur extends CI_Controller
                             "form_action"    => current_url(),
                             "table_fields"    => $table_fields,
                             "data_instruktur"     => $data_instruktur,
-                            "data_mapel"     =>  $this->model_adm->fetch_all_table_data("mata_pelajaran"),                            
-                            "data_instruktur_mapel"     => $this->model_adm->fetch_all_table_data("instruktur_mapel", $where),
+                            "data_mapel"     =>  $this->Model_adm->fetch_all_table_data("mata_pelajaran"),
+                            "data_instruktur_mapel"     => $this->Model_adm->fetch_all_table_data("instruktur_mapel", $where),
                         );
 
 
@@ -194,7 +194,7 @@ class Instruktur extends CI_Controller
             "basic_info"      => $gVar,
             "page_title"     => "Pendaftaran Siswa",
             "form_action"    => current_url(),
-            "table_fields"    => $this->model_adm->get_table_fields("{$gVar['slug']}"),
+            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
         );
 
         $file_element_name = "foto";
@@ -228,7 +228,7 @@ class Instruktur extends CI_Controller
             $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_instruktur($params);
+            $result = $this->Model_adm->add_instruktur($params);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect("pg_admin/{$gVar['slug']}");
         }
@@ -242,7 +242,7 @@ class Instruktur extends CI_Controller
 
         if ($id!=null) {
             $where = array("id_instruktur" => $id);
-            $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            $data_instruktur = $this->Model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
             
             if($data_instruktur !== null){
                 unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
@@ -271,7 +271,7 @@ class Instruktur extends CI_Controller
             //fetch input (make sure that the variable name is the same as column name in database!)
             $params = $this->input->post(null, true);
             $params["foto"] = $gambar_instruktur;
-            $this->model_adm->update_instruktur($params, $id);
+            $this->Model_adm->update_instruktur($params, $id);
             alert_success("Sukses", "Data berhasil diupdate");
         }else{
             alert_error("Error", "Data gagal diupdate");
@@ -287,11 +287,11 @@ class Instruktur extends CI_Controller
 
         if ($id!=null) {
             $where = array("id_instruktur" => $id);
-            $data_instruktur = $this->model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            $data_instruktur = $this->Model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
             if($data_instruktur !== null){
                 unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
             }
-            $this->model_adm->delete_instruktur($id);
+            $this->Model_adm->delete_instruktur($id);
             alert_success("Sukses", "Data berhasil dihapus");
         }else{
             alert_error("Error", "Data gagal dihapus");
@@ -303,7 +303,7 @@ class Instruktur extends CI_Controller
         $where = array(
             "id_instruktur" => "{$id_instruktur}",
         );
-        $act = $this->model_adm->delete_instruktur_mapel($where);
+        $act = $this->Model_adm->delete_instruktur_mapel($where);
 
         if($act){
             $data_insert = array();
@@ -315,7 +315,7 @@ class Instruktur extends CI_Controller
                         "id_mapel" => $key,
                     );
                 endforeach;
-                $act = $this->model_adm->add_instruktur_mapel($data_insert);
+                $act = $this->Model_adm->add_instruktur_mapel($data_insert);
             }
         }
         redirect("pg_admin/instruktur/manajemen/mapel/{$id_instruktur}");

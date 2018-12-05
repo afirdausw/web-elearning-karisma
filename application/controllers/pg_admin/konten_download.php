@@ -16,7 +16,7 @@ class kategori_konten_download extends CI_Controller {
 			$this->load->helper('alert_helper');
 			$this->load->model('model_adm');
 			$this->load->model('model_security');
-			$this->model_security->is_logged_in();
+			$this->Model_security->is_logged_in();
 	}
 
 
@@ -25,7 +25,7 @@ class kategori_konten_download extends CI_Controller {
 		$data = array(
 			'navbar_title' => "Kategori Konten Download",
 			'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data'   => $this->model_adm->get_all_konten_by_kategori_konten_download($id_konten),
+			'table_data'   => $this->Model_adm->get_all_konten_by_kategori_konten_download($id_konten),
 		);
 
 		$this->load->view('pg_admin/kategori_konten_download', $data);
@@ -34,8 +34,8 @@ class kategori_konten_download extends CI_Controller {
 	public function kategori_konten_download_all(){
 		$data = array(
 			'navbar_title' 	=> "Manajemen Akun PSEP - Kategori Konten Download",
-			'table_data' 	=> $this->model_adm->fetch_all_akun_sekolah(),
-			'data_kategori_konten_download' => $this->model_adm->fetch_all_kategori_konten_download()
+			'table_data' 	=> $this->Model_adm->fetch_all_akun_sekolah(),
+			'data_kategori_konten_download' => $this->Model_adm->fetch_all_kategori_konten_download()
 		);
 
 		$this->load->view('pg_admin/kategori_konten_download', $data);

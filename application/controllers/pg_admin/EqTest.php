@@ -12,7 +12,7 @@ class EqTest extends CI_Controller
         $this->load->helper('alert_helper');
         $this->load->model('Model_eqtest');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     function index()

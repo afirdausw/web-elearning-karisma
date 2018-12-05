@@ -17,7 +17,7 @@ class Mapel extends CI_Controller {
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
       $this->load->model('model_dashboard');
-		$this->model_security->psep_sekolah_is_logged_in();
+		$this->Model_security->psep_sekolah_is_logged_in();
   }
 
 	public function index()
@@ -25,7 +25,7 @@ class Mapel extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Mata Pelajaran",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_mapel()
+			'table_data' 		=> $this->Model_adm->fetch_all_mapel()
 			);
 
 		$this->load->view('psep_sekolah/mapel', $data);
@@ -39,7 +39,7 @@ class Mapel extends CI_Controller {
             $data = array(
                 'navbar_title' => "Mata Pelajaran",
                 'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-                'table_data'   => $this->model_adm->fetch_mapel_by_id_kelas($id_kelas),
+                'table_data'   => $this->Model_adm->fetch_mapel_by_id_kelas($id_kelas),
                 'kelas'   => $id_kelas,
             );
             $this->load->view('psep_sekolah/mapel', $data);
@@ -64,10 +64,10 @@ class Mapel extends CI_Controller {
                         'navbar_title'   => "Manajemen Mata Pelajaran",
                         'page_title'     => "Tambah Mata Pelajaran",
                         'form_action'    => current_url(),
-                        'select_options' => $this->model_adm->fetch_all_kelas(),
+                        'select_options' => $this->Model_adm->fetch_all_kelas(),
 
                     );
-                    $data['data'] =  $this->model_dashboard->kelas_by_id($kelas);
+                    $data['data'] =  $this->Model_dashboard->kelas_by_id($kelas);
                     //Form materi submit handler. See if the user is attempting to submit a form or not
                     if ($this->input->post('form_submit')) {
                         //Form is submitted. Now routing to proses_tambah method
@@ -86,7 +86,7 @@ class Mapel extends CI_Controller {
                         'navbar_title'   => "Manajemen Mata Pelajaran",
                         'page_title'     => "Ubah Mata Pelajaran",
                         'form_action'    => current_url() . "?id=$id",
-                        'select_options' => $this->model_adm->fetch_all_kelas(),
+                        'select_options' => $this->Model_adm->fetch_all_kelas(),
                     );
 
                     //Redirect to kelas if id is not exist
@@ -211,7 +211,7 @@ class Mapel extends CI_Controller {
 		$data = array(
 			'page_title' 			=> "Tambah Mata Pelajaran", 
 			'form_action' 		=> current_url(),
-			'select_options' 	=> $this->model_adm->fetch_all_kelas()
+			'select_options' 	=> $this->Model_adm->fetch_all_kelas()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -230,7 +230,7 @@ class Mapel extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel);
+			$result = $this->Model_adm->add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel);
 			alert_success("Sukses", "Data berhasil ditambahkan");
 			redirect('psep_sekolah/mapel/kelas/'.$kelas_id);
 			// echo "Status Insert: " . $result;
@@ -243,7 +243,7 @@ class Mapel extends CI_Controller {
 		$data = array(
 			'page_title' 	=> "Ubah Materi",
 			'form_action' => current_url(). "?id=$id",
-			'select_options' 	=> $this->model_adm->fetch_all_kelas()
+			'select_options' 	=> $this->Model_adm->fetch_all_kelas()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -262,7 +262,7 @@ class Mapel extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel);
+			$result = $this->Model_adm->update_mapel($id, $kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('psep_sekolah/mapel/kelas/'.$kelas_id);
 			// echo "Status Update: " . $result;
@@ -281,7 +281,7 @@ class Mapel extends CI_Controller {
 			if($this->form_validation->run())
 			{
 				$id 		= $this->input->post('hidden_row_id');
-				$result = $this->model_adm->delete_mapel($id);
+				$result = $this->Model_adm->delete_mapel($id);
 				
 				alert_success('Sukses', "Data berhasil dihapus");
 				redirect('psep_sekolah/mapel/kelas/'.$data->id_kelas);
@@ -306,8 +306,8 @@ class Mapel extends CI_Controller {
 	function fetch_mapel_by_id($id)
 	{
 		$data 					= new stdClass();
-		$table_data 		= $this->model_adm->fetch_mapel_by_id($id); 
-		$table_fields 	= $this->model_adm->get_table_fields('mata_pelajaran', 'kelas');
+		$table_data 		= $this->Model_adm->fetch_mapel_by_id($id);
+		$table_fields 	= $this->Model_adm->get_table_fields('mata_pelajaran', 'kelas');
 		//tester
 		// var_dump($table_data);
 		// var_dump($table_fields);

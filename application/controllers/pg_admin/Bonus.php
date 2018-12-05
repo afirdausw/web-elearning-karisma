@@ -16,7 +16,7 @@ class Bonus extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 	public function index()
@@ -24,7 +24,7 @@ class Bonus extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Bonus",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_bonus_konten()
+			'table_data' 		=> $this->Model_adm->fetch_all_bonus_konten()
 			);
 
 		$this->load->view('pg_admin/bonus', $data);
@@ -44,7 +44,7 @@ class Bonus extends CI_Controller {
 					'navbar_title'	=> "Manajemen Bonus",
 					'page_title' 		=> "Tambah Bonus",
 					'form_action' 	=> current_url(),
-					'select_options' 	=> $this->model_adm->fetch_all_kategori_bonus()
+					'select_options' 	=> $this->Model_adm->fetch_all_kategori_bonus()
 					);
 
 					//Form materi submit handler. See if the user is attempting to submit a form or not
@@ -68,7 +68,7 @@ class Bonus extends CI_Controller {
 					'navbar_title'	=> "Manajemen Bonus",
 					'page_title' 		=> "Ubah Bonus",
 					'form_action' 	=> current_url() . "?id=$id",
-					'select_options' 	=> $this->model_adm->fetch_all_kategori_bonus()
+					'select_options' 	=> $this->Model_adm->fetch_all_kategori_bonus()
 					);
 
 					//Redirect to bonus if id is not exist
@@ -80,7 +80,7 @@ class Bonus extends CI_Controller {
 					{
 						//Calling values from database by id and pass them to View
 						//fetching bonus by id
-						$data['data'] = $this->model_adm->fetch_bonus_konten_by_id($id);
+						$data['data'] = $this->Model_adm->fetch_bonus_konten_by_id($id);
 
 						//Form submit handler. See if the user is attempting to submit a form or not
 						if($this->input->post('form_submit')) 
@@ -114,7 +114,7 @@ class Bonus extends CI_Controller {
 		$data = array(
 			'page_title' 	=> "Tambah Bonus", 
 			'form_action' => current_url(),
-			'select_options' 	=> $this->model_adm->fetch_all_kategori_bonus()
+			'select_options' 	=> $this->Model_adm->fetch_all_kategori_bonus()
 			);
 			
 		if($_FILES['gambar']['name'] !== ""){
@@ -151,7 +151,7 @@ class Bonus extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->add_bonus_konten($data_model);
+			$result = $this->Model_adm->add_bonus_konten($data_model);
 			alert_success("Sukses", "Data berhasil ditambahkan");
 			redirect('pg_admin/bonus');
 			// echo "Status Insert: " . $result;
@@ -209,7 +209,7 @@ class Bonus extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_bonus_konten($id, $data_model);
+			$result = $this->Model_adm->update_bonus_konten($id, $data_model);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('pg_admin/bonus');
 		}	
@@ -226,7 +226,7 @@ class Bonus extends CI_Controller {
       if($this->form_validation->run())
       {
         $id   = $this->input->post('hidden_row_id');
-        $result = $this->model_adm->delete_bonus($id);
+        $result = $this->Model_adm->delete_bonus($id);
         
         alert_success('Sukses', "Data berhasil dihapus");
         redirect('pg_admin/bonus');
@@ -250,7 +250,7 @@ class Bonus extends CI_Controller {
 
 	function ajax_select_kategori()
   {
-    $dynamic_options = $this->model_adm->fetch_all_kategori_bonus();
+    $dynamic_options = $this->Model_adm->fetch_all_kategori_bonus();
 
     if($dynamic_options){
       echo "<option value='' disabled selected>Pilih Sekolah...</option>";
@@ -273,9 +273,9 @@ class Bonus extends CI_Controller {
     
     if(!empty($data_model['kategori_bonus'])) {
       //checking if nama sekolah is already exist
-      $kategori_found = $this->model_adm->check_kategori_bonus($data_model['kategori_bonus']);
+      $kategori_found = $this->Model_adm->check_kategori_bonus($data_model['kategori_bonus']);
       if(empty($kategori_found)) {
-        $result_id = $this->model_adm->add_bonus_kategori($data_model);
+        $result_id = $this->Model_adm->add_bonus_kategori($data_model);
       }
     }
     echo json_encode($result_id);

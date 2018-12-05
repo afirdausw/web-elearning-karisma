@@ -18,7 +18,7 @@ class Materi_pokok extends CI_Controller
         $this->load->model('model_adm');
         $this->load->model('model_security');
         $this->load->model('model_psep');
-        $this->model_security->psep_sekolah_is_logged_in();
+        $this->Model_security->psep_sekolah_is_logged_in();
     }
 
     public function index()
@@ -26,7 +26,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'navbar_title' => "Materi Pokok",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_all_materi_pokok()
+            'table_data'   => $this->Model_adm->fetch_all_materi_pokok()
         );
 
         $this->load->view('psep_sekolah/materi_pokok', $data);
@@ -42,7 +42,7 @@ class Materi_pokok extends CI_Controller
             $data = array(
                 'navbar_title' => "Materi Pokok",
                 'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-                'table_data'   => $this->model_adm->fetch_all_materi_pokok_by_id_mapel($id_mapel),
+                'table_data'   => $this->Model_adm->fetch_all_materi_pokok_by_id_mapel($id_mapel),
                 'kelas'        => $id_kelas,
                 'Mapel' => $id_mapel,
             );
@@ -79,15 +79,15 @@ class Materi_pokok extends CI_Controller
                 case 'tambah':
                     $idpsep = $this->session->userdata('idpsepsekolah');
 
-                    $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                     $id_mapel = $cariidmapel->id_mapel;
 
-                    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
                     if ($cariidmapel->level == "guru") {
-                        $mapelg = $this->model_psep->cari_kelas_in_id_mapel($id_mapel);
+                        $mapelg = $this->Model_psep->cari_kelas_in_id_mapel($id_mapel);
                     } else {
-                        $mapelg = $this->model_adm->fetch_mapel_by_id_kelas($kelas);
+                        $mapelg = $this->Model_adm->fetch_mapel_by_id_kelas($kelas);
                     }
                     $data = array(
                         'navbar_title'   => "Manajemen Materi Pokok",
@@ -96,7 +96,7 @@ class Materi_pokok extends CI_Controller
                         'select_options' => $mapelg,
                     );
 
-                    $data['data'] = $this->model_adm->fetch_mapel_by_id($mapel);
+                    $data['data'] = $this->Model_adm->fetch_mapel_by_id($mapel);
                     //Form materi submit handler. See if the user is attempting to submit a form or not
                     if ($this->input->post('form_submit')) {
                         //Form is submitted. Now routing to proses_tambah method
@@ -112,15 +112,15 @@ class Materi_pokok extends CI_Controller
                     $id = $this->input->get('id') ? $this->input->get('id') : null;
                     $idpsep = $this->session->userdata('idpsepsekolah');
 
-                    $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                     $id_mapel = $cariidmapel->id_mapel;
 
-                    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
                     if ($cariidmapel->level == "guru") {
-                        $mapelg = $this->model_psep->cari_kelas_in_id_mapel($id_mapel);
+                        $mapelg = $this->Model_psep->cari_kelas_in_id_mapel($id_mapel);
                     } else {
-                        $mapelg = $this->model_adm->fetch_mapel_by_id_kelas($kelas);
+                        $mapelg = $this->Model_adm->fetch_mapel_by_id_kelas($kelas);
                     }
                     $data = array(
                         'navbar_title'   => "Manajemen Mata Pelajaran",
@@ -337,7 +337,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'page_title'     => "Tambah Materi Pokok",
             'form_action'    => current_url(),
-            'select_options' => $this->model_adm->fetch_options_materi_pokok()
+            'select_options' => $this->Model_adm->fetch_options_materi_pokok()
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -345,10 +345,10 @@ class Materi_pokok extends CI_Controller
         $mapel_id = $params['mata_pelajaran'];
         $nama_materi_pokok = $params['materi_pokok'];
         $deskripsi_materi_pokok = $params['deskripsi_materi_pokok'];
-        $max = $this->model_adm->select_max('materi_pokok', 'urutan');
+        $max = $this->Model_adm->select_max('materi_pokok', 'urutan');
         $urutan = ($max->urutan + 1);
 
-        $carikelas = $this->model_adm->fetch_mapel_by_id($mapel_id);
+        $carikelas = $this->Model_adm->fetch_mapel_by_id($mapel_id);
 
         $id_kelas = $carikelas->id_kelas;
 
@@ -359,14 +359,14 @@ class Materi_pokok extends CI_Controller
         } elseif ($this->session->userdata('level') == "sekolah") {
 
             //passing input value to Model
-            $result = $this->model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok, $urutan);
+            $result = $this->Model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok, $urutan);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/materi_pokok/mapel/' . $id_kelas . '/' . $mapel_id);
             // echo "Status Insert: " . $result;
         } elseif ($this->session->userdata('level') == "guru") {
 
             //passing input value to Model
-            $result = $this->model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok, $urutan);
+            $result = $this->Model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok, $urutan);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/kelas_ampu');
             // echo "Status Insert: " . $result;
@@ -379,7 +379,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'page_title'     => "Ubah Materi Pokok",
             'form_action'    => current_url() . "?id=$id",
-            'select_options' => $this->model_adm->fetch_options_materi_pokok()
+            'select_options' => $this->Model_adm->fetch_options_materi_pokok()
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -388,7 +388,7 @@ class Materi_pokok extends CI_Controller
         $nama_materi_pokok = $params['materi_pokok'];
         $deskripsi_materi_pokok = $params['deskripsi_materi_pokok'];
 
-        $carikelas = $this->model_adm->fetch_mapel_by_id($mapel_id);
+        $carikelas = $this->Model_adm->fetch_mapel_by_id($mapel_id);
         $id_kelas = $carikelas->id_kelas;
         //run the validation
         if ($this->form_validation->run() == FALSE) {
@@ -396,13 +396,13 @@ class Materi_pokok extends CI_Controller
             $this->load->view('psep_sekolah/materi_pokok_form', $data);
         } elseif ($this->session->userdata('level') == "sekolah") {
             //passing input value to Model
-            $result = $this->model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok);
+            $result = $this->Model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('psep_sekolah/materi_pokok/mapel/' . $id_kelas . '/' . $mapel_id);
             // echo "Status Update: " . $result;
         } elseif ($this->session->userdata('level') == "guru") {
             //passing input value to Model
-            $result = $this->model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok);
+            $result = $this->Model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $deskripsi_materi_pokok);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('psep_sekolah/kelas_ampu');
             // echo "Status Update: " . $result;
@@ -418,7 +418,7 @@ class Materi_pokok extends CI_Controller
 
             if ($this->form_validation->run()) {
                 $id = $this->input->post('hidden_row_id');
-                $result = $this->model_adm->delete_materi_pokok($id);
+                $result = $this->Model_adm->delete_materi_pokok($id);
 
                 alert_success('Sukses', "Data berhasil dihapus");
                 redirect('psep_sekolah/kelas');
@@ -442,8 +442,8 @@ class Materi_pokok extends CI_Controller
     function fetch_materi_pokok_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_materi_pokok_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('materi_pokok', 'mata_pelajaran', 'kelas');
+        $table_data = $this->Model_adm->fetch_materi_pokok_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('materi_pokok', 'mata_pelajaran', 'kelas');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);

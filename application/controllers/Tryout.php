@@ -25,7 +25,7 @@ class Tryout extends CI_Controller
 
         $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
         if (empty($this->session->userdata('akses'))) {
-            $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+            $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
             if (empty($datapembelian)) {
                 redirect("user/aktivasi");
             } else {
@@ -42,12 +42,12 @@ class Tryout extends CI_Controller
 
         $session = $this->session->userdata;
         $data = array(
-            'navbar_links'    => $this->model_fronttryout->get_navbar_links(),
-            'header'          => $this->model_fronttryout->get_mapel_by_tryout($idtryout),
-            'data'            => $this->model_pg->get_all_materi(),
-            'tryout_desc'     => $this->model_fronttryout->fetch_subtryout($idtryout),
-            'table_data'      => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
-            'daftar_kategori' => $this->model_fronttryout->fetch_kategori($idtryout),
+            'navbar_links'    => $this->Model_fronttryout->get_navbar_links(),
+            'header'          => $this->Model_fronttryout->get_mapel_by_tryout($idtryout),
+            'data'            => $this->Model_pg->get_all_materi(),
+            'tryout_desc'     => $this->Model_fronttryout->fetch_subtryout($idtryout),
+            'table_data'      => $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']),
+            'daftar_kategori' => $this->Model_fronttryout->fetch_kategori($idtryout),
         );
         $table_data = $data['table_data'];
         $daftar_kategori = $data['daftar_kategori'];
@@ -89,12 +89,12 @@ class Tryout extends CI_Controller
 
         $session = $this->session->userdata;
         $data = array(
-            'navbar_links'    => $this->model_fronttryout->get_navbar_links(),
-            'header'          => $this->model_fronttryout->get_mapel_by_tryout($idtryout),
-            'data'            => $this->model_pg->get_all_materi(),
-            'tryout_desc'     => $this->model_fronttryout->fetch_subtryout($idtryout),
-            'table_data'      => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
-            'daftar_kategori' => $this->model_fronttryout->fetch_kategori(72),
+            'navbar_links'    => $this->Model_fronttryout->get_navbar_links(),
+            'header'          => $this->Model_fronttryout->get_mapel_by_tryout($idtryout),
+            'data'            => $this->Model_pg->get_all_materi(),
+            'tryout_desc'     => $this->Model_fronttryout->fetch_subtryout($idtryout),
+            'table_data'      => $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']),
+            'daftar_kategori' => $this->Model_fronttryout->fetch_kategori(72),
         );
         $table_data = $data['table_data'];
         $daftar_kategori = $data['daftar_kategori'];
@@ -133,7 +133,7 @@ class Tryout extends CI_Controller
             redirect('login');
         }
 
-        $cariwaktu = $this->model_dashboard->cari_waktu($id_sub_materi, $idsiswa);
+        $cariwaktu = $this->Model_dashboard->cari_waktu($id_sub_materi, $idsiswa);
 
         if (isset($_SESSION['benar'])) {
             unset($_SESSION['benar']);
@@ -156,25 +156,25 @@ class Tryout extends CI_Controller
 
         if ($cariwaktu == 0) {
             $data = array(
-                'navbar_links' => $this->model_fronttryout->get_navbar_links(),
-                'data_soal'    => $this->model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
-                'durasi'       => $this->model_fronttryout->get_timer($id_sub_materi),
-                'infotryout'   => $this->model_fronttryout->get_info_tryout($id_sub_materi),
-                'terjawab'     => $this->model_fronttryout->cari_terjawab($id_sub_materi, $idsiswa),
-                'elapsed_time' => $this->model_fronttryout->elapsed_time($id_sub_materi, $idsiswa),
+                'navbar_links' => $this->Model_fronttryout->get_navbar_links(),
+                'data_soal'    => $this->Model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
+                'durasi'       => $this->Model_fronttryout->get_timer($id_sub_materi),
+                'infotryout'   => $this->Model_fronttryout->get_info_tryout($id_sub_materi),
+                'terjawab'     => $this->Model_fronttryout->cari_terjawab($id_sub_materi, $idsiswa),
+                'elapsed_time' => $this->Model_fronttryout->elapsed_time($id_sub_materi, $idsiswa),
             );
-            $_SESSION['sudah_dikerjakan'] = $this->model_fronttryout->jumlah_terjawab($id_sub_materi, $idsiswa);
+            $_SESSION['sudah_dikerjakan'] = $this->Model_fronttryout->jumlah_terjawab($id_sub_materi, $idsiswa);
         } else {
             $data = array(
-                'navbar_links' => $this->model_fronttryout->get_navbar_links(),
-                'data_soal'    => $this->model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
-                'durasi'       => $this->model_fronttryout->get_timer($id_sub_materi),
-                'infotryout'   => $this->model_fronttryout->get_info_tryout($id_sub_materi),
+                'navbar_links' => $this->Model_fronttryout->get_navbar_links(),
+                'data_soal'    => $this->Model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
+                'durasi'       => $this->Model_fronttryout->get_timer($id_sub_materi),
+                'infotryout'   => $this->Model_fronttryout->get_info_tryout($id_sub_materi),
             );
             $_SESSION['sudah_dikerjakan'] = 0;
         }
 
-        $carijumlahsoal = $this->model_fronttryout->jumlah_soal($id_sub_materi);
+        $carijumlahsoal = $this->Model_fronttryout->jumlah_soal($id_sub_materi);
         $_SESSION['jumlah_soal'] = $carijumlahsoal;
 
 
@@ -185,7 +185,7 @@ class Tryout extends CI_Controller
                 'id_materi'          => $id_sub_materi,
             ),
 
-            'kunci_soal' => $this->model_fronttryout->fetch_array_id_soal($id_sub_materi),
+            'kunci_soal' => $this->Model_fronttryout->fetch_array_id_soal($id_sub_materi),
         );
         $this->session->set_userdata($session);
         session_write_close();
@@ -212,7 +212,7 @@ class Tryout extends CI_Controller
 
         $id_sub_materi = $_SESSION['data_latihan']['id_materi'] ? $_SESSION['data_latihan']['id_materi'] : 0;
 
-        $jumlah_soal = $this->model_fronttryout->jumlah_soal($id_sub_materi);
+        $jumlah_soal = $this->Model_fronttryout->jumlah_soal($id_sub_materi);
 
         if (($jumlah_soal > 0) && ($skor > 0)) {
             $final_skor = round(((100 / $jumlah_soal) * $skor), 1);
@@ -224,7 +224,7 @@ class Tryout extends CI_Controller
         //identifikasi masing2 input untuk submit ke tabel analisis
         //***********************
         //***********************
-        $datakategori = $this->model_fronttryout->get_ketuntasan($id_sub_materi);
+        $datakategori = $this->Model_fronttryout->get_ketuntasan($id_sub_materi);
 
         $ketuntasan = $datakategori->ketuntasan;
         $jumlahsoal = $datakategori->jumlah_soal;
@@ -233,8 +233,8 @@ class Tryout extends CI_Controller
         $idsiswa = $this->session->userdata('id_siswa');
         //UPDATE 21 OKTOBER 2016
         //#################################
-        $benar = $this->model_fronttryout->get_benar_by_kategori($id_sub_materi, $idsiswa);
-        $salah = $this->model_fronttryout->get_salah_by_kategori($id_sub_materi, $idsiswa);
+        $benar = $this->Model_fronttryout->get_benar_by_kategori($id_sub_materi, $idsiswa);
+        $salah = $this->Model_fronttryout->get_salah_by_kategori($id_sub_materi, $idsiswa);
         //END UPDATE 21 OKTOBER 2016
         //#################################
         $skorpersen = ($benar / $jumlahsoal) * 100;
@@ -245,12 +245,12 @@ class Tryout extends CI_Controller
             $tuntas = 0;
         }
 
-        $carianalisispelajaran = $this->model_fronttryout->carianalisispelajaran($id_sub_materi, $idsiswa);
+        $carianalisispelajaran = $this->Model_fronttryout->carianalisispelajaran($id_sub_materi, $idsiswa);
 
         if ($carianalisispelajaran > 0) {
-            $inputanalisis = $this->model_fronttryout->editanalisispelajaran($id_sub_materi, $idsiswa, $benar, $salah, $final_skor, $skorpersen, $tuntas);
+            $inputanalisis = $this->Model_fronttryout->editanalisispelajaran($id_sub_materi, $idsiswa, $benar, $salah, $final_skor, $skorpersen, $tuntas);
         } else {
-            $inputanalisis = $this->model_fronttryout->inputanalisispelajaran($id_sub_materi, $idsiswa, $benar, $salah, $final_skor, $skorpersen, $tuntas);
+            $inputanalisis = $this->Model_fronttryout->inputanalisispelajaran($id_sub_materi, $idsiswa, $benar, $salah, $final_skor, $skorpersen, $tuntas);
         }
 
 
@@ -258,14 +258,14 @@ class Tryout extends CI_Controller
         $durasiasli = $this->transformTime(str_pad($datakategori->durasi, 2, '0', STR_PAD_LEFT));
         $lama = $this->input->post('lamapengerjaan');
 
-        $carianalisiswaktu = $this->model_fronttryout->carianalisiswaktu($id_sub_materi, $idsiswa);
+        $carianalisiswaktu = $this->Model_fronttryout->carianalisiswaktu($id_sub_materi, $idsiswa);
 
         $average = $this->average_time($lama, $jumlahsoal);
 
         if ($carianalisiswaktu > 0) {
-            $inputanalisiswaktu = $this->model_fronttryout->editanalisiswaktu($id_sub_materi, $idsiswa, $durasiasli, $lama, $average);
+            $inputanalisiswaktu = $this->Model_fronttryout->editanalisiswaktu($id_sub_materi, $idsiswa, $durasiasli, $lama, $average);
         } else {
-            $inputanalisiswaktu = $this->model_fronttryout->inputanalisiswaktu($id_sub_materi, $idsiswa, $durasiasli, $lama, $average);
+            $inputanalisiswaktu = $this->Model_fronttryout->inputanalisiswaktu($id_sub_materi, $idsiswa, $durasiasli, $lama, $average);
         }
         //end analisis
         //***********************
@@ -278,7 +278,7 @@ class Tryout extends CI_Controller
         if (isset($_SESSION['id_kategori'])) {
             $ranking = 0;
             $ranking_siswa = array();
-            $data_ranking = $this->model_fronttryout->get_analisis_topik_ranking($_SESSION['id_kategori'], 3); //limit = 3
+            $data_ranking = $this->Model_fronttryout->get_analisis_topik_ranking($_SESSION['id_kategori'], 3); //limit = 3
             foreach ($data_ranking as $rank) {
                 $ranking_siswa[] = $rank->id_siswa;
             }
@@ -287,13 +287,13 @@ class Tryout extends CI_Controller
             }
             switch ($ranking) {
                 case 1:
-                    $addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_1');
+                    $addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_1');
                     break;
                 case 2:
-                    $addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_2');
+                    $addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_2');
                     break;
                 case 3:
-                    $addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_3');
+                    $addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'ranking_3');
                     break;
                 default:
                     break;
@@ -303,11 +303,11 @@ class Tryout extends CI_Controller
 
         $_SESSION['data_latihan']['skor'] = $skor;
 
-        $skorakhir = $this->model_fronttryout->hitung_skor_akhir($id_sub_materi, $idsiswa);
-        $jumlahbobot = $this->model_fronttryout->jumlah_bobot($id_sub_materi, $idsiswa);
+        $skorakhir = $this->Model_fronttryout->hitung_skor_akhir($id_sub_materi, $idsiswa);
+        $jumlahbobot = $this->Model_fronttryout->jumlah_bobot($id_sub_materi, $idsiswa);
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
             'skor'         => $skorakhir,
             'jumlahbobot'  => $jumlahbobot,
             'tuntas'       => $tuntas,
@@ -392,16 +392,16 @@ class Tryout extends CI_Controller
 
                         //SET POIN SISWA
                         if ($_SESSION['id_siswa']) {
-                            $addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'jawaban_benar');
+                            $addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'jawaban_benar');
                         }
 
 
                         //input analisis topik
-                        $carianalisistopik = $this->model_fronttryout->carianalisistopik($idkategori, $idsiswa, $id_soal);
+                        $carianalisistopik = $this->Model_fronttryout->carianalisistopik($idkategori, $idsiswa, $id_soal);
                         if ($carianalisistopik > 0) {
-                            $inputanalisistopik = $this->model_fronttryout->editanalisistopik($idkategori, $idsiswa, $id_soal, 1, $jawaban, $waktu);
+                            $inputanalisistopik = $this->Model_fronttryout->editanalisistopik($idkategori, $idsiswa, $id_soal, 1, $jawaban, $waktu);
                         } else {
-                            $inputanalisistopik = $this->model_fronttryout->inputanalisistopik($idkategori, $idsiswa, $id_soal, 1, $jawaban, $waktu);
+                            $inputanalisistopik = $this->Model_fronttryout->inputanalisistopik($idkategori, $idsiswa, $id_soal, 1, $jawaban, $waktu);
                             $_SESSION['sudah_dikerjakan'] += 1;
                         }
                         if ($_SESSION['jumlah_soal'] == $_SESSION['sudah_dikerjakan']) {
@@ -413,11 +413,11 @@ class Tryout extends CI_Controller
 
 
                         //input analisis topik
-                        $carianalisistopik = $this->model_fronttryout->carianalisistopik($idkategori, $idsiswa, $id_soal);
+                        $carianalisistopik = $this->Model_fronttryout->carianalisistopik($idkategori, $idsiswa, $id_soal);
                         if ($carianalisistopik > 0) {
-                            $inputanalisistopik = $this->model_fronttryout->editanalisistopik($idkategori, $idsiswa, $id_soal, 0, $jawaban, $waktu);
+                            $inputanalisistopik = $this->Model_fronttryout->editanalisistopik($idkategori, $idsiswa, $id_soal, 0, $jawaban, $waktu);
                         } else {
-                            $inputanalisistopik = $this->model_fronttryout->inputanalisistopik($idkategori, $idsiswa, $id_soal, 0, $jawaban, $waktu);
+                            $inputanalisistopik = $this->Model_fronttryout->inputanalisistopik($idkategori, $idsiswa, $id_soal, 0, $jawaban, $waktu);
                             $_SESSION['sudah_dikerjakan'] += 1;
                         }
                         if ($_SESSION['jumlah_soal'] == $_SESSION['sudah_dikerjakan']) {
@@ -442,9 +442,9 @@ class Tryout extends CI_Controller
         }
 
         $data = array(
-            'navbar_links' => $this->model_fronttryout->get_navbar_links(),
-            'data_soal'    => $this->model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
-            'durasi'       => $this->model_fronttryout->get_timer($id_sub_materi),
+            'navbar_links' => $this->Model_fronttryout->get_navbar_links(),
+            'data_soal'    => $this->Model_fronttryout->fetch_soal_by_kategori($id_sub_materi),
+            'durasi'       => $this->Model_fronttryout->get_timer($id_sub_materi),
         );
 
         $this->load->view('pg_user/pembahasan_tryout', $data);
@@ -454,7 +454,7 @@ class Tryout extends CI_Controller
     {
         $idsiswa = $this->session->userdata('id_siswa');
 
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
         if ($idsiswa == "") {
             redirect('login');
@@ -475,17 +475,17 @@ class Tryout extends CI_Controller
         }
 
 
-        $carijumlahsoal = $this->model_fronttryout->jumlah_soal_topik_salah($idkategori, $idsiswa);
+        $carijumlahsoal = $this->Model_fronttryout->jumlah_soal_topik_salah($idkategori, $idsiswa);
         $_SESSION['jumlah_soal'] = $carijumlahsoal;
         $_SESSION['sudah_dikerjakan'] = 0;
         $_SESSION['id_kategori'] = $idkategori;
 
 
-        $kategorikelas = $this->model_fronttryout->get_kelas_by_kategori_tryout($idkategori);
+        $kategorikelas = $this->Model_fronttryout->get_kelas_by_kategori_tryout($idkategori);
 
         $data = array(
-            'soalsalah' => $this->model_fronttryout->fetch_topik_soal_salah($idkategori, $idsiswa),
-            'soalopen'  => $this->model_fronttryout->fetch_open_class($kategorikelas->id_kelas),
+            'soalsalah' => $this->Model_fronttryout->fetch_topik_soal_salah($idkategori, $idsiswa),
+            'soalopen'  => $this->Model_fronttryout->fetch_open_class($kategorikelas->id_kelas),
             'kelas'     => $kategorikelas->id_kelas,
         );
 
@@ -496,7 +496,7 @@ class Tryout extends CI_Controller
                 'id_materi'          => $idkategori,
             ),
 
-            'kunci_soal' => $this->model_fronttryout->fetch_array_kunci(),
+            'kunci_soal' => $this->Model_fronttryout->fetch_array_kunci(),
         );
         $this->session->set_userdata($session);
 
@@ -564,7 +564,7 @@ class Tryout extends CI_Controller
         $idsiswa = $this->session->userdata('id_siswa');
 
         $idkategori = $_SESSION['id_kategori'];
-        $carijumlahsoal = $this->model_fronttryout->jumlah_soal_topik_salah($idkategori, $idsiswa);
+        $carijumlahsoal = $this->Model_fronttryout->jumlah_soal_topik_salah($idkategori, $idsiswa);
 
 
         $data = array(

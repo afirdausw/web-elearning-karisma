@@ -22,7 +22,7 @@ class Guru extends CI_Controller
         $this->load->model('model_lstest');
         $this->load->model('model_pg');
         $this->load->model('model_security');
-        $this->model_security->psep_sekolah_is_logged_in();
+        $this->Model_security->psep_sekolah_is_logged_in();
     }
 
     function index()
@@ -31,8 +31,8 @@ class Guru extends CI_Controller
         $data = array(
             'navbar_title' => "Manajemen Guru",
             'active'       => "guru",
-            'sekolah'      => $this->model_psep->fetch_sekolah_by_id($idsekolah),
-            'dataguru'     => $this->model_psep->fetch_all_guru($idsekolah),
+            'sekolah'      => $this->Model_psep->fetch_sekolah_by_id($idsekolah),
+            'dataguru'     => $this->Model_psep->fetch_all_guru($idsekolah),
         );
         //var_dump($data['dataguru']);
 
@@ -43,8 +43,8 @@ class Guru extends CI_Controller
     {
 
         $idpsep = $this->session->userdata('idpsepsekolah');
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
-        $mapel = $this->model_psep->cari_mapel_by_jenjang($carisekolah->jenjang);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
+        $mapel = $this->Model_psep->cari_mapel_by_jenjang($carisekolah->jenjang);
         $list_mapel = array();
         foreach ($mapel as $key => $value) {
             $list_mapel[$value->nama_mapel][] = [
@@ -63,7 +63,7 @@ class Guru extends CI_Controller
             'act'          => 'insert',
             'sekolah'      => $carisekolah,
             'Mapel' => $list_mapel,
-            'table_data'   => $this->model_adm->fetch_mapel_by_id_kelas($idpsep),
+            'table_data'   => $this->Model_adm->fetch_mapel_by_id_kelas($idpsep),
         );
 
         $this->load->view("psep_sekolah/guru_form", $data);
@@ -74,8 +74,8 @@ class Guru extends CI_Controller
     {
 
         $idpsep = $this->session->userdata('idpsepsekolah');
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
-        $mapel = $this->model_psep->cari_mapel_by_jenjang($carisekolah->jenjang);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
+        $mapel = $this->Model_psep->cari_mapel_by_jenjang($carisekolah->jenjang);
         $list_mapel = array();
         foreach ($mapel as $key => $value) {
             $list_mapel[$value->nama_mapel][] = [
@@ -88,9 +88,9 @@ class Guru extends CI_Controller
             'navbar_title' => "Edit  Guru",
             'active'       => "guru",
             'sekolah'      => $carisekolah,
-            'datakelas'    => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+            'datakelas'    => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
             'Mapel' => $list_mapel,
-            'cariguru'     => $this->model_psep->fetch_all_guru_by_id_login($id_login_sekolah),
+            'cariguru'     => $this->Model_psep->fetch_all_guru_by_id_login($id_login_sekolah),
         );
 
 //        var_dump($data);
@@ -104,7 +104,7 @@ class Guru extends CI_Controller
 
     function ajax_mapel($kelas)
     {
-        $carimapel = $this->model_adm->fetch_mapel_by_id_kelas($kelas);
+        $carimapel = $this->Model_adm->fetch_mapel_by_id_kelas($kelas);
         $no = 1; ?>
         <option value="">--Pilih Mata Pelajaran --</option>
         <?php
@@ -137,7 +137,7 @@ class Guru extends CI_Controller
             redirect("psep_sekolah/guru/tambah");
         } else {
 
-            $cariuserpass = $this->model_adm->cari_user_psep_sekolah($username, $password);
+            $cariuserpass = $this->Model_adm->cari_user_psep_sekolah($username, $password);
 
             if ($cariuserpass === FALSE) {
                 $tipe = $this->cek_tipe($_FILES['identitas']['type']);
@@ -154,7 +154,7 @@ class Guru extends CI_Controller
                     $this->load->library('upload', $config);
                     $this->upload->do_upload('identitas');
 
-                    $result = $this->model_psep->tambah_guru(
+                    $result = $this->Model_psep->tambah_guru(
                         $idsekolah, $nama, $email, $username, $password, $namafile, $mapel);
                     print_r($result);
                     redirect('psep_sekolah/guru');
@@ -190,7 +190,7 @@ class Guru extends CI_Controller
             redirect("psep_sekolah/guru/edit");
         } else {
             $idpsep = $this->session->userdata('idpsepsekolah');
-            $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+            $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
             if (count($carisekolah) > 0) {
 
                 $tipe = $this->cek_tipe($_FILES['identitas']['type']);
@@ -212,7 +212,7 @@ class Guru extends CI_Controller
 
                 } else {
                     alert_info('Upload Gambar Identitas', 'Gambar Identitas tidak di ubah');
-                    $result = $this->model_psep->update_guru(
+                    $result = $this->Model_psep->update_guru(
                         $id_guru, $nama, $email, $username, $password, $carisekolah->kartu_identitas, $mapel);
                     print_r($result);
                     echo "<script>document.location='" . base_url("psep_sekolah/guru/edit/" . $id_guru) . "';</script>";
@@ -241,10 +241,10 @@ class Guru extends CI_Controller
 
     public function detail($id_login_sekolah)
     {
-        $cariguru = $this->model_psep->guru_by_id_login($id_login_sekolah);
-        $carisekolah = $this->model_psep->fetch_sekolah_by_id($cariguru->id_sekolah);
-        $mapel = $this->model_psep->guru_by_id_login($id_login_sekolah)->id_mapel;
-        $carimapel = $this->model_psep->cari_kelas_in_id_mapel($mapel);
+        $cariguru = $this->Model_psep->guru_by_id_login($id_login_sekolah);
+        $carisekolah = $this->Model_psep->fetch_sekolah_by_id($cariguru->id_sekolah);
+        $mapel = $this->Model_psep->guru_by_id_login($id_login_sekolah)->id_mapel;
+        $carimapel = $this->Model_psep->cari_kelas_in_id_mapel($mapel);
         $data = array(
             'navbar_title' => "Detail  Guru",
             'active'       => "guru",

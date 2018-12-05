@@ -23,14 +23,14 @@ class Signup extends CI_Controller
         if ($siswa_logged) {
             redirect(base_url("profil"));
         } else {
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $kelas_navbar = $this->Model_pg->fetch_all_kelas();
             $data = array(
-                'navbar_links'    => $this->model_pg->get_navbar_links(),
-                'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-                'select_kota'     => $this->model_pg->fetch_all_kota(),
-                'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-                'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-                'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+                'navbar_links'    => $this->Model_pg->get_navbar_links(),
+                'select_provinsi' => $this->Model_pg->fetch_all_provinsi(),
+                'select_kota'     => $this->Model_pg->fetch_all_kota(),
+                'select_sekolah'  => $this->Model_pg->fetch_all_sekolah(),
+                'select_kelas'    => $this->Model_pg->fetch_all_kelas(),
+                'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
 
                 "kelas_navbar" => $kelas_navbar,
             );
@@ -40,7 +40,7 @@ class Signup extends CI_Controller
 
     function kota($idprovinsi)
     {
-        $carikota = $this->model_signup->get_kota_by_provinsi($idprovinsi);
+        $carikota = $this->Model_signup->get_kota_by_provinsi($idprovinsi);
 
         foreach ($carikota as $kota) {
             echo "
@@ -51,7 +51,7 @@ class Signup extends CI_Controller
 
     function sekolah($idkota)
     {
-        $carisekolah = $this->model_signup->get_sekolah_by_kota($idkota);
+        $carisekolah = $this->Model_signup->get_sekolah_by_kota($idkota);
 
         echo "
 		<option value=''>Pilih Sekolah...</option>
@@ -66,9 +66,9 @@ class Signup extends CI_Controller
     function kelas($idsekolah)
     {
         if ($idsekolah !== 'sekolahbaru') {
-            $carijenjang = $this->model_signup->cari_jenjang($idsekolah);
+            $carijenjang = $this->Model_signup->cari_jenjang($idsekolah);
 
-            $carikelas = $this->model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
+            $carikelas = $this->Model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
 
             foreach ($carikelas as $kelas) {
                 echo "
@@ -81,7 +81,7 @@ class Signup extends CI_Controller
     function save()
     {
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
         );
 
         $this->form_validation_rules();
@@ -108,9 +108,9 @@ class Signup extends CI_Controller
             $this->load->view("pg_user/signup", $data);
             // redirect("signup");
         } else {
-            $result = $this->model_signup->add_user($username, $password, $nama, $email, $telepon, $telepon_ortu, $sekolah, $kelas, $timestamp, $jeniskelamin, $kota, $jenjang, $sekolahbaru, $nis, $nisn);
+            $result = $this->Model_signup->add_user($username, $password, $nama, $email, $telepon, $telepon_ortu, $sekolah, $kelas, $timestamp, $jeniskelamin, $kota, $jenjang, $sekolahbaru, $nis, $nisn);
 
-            $insert_ortu = $this->model_parent->daftar($result, $nama, $email, $telepon_ortu, $username, $password);
+            $insert_ortu = $this->Model_parent->daftar($result, $nama, $email, $telepon_ortu, $username, $password);
 
             $last_id = $result;
             $data = [
@@ -119,7 +119,7 @@ class Signup extends CI_Controller
                 'isaktif'  => 0,
 
             ];
-            $this->model_signup->add_paket($data);
+            $this->Model_signup->add_paket($data);
 
 
             alert_success("berhasil", "Selamat datang, ".$nama.". Akun anda telah terdaftar, Silahkan melakukan aktivasi untuk memulai belajar di Karisma Academy");
@@ -161,8 +161,8 @@ class Signup extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $sekolah = $this->model_pg->fetch_sekolah_by_id($id);
-            $dynamic_options = $this->model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
+            $sekolah = $this->Model_pg->fetch_sekolah_by_id($id);
+            $dynamic_options = $this->Model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Kelas...</option>";
@@ -182,7 +182,7 @@ class Signup extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_pg->fetch_kota_by_provinsi($id);
+            $dynamic_options = $this->Model_pg->fetch_kota_by_provinsi($id);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Kota/Kabupaten...</option>";
@@ -202,7 +202,7 @@ class Signup extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_pg->fetch_sekolah_by_kota($id);
+            $dynamic_options = $this->Model_pg->fetch_sekolah_by_kota($id);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Sekolah...</option>";
@@ -222,7 +222,7 @@ class Signup extends CI_Controller
         $isAvailable = false;
 
         if ($this->input->post('email') != null) {
-            $result = $this->model_signup->cek_exist_email($this->input->post('email'));
+            $result = $this->Model_signup->cek_exist_email($this->input->post('email'));
             $isAvailable = !empty($result) ? false : true;
         }
 
@@ -236,7 +236,7 @@ class Signup extends CI_Controller
         $isAvailable = false;
 
         if ($this->input->post('pengguna') != null) {
-            $result = $this->model_signup->cek_exist_user($this->input->post('pengguna'));
+            $result = $this->Model_signup->cek_exist_user($this->input->post('pengguna'));
             $isAvailable = !empty($result) ? false : true;
         }
 
@@ -257,9 +257,9 @@ class Signup extends CI_Controller
 
         if (!empty($id_kota) AND !empty($jenjang) AND !empty($sekolah)) {
             //checking if nama sekolah is already exist
-            $sekolah_found = $this->model_pg->check_sekolah_by_nama($sekolah, $id_kota);
+            $sekolah_found = $this->Model_pg->check_sekolah_by_nama($sekolah, $id_kota);
             if ($sekolah_found == 0) {
-                $result_id = $this->model_pg->add_sekolah($id_kota, $jenjang, $sekolah, $email, $telepon, $alamat);
+                $result_id = $this->Model_pg->add_sekolah($id_kota, $jenjang, $sekolah, $email, $telepon, $alamat);
             } else {
                 $result_id = 0;
             }
@@ -273,7 +273,7 @@ class Signup extends CI_Controller
         $result = FALSE;
 
         if (!empty($fb_id)) {
-            $do_login = $this->model_signup->cek_akun_fb($fb_id);
+            $do_login = $this->Model_signup->cek_akun_fb($fb_id);
 
             if (empty($do_login)) {
                 $result = TRUE;
@@ -285,7 +285,7 @@ class Signup extends CI_Controller
 
     function ajax_sekolah_baru($idkota, $idsekolah)
     {
-        $carisekolah = $this->model_pg->fetch_sekolah_by_kota($idkota);
+        $carisekolah = $this->Model_pg->fetch_sekolah_by_kota($idkota);
         if ($carisekolah) {
             echo "<option value='' disabled selected>Pilih Sekolah...</option>";
             foreach ($carisekolah as $item) {
@@ -304,8 +304,8 @@ class Signup extends CI_Controller
     {
 
         if ($id) {
-            $sekolah = $this->model_pg->fetch_sekolah_by_id($id);
-            $dynamic_options = $this->model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
+            $sekolah = $this->Model_pg->fetch_sekolah_by_id($id);
+            $dynamic_options = $this->Model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Kelas...</option>";

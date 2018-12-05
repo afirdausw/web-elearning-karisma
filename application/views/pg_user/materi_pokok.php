@@ -79,35 +79,7 @@ if (isset($key->id_materi_pokok)) {
                     </div>
                 </div>
             </section> <!-- End of BANNER-->
-            <?php
-            //jika belum dibaca
-        } elseif (isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in']) { ?>
-            <section class="banner-top mt-0 pb-3" style="background: #F58634;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 banner-left">
-                            <h1>Ayo mulai belajar dengan kami</h1>
-                            <span>dan diskusi langsung dengan instruktur</span>
-                        </div>
-                        <div class="col-md-6 banner-right row">
-                            <div class="col-md-8 text-right mr-0">
-                                <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
-                                <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
-                                    Rp. <?= money($data->harga) ?></h4>
-                            </div>
-                            <div class="col-md-4 ml-0">
-                                <?php
-                                $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $key->mapel_id);
-                                if (count($mapel) <= 0) { ?>
-                                    <a href="javascript:tambahCart(<?= $key->mapel_id ?>);">Mulai Belajar</a>
-                                <?php } else { ?>
-                                    <a href="#">Go To Cart</a>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> <!-- End of BANNER-->
+
             <?php
             //jika belum dibaca
         } else { ?>
@@ -118,14 +90,23 @@ if (isset($key->id_materi_pokok)) {
                             <h1>Ayo mulai belajar dengan kami</h1>
                             <span>dan diskusi langsung dengan instruktur</span>
                         </div>
-                        <div class="col-md-6 banner-right row">
-                            <div class="col-md-8 text-right mr-0">
+                        <div class="col-md-6 banner-right row <?= (isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in']) ? "mt-4" : "" ?> ">
+                            <div class="col-md-8 text-right mr-0  <?= (isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in']) ? "mt-5" : "" ?>">
                                 <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
                                 <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
                                     Rp. <?= money($data->harga) ?></h4>
                             </div>
                             <div class="col-md-4 ml-0">
-                                <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
+                                <a class="mb-3" href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Coba Pretest</a>
+                                <?php
+                                if ((isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in'])) {
+                                    $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $key->mapel_id);
+                                    if (count($mapel) <= 0) { ?>
+                                        <a href="javascript:tambahCart(<?= $key->mapel_id ?>);">Mulai Belajar</a>
+                                    <?php } else { ?>
+                                        <a href="#">Go To Cart</a>
+                                    <?php } ?>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

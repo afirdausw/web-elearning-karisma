@@ -20,7 +20,7 @@ class Materi extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'navbar_links' => $this->model_pg->get_navbar_links(),
+			'navbar_links' => $this->Model_pg->get_navbar_links(),
 			);
 
 		$this->load->view('pg_user/home', $data);
@@ -29,12 +29,12 @@ class Materi extends CI_Controller {
 	public function tabel_konten($mapel)
 	{
 		$data = array(
-			'navbar_links'=> $this->model_pg->get_navbar_links(),
-			'header'			=> $this->model_pg->get_mapel_by_id($mapel),
-			'table_data'	=> $this->model_pg->get_materi_by_mapel($mapel),
+			'navbar_links'=> $this->Model_pg->get_navbar_links(),
+			'header'			=> $this->Model_pg->get_mapel_by_id($mapel),
+			'table_data'	=> $this->Model_pg->get_materi_by_mapel($mapel),
 			//'list_data'		=> $this->model_pg->get_all_sub_materi(),
-			'list_data'		=> $this->model_pg->get_all_sub_materi_by_mapel($mapel),
-			'video_demo'  => $this->model_pg->get_video_demo($mapel)
+			'list_data'		=> $this->Model_pg->get_all_sub_materi_by_mapel($mapel),
+			'video_demo'  => $this->Model_pg->get_video_demo($mapel)
 			);
 		//print_r($data);exit;
 		$this->load->view('pg_user/tabel_konten', $data);
@@ -43,12 +43,12 @@ class Materi extends CI_Controller {
 	public function tabel_konten_detail($materi)
 	{
 		$data = array(
-			'navbar_links' 	=> $this->model_pg->get_navbar_links() ,
-			'header'				=> $this->model_pg->get_mapel_by_materi($materi),
+			'navbar_links' 	=> $this->Model_pg->get_navbar_links() ,
+			'header'				=> $this->Model_pg->get_mapel_by_materi($materi),
 			// 'data' 				=> $this->model_pg->get_sub_materi_by_materi($materi),
-			'data' 					=> $this->model_pg->get_all_materi(),
-			'list_pokok'		=> $this->model_pg->fetch_list_group_by('materi_pokok', '', 'urutan'),
-			'list_sub'			=> $this->model_pg->fetch_list_konten_by_materi($materi), //ADDED BY RUSMANTO
+			'data' 					=> $this->Model_pg->get_all_materi(),
+			'list_pokok'		=> $this->Model_pg->fetch_list_group_by('materi_pokok', '', 'urutan'),
+			'list_sub'			=> $this->Model_pg->fetch_list_konten_by_materi($materi), //ADDED BY RUSMANTO
 			//'list_sub'			=> $this->model_pg->fetch_list_konten(),
 			// 'table_data' 	=> $this->model_pg->get_all_konten_materi()
 			// 'table_data' => $this->model_pg->fetch_kategori_konten($materi)
@@ -67,18 +67,18 @@ class Materi extends CI_Controller {
     	$this->usertracking->track_this_session();
 		
 		$data = array(
-			'navbar_links' 	=> $this->model_pg->get_navbar_links(),
-			'header'				=> $this->model_pg->get_mapel_by_konten($id),
-			'sidebar'				=> $this->model_pg->get_sub_materi_by_konten($id),
-			'next'					=> $this->model_pg->get_next_sub_materi($id),
-			'prev'					=> $this->model_pg->get_prev_sub_materi($id),
-			'data'					=> $this->model_pg->get_konten_by_id($id)
+			'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
+			'header'				=> $this->Model_pg->get_mapel_by_konten($id),
+			'sidebar'				=> $this->Model_pg->get_sub_materi_by_konten($id),
+			'next'					=> $this->Model_pg->get_next_sub_materi($id),
+			'prev'					=> $this->Model_pg->get_prev_sub_materi($id),
+			'data'					=> $this->Model_pg->get_konten_by_id($id)
 			);
 		$allow_akses = $this->validasi_akses_siswa($data['header']->id_kelas);
 		$data['allow_akses'] = $allow_akses;
 		//SET POIN SISWA
 		if(isset($_SESSION['id_siswa'])) {
-			$addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
+			$addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
 		}
 		$this->load->view('pg_user/materi_teks', $data);
 	}
@@ -91,18 +91,18 @@ class Materi extends CI_Controller {
     	$this->usertracking->track_this_session();
 		
 		$data = array(
-			'navbar_links'=> $this->model_pg->get_navbar_links(),
-			'header'			=> $this->model_pg->get_mapel_by_konten($id),
-			'sidebar'			=> $this->model_pg->get_sub_materi_by_konten($id),			
-			'prev'				=> $this->model_pg->get_prev_sub_materi($id),
-			'next'				=> $this->model_pg->get_next_sub_materi($id),
-			'data'				=> $this->model_pg->get_konten_by_id($id)
+			'navbar_links'=> $this->Model_pg->get_navbar_links(),
+			'header'			=> $this->Model_pg->get_mapel_by_konten($id),
+			'sidebar'			=> $this->Model_pg->get_sub_materi_by_konten($id),
+			'prev'				=> $this->Model_pg->get_prev_sub_materi($id),
+			'next'				=> $this->Model_pg->get_next_sub_materi($id),
+			'data'				=> $this->Model_pg->get_konten_by_id($id)
 			);
 		$allow_akses = $this->validasi_akses_siswa($data['header']->id_kelas);
 		$data['allow_akses'] = $allow_akses;
 		//SET POIN SISWA
 		if(isset($_SESSION['id_siswa'])) {
-			$addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
+			$addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
 		}
 		$this->load->view('pg_user/materi_video', $data);
 	}
@@ -166,14 +166,14 @@ class Materi extends CI_Controller {
 		{
 		//SET POIN SISWA
 			if(isset($_SESSION['id_siswa'])) {
-				$addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
+				$addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'akses_materi');
 			}
 			//tracking logged user's access
     		$this->usertracking->track_this_session();
 			switch ($tipe) 
 			{
 				case 'teks':
-					$result = $this->model_pg->get_konten_by_id($id);
+					$result = $this->Model_pg->get_konten_by_id($id);
 					$result_array = array(
 						'judul_materi'  => $result->nama_sub_materi,
 						'isi_materi'		=> html_entity_decode($result->isi_materi)
@@ -184,7 +184,7 @@ class Materi extends CI_Controller {
 					break;
 
 				case 'video':
-					$result = $this->model_pg->get_konten_by_id($id);
+					$result = $this->Model_pg->get_konten_by_id($id);
 					$result_array = array(
 						'judul_materi'  => $result->nama_sub_materi,
 						'video_materi'	=> $result->video_materi

@@ -17,10 +17,10 @@ class profil extends CI_Controller
 
     public function index()
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
     	if($this->session->userdata('id_siswa') != NULL){
-	    	$siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-            $log_baca = $this->model_pg->get_log_baca_detail($this->session->userdata('id_siswa'));
+	    	$siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $log_baca = $this->Model_pg->get_log_baca_detail($this->session->userdata('id_siswa'));
 	    	$data = array(
 	            'siswa' => $siswa,
                 'log_baca' => $log_baca,
@@ -30,7 +30,7 @@ class profil extends CI_Controller
 	        $this->load->view('pg_user/profil-siswa', $data);
             
     	}else if($this->session->userdata('pretest_id') != NULL){
-	    	$pretest = $this->model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
+	    	$pretest = $this->Model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
 	    	$data = array(
 	            'pretest' => $pretest,
                 "kelas_navbar" => $kelas_navbar, 
@@ -47,7 +47,7 @@ class profil extends CI_Controller
     public function premium()
     {
         if($this->session->userdata('id_siswa')!=NULL){
-            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
 
             $data = [
                 "id_siswa"     => $this->session->userdata('id_siswa'),
@@ -57,7 +57,7 @@ class profil extends CI_Controller
             }else if ($siswa->id_premium >= 0){
                 $data["id_premium"] = 0;
             }
-            $update = $this->model_profil->toogle_premium($data);
+            $update = $this->Model_profil->toogle_premium($data);
             if($update){
                 redirect(base_url().'profil');
             }else{

@@ -80,13 +80,13 @@ function daftar(){
 	
 	//MENCARI APAKAH INDIHOME PERNAH TERDAFTAR
 	if(isset($_GET['id']) && isset($_GET['nama']) && isset($_GET['alamat']) && isset($_GET['hp']) && isset($_GET['email']) && isset($_GET['addon'])){
-		$cariindihome = $this->model_api->cari_indihome($idindihome);
+		$cariindihome = $this->Model_api->cari_indihome($idindihome);
 		if($cariindihome > 0){
 			echo "ERROR: user pernah terdaftar<br>";
 			return "";
 		}else{
 			//mulai register data indihome
-			$registerindihome = $this->model_api->register_indihome($idindihome, $addon, $nama, $alamat, $hp, $email);
+			$registerindihome = $this->Model_api->register_indihome($idindihome, $addon, $nama, $alamat, $hp, $email);
 			//end register indihome
 		}
 		
@@ -107,23 +107,23 @@ function daftar(){
 			$username[$i] = "pid".$string;
 			$password[$i] = $string2;
 			
-			$registerlogin = $this->model_api->register_login($username[$i], $password[$i]);
+			$registerlogin = $this->Model_api->register_login($username[$i], $password[$i]);
 			
-			$registersiswa = $this->model_api->register_siswa($registerindihome, $registerlogin);
+			$registersiswa = $this->Model_api->register_siswa($registerindihome, $registerlogin);
 			
 			$passworduntukemail .= $password[$i].";";
 		}
 		//end looping
 		
 		//kirim email konfirmasi berisi username dan password
-		$infoindihome = $this->model_api->cari_user_indihome($registerindihome);
+		$infoindihome = $this->Model_api->cari_user_indihome($registerindihome);
 		$this->kirim_konfirmasi($registerindihome, $infoindihome->email, $passworduntukemail);
 		//end konfirmasi
 		
 		//tampilkan informasi berhasil
 		$infoindihome = array (
-				'table_data' => $this->model_api->cari_user_indihome($registerindihome),
-				'info_login'	=> $this->model_api->cari_user($registerindihome)
+				'table_data' => $this->Model_api->cari_user_indihome($registerindihome),
+				'info_login'	=> $this->Model_api->cari_user($registerindihome)
 			);
 		$this->load->view('api/sukses', $infoindihome);
 		
@@ -164,15 +164,15 @@ function cabut(){
        die();
     }
 	
-	$cariidindihome = $this->model_api->cari_id_indihome($idindihome);
+	$cariidindihome = $this->Model_api->cari_id_indihome($idindihome);
 	
-	$carilogin = $this->model_api->cari_login($cariidindihome->id_indihome_user);
+	$carilogin = $this->Model_api->cari_login($cariidindihome->id_indihome_user);
 	
 	foreach($carilogin as $login){
-		$hapuslogin = $this->model_api->hapus_login($login->id_login);
+		$hapuslogin = $this->Model_api->hapus_login($login->id_login);
 	}
 	
-	$hapusindihomeuser = $this->model_api->hapus_indihome($cariidindihome->id_indihome_user);
+	$hapusindihomeuser = $this->Model_api->hapus_indihome($cariidindihome->id_indihome_user);
 	
 	echo "Cabut Berhasil";
 }
@@ -196,8 +196,8 @@ function kirim_konfirmasi($idindihome, $email, $passworduntukemail){
 	$this->email->subject('Voucher Prime Mobile');
 	
 	$dataemail = array (
-		'info_indihome' => $this->model_api->cari_user_indihome($idindihome),
-		'info_login'	=> $this->model_api->cari_user($idindihome),
+		'info_indihome' => $this->Model_api->cari_user_indihome($idindihome),
+		'info_login'	=> $this->Model_api->cari_user($idindihome),
 		'passwords'		=> $passworduntukemail
 		);
 	$body = $this->load->view('api/confirm_email.php',$dataemail,TRUE);
@@ -231,8 +231,8 @@ function testemail(){
 	$this->email->subject('Voucher Prime Mobile');
 	
 	$dataemail = array (
-		'info_indihome' => $this->model_api->cari_user_indihome($registerindihome),
-		'info_login'	=> $this->model_api->cari_user($registerindihome)
+		'info_indihome' => $this->Model_api->cari_user_indihome($registerindihome),
+		'info_login'	=> $this->Model_api->cari_user($registerindihome)
 		);
 	$body = $this->load->view('api/confirm_email.php',$dataemail,TRUE);
 	$this->email->message($body);

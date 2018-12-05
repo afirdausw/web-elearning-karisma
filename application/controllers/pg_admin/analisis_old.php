@@ -22,7 +22,7 @@ class Analisis extends CI_Controller {
         $this->load->model('model_lstest');
         $this->load->model('model_pg');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
 
@@ -32,11 +32,11 @@ class Analisis extends CI_Controller {
         $data = array(
             'navbar_title' 	=> "Analisis Siswa",
             'active'		=> "analisis",
-            'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-            'select_kota'     => $this->model_pg->fetch_all_kota(),
-            'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-            'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-            'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+            'select_provinsi' => $this->Model_pg->fetch_all_provinsi(),
+            'select_kota'     => $this->Model_pg->fetch_all_kota(),
+            'select_sekolah'  => $this->Model_pg->fetch_all_sekolah(),
+            'select_kelas'    => $this->Model_pg->fetch_all_kelas(),
+            'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
         );
 
         $this->load->view('pg_admin/analisis_sekolah', $data);
@@ -74,9 +74,9 @@ class Analisis extends CI_Controller {
         // 	);
         //$this->load->view('pg_ortu/pilih_tryout', $data);
         $data = array(
-            'infosiswa'         => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-            'navbar_links'      => $this->model_pg->get_navbar_links(),
-            'data_user'         => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'infosiswa'         => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'navbar_links'      => $this->Model_pg->get_navbar_links(),
+            'data_user'         => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
             //'profil_tryout'     => $this->model_adm->fetch_all_profil_by_id($idtryout),
             //'profil_tryout_all' => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
             //'dataperingkat'     => $this->model_dashboard->peringkat($idtryout),
@@ -95,25 +95,25 @@ class Analisis extends CI_Controller {
         if (count($daftar_kategori) > 0) {
             foreach ($daftar_kategori as $subkey => $value) {
                 if ($value->id_profil == $kat->id_tryout) {
-                    $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                    $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                    $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                    $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                    $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                    $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                     $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), True);
                     $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                     $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
                     $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariwaktu'] = $cariwaktu;
                     $totalsoal+= $daftar_kategori_baru[$i]['daftar_kategori'][$j]['jumlah_soal'];
                     $totalbenar+= $cariskor;
-                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), True);
-                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->model_dashboard->analisistopik($value->id_kategori, $idsiswa)), True);
-                    $analisa_topik = json_decode(json_encode($this->model_dashboard->analisatopik($value->id_kategori, $idsiswa)), True);
+                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->Model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), True);
+                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->Model_dashboard->analisistopik($value->id_kategori, $idsiswa)), True);
+                    $analisa_topik = json_decode(json_encode($this->Model_dashboard->analisatopik($value->id_kategori, $idsiswa)), True);
                     $k = 0;
                     foreach ($analisa_topik as $at) {
                         if ($at['id_analisis_topik'] != null) {
-                            $at['jml_benar'] = $this->model_dashboard->analisatopikbenar($value->id_kategori, $idsiswa);
+                            $at['jml_benar'] = $this->Model_dashboard->analisatopikbenar($value->id_kategori, $idsiswa);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k] = $at;
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
                         } else {
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j][$k]['analisa_topik'] = null;
                         }
@@ -149,12 +149,12 @@ class Analisis extends CI_Controller {
     public function report_siswa(){
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $data = array(
             'navbar_title' 	=> "Academic General Check Up",
             'active'		=> "agcu",
-            'datakelas'		=> $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
+            'datakelas'		=> $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
         );
 
         $this->load->view('pg_admin/report_siswa', $data);
@@ -162,7 +162,7 @@ class Analisis extends CI_Controller {
 
     function ajax_siswa_by_jenjang($sekolah){
 
-        $carisiswa = $this->model_psep->cari_siswa_by_kelas($sekolah);
+        $carisiswa = $this->Model_psep->cari_siswa_by_kelas($sekolah);
 
         $no = 1;
         foreach($carisiswa as $siswa){
@@ -180,24 +180,24 @@ class Analisis extends CI_Controller {
 
     function siswa($idsiswa){
 
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
-        $kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal = $this->model_agcu->get_jumlahsoal();
+        $kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal = $this->Model_agcu->get_jumlahsoal();
 
-        $jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+        $jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 
-        $jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-        $jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+        $jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+        $jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 
-        $analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+        $analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
 
 
-        $skor = $this->model_lstest->skor($idsiswa);
-        $hasildiagnostic = $this->model_agcu->get_ordered_hasildiagnostic();
-        $peringkatsiswa = $this->model_agcu->get_peringkatsiswabykelas($kelas);
+        $skor = $this->Model_lstest->skor($idsiswa);
+        $hasildiagnostic = $this->Model_agcu->get_ordered_hasildiagnostic();
+        $peringkatsiswa = $this->Model_agcu->get_peringkatsiswabykelas($kelas);
 
         foreach($skor as $dataskor){
             $hasil[$dataskor->no] = $dataskor->skor;
@@ -295,7 +295,7 @@ class Analisis extends CI_Controller {
 		Cobalah belajar dalam kelompok untuk membentuk suasana bermain peran dari pelajaran yang dibahas - Tulislah poin - poin penting dari pelajaran dalam bentuk kartu - kartu yang disusun secara logis -  Buatlah semacam percobaan atau model dari apa yang sedang kamu pelajari - Libatkan tubuh dalam belajar dengan mencoba meniru apa yang dipelajari dengan gaya guru saat menyampaikan materi - Setiap kali membaca atau mendengarkan seseorang berbicara, bangkitlah untuk sedikit bergerak setiap 15 - 20 menit sekali';
         }
 
-        $data_eq = $this->model_agcu->get_eq($idsiswa);
+        $data_eq = $this->Model_agcu->get_eq($idsiswa);
 
         if($data_eq->skor_aq < 7){
             $analisis_aq = "Mudah gelisah, bingung dan sering cemas - Sering kehilangan rasa humor - Menyalahkan diri sendiri terhadap berbagai kegagalan - Analisisnya dangkal ";
@@ -334,7 +334,7 @@ class Analisis extends CI_Controller {
         }
 
         $data = array(
-            'navbar_links' 	=> $this->model_pg->get_navbar_links(),
+            'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
             'infosiswa'				=> $infosiswa,
             'kategoridiagnostic'	=> $kategoridiagnostic,
             'hasildiagnostic'		=> $hasildiagnostic,
@@ -350,7 +350,7 @@ class Analisis extends CI_Controller {
             'dominasi'				=> $dominasi,
             'karakteristik'			=> $karakteristik,
             'saran'					=> $saran,
-            'data_eq'				=> $this->model_agcu->get_eq($idsiswa),
+            'data_eq'				=> $this->Model_agcu->get_eq($idsiswa),
             'analisis_aq'			=> $analisis_aq,
             'analisis_eq'			=> $analisis_eq,
             'analisis_am'			=> $analisis_am,
@@ -362,12 +362,12 @@ class Analisis extends CI_Controller {
     function rekap(){
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $data = array(
             'navbar_title' 	=> "Academic General Check Up",
             'active'		=> "agcu",
-            'datakelas'		=> $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
+            'datakelas'		=> $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
         );
 
         $this->load->view('psep_sekolah/rekap_agcu_pilih_kelas', $data);
@@ -382,11 +382,11 @@ class Analisis extends CI_Controller {
         $kelas = $params['kelas'];
 
         $idsekolah = $this->session->userdata('idsekolah');
-        $carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
+        $carisiswa = $this->Model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
 
-        $kategoridiagnostic	= $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal			= $this->model_agcu->get_jumlahsoal();
-        $jumlahbenar 		= $this->model_agcu->get_jumlah_benar_by_kelas_sekolah($idsiswa, $idsekolah);
+        $kategoridiagnostic	= $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal			= $this->Model_agcu->get_jumlahsoal();
+        $jumlahbenar 		= $this->Model_agcu->get_jumlah_benar_by_kelas_sekolah($idsiswa, $idsekolah);
 
     }
 
@@ -398,7 +398,7 @@ class Analisis extends CI_Controller {
             $idtryout = $this->uri->segment(3);
             $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
             if (empty($this->session->userdata('akses'))) {
-                $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+                $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
                 if (empty($datapembelian)) {
                     redirect("user/aktivasi");
                 } else {
@@ -414,12 +414,12 @@ class Analisis extends CI_Controller {
             // 	);
             //$this->load->view('pg_ortu/pilih_tryout', $data);
             $data = array(
-                'infosiswa'         => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-                'navbar_links'      => $this->model_pg->get_navbar_links(),
-                'data_user'         => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
-                'profil_tryout'     => $this->model_adm->fetch_all_profil_by_id($idtryout),
-                'profil_tryout_all' => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
-                'dataperingkat'     => $this->model_dashboard->peringkat($idtryout),
+                'infosiswa'         => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+                'navbar_links'      => $this->Model_pg->get_navbar_links(),
+                'data_user'         => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
+                'profil_tryout'     => $this->Model_adm->fetch_all_profil_by_id($idtryout),
+                'profil_tryout_all' => $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']),
+                'dataperingkat'     => $this->Model_dashboard->peringkat($idtryout),
             );
             $table_data = $data['profil_tryout'];
 
@@ -428,32 +428,32 @@ class Analisis extends CI_Controller {
             $totalsoal = 0;
             $totalbenar = 0;
             foreach ($table_data as $kat) {
-                $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+                $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
                 $daftar_kategori_baru[$i] = json_decode(json_encode($kat), True);
                 $j = 0;
                 $index = 0;
                 if (count($daftar_kategori) > 0) {
                     foreach ($daftar_kategori as $subkey => $value) {
                         if ($value->id_profil == $kat->id_tryout) {
-                            $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                            $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                            $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                            $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                            $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                            $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), True);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariwaktu'] = $cariwaktu;
                             $totalsoal+= $daftar_kategori_baru[$i]['daftar_kategori'][$j]['jumlah_soal'];
                             $totalbenar+= $cariskor;
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), True);
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->model_dashboard->analisistopik($value->id_kategori, $idsiswa)), True);
-                            $analisa_topik = json_decode(json_encode($this->model_dashboard->analisatopik($value->id_kategori, $idsiswa)), True);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->Model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), True);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->Model_dashboard->analisistopik($value->id_kategori, $idsiswa)), True);
+                            $analisa_topik = json_decode(json_encode($this->Model_dashboard->analisatopik($value->id_kategori, $idsiswa)), True);
                             $k = 0;
                             foreach ($analisa_topik as $at) {
                                 if ($at['id_analisis_topik'] != null) {
-                                    $at['jml_benar'] = $this->model_dashboard->analisatopikbenar($value->id_kategori, $idsiswa);
+                                    $at['jml_benar'] = $this->Model_dashboard->analisatopikbenar($value->id_kategori, $idsiswa);
                                     $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k] = $at;
-                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
-                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
+                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
+                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
                                 } else {
                                     $daftar_kategori_baru[$i]['daftar_kategori'][$j][$k]['analisa_topik'] = null;
                                 }

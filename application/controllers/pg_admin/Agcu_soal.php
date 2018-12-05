@@ -8,7 +8,7 @@ class Agcu_soal extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('model_agcusoal');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
 	}
 	
 	public function index() {
@@ -24,11 +24,11 @@ class Agcu_soal extends CI_Controller {
 			);
 
 			if($test == 'diagnostic') {
-				$data['table_data'] = $this->model_agcusoal->get_soal('ls_test2')->result_array();
+				$data['table_data'] = $this->Model_agcusoal->get_soal('ls_test2')->result_array();
 			} else if($test == 'psychology_potential') {
-				$data['table_data'] = $this->model_agcusoal->get_soal('eq_test')->result_array();
+				$data['table_data'] = $this->Model_agcusoal->get_soal('eq_test')->result_array();
 			} else if($test == 'learning_style') {
-				$data['table_data'] = $this->model_agcusoal->get_soal('ls_test1')->result_array();
+				$data['table_data'] = $this->Model_agcusoal->get_soal('ls_test1')->result_array();
 			}
 
 			$this->load->view('pg_admin/agcusoal_detail', $data);
@@ -45,15 +45,15 @@ class Agcu_soal extends CI_Controller {
 			);
 
 			if($test == 'diagnostic') {
-				$data['row'] = $this->model_agcusoal->get_soal_by_id('ls_test2', array('id_soal_ls2' => $id))->row();
+				$data['row'] = $this->Model_agcusoal->get_soal_by_id('ls_test2', array('id_soal_ls2' => $id))->row();
 				$data['idsoal'] = $data['row']->id_soal_ls2;
 				$data['jumsoal'] = 2;
 			} else if($test == 'psychology_potential') {
-				$data['row'] = $this->model_agcusoal->get_soal_by_id('eq_test', array('id_soal_eq' => $id))->row();
+				$data['row'] = $this->Model_agcusoal->get_soal_by_id('eq_test', array('id_soal_eq' => $id))->row();
 				$data['idsoal'] = $data['row']->id_soal_eq;
 				$data['jumsoal'] = 4;
 			} else if($test == 'learning_style') {
-				$data['row'] = $this->model_agcusoal->get_soal_by_id('ls_test1', array('id_soal_ls' => $id))->row();
+				$data['row'] = $this->Model_agcusoal->get_soal_by_id('ls_test1', array('id_soal_ls' => $id))->row();
 				$data['idsoal'] = $data['row']->id_soal_ls;
 				$data['jumsoal'] = 3;
 			}
@@ -78,15 +78,15 @@ class Agcu_soal extends CI_Controller {
 		if($test == 'diagnostic') {
 			$data = array('soal' => $soal, 'jawab_a' => $jawabA, 'jawab_b' => $jawabB, 'skor_a' => $skorA, 'skor_b' => $skorB);
 
-			$update = $this->model_agcusoal->update_soal_by_id('ls_test2', $data, array('id_soal_ls2' => $id));
+			$update = $this->Model_agcusoal->update_soal_by_id('ls_test2', $data, array('id_soal_ls2' => $id));
 		} else if($test == 'psychology_potential') {
 			$data = array('soal' => $soal, 'jawab_a' => $jawabA, 'jawab_b' => $jawabB, 'jawab_c' => $jawabC, 'jawab_d' => $jawabD, 'skor_a' => $skorA, 'skor_b' => $skorB, 'skor_c' => $skorC, 'skor_d' => $skorD);
 
-			$update = $this->model_agcusoal->update_soal_by_id('eq_test', $data, array('id_soal_eq' => $id));
+			$update = $this->Model_agcusoal->update_soal_by_id('eq_test', $data, array('id_soal_eq' => $id));
 		} else if($test == 'learning_style') {
 			$data = array('soal' => $soal, 'jawab_a' => $jawabA, 'jawab_b' => $jawabB, 'jawab_c' => $jawabC, 'skor_a' => $skorA, 'skor_b' => $skorB, 'skor_c' => $skorC);
 
-			$update = $this->model_agcusoal->update_soal_by_id('ls_test1', $data, array('id_soal_ls1' => $id));
+			$update = $this->Model_agcusoal->update_soal_by_id('ls_test1', $data, array('id_soal_ls1' => $id));
 		}
 	}
 }

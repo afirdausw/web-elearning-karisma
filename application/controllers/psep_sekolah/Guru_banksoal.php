@@ -23,15 +23,15 @@ class Guru_banksoal extends CI_Controller{
 
 
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $data = array(
             'navbar_title'	=> 'Data Bank Soal',
-            'data_soal' 	=> $this->model_banksoal->fetch_banksoal_by_id_mapel($id_mapel),
+            'data_soal' 	=> $this->Model_banksoal->fetch_banksoal_by_id_mapel($id_mapel),
             'idtopik'              => $topik,
         );
 
@@ -46,12 +46,12 @@ class Guru_banksoal extends CI_Controller{
 
 
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
-        $carikelas  = $this->model_psep->cari_kelas_by_mapel($id_mapel);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
+        $carikelas  = $this->Model_psep->cari_kelas_by_mapel($id_mapel);
 
 
 
@@ -62,9 +62,9 @@ class Guru_banksoal extends CI_Controller{
             'form_action'			=> current_url(),
             'idkelas'               => $kelas,
             'idmapel'               => $id_mapel,
-            'select_options_mapel'	=> $this->model_banksoal->get_kelas(),
-            'carikategori'          => $this->model_banksoal->get_kategori_by_mapel($id_mapel),
-            'caritopik'             => $this->model_banksoal->get_topik_by_mapel($id_mapel)
+            'select_options_mapel'	=> $this->Model_banksoal->get_kelas(),
+            'carikategori'          => $this->Model_banksoal->get_kategori_by_mapel($id_mapel),
+            'caritopik'             => $this->Model_banksoal->get_topik_by_mapel($id_mapel)
         );
 
         //var_dump($idpsep);
@@ -94,7 +94,7 @@ class Guru_banksoal extends CI_Controller{
         $kategori		= $params['kategori'];
         $tipe			= $params['tipe'];
 
-        $result = $this->model_banksoal->tambah_banksoal($mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
+        $result = $this->Model_banksoal->tambah_banksoal($mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
         redirect('psep_sekolah/guru_banksoal');
     }
 
@@ -103,15 +103,15 @@ class Guru_banksoal extends CI_Controller{
 
 
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $data = array(
             'navbar_title' 			=> "Tambah Kategori Bank Soal",
-            'kategoribanksoal'	=> $this->model_banksoal->fetch_kategori_bank_soal_by_mapel($id_mapel)
+            'kategoribanksoal'	=> $this->Model_banksoal->fetch_kategori_bank_soal_by_mapel($id_mapel)
         );
        // var_dump($data['kategoribanksoal']);
 
@@ -124,12 +124,12 @@ class Guru_banksoal extends CI_Controller{
 
 
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
-        $carikelas  = $this->model_psep->cari_kelas_by_mapel($id_mapel);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
+        $carikelas  = $this->Model_psep->cari_kelas_by_mapel($id_mapel);
         $kelas      =  $carikelas->kelas_id;
         $mapel      =  $id_mapel;
 
@@ -137,14 +137,14 @@ class Guru_banksoal extends CI_Controller{
             'navbar_title' 			=> "Tambah Kategori Bank Soal",
             'idkelas'              => $kelas,
             'idmapel'              => $mapel,
-            'datakelas'				=> $this->model_banksoal->get_kelas()
+            'datakelas'				=> $this->Model_banksoal->get_kelas()
         );
 
         $this->load->view('psep_sekolah/guru_kategori_banksoal_form', $data);
     }
 
     function pilihmapel($idkelas){
-        $carimapel = $this->model_banksoal->get_mapel_by_kelas($idkelas);
+        $carimapel = $this->Model_banksoal->get_mapel_by_kelas($idkelas);
 
         echo "<option value=''>-- pilih mata pelajaran --</option>";
         foreach($carimapel as $mapel){
@@ -155,7 +155,7 @@ class Guru_banksoal extends CI_Controller{
     }
 
     function pilihkategori($idmapel){
-        $carikategori = $this->model_banksoal->get_kategori_by_mapel($idmapel);
+        $carikategori = $this->Model_banksoal->get_kategori_by_mapel($idmapel);
 
         echo "<option value='0'>Uncategorized</option>";
         foreach($carikategori as $kategori){
@@ -166,7 +166,7 @@ class Guru_banksoal extends CI_Controller{
     }
 
     function pilihtopik($idmapel){
-        $caritopik = $this->model_banksoal->get_topik_by_mapel($idmapel);
+        $caritopik = $this->Model_banksoal->get_topik_by_mapel($idmapel);
 
         echo "<option value=''>Pilih Topik</option>";
         foreach($caritopik as $topik){
@@ -188,7 +188,7 @@ class Guru_banksoal extends CI_Controller{
         $idmapel = $params['Mapel'];
         $namakategori = $params['nama_kastegori'];
 
-        $result = $this->model_banksoal->tambah_kategori($idmapel, $namakategori);
+        $result = $this->Model_banksoal->tambah_kategori($idmapel, $namakategori);
 
         redirect('psep_sekolah/guru_banksoal/kategori');
     }
@@ -199,12 +199,12 @@ class Guru_banksoal extends CI_Controller{
 
 
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
-        $carikelas  = $this->model_psep->cari_kelas_by_mapel($id_mapel);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
+        $carikelas  = $this->Model_psep->cari_kelas_by_mapel($id_mapel);
         $kelas      =  $carikelas->kelas_id;
         $mapel      =  $id_mapel;
 
@@ -213,8 +213,8 @@ class Guru_banksoal extends CI_Controller{
             'navbar_title' 			=> "Edit Kategori Bank Soal",
             'idkelas'              => $kelas,
             'idmapel'              => $mapel,
-            'datakategori'			=> $this->model_banksoal->cari_kategori($idkategori),
-            'datakelas'				=> $this->model_banksoal->get_kelas()
+            'datakategori'			=> $this->Model_banksoal->cari_kategori($idkategori),
+            'datakelas'				=> $this->Model_banksoal->get_kelas()
         );
 
         $this->load->view('psep_sekolah/guru_kategori_banksoal_edit', $data);
@@ -226,13 +226,13 @@ class Guru_banksoal extends CI_Controller{
         $namakategori 	= $params['nama_kastegori'];
         $idkategori 	= $params['id_kategori'];
 
-        $result = $this->model_banksoal->edit_kategori($idkategori, $idmapel, $namakategori);
+        $result = $this->Model_banksoal->edit_kategori($idkategori, $idmapel, $namakategori);
 
         redirect('psep_sekolah/guru_banksoal/kategori');
     }
 
     function hapuskategori($idkategori){
-        $hapus = $this->model_banksoal->hapus_kategori($idkategori);
+        $hapus = $this->Model_banksoal->hapus_kategori($idkategori);
 
         redirect('psep_sekolah/guru_banksoal/kategori');
     }
@@ -240,9 +240,9 @@ class Guru_banksoal extends CI_Controller{
     function edit($idbanksoal){
         $data = array(
             'navbar_title' 			=> "Edit Bank Soal",
-            'datasoal'				=> $this->model_banksoal->cari_bank_soal_by_id($idbanksoal),
-            'datakelas'				=> $this->model_banksoal->get_kelas(),
-            'select_options_mapel'	=> $this->model_banksoal->get_kelas()
+            'datasoal'				=> $this->Model_banksoal->cari_bank_soal_by_id($idbanksoal),
+            'datakelas'				=> $this->Model_banksoal->get_kelas(),
+            'select_options_mapel'	=> $this->Model_banksoal->get_kelas()
         );
         $this->load->view('psep_sekolah/guru_banksoal_edit', $data);
     }
@@ -270,17 +270,17 @@ class Guru_banksoal extends CI_Controller{
         $kategori		= $params['kategori'];
         $tipe			= $params['tipe'];
 
-        $result = $this->model_banksoal->edit_banksoal($idbanksoal, $mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
+        $result = $this->Model_banksoal->edit_banksoal($idbanksoal, $mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
         redirect('psep_sekolah/guru_banksoal');
     }
 
     function hapus($idbanksoal){
-        $hapus = $this->model_banksoal->hapus($idbanksoal);
+        $hapus = $this->Model_banksoal->hapus($idbanksoal);
         redirect('psep_sekolah/guru_banksoal');
     }
 
     function ajax_mapel($kelas){
-        $carimapel = $this->model_banksoal->get_mapel_by_kelas($kelas);
+        $carimapel = $this->Model_banksoal->get_mapel_by_kelas($kelas);
 
         echo "<option value=''>-- pilih mata pelajaran --</option>";
         foreach($carimapel as $mapel){
@@ -291,7 +291,7 @@ class Guru_banksoal extends CI_Controller{
     }
 
     function ajax_soal($kelas, $mapel){
-        $carisoal = $this->model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
+        $carisoal = $this->Model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
         foreach($carisoal as $data){
             ?>
             <tr>
@@ -357,7 +357,7 @@ class Guru_banksoal extends CI_Controller{
 
 
     function ajax_soal_modal($kelas, $mapel){
-        $carisoal = $this->model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
+        $carisoal = $this->Model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
         $no=1;
         foreach($carisoal as $data){
             ?>

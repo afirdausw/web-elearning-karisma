@@ -17,7 +17,7 @@ class Voucher_old extends CI_Controller
 		$this->load->model('model_paket');
 		$this->load->model('model_security');
 		$this->load->model('model_voucher');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
 		//$this->load->model('model_voucher');
 	}
 	
@@ -25,15 +25,15 @@ class Voucher_old extends CI_Controller
 		$data = array(
 			'navbar_title' 	=> "Voucher",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'kelas'			=> $this->model_voucher->get_kelas(),
-			'table_data' 		=> $this->model_adm->fetch_all_voucher()
+			'kelas'			=> $this->Model_voucher->get_kelas(),
+			'table_data' 		=> $this->Model_adm->fetch_all_voucher()
 			);
 
 		$this->load->view('pg_admin/voucher', $data);
 	}
 	
 	function durasi($kodepaket){
-		$caridurasi = $this->model_voucher->fetch_durasi($kodepaket);
+		$caridurasi = $this->Model_voucher->fetch_durasi($kodepaket);
 		
 		echo "<option value=''>Pilih Durasi..</option>";
 		
@@ -45,7 +45,7 @@ class Voucher_old extends CI_Controller
 	}
 	
 	function daftar($paket, $kelas){
-		$carivoucher = $this->model_voucher->fetch_voucher_by_durasi_kelas($paket, $kelas);
+		$carivoucher = $this->Model_voucher->fetch_voucher_by_durasi_kelas($paket, $kelas);
 		$no = 1; 
 		foreach ($carivoucher as $item) 
 		{
@@ -84,9 +84,9 @@ class Voucher_old extends CI_Controller
 					'navbar_title'	=> "Manajemen Paket",
 					'page_title' 		=> "Tambah Paket",
 					'form_action' 	=> current_url(),
-					'paket_reguler' =>  $this->model_paket->get_paket_reguler(),
-					'paket_premium' => $this->model_paket->get_paket_premium(),
-					'data_kelas' 		=> $this->model_adm->fetch_all_kelas()
+					'paket_reguler' =>  $this->Model_paket->get_paket_reguler(),
+					'paket_premium' => $this->Model_paket->get_paket_premium(),
+					'data_kelas' 		=> $this->Model_adm->fetch_all_kelas()
 					);
 
 					//Form materi submit handler. See if the user is attempting to submit a form or not
@@ -137,7 +137,7 @@ class Voucher_old extends CI_Controller
 		{
 			//passing input value to Model
 			for($i = 1; $i <= $jumlah; $i++){
-			$result = $this->model_adm->add_voucher($paket, $kelas, $keterangan);
+			$result = $this->Model_adm->add_voucher($paket, $kelas, $keterangan);
 			}
 			alert_success("Sukses", "Data berhasil ditambahkan");
 
@@ -166,7 +166,7 @@ class Voucher_old extends CI_Controller
 		$durasi = $params['durasi'];
 		$kelas = $params['kelas'];
 		
-        $ambildata = $this->model_voucher->fetch_voucher_by_durasi_kelas($durasi, $kelas);
+        $ambildata = $this->Model_voucher->fetch_voucher_by_durasi_kelas($durasi, $kelas);
          
             $objPHPExcel = new PHPExcel();
             // Set properties

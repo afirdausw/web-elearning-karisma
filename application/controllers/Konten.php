@@ -16,27 +16,27 @@ class Konten extends CI_Controller
 
     public function index($id_materi_pokok)
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
 
-        $list_submateri = $this->model_pg->get_sub_materi_by_materi($id_materi_pokok);
+        $list_submateri = $this->Model_pg->get_sub_materi_by_materi($id_materi_pokok);
 
-        $materi = $this->model_pg->get_mapel_by_materi($id_materi_pokok);
+        $materi = $this->Model_pg->get_mapel_by_materi($id_materi_pokok);
         // DEBUG HERE
         error_reporting(0);
-        $sub_materi_1 = $this->model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
+        $sub_materi_1 = $this->Model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
         if ($sub_materi_1 != null) {
-            $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+            $mapok = $this->Model_pg->get_materi_by_mapel($materi->mapel_id);
             $mapok_baru = [];
             foreach ($mapok as $key => $value) {
                 $v = $array = json_decode(json_encode($value), true);
-                $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
                 $mapok_baru[] = $v;
             }
             $konten = "";
             $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
-            $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+            $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
@@ -46,11 +46,11 @@ class Konten extends CI_Controller
                 'materi_pokok'   => $mapok_baru,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
-                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
-                'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
+                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
 //            return $this->output
 //                ->set_content_type('application/json')
@@ -76,13 +76,13 @@ class Konten extends CI_Controller
 
     public function mapel($id_mapel)
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if($siswa_logged){
             $id = $this->session->userdata('id_siswa');
-            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
             $jenis_siswa = "siswa";
         }else if ($pretest_logged){
             $id = $this->session->userdata('pretest_id');
@@ -90,34 +90,34 @@ class Konten extends CI_Controller
             $jenis_siswa = "pretest";
         }
 
-        $materi = $this->model_pg->get_materi_by_mapel_one($id_mapel);
+        $materi = $this->Model_pg->get_materi_by_mapel_one($id_mapel);
         // TODO handle error apabila konten tidak ada di DB
         // DEBUG HERE
         error_reporting(0);
-        $sub_materi_1 = $this->model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
+        $sub_materi_1 = $this->Model_pg->get_sub_materi_by_materi($materi->id_materi_pokok)[0];
 
 
         if ($sub_materi_1 != null) {
-            $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+            $mapok = $this->Model_pg->get_materi_by_mapel($materi->mapel_id);
             $mapok_baru = [];
             foreach ($mapok as $key => $value) {
                 $v = $array = json_decode(json_encode($value), true);
-                $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
                 $mapok_baru[] = $v;
             }
             $konten = "";
             $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
             // PRE
-            $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+            $mapok_pre = $this->Model_pg->get_materi_pre_by_mapel($materi->mapel_id);
             $mapok_baru_pre = [];
             foreach ($mapok_pre as $key => $value) {
                 $v = $array = json_decode(json_encode($value), true);
-                $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
                 $mapok_baru_pre[] = $v;
             }
             $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
             // END PRE
-            $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+            $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
@@ -128,11 +128,11 @@ class Konten extends CI_Controller
                 'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
-                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
-                'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
+                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
 
             // return $this->output
@@ -165,30 +165,30 @@ class Konten extends CI_Controller
 
     public function detail($id_sub_materi)
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-        $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi)[0];
-        $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
-        $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $sub_materi_1 = $this->Model_pg->get_sub_materi_by_id($id_sub_materi)[0];
+        $materi = $this->Model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
+        $mapok = $this->Model_pg->get_materi_by_mapel($materi->mapel_id);
         $mapok_baru = [];
         foreach ($mapok as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
         // PRE
-        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_pre = $this->Model_pg->get_materi_pre_by_mapel($materi->mapel_id);
         $mapok_baru_pre = [];
         foreach ($mapok_pre as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru_pre[] = $v;
         }
         $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
         // END PRE
-        $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+        $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
@@ -201,14 +201,14 @@ class Konten extends CI_Controller
             if($siswa_logged OR $pretest_logged){
                 if($siswa_logged){
                     $id = $this->session->userdata('id_siswa');
-                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                     $jenis_siswa = "siswa";
                 }else if ($pretest_logged){
                     $id = $this->session->userdata('pretest_id');
                     $siswa = "";
                     $jenis_siswa = "pretest";
                 }
-                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
                 if($cek_exist->baca_total==0){
                     $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
@@ -221,7 +221,7 @@ class Konten extends CI_Controller
                 "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
             );
 
-            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
+            $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
 
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
@@ -233,11 +233,11 @@ class Konten extends CI_Controller
                 'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
-                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
             //        return $this->output
             //            ->set_content_type('application/json')
@@ -250,30 +250,30 @@ class Konten extends CI_Controller
 
     public function detail_video($id_sub_materi)
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-        $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi, "Video")[0];
-        $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
-        $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $sub_materi_1 = $this->Model_pg->get_sub_materi_by_id($id_sub_materi, "Video")[0];
+        $materi = $this->Model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
+        $mapok = $this->Model_pg->get_materi_by_mapel($materi->mapel_id);
         $mapok_baru = [];
         foreach ($mapok as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
         // PRE
-        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_pre = $this->Model_pg->get_materi_pre_by_mapel($materi->mapel_id);
         $mapok_baru_pre = [];
         foreach ($mapok_pre as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru_pre[] = $v;
         }
         $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
         // END PRE
-        $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+        $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
@@ -286,14 +286,14 @@ class Konten extends CI_Controller
             if($siswa_logged OR $pretest_logged){
                 if($siswa_logged){
                     $id = $this->session->userdata('id_siswa');
-                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                     $jenis_siswa = "siswa";
                 }else if ($pretest_logged){
                     $id = $this->session->userdata('pretest_id');
                     $siswa = "";
                     $jenis_siswa = "pretest";
                 }
-                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
                 if($cek_exist->baca_total==0){
                     $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
@@ -306,7 +306,7 @@ class Konten extends CI_Controller
                 "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
             );
 
-            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
+            $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
             $data = array(
                 "kelas_navbar" => $kelas_navbar,
 
@@ -317,11 +317,11 @@ class Konten extends CI_Controller
                 'materi_pokok_pre' => $mapok_baru_pre,
                 'sub_materi'     => $sub_materi_1,
                 'konten'         => $konten,
-                'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
             );
 
 //            return $this->output
@@ -334,30 +334,30 @@ class Konten extends CI_Controller
 
     public function detail_soal($id_sub_materi)
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-        $sub_materi_1 = $this->model_pg->get_sub_materi_by_id($id_sub_materi, "Soal")[0];
-        $materi = $this->model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
-        $mapok = $this->model_pg->get_materi_by_mapel($materi->mapel_id);
+        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $sub_materi_1 = $this->Model_pg->get_sub_materi_by_id($id_sub_materi, "Soal")[0];
+        $materi = $this->Model_pg->get_mapel_by_materi($sub_materi_1->materi_pokok_id);
+        $mapok = $this->Model_pg->get_materi_by_mapel($materi->mapel_id);
         $mapok_baru = [];
         foreach ($mapok as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru[] = $v;
         }
         $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
         // PRE
-        $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($materi->mapel_id);
+        $mapok_pre = $this->Model_pg->get_materi_pre_by_mapel($materi->mapel_id);
         $mapok_baru_pre = [];
         foreach ($mapok_pre as $key => $value) {
             $v = $array = json_decode(json_encode($value), true);
-            $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
             $mapok_baru_pre[] = $v;
         }
         $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
         // END PRE
-        $konten = $this->model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
+        $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
@@ -383,7 +383,7 @@ class Konten extends CI_Controller
                 }
                 if($siswa_logged){
                     $id = $this->session->userdata('id_siswa');
-                    $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                    $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                     $jenis_siswa = "siswa";
                 }else if ($pretest_logged){
                     $id = $this->session->userdata('pretest_id');
@@ -391,14 +391,14 @@ class Konten extends CI_Controller
                     $jenis_siswa = "pretest";
                 }
                 //pretest
-                $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
                 if($cek_exist->baca_total==0){
                     $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
                 else if($cek_exist->baca_total>0){
                     $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
-                $data_log = $this->model_konten->select_log_data_result($check);
+                $data_log = $this->Model_konten->select_log_data_result($check);
                 $data = array(
                     "kelas_navbar" => $kelas_navbar,
 
@@ -406,16 +406,16 @@ class Konten extends CI_Controller
                     'materi_pokok_pre' => $mapok_baru_pre,
                     'materi'         => $materi,
                     'sub_materi'     => $sub_materi_1,
-                    'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                    'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                    'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                    'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                    'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
-                    'soal'           => $this->model_pg->fetch_soal_by_submateri($id_sub_materi),
-                    'jumlah'         => $this->model_pg->jumlah_soal($id_sub_materi),
+                    'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                    'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                    'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                    'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                    'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+                    'soal'           => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
+                    'jumlah'         => $this->Model_pg->jumlah_soal($id_sub_materi),
 
-                    'test_jum' => $this->model_konten->select_log_count_pretest($check),
-                    'log'      => $this->model_konten->select_log_data_pretest($check),
+                    'test_jum' => $this->Model_konten->select_log_count_pretest($check),
+                    'log'      => $this->Model_konten->select_log_data_pretest($check),
                 );
                 if ($this->session->userdata('pretest_id')) {
                     //error
@@ -423,19 +423,19 @@ class Konten extends CI_Controller
                         "id_siswa"      => $this->session->userdata('pretest_id'),
                         "sub_materi_id" => $id_sub_materi,
                     ];
-                    $data_jawaban = $this->model_konten->select_jawaban_data_pretest('hitung_semua', $jawab_data);
+                    $data_jawaban = $this->Model_konten->select_jawaban_data_pretest('hitung_semua', $jawab_data);
                     if (intval($data_jawaban->numrows) > 0) {
                         $jawab_data["soal_id"] = -1;
-                        $data['data_jawaban'] = $this->model_konten->select_jawaban_data_pretest('fetch', $jawab_data);
+                        $data['data_jawaban'] = $this->Model_konten->select_jawaban_data_pretest('fetch', $jawab_data);
                     }
-                    $datanya = $this->model_konten->select_log_data_pretest($check);
+                    $datanya = $this->Model_konten->select_log_data_pretest($check);
                     if ($datanya != NULL) {
                         $data['innerHTMLnya'] = $datanya->nilai;
                     } else {
                         $data['innerHTMLnya'] = 0;
                     }
                 } else {
-                    $data['innerHTMLnya'] = $this->model_konten->select_log_data_pretest($check)['nilai'];
+                    $data['innerHTMLnya'] = $this->Model_konten->select_log_data_pretest($check)['nilai'];
                 }
             } else {
                 if (isset($siswa->id_siswa)) {
@@ -449,7 +449,7 @@ class Konten extends CI_Controller
                         "sub_materi_id" => NULL,
                     ];
                 }
-                $data_log = $this->model_konten->select_log_data_result($check);
+                $data_log = $this->Model_konten->select_log_data_result($check);
                 $data = array(
                     "kelas_navbar" => $kelas_navbar,
 
@@ -458,28 +458,28 @@ class Konten extends CI_Controller
                     'materi_pokok_pre' => $mapok_baru_pre,
                     'materi'         => $materi,
                     'sub_materi'     => $sub_materi_1,
-                    'list_submateri' => $this->model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                    'next'           => $this->model_pg->get_next_konten($konten->id_konten),
-                    'prev'           => $this->model_pg->get_prev_konten($konten->id_konten),
-                    'next_mapok'     => $this->model_pg->get_next_mapok($materi->id_materi_pokok),
-                    'prev_mapok'     => $this->model_pg->get_prev_mapok($materi->id_materi_pokok),
-                    'soal'           => $this->model_pg->fetch_soal_by_submateri($id_sub_materi),
-                    'jumlah'         => $this->model_pg->jumlah_soal($id_sub_materi),
+                    'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                    'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
+                    'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
+                    'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                    'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+                    'soal'           => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
+                    'jumlah'         => $this->Model_pg->jumlah_soal($id_sub_materi),
 
-                    'test_jum' => $this->model_konten->select_log_count($check),
-                    'log'      => $this->model_konten->select_log_data($check),
+                    'test_jum' => $this->Model_konten->select_log_count($check),
+                    'log'      => $this->Model_konten->select_log_data($check),
                 );
                 if (isset($siswa->id_siswa)) {
                     if($siswa_logged){
                         $id = $this->session->userdata('id_siswa');
-                        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+                        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                         $jenis_siswa = "siswa";
                     }else if ($pretest_logged){
                         $id = $this->session->userdata('pretest_id');
                         $siswa = "";
                         $jenis_siswa = "pretest";
                     }
-                    $cek_exist = $this->model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
+                    $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
                     if($cek_exist->baca_total==0){
                         $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                     }
@@ -491,19 +491,19 @@ class Konten extends CI_Controller
                         "id_siswa"      => $siswa->id_siswa,
                         "sub_materi_id" => $id_sub_materi,
                     ];
-                    $data_jawaban = $this->model_konten->select_jawaban_data('hitung_semua', $jawab_data);
+                    $data_jawaban = $this->Model_konten->select_jawaban_data('hitung_semua', $jawab_data);
                     if (intval($data_jawaban->numrows) > 0) {
                         $jawab_data["soal_id"] = -1;
-                        $data['data_jawaban'] = $this->model_konten->select_jawaban_data('fetch', $jawab_data);
+                        $data['data_jawaban'] = $this->Model_konten->select_jawaban_data('fetch', $jawab_data);
                     }
-                    $datanya = $this->model_konten->select_log_data($check);
+                    $datanya = $this->Model_konten->select_log_data($check);
                     if ($datanya != NULL) {
                         $data['innerHTMLnya'] = $datanya->nilai;
                     } else {
                         $data['innerHTMLnya'] = 0;
                     }
                 } else {
-                    $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
+                    $data['innerHTMLnya'] = $this->Model_konten->select_log_data($check)['nilai'];
                 }
 
                 // $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
@@ -513,7 +513,7 @@ class Konten extends CI_Controller
             $where = array(
                 "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
             );
-            $instruktur = $this->model_instruktur->get_instruktur_by_mapel($where);
+            $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
             $data["instruktur"] = $instruktur;
             $this->load->view('pg_user/konten_soal', $data);
         }
@@ -531,9 +531,9 @@ class Konten extends CI_Controller
                 "sub_materi_id" => $sub_materi,
             ];
 
-            if ($this->model_konten->select_log_count_pretest($ins) >= 1) {
+            if ($this->Model_konten->select_log_count_pretest($ins) >= 1) {
                 $ins["updated_at"] = $start;
-                $update = $this->model_konten->update_log_pretest($ins);
+                $update = $this->Model_konten->update_log_pretest($ins);
 
                 if ($update) {
                     $data = [
@@ -547,8 +547,8 @@ class Konten extends CI_Controller
                 }
 
 
-            } else if ($this->model_konten->select_log_count_pretest($ins) < 1) {
-                $soal = $this->model_pg->get_sub_materi_by_id($sub_materi)[0];
+            } else if ($this->Model_konten->select_log_count_pretest($ins) < 1) {
+                $soal = $this->Model_pg->get_sub_materi_by_id($sub_materi)[0];
                 //dalam menit
                 $waktu_soal = $soal->waktu_soal;
 
@@ -558,7 +558,7 @@ class Konten extends CI_Controller
                 $estimasi_finish = time() + ($waktu_soal * 60);
                 $ins["finish"] = date('Y-m-d H:i:s', $estimasi_finish);
 
-                $simpan = $this->model_konten->insert_log_pretest($ins);
+                $simpan = $this->Model_konten->insert_log_pretest($ins);
 
                 if ($simpan) {
                     $data = [
@@ -583,7 +583,7 @@ class Konten extends CI_Controller
                 "sub_materi_id" => $sub_materi,
             ];
 
-            if ($this->model_konten->select_log_count($ins) >= 1) {
+            if ($this->Model_konten->select_log_count($ins) >= 1) {
                 // $ins["updated_at"] = $start;
                 // $update = $this->model_konten->update_log($ins);
 
@@ -599,8 +599,8 @@ class Konten extends CI_Controller
                 // }
 
 
-            } else if ($this->model_konten->select_log_count($ins) < 1) {
-                $soal = $this->model_pg->get_sub_materi_by_id($sub_materi)[0];
+            } else if ($this->Model_konten->select_log_count($ins) < 1) {
+                $soal = $this->Model_pg->get_sub_materi_by_id($sub_materi)[0];
                 //dalam menit
                 $waktu_soal = $soal->waktu_soal;
 
@@ -611,7 +611,7 @@ class Konten extends CI_Controller
                 $ins["finish"] = date('Y-m-d H:i:s', $estimasi_finish);
                 echo var_dump($soal);
 
-                $simpan = $this->model_konten->insert_log($ins, "ujian");
+                $simpan = $this->Model_konten->insert_log($ins, "ujian");
 
                 if ($simpan) {
                     $data = [
@@ -645,7 +645,7 @@ class Konten extends CI_Controller
                 "id_siswa"      => $siswa,
                 "sub_materi_id" => $sub_materi,
             ];
-            $data_log = $this->model_konten->select_log_data_pretest($check);
+            $data_log = $this->Model_konten->select_log_data_pretest($check);
 
 //        return $this->output
 //            ->set_content_type('application/json')
@@ -661,10 +661,10 @@ class Konten extends CI_Controller
                 "created_at"    => $start,
             ];
 
-            $data_jawaban = $this->model_konten->select_jawaban_data_pretest('hitung_id', $ins);
+            $data_jawaban = $this->Model_konten->select_jawaban_data_pretest('hitung_id', $ins);
             if ($data_jawaban == 0) {
                 echo "masuk";
-                $insert_act = $this->model_konten->insert_jawab_pretest($ins);
+                $insert_act = $this->Model_konten->insert_jawab_pretest($ins);
 
                 if ($insert_act) {
                     echo var_dump($insert_act);
@@ -674,14 +674,14 @@ class Konten extends CI_Controller
 
                 $this->nilai_jawab($siswa, $sub_materi);
             } else {
-                $data_jawaban_update = $this->model_konten->select_jawaban_data_pretest('fetch_id', $ins);
+                $data_jawaban_update = $this->Model_konten->select_jawaban_data_pretest('fetch_id', $ins);
                 $createdtime = $data_jawaban_update->created_at;
                 $updatetime = date('Y-m-d H:i:s');
                 $ins['created_at'] = $createdtime;
                 $ins['updated_at'] = $updatetime;
 
                 //aksi
-                $update_act = $this->model_konten->update_jawab_pretest($ins);
+                $update_act = $this->Model_konten->update_jawab_pretest($ins);
                 $this->nilai_jawab($siswa, $sub_materi);
 
 
@@ -695,7 +695,7 @@ class Konten extends CI_Controller
                 "id_siswa"      => $siswa,
                 "sub_materi_id" => $sub_materi,
             ];
-            $data_log = $this->model_konten->select_log_data($check);
+            $data_log = $this->Model_konten->select_log_data($check);
 
 //        return $this->output
 //            ->set_content_type('application/json')
@@ -711,10 +711,10 @@ class Konten extends CI_Controller
                 "created_at"    => $start,
             ];
 
-            $data_jawaban = $this->model_konten->select_jawaban_data('hitung_id', $ins);
+            $data_jawaban = $this->Model_konten->select_jawaban_data('hitung_id', $ins);
             if ($data_jawaban == 0) {
                 echo "masuk";
-                $insert_act = $this->model_konten->insert_jawab($ins);
+                $insert_act = $this->Model_konten->insert_jawab($ins);
 
                 if ($insert_act) {
                     echo var_dump($insert_act);
@@ -724,14 +724,14 @@ class Konten extends CI_Controller
 
                 $this->nilai_jawab($siswa, $sub_materi);
             } else {
-                $data_jawaban_update = $this->model_konten->select_jawaban_data('fetch_id', $ins);
+                $data_jawaban_update = $this->Model_konten->select_jawaban_data('fetch_id', $ins);
                 $createdtime = $data_jawaban_update->created_at;
                 $updatetime = date('Y-m-d H:i:s');
                 $ins['created_at'] = $createdtime;
                 $ins['updated_at'] = $updatetime;
 
                 //aksi
-                $update_act = $this->model_konten->update_jawab($ins);
+                $update_act = $this->Model_konten->update_jawab($ins);
                 $this->nilai_jawab($siswa, $sub_materi);
 
 
@@ -755,12 +755,12 @@ class Konten extends CI_Controller
             $update_nilai = 0; //akkhir
             $nilai_siswa = 0; //jawaban siswa
             $nilai_total = 0; //total semua berdasar bobot
-            $data_jawaban_update = $this->model_konten->select_jawaban_data_pretest('fetch', $updt_ins);
+            $data_jawaban_update = $this->Model_konten->select_jawaban_data_pretest('fetch', $updt_ins);
 
             $dt_kunci = [
                 "sub_materi_id" => $id_sub_materi,
             ];
-            $nilai_total = $this->model_konten->select_kunci_idsubmateri($dt_kunci)->bobotnya;
+            $nilai_total = $this->Model_konten->select_kunci_idsubmateri($dt_kunci)->bobotnya;
 
             $poin_per_bobot = 100 / $nilai_total;
             if (preg_match('/\.\d{3,}/', $poin_per_bobot)) {
@@ -773,10 +773,10 @@ class Konten extends CI_Controller
                 $dt_kunci = [
                     "soal_id" => $id_soal_jawab,
                 ];
-                $dt_kunci_fetch = $this->model_konten->select_kunci($dt_kunci);
+                $dt_kunci_fetch = $this->Model_konten->select_kunci($dt_kunci);
 
-                $bobot_soal = $this->model_konten->select_kunci($dt_kunci)->bobot;
-                $kunci_jawaban = $this->model_konten->select_kunci($dt_kunci)->kunci_jawaban;
+                $bobot_soal = $this->Model_konten->select_kunci($dt_kunci)->bobot;
+                $kunci_jawaban = $this->Model_konten->select_kunci($dt_kunci)->kunci_jawaban;
                 if ($dt->jawaban == $kunci_jawaban) {
                     $nilai_siswa += $bobot_soal * $poin_per_bobot;
                 }
@@ -796,7 +796,7 @@ class Konten extends CI_Controller
             ];
 
             //aksi2
-            $update_log = $this->model_konten->update_log_pretest($data_updt);
+            $update_log = $this->Model_konten->update_log_pretest($data_updt);
 
             //DEBUG
             // if($update_log){
@@ -818,12 +818,12 @@ class Konten extends CI_Controller
             $update_nilai = 0; //akkhir
             $nilai_siswa = 0; //jawaban siswa
             $nilai_total = 0; //total semua berdasar bobot
-            $data_jawaban_update = $this->model_konten->select_jawaban_data('fetch', $updt_ins);
+            $data_jawaban_update = $this->Model_konten->select_jawaban_data('fetch', $updt_ins);
 
             $dt_kunci = [
                 "sub_materi_id" => $id_sub_materi,
             ];
-            $nilai_total = $this->model_konten->select_kunci_idsubmateri($dt_kunci)->bobotnya;
+            $nilai_total = $this->Model_konten->select_kunci_idsubmateri($dt_kunci)->bobotnya;
 
             $poin_per_bobot = 100 / $nilai_total;
             if (preg_match('/\.\d{3,}/', $poin_per_bobot)) {
@@ -836,10 +836,10 @@ class Konten extends CI_Controller
                 $dt_kunci = [
                     "soal_id" => $id_soal_jawab,
                 ];
-                $dt_kunci_fetch = $this->model_konten->select_kunci($dt_kunci);
+                $dt_kunci_fetch = $this->Model_konten->select_kunci($dt_kunci);
 
-                $bobot_soal = $this->model_konten->select_kunci($dt_kunci)->bobot;
-                $kunci_jawaban = $this->model_konten->select_kunci($dt_kunci)->kunci_jawaban;
+                $bobot_soal = $this->Model_konten->select_kunci($dt_kunci)->bobot;
+                $kunci_jawaban = $this->Model_konten->select_kunci($dt_kunci)->kunci_jawaban;
                 if ($dt->jawaban == $kunci_jawaban) {
                     $nilai_siswa += $bobot_soal * $poin_per_bobot;
                 }
@@ -859,7 +859,7 @@ class Konten extends CI_Controller
             ];
 
             //aksi2
-            $update_log = $this->model_konten->update_log($data_updt, "ujian");
+            $update_log = $this->Model_konten->update_log($data_updt, "ujian");
 
             //DEBUG
             // if($update_log){
@@ -886,7 +886,7 @@ class Konten extends CI_Controller
             "finish_ujian"  => $end,
         ];
 
-        $update = $this->model_konten->update_log($dt_updt, "ujian");
+        $update = $this->Model_konten->update_log($dt_updt, "ujian");
 
     }
 
@@ -894,13 +894,13 @@ class Konten extends CI_Controller
         // simpan ke log baca
         //TODO Log diinsert saat akses klik sidebar
         $tanggal = date(DATE_ATOM);
-        $this->model_konten->insert_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
+        $this->Model_konten->insert_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
     }
     public function update_log_baca($id, $sub_materi, $jenis_siswa){
         // simpan ke log baca
         //TODO Log diinsert saat akses klik sidebar
         $tanggal = date(DATE_ATOM);
-        $this->model_konten->update_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
+        $this->Model_konten->update_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
     }
 
     public function DOMinnerHTML(DOMNode $element)

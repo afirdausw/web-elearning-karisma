@@ -13,7 +13,7 @@ class Kategori_konten_download extends CI_Controller
 		$this->load->model('model_security');
 		$this->load->model('model_kontendownload');
 		$this->load->model('model_pg');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
 
 	}
 
@@ -54,7 +54,7 @@ class Kategori_konten_download extends CI_Controller
 				"kategori_konten_download"      => $judul,
 				"gambar"						=> $namafile
 			];
-			$result = $this->model_kontendownload->simpan_kategori_konten_download($data);
+			$result = $this->Model_kontendownload->simpan_kategori_konten_download($data);
 			// print_r($result);
 			echo "<script>document.location='" . base_url("pg_admin/kategori_konten_download") . "';</script>";
 		} else {
@@ -86,14 +86,14 @@ class Kategori_konten_download extends CI_Controller
 
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
 			
-			'table_data' => $this->model_kontendownload->get_kategori_konten_download(),
+			'table_data' => $this->Model_kontendownload->get_kategori_konten_download(),
 		);
 		$this->load->view('pg_admin/kategori_konten_download', $data);
 	}
 
 	public function ajax_mapel($kelas)
 	{
-		$carimapel = $this->model_adm->fetch_mapel_by_id_kelas($kelas);
+		$carimapel = $this->Model_adm->fetch_mapel_by_id_kelas($kelas);
 		$no = 1; ?>
 		<option value="">--Pilih Mata Pelajaran --</option>
 		<?php
@@ -107,7 +107,7 @@ class Kategori_konten_download extends CI_Controller
 
 	public function ajax_konten_by_mapel($mapel)
 	{
-		$carimapel = $this->model_kontendownload->get_all_konten_by_mapel($mapel);
+		$carimapel = $this->Model_kontendownload->get_all_konten_by_mapel($mapel);
 		$no = 1;
 
 		if (count($carimapel) > 0) {
@@ -170,7 +170,7 @@ class Kategori_konten_download extends CI_Controller
 		$kelas = $this->input->post('kelas', true) ? $this->input->post('kelas', true) : null;
 
 		if ($kelas) {
-			$carimapel = $this->model_adm->fetch_mapel_by_id_kelas($kelas);
+			$carimapel = $this->Model_adm->fetch_mapel_by_id_kelas($kelas);
 
 
 			if ($carimapel) {
@@ -191,7 +191,7 @@ class Kategori_konten_download extends CI_Controller
 		$id = $this->input->get('id') ? $this->input->get('id') : null;
 
 		$data = array(
-			'carikonten'   => $this->model_kontendownload->get_kategori_konten_by_id($id),
+			'carikonten'   => $this->Model_kontendownload->get_kategori_konten_by_id($id),
 			'navbar_title' => "Edit Kategori Konten Download",
 			'active'       => "pg_admin/kategori_konten_download/ubah",
 		);
@@ -227,7 +227,7 @@ class Kategori_konten_download extends CI_Controller
 				"kategori_konten_download"      => $judul,
 				"gambar"						=> $namafile
 			];
-			$result = $this->model_kontendownload->update_kategori($id, $judul, $namafile);
+			$result = $this->Model_kontendownload->update_kategori($id, $judul, $namafile);
 			//print_r($result);
 			// echo "<script>document.location='" . base_url("pg_admin/kategori_konten_download") . "';</script>";
 		} else {
@@ -241,8 +241,8 @@ class Kategori_konten_download extends CI_Controller
         $data = array(
             'navbar_title' => "Konten Download",
             'active'       => "konten_download",
-            'select_kategori' => $this->model_kontendownload->get_kategori_konten_download(),
-            'konten' => $this->model_kontendownload->get_all_konten_by_kategori_konten_download($id_konten),
+            'select_kategori' => $this->Model_kontendownload->get_kategori_konten_download(),
+            'konten' => $this->Model_kontendownload->get_all_konten_by_kategori_konten_download($id_konten),
 
             'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
         );
@@ -255,7 +255,7 @@ class Kategori_konten_download extends CI_Controller
 
 
 
-		$this->model_kontendownload->delete_kategori($id);
+		$this->Model_kontendownload->delete_kategori($id);
 		echo "<script>document.location='" . base_url("pg_admin/kategori_konten_download") . "';</script>";
 
 	}

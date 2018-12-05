@@ -13,17 +13,17 @@ class Kelas extends CI_Controller
 	}
 
 	function index($id){
-        $kelas = $this->model_pg->get_mapel_by_kelas($id);
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas = $this->Model_pg->get_mapel_by_kelas($id);
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
 		$data = array(
             'kelas' => $kelas,
-            'mapel' => $this->model_pg->get_mapel_by_kelas_id($kelas->id_kelas),
+            'mapel' => $this->Model_pg->get_mapel_by_kelas_id($kelas->id_kelas),
             "kelas_navbar" => $kelas_navbar, 
         );
 		$idsiswa = $this->session->userdata('id_siswa');
 		if($idsiswa != NULL){
-        	$siswa = $this->model_pg->get_data_user($idsiswa);
+        	$siswa = $this->Model_pg->get_data_user($idsiswa);
         	$data['siswa'] = $siswa;
         }
        // return $this->output

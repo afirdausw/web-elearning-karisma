@@ -50,7 +50,7 @@ class Login extends CI_Controller
             $username = $params['username'];
             $password = $params['password'];
 
-            $result = $this->model_login->cek_login($username, $password);
+            $result = $this->Model_login->cek_login($username, $password);
             if ($result != null) {
                 $cart = $this->Model_Cart->getCartByIdSiswa($result->id_siswa);
                 $cart = obj_to_arr($cart);
@@ -192,7 +192,7 @@ class Login extends CI_Controller
     private function set_siswa_akses($do_login)
     {
         //get user access
-        $siswa_access = $this->model_login->cek_user_akses($do_login['id_siswa']);
+        $siswa_access = $this->Model_login->cek_user_akses($do_login['id_siswa']);
         $akses_kelas = array();
         $param = ['siswa' => $do_login['id_siswa']];
         $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
@@ -203,14 +203,14 @@ class Login extends CI_Controller
         if (!$json['exp']) {
             $akses_kelas['reguler'] = $json['kelas'];
             // $akses_kelas['premium'][] = $json['kelas'];
-            $kelasaktif = $this->model_dashboard->kelas_by_id_in($json['kelas']);
+            $kelasaktif = $this->Model_dashboard->kelas_by_id_in($json['kelas']);
             foreach ($kelasaktif as $kelas2) {
 
                 $menu[$kelas2->jenjang][$kelas2->id_kelas] = json_decode(json_encode($kelas2), true);;
-                $mapel = json_decode(json_encode($this->model_dashboard->get_mapel_by_kelas($kelas2->id_kelas)), true);
+                $mapel = json_decode(json_encode($this->Model_dashboard->get_mapel_by_kelas($kelas2->id_kelas)), true);
                 $data = array();
                 foreach ($mapel as $key => $value) {
-                    $mapok = $this->model_login->get_id_materipokok($value['id_mapel']);
+                    $mapok = $this->Model_login->get_id_materipokok($value['id_mapel']);
                     if (count($mapok) > 0) {
                         $value['id_mapok'] = $mapok[0]['id_materi_pokok'];
                     } else {
@@ -231,7 +231,7 @@ class Login extends CI_Controller
         // $this->session->set_userdata();
         //SET POIN SISWA
         if (date("Y-m-d", strtotime($do_login['last_login'])) != date("Y-m-d")) {
-            $addpoin = $this->model_poin->add_poin_siswa($do_login['id_siswa'], 'login');
+            $addpoin = $this->Model_poin->add_poin_siswa($do_login['id_siswa'], 'login');
         }
     }
 
@@ -251,7 +251,7 @@ class Login extends CI_Controller
         if (date('Y-m-d') > $data->expired_on) //paket telah melebihi expiration date
         {
             // return $data->id_kelas.", " . date('Y-m-d').", " . $data->expired_on."<br>";
-            $result = $this->model_login->set_to_inactive($data->id_paket_aktif);
+            $result = $this->Model_login->set_to_inactive($data->id_paket_aktif);
             print_r($result);
 
             if ($result) {
@@ -268,7 +268,7 @@ class Login extends CI_Controller
         $result = FALSE;
 
         if (!empty($fb_id)) {
-            $do_login = $this->model_login->cek_akun_fb($fb_id);
+            $do_login = $this->Model_login->cek_akun_fb($fb_id);
 
             if (!empty($do_login)) {
                 $this->set_siswa_akses($do_login);
@@ -298,7 +298,7 @@ class Login extends CI_Controller
         );
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
             'fb_config'    => $fb_config,
             'twt_config'   => $twt_config
             // 'fb_config' => fb_share_config('default')
@@ -309,14 +309,14 @@ class Login extends CI_Controller
 
     function login_from_signup($username, $password, $nama)
     {
-        $do_login = $this->model_login->cek_login($username, $password);
+        $do_login = $this->Model_login->cek_login($username, $password);
         if ($do_login != null) {
             $this->set_siswa_akses($do_login);
 
             if (empty($this->session->userdata('akses'))) {
                 $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
 
-                $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+                $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
                 if (empty($datapembelian)) {
                     $alert_message = "Selamat datang, " . rawurldecode($nama) . ". Akun anda telah terdaftar, Silahkan melakukan aktivasi untuk memulai belajar di LPI Hidayatullah";
                     alert_success('Berhasil!', $alert_message);

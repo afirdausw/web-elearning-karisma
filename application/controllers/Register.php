@@ -16,7 +16,7 @@ class Register extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'navbar_links' => $this->model_pg->get_navbar_links() 
+			'navbar_links' => $this->Model_pg->get_navbar_links()
 			);
 
 		$this->load->view('pg_user/register', $data);

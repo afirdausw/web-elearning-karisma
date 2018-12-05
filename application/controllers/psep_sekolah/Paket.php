@@ -14,14 +14,14 @@ class Paket extends CI_Controller
     $this->load->helper('alert_helper');
     $this->load->model('model_adm');
     $this->load->model('model_security');
-    $this->model_security->psep_sekolah_is_logged_in();
+    $this->Model_security->psep_sekolah_is_logged_in();
   }
 
   function index(){
     $data = array(
       'navbar_title'  => "Paket",
       'form_action'   => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-      'table_data'    => $this->model_adm->fetch_all_paket()
+      'table_data'    => $this->Model_adm->fetch_all_paket()
       );
 
     $this->load->view('psep_sekolah/paket', $data);
@@ -124,7 +124,7 @@ class Paket extends CI_Controller
     else 
     {
       //passing input value to Model
-      $result = $this->model_adm->add_paket($kode_paket, $durasi, $harga, $tipe);
+      $result = $this->Model_adm->add_paket($kode_paket, $durasi, $harga, $tipe);
       alert_success("Sukses", "Data berhasil ditambahkan");
       redirect('psep_sekolah/paket');
       // echo "Status Insert: " . $result;
@@ -155,7 +155,7 @@ class Paket extends CI_Controller
     else 
     {
       //passing input value to Model
-      $result = $this->model_adm->update_paket($id, $kode_paket, $durasi, $harga, $tipe);
+      $result = $this->Model_adm->update_paket($id, $kode_paket, $durasi, $harga, $tipe);
       alert_success("Sukses", "Data berhasil diubah");
       redirect('psep_sekolah/paket');
       // echo "Status Update: " . $result;
@@ -173,7 +173,7 @@ class Paket extends CI_Controller
       if($this->form_validation->run())
       {
         $id   = $this->input->post('hidden_row_id');
-        $result = $this->model_adm->delete_paket($id);
+        $result = $this->Model_adm->delete_paket($id);
         
         alert_success('Sukses', "Data berhasil dihapus");
         redirect('psep_sekolah/paket');
@@ -199,8 +199,8 @@ class Paket extends CI_Controller
   function fetch_paket_by_id($id)
   {
     $data       = new stdClass();
-    $table_data   = $this->model_adm->fetch_paket_by_id($id); 
-    $table_fields   = $this->model_adm->get_table_fields('paket');
+    $table_data   = $this->Model_adm->fetch_paket_by_id($id);
+    $table_fields   = $this->Model_adm->get_table_fields('paket');
     //tester
     // var_dump($table_data);
     // var_dump($table_fields);

@@ -18,11 +18,11 @@ public function __construct(){
 function index(){
     $idpsep = $this->session->userdata('idpsepsekolah');
 
-    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 	$data = array(
-		'kelas'			=> $this->model_agcu->cek_kelas_by_jenjang($carisekolah->jenjang),
-		'diagnostic'	=> $this->model_agcu->get_diagnostic_by_jenjang($carisekolah->jenjang),
-		'jumlah_soal'	=> $this->model_agcu->get_jumlahsoal()
+		'kelas'			=> $this->Model_agcu->cek_kelas_by_jenjang($carisekolah->jenjang),
+		'diagnostic'	=> $this->Model_agcu->get_diagnostic_by_jenjang($carisekolah->jenjang),
+		'jumlah_soal'	=> $this->Model_agcu->get_jumlahsoal()
 	);
 	
 	$this->load->view('psep_sekolah/kategori_diagnostic', $data);
@@ -32,9 +32,9 @@ function index(){
 function tambah(){
     $idpsep = $this->session->userdata('idpsepsekolah');
 
-    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 	$data = array(
-		'kelas'	=> $this->model_agcu->get_kelas_by_jenjang($carisekolah->jenjang)
+		'kelas'	=> $this->Model_agcu->get_kelas_by_jenjang($carisekolah->jenjang)
 	);
 	$this->load->view('psep_sekolah/diagnostic_form', $data);
 }
@@ -42,7 +42,7 @@ function tambah(){
 function pilihmapel(){
 	$idkelas = $this->uri->segment(4);
 	
-	$mapel = $this->model_agcu->get_mapel_by_kelas($idkelas);
+	$mapel = $this->Model_agcu->get_mapel_by_kelas($idkelas);
 	
 	foreach($mapel as $datamapel){
 		echo "
@@ -54,7 +54,7 @@ function pilihmapel(){
 function pilihsoal(){
 	$idmapel = $this->uri->segment(4);
 	
-	$soal = $this->model_agcu->get_soal_by_mapel($idmapel);
+	$soal = $this->Model_agcu->get_soal_by_mapel($idmapel);
 	
 	$no = 1;
 	foreach($soal as $datasoal){
@@ -86,30 +86,30 @@ function prosestambah(){
 	$durasi 	= $params['durasi'];
 	$ketuntasan = $params['ketuntasan'];
 	
-	$insertkategori = $this->model_agcu->tambah_kategori($idmapel, $nama, $durasi, $ketuntasan);
+	$insertkategori = $this->Model_agcu->tambah_kategori($idmapel, $nama, $durasi, $ketuntasan);
 	
-	$idkategori = $this->model_agcu->last_addedkategori();
+	$idkategori = $this->Model_agcu->last_addedkategori();
 	
 	
 	
 	for($i=0; $i <= $hitung_soal - 1; $i++){
-		$result = $this->model_agcu->add_soal($idkategori->id_terakhir, $idbanksoal[$i]);
+		$result = $this->Model_agcu->add_soal($idkategori->id_terakhir, $idbanksoal[$i]);
 	}
 	redirect('psep_sekolah/diagnostictest');
 }
 
 function edit(){
 	$iddiagnostic 	= $this->uri->segment(4);
-	$getdiagnostic 	= $this->model_agcu->get_diagnosticbyid($iddiagnostic );
-	$getidsoal 		= $this->model_agcu->get_idsoal($iddiagnostic );
-	$getsoal 		= $this->model_agcu->get_soal();
+	$getdiagnostic 	= $this->Model_agcu->get_diagnosticbyid($iddiagnostic );
+	$getidsoal 		= $this->Model_agcu->get_idsoal($iddiagnostic );
+	$getsoal 		= $this->Model_agcu->get_soal();
 	
 	$data = array(
 	'iddiagnostic'	=> $iddiagnostic,
 	'getdiagnostic'	=> $getdiagnostic,
 	'getidsoal'		=> $getidsoal,
 	'getsoal'		=> $getsoal,
-	'kelas'	=> $this->model_agcu->get_kelas()
+	'kelas'	=> $this->Model_agcu->get_kelas()
 	);	
 	
 	$this->load->view('psep_sekolah/diagnostic_edit', $data);
@@ -129,18 +129,18 @@ function prosesedit(){
 	$durasi 	= $params['durasi'];
 	$ketuntasan = $params['ketuntasan'];
 	
-	$editkategori = $this->model_agcu->edit_kategori($iddiagnostic, $idmapel, $nama, $durasi, $ketuntasan);
+	$editkategori = $this->Model_agcu->edit_kategori($iddiagnostic, $idmapel, $nama, $durasi, $ketuntasan);
 	
-	$hapussoal = $this->model_agcu->hapus_soal_kategori($iddiagnostic);
+	$hapussoal = $this->Model_agcu->hapus_soal_kategori($iddiagnostic);
 	
 	for($i=0; $i <= $hitung_soal - 1; $i++){
-		$result = $this->model_agcu->add_soal($iddiagnostic, $idmapel, $idbanksoal[$i]);
+		$result = $this->Model_agcu->add_soal($iddiagnostic, $idmapel, $idbanksoal[$i]);
 	}
 	redirect('psep_sekolah/diagnostictest');
 }
 function hapus($iddiagnostic){
-	$hapuskategori = $this->model_agcu->hapuskategori($iddiagnostic);
-	$hapussoal = $this->model_agcu->hapus_soal_kategori($iddiagnostic);
+	$hapuskategori = $this->Model_agcu->hapuskategori($iddiagnostic);
+	$hapussoal = $this->Model_agcu->hapus_soal_kategori($iddiagnostic);
 	redirect('psep_sekolah/diagnostictest');
 }
 }

@@ -22,9 +22,9 @@ class Home extends CI_Controller {
 
 		$data = array(
 
-			'navbar_links' => $this->model_pg->get_navbar_links(),
+			'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-			'video_demo'  => $this->model_pg->get_video_demo(null)
+			'video_demo'  => $this->Model_pg->get_video_demo(null)
 
 			);
 
@@ -40,13 +40,13 @@ class Home extends CI_Controller {
         $start-=1;
         if($start<0) $start = 0;
         $start*=$limit;
-        $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+        $mapel = $this->Model_pg->get_all_mapel(1, $limit, $start);
 
-        $kelas = $this->model_pg->fetch_all_kelas();
+        $kelas = $this->Model_pg->fetch_all_kelas();
 
-        $testimoni = $this->model_pg->fetch_all_testimoni(0, 3, 2);
+        $testimoni = $this->Model_pg->fetch_all_testimoni(0, 3, 2);
 
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
         $data = [
             "kelas_navbar" => $kelas_navbar,
@@ -54,11 +54,11 @@ class Home extends CI_Controller {
             "mapel" => $mapel,
             "kelas" => $kelas, 
             "limit" => $limit,
-            "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
+            "jumlah_mapel" => $this->Model_pg->get_all_mapel(2)->jumlah_mapel,
         ];
 		$idsiswa = $this->session->userdata('id_siswa');
 		if($idsiswa != NULL){
-        	$siswa = $this->model_pg->get_data_user($idsiswa);
+        	$siswa = $this->Model_pg->get_data_user($idsiswa);
         	$data['siswa'] = $siswa;
         }
 
@@ -103,13 +103,13 @@ class Home extends CI_Controller {
 	function do_login()
 	{
 		$params = $this->input->post(null, true);
-		$do_login = $this->model_login->cek_login($params['username'], $params['password']);
+		$do_login = $this->Model_login->cek_login($params['username'], $params['password']);
 		$akses_kelas = array();
 
 		if($do_login != null)
 		{ 
 			//get user access
-			$siswa_access = $this->model_login->cek_user_akses($do_login['id_siswa']);
+			$siswa_access = $this->Model_login->cek_user_akses($do_login['id_siswa']);
 
 			foreach ($siswa_access as $item) {
 				//firstly, let's check the paket's expiration date
@@ -151,7 +151,7 @@ class Home extends CI_Controller {
 		if(date('Y-m-d') > $data->expired_on) //paket telah melebihi expiration date
 		{
 			// return $data->id_kelas.", " . date('Y-m-d').", " . $data->expired_on."<br>";
-			$result = $this->model_login->set_to_inactive($data->id_paket_aktif);
+			$result = $this->Model_login->set_to_inactive($data->id_paket_aktif);
 			print_r($result);
 
 			if($result)
@@ -165,7 +165,7 @@ class Home extends CI_Controller {
         $start-=1;
         if($start<0) $start = 0;
         $start*=$limit;
-        $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+        $mapel = $this->Model_pg->get_all_mapel(1, $limit, $start);
 
         //TODO SAMAKAN DENGAN homebaru.php
 

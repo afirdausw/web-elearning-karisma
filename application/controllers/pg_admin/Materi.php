@@ -20,7 +20,7 @@ class Materi extends CI_Controller
         $this->load->model('model_adm1');
         $this->load->model('model_banksoal');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     public function index($kelas = 0, $mapel = 0, $mapok = 0, $page = 1)
@@ -35,7 +35,7 @@ class Materi extends CI_Controller
         }
 
         $config['base_url'] = base_url() . 'pg_admin/materi/tabel_ajax/' . $kelas . '/' . $mapel . '/' . $mapok . '/';
-        $config['total_rows'] = $this->model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->num_rows();
+        $config['total_rows'] = $this->Model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->num_rows();
         $config['per_page'] = $limit;
         $config['uri_segment'] = 7;
         $config['num_links'] = 3;
@@ -64,14 +64,14 @@ class Materi extends CI_Controller
         $data = array(
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'data_tabel'           => $this->model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
+            'data_tabel'           => $this->Model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
             'paginator'            => $this->ajax_pagination->create_links(),
             'hal'                  => $page,
             'per'                  => $limit,
             'idkelas'              => $kelas,
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
-            'select_options_kelas' => $this->model_banksoal->get_kelas(),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
 
         $this->load->view('pg_admin/materi', $data);
@@ -83,12 +83,12 @@ class Materi extends CI_Controller
         $data = array(
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'           => $this->model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->result(),
-            'data_tabel'           => $this->model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->result(),
+            'table_data'           => $this->Model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->result(),
+            'data_tabel'           => $this->Model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->result(),
             'idkelas'              => $kelas,
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
-            'select_options_kelas' => $this->model_banksoal->get_kelas(),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
         $this->load->view('pg_admin/materi_new', $data);
     }
@@ -99,12 +99,12 @@ class Materi extends CI_Controller
         $data = array(
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'           => $this->model_adm1->get_all_materi_all($kelas, $mapel, $mapok),
-            'data_tabel'           => $this->model_adm1->get_all_materi_all($kelas, $mapel, $mapok),
+            'table_data'           => $this->Model_adm1->get_all_materi_all($kelas, $mapel, $mapok),
+            'data_tabel'           => $this->Model_adm1->get_all_materi_all($kelas, $mapel, $mapok),
             'idkelas'              => $kelas,
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
-            'select_options_kelas' => $this->model_banksoal->get_kelas(),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
 
 //            return $this->output
@@ -126,7 +126,7 @@ class Materi extends CI_Controller
         }
 
         $config['base_url'] = base_url() . 'pg_admin/materi/tabel_ajax/' . $kelas . '/' . $mapel . '/' . $mapok . '/';
-        $config['total_rows'] = $this->model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->num_rows();
+        $config['total_rows'] = $this->Model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->num_rows();
         $config['per_page'] = $limit;
         $config['uri_segment'] = 7;
         $config['num_links'] = 3;
@@ -153,19 +153,19 @@ class Materi extends CI_Controller
         $this->ajax_pagination->initialize($config);
 
         if ($kelas > 0) {
-            $carimapel = $this->model_banksoal->get_mapel_by_kelas($kelas);
+            $carimapel = $this->Model_banksoal->get_mapel_by_kelas($kelas);
         } else {
             $carimapel = '';
         }
 
         if ($kelas > 0 && $mapel > 0) {
-            $carimapok = $this->model_adm1->get_mapok_by_mapel($mapel);
+            $carimapok = $this->Model_adm1->get_mapok_by_mapel($mapel);
         } else {
             $carimapok = '';
         }
 
         $data = array(
-            'data_tabel'           => $this->model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
+            'data_tabel'           => $this->Model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
             'paginator'            => $this->ajax_pagination->create_links(),
             'hal'                  => $page,
             'per'                  => $limit,
@@ -174,7 +174,7 @@ class Materi extends CI_Controller
             'idmapok'              => $mapok,
             'carimapel'            => $carimapel,
             'carimapok'            => $carimapok,
-            'select_options_kelas' => $this->model_banksoal->get_kelas(),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
 
         $this->load->view('pg_admin/materi_ajaxpage', $data);
@@ -193,8 +193,8 @@ class Materi extends CI_Controller
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Tambah Materi",
                         'form_action'                 => current_url(),
-                        'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-                        'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
+                        'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+                        'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
                         'jumlah_soal_submateri'       => 0,
                         'idkelas'                     => $kelas,
                         'idmapel'                     => $mapel,
@@ -215,8 +215,8 @@ class Materi extends CI_Controller
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Tambah Materi",
                         'form_action'                 => current_url(),
-                        'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-                        'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
+                        'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+                        'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
                         'idkelas'                     => $kelas,
                         'idmapel'                     => $mapel,
                         'idmapok'                     => $mapok,
@@ -240,10 +240,10 @@ class Materi extends CI_Controller
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Ubah Materi",
                         'form_action'                 => current_url() . "?id=$id",
-                        'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-                        'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
-                        'jumlah_soal_submateri'       => $this->model_adm->fetch_jumlah_soal($id),
-                        'data_soal_submateri'         => $this->model_adm->fetch_soal_by_submateri($id),
+                        'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+                        'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
+                        'jumlah_soal_submateri'       => $this->Model_adm->fetch_jumlah_soal($id),
+                        'data_soal_submateri'         => $this->Model_adm->fetch_soal_by_submateri($id),
                         'idkelas'                     => $kelas,
                         'idmapel'                     => $mapel,
                         'idmapok'                     => $mapok,
@@ -256,7 +256,7 @@ class Materi extends CI_Controller
                         //Calling values from database by id and pass them to View
                         //fetching konten_materi by id
                         $data['data'] = $this->fetch_materi_by_id($id);
-                        $data['data_soal'] = $this->model_adm->fetch_soal_by_id($id);
+                        $data['data_soal'] = $this->Model_adm->fetch_soal_by_id($id);
                         // var_dump($data['data_soal']);
 
                         //Form materi submit handler. See if the user is attempting to submit a form or not
@@ -286,8 +286,8 @@ class Materi extends CI_Controller
         $data = array(
             'page_title'                  => "Tambah Materi",
             'form_action'                 => current_url(),
-            'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-            'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
+            'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+            'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -303,7 +303,7 @@ class Materi extends CI_Controller
         $gambar_materi = $params['gambar_materi'];
         $tanggal = $params['tanggal_post'];
         $waktu = $params['waktu_post'];
-        $max = $this->model_adm->select_max_urutan('sub_materi', $materi_pokok_id, 'urutan_materi');
+        $max = $this->Model_adm->select_max_urutan('sub_materi', $materi_pokok_id, 'urutan_materi');
 //        $max = $this->model_adm->select_max(sub_materi', 'urutan_materi');
         $urutan_materi = ($max->urutan_materi + 1);
 
@@ -328,14 +328,14 @@ class Materi extends CI_Controller
 
 //            $isi_materi =  $this->convert_base64_to_image($isi_materi, 'materi/');
             //passing input value to Model
-            $insert_id = $this->model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, '', $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
+            $insert_id = $this->Model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, '', $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
 
             //continue passing soal input value to Model
             if ($insert_id && $kategori == 3) {
-                $result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
+                $result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
             } elseif ($insert_id && $kategori == 1) {
                 $isi_materi = $this->convert_base64_to_image($isi_materi, 'materi/' . $insert_id . '/');
-                $this->model_adm->update_manual('konten_materi', 'sub_materi_id', $insert_id, ['isi_materi' => $isi_materi]);
+                $this->Model_adm->update_manual('konten_materi', 'sub_materi_id', $insert_id, ['isi_materi' => $isi_materi]);
             }
 
             alert_success("Sukses", "Data berhasil ditambahkan");
@@ -350,8 +350,8 @@ class Materi extends CI_Controller
         $data = array(
             'page_title'                  => "Ubah Materi",
             'form_action'                 => current_url() . "?id=$id",
-            'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-            'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
+            'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+            'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -387,11 +387,11 @@ class Materi extends CI_Controller
                 $pembahasan_video = valid_url($params['pembahasan_video' . $ke]) ? $params['pembahasan_video' . $ke] : '';
 
                 if ($id_soal != 0) {
-                    $this->model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
+                    $this->Model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
                     $ke++;
                 } else if ($id_soal == 0) {
                     $sub_materi_id = $this->input->get('id') ? $this->input->get('id') : null;
-                    $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
+                    $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
                 }
             }
         }
@@ -402,10 +402,10 @@ class Materi extends CI_Controller
             $this->load->view('pg_admin/materi_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);
+            $result = $this->Model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);
             $this->delete_files('image/materi/' . $id);
             $isi_materi = $this->convert_base64_to_image($isi_materi, 'materi/' . $id . '/');
-            $this->model_adm->update_manual('konten_materi', 'sub_materi_id', $id, ['isi_materi' => $isi_materi]);
+            $this->Model_adm->update_manual('konten_materi', 'sub_materi_id', $id, ['isi_materi' => $isi_materi]);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('pg_admin/materi/listdata/' . $kelas . '/' . $mapel . '/' . $mapok);
             // echo "Status Update: " . $result;
@@ -414,14 +414,14 @@ class Materi extends CI_Controller
 
     public function proses_hapus()
     {
-        $materi = $this->model_adm->fetch_materi_by_id($this->input->post('hidden_row_id'));
+        $materi = $this->Model_adm->fetch_materi_by_id($this->input->post('hidden_row_id'));
 
         //set form validation rules
         $this->form_validation->set_rules('hidden_row_id', "Nomor Baris", 'trim|required|numeric');
 
         if ($this->form_validation->run() != FALSE) {
             $id = $this->input->post('hidden_row_id');
-            $result = $this->model_adm->delete_materi($id);
+            $result = $this->Model_adm->delete_materi($id);
             $this->delete_files('image/materi/' . $id);
 
             if ($result) {
@@ -444,7 +444,7 @@ class Materi extends CI_Controller
     function preview_konten($sub_materi_id)
     {
         if ($sub_materi_id) {
-            $data['content_preview'] = $this->model_adm->fetch_content_by_id($sub_materi_id);
+            $data['content_preview'] = $this->Model_adm->fetch_content_by_id($sub_materi_id);
             $gambar_materi = isset($data['content_preview']->gambar_materi) ? $data['content_preview']->gambar_materi : '';
             $data['thumbnail_dir'] = base_url('') . "assets/img/no-image.jpg";
 
@@ -477,8 +477,8 @@ class Materi extends CI_Controller
     function fetch_materi_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_materi_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
+        $table_data = $this->Model_adm->fetch_materi_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);
@@ -499,7 +499,7 @@ class Materi extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_adm->fetch_materi_pokok_by_mapel($id);
+            $dynamic_options = $this->Model_adm->fetch_materi_pokok_by_mapel($id);
 
             if ($dynamic_options) {
                 foreach ($dynamic_options as $item) {
@@ -522,7 +522,7 @@ class Materi extends CI_Controller
 
         $id_sub = $target;
 
-        $result = $this->model_adm->set_status_materi($id_sub, $state);
+        $result = $this->Model_adm->set_status_materi($id_sub, $state);
 
         echo "target: $id_sub, state: $state, resultDB: $result";
     }
@@ -535,8 +535,8 @@ class Materi extends CI_Controller
         $totalfiltered = $request_data['length'];
         $columns = array('', 'alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'nama_sub_materi', 'kategori', '', '');
         $filterColumn = $columns[$request_data['order'][0]['column']];
-        $table_data = $this->model_adm->fetch_ajax_materi($fields, $totalfiltered, $filterColumn, $request_data);
-        $totaldata = count($this->model_adm->fetch_all_materi());
+        $table_data = $this->Model_adm->fetch_ajax_materi($fields, $totalfiltered, $filterColumn, $request_data);
+        $totaldata = count($this->Model_adm->fetch_all_materi());
         $totalFiltered = $totaldata;
         if (!empty($request_data['search']['value'])) {
             $totalFiltered = count($totaldata);
@@ -584,7 +584,7 @@ class Materi extends CI_Controller
 
     function ajax_mapel($kelas)
     {
-        $carimapel = $this->model_banksoal->get_mapel_by_kelas($kelas);
+        $carimapel = $this->Model_banksoal->get_mapel_by_kelas($kelas);
 
         echo "<option value=''>-- pilih mata pelajaran --</option>";
         foreach ($carimapel as $mapel) {

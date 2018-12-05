@@ -36,16 +36,16 @@ class Lupa_password extends CI_Controller {
 			}
 			else {
 			//FIRST TIME RUN:
-				$data = $this->model_lupa_password->cek_key($kode_unik);
+				$data = $this->Model_lupa_password->cek_key($kode_unik);
 				$navbar = array(
-	      	'navbar_links' => $this->model_pg->get_navbar_links()
+	      	'navbar_links' => $this->Model_pg->get_navbar_links()
 	      );
 
 				if(!empty($data->recover_key)) {
 				//set temporary session
 					$recover = array('id' => $data->id_login, 'key' => $kode_unik);
 					$this->session->set_tempdata('recover', $recover, 86400); //expires in 1 day
-					$this->model_lupa_password->remove_key($kode_unik);
+					$this->Model_lupa_password->remove_key($kode_unik);
 				}
 
 				$this->load->view('pg_user/lupa_password', $navbar);
@@ -60,7 +60,7 @@ class Lupa_password extends CI_Controller {
 	public function show_template()
 	{
 		// show_404();
-		$data['data'] = $this->model_lupa_password->fetch_siswa_by_id('20');
+		$data['data'] = $this->Model_lupa_password->fetch_siswa_by_id('20');
 		$data['data']->kode_unik = 'c0ntohK3yPriMEm0B1le';
 
 		$this->load->view('preview/mail_template', $data);
@@ -73,12 +73,12 @@ class Lupa_password extends CI_Controller {
 		$result = FALSE;
 	
 		if(!empty($email)) {
-			$siswa['data'] = $this->model_lupa_password->cek_email($email);
+			$siswa['data'] = $this->Model_lupa_password->cek_email($email);
 			$kode_unik = $this->randomKey();
 
 			if(!empty($siswa['data'])) {
 				$siswa['data']->kode_unik = $kode_unik;
-				$this->model_lupa_password->simpan_key($kode_unik, $email);
+				$this->Model_lupa_password->simpan_key($kode_unik, $email);
 
 				$this->mail_configuration($siswa);
 				$result = TRUE;
@@ -132,7 +132,7 @@ class Lupa_password extends CI_Controller {
 	private function recover_password($password)
 	{
 		if(isset($_SESSION['recover']['id'])) {
-			$result = $this->model_lupa_password->update_password($_SESSION['recover']['id'], $password);
+			$result = $this->Model_lupa_password->update_password($_SESSION['recover']['id'], $password);
 			
 			if($result) {
 				alert_success("Password anda berhasil diperbarui, silahkan <a href='".base_url('login')."' class='label label-info'>LOGIN</a>");

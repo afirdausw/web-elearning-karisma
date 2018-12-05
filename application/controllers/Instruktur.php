@@ -18,17 +18,17 @@ class Instruktur extends CI_Controller
 
     public function index($id_instruktur = "")
     {
-        $kelas_navbar = $this->model_pg->fetch_all_kelas();
-        $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
+        $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
         if($id_instruktur!="")
             $where = array("id_instruktur" => $id_instruktur);
         else
             $where = $id_instruktur;
-        $instruktur = $this->model_instruktur->fetch_instruktur($where);
+        $instruktur = $this->Model_instruktur->fetch_instruktur($where);
 
         //tambah definisi tabelnya karena join
         $where = array("instruktur_mapel.id_instruktur" => $id_instruktur);
-        $materi_list = $this->model_instruktur->get_mapel_by_instruktur($where);
+        $materi_list = $this->Model_instruktur->get_mapel_by_instruktur($where);
         $data = array(
             "siswa" => $siswa,
             "instruktur" => $instruktur,
@@ -45,7 +45,7 @@ class Instruktur extends CI_Controller
     public function premium()
     {
         if($this->session->userdata('id_siswa')!=NULL){
-            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
 
             $data = [
                 "id_siswa"     => $this->session->userdata('id_siswa'),
@@ -55,7 +55,7 @@ class Instruktur extends CI_Controller
             }else if ($siswa->id_premium >= 0){
                 $data["id_premium"] = 0;
             }
-            $update = $this->model_profil->toogle_premium($data);
+            $update = $this->Model_profil->toogle_premium($data);
             if($update){
                 redirect(base_url().'profil');
             }else{

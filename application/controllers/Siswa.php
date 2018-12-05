@@ -25,18 +25,18 @@ function index(){
 	if($idsiswa == ""){
 		redirect('login');
 	}
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 	
 	
 	//cek apakah siswa sudah mempunyai ortu??
 	//***************************************
-	$cariortu = $this->model_parent->cari_ortu_by_idsiswa($idsiswa);
+	$cariortu = $this->Model_parent->cari_ortu_by_idsiswa($idsiswa);
 	
 	if($cariortu > 0){
 		//jika siswa sudah memiliki ortu
 		$data = array(
 			'infosiswa'		=> $infosiswa,
-			'infoortu'		=> $this->model_parent->get_ortu($idsiswa)
+			'infoortu'		=> $this->Model_parent->get_ortu($idsiswa)
 		);
 		$this->load->view('pg_user/parent', $data);
 	}elseif($cariortu == 0){
@@ -60,7 +60,7 @@ function prosesdaftar(){
 	$username 	= $params['username'];
 	$password 	= $params['password'];
 	
-	$daftar = $this->model_parent->daftar($idsiswa, $nama, $email, $telepon, $username, $password);
+	$daftar = $this->Model_parent->daftar($idsiswa, $nama, $email, $telepon, $username, $password);
 	
 	redirect('parents');
 }
@@ -72,9 +72,9 @@ function edit($idparent){
 	if($idsiswa == ""){
 		redirect('login');
 	}
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 	
-	$dataortu = $this->model_parent->get_parent($idparent);
+	$dataortu = $this->Model_parent->get_parent($idparent);
 	
 	$data = array(
 		'dataortu'	=> $dataortu,
@@ -96,22 +96,22 @@ function prosesedit(){
 	$username	= $params['username'];
 	$password	= $params['password'];
 	
-	$daftar = $this->model_parent->edit($idortu, $idsiswa, $nama, $email, $telepon, $username, $password);
+	$daftar = $this->Model_parent->edit($idortu, $idsiswa, $nama, $email, $telepon, $username, $password);
 	
 	redirect('parents');
 }
 
 function dashboard(){
-	$this->model_security->parent_logged_in();
+	$this->Model_security->parent_logged_in();
 	$data = array(
-		'quote' 	=> $this->model_bonus->fetch_random_quote(),
-		'infoortu'	=> $this->model_parent->get_parent($_SESSION['id_ortu'])
+		'quote' 	=> $this->Model_bonus->fetch_random_quote(),
+		'infoortu'	=> $this->Model_parent->get_parent($_SESSION['id_ortu'])
 	);
 	$this->load->view('pg_ortu/dashboard_parent', $data);
 }
 
 function profil($idkelas){
-	$cariprofil = $this->model_dashboard->get_profil_by_kelas($idkelas);
+	$cariprofil = $this->Model_dashboard->get_profil_by_kelas($idkelas);
 	
 	echo '<option value="">--- Pilih Profil Try Out ---</option>';
 	foreach($cariprofil as $profil){
@@ -122,21 +122,21 @@ function profil($idkelas){
 }
 
 function aktivitas_siswa(){
-	$this->model_security->parent_logged_in();
+	$this->Model_security->parent_logged_in();
 	$id = $_SESSION['id_ortu_siswa'];
 	$data = array(
 	'navbar_title'		=> "Log Akses Siswa",
 	'page_title' 		=> "Detail Log Siswa",
 	'form_action' 		=> current_url() . "?id=$id",
-	'data_siswa' 		=> $this->model_adm->fetch_siswa_by_id($id),
-	'log_teks' 			=> $this->model_adm->track_akses_by_id($id, 1), // 1=teks 
-	'log_video' 		=> $this->model_adm->track_akses_by_id($id, 2), // 2=video 
-	'log_soal' 			=> $this->model_adm->track_akses_soal_by_id($id), // 3=soal 
-	'group_log_teks' => $this->model_adm->group_akses_by_id($id, 1),
-	'group_log_video' => $this->model_adm->group_akses_by_id($id, 2),
-	'group_log_soal' => $this->model_adm->group_akses_soal_by_id($id),
-	'akses_terakhir' 	=> $this->model_adm->last_akses_by_id($id),
-	'infoortu'	=> $this->model_parent->get_parent($_SESSION['id_ortu'])
+	'data_siswa' 		=> $this->Model_adm->fetch_siswa_by_id($id),
+	'log_teks' 			=> $this->Model_adm->track_akses_by_id($id, 1), // 1=teks
+	'log_video' 		=> $this->Model_adm->track_akses_by_id($id, 2), // 2=video
+	'log_soal' 			=> $this->Model_adm->track_akses_soal_by_id($id), // 3=soal
+	'group_log_teks' => $this->Model_adm->group_akses_by_id($id, 1),
+	'group_log_video' => $this->Model_adm->group_akses_by_id($id, 2),
+	'group_log_soal' => $this->Model_adm->group_akses_soal_by_id($id),
+	'akses_terakhir' 	=> $this->Model_adm->last_akses_by_id($id),
+	'infoortu'	=> $this->Model_parent->get_parent($_SESSION['id_ortu'])
 	);
 
 	//Redirect to siswa if id is not exist
@@ -151,9 +151,9 @@ function aktivitas_siswa(){
 }
 
 function tryout(){
-	$this->model_security->psep_sekolah_is_logged_in();
+	$this->Model_security->psep_sekolah_is_logged_in();
 	$data = array(
-		'infoortu'	=> $this->model_parent->get_parent($_SESSION['id_ortu'])
+		'infoortu'	=> $this->Model_parent->get_parent($_SESSION['id_ortu'])
 	);
 	$this->load->view('pg_ortu/pilih_tryout', $data);
 }
@@ -168,9 +168,9 @@ public function log_by_date()
 			$date_start = date('Ym', strtotime($log_date_start));
 			$date_end = date('Ym', strtotime($log_date_end));
 			
-			$group_teks = $this->model_adm->group_akses_by_id($id_siswa, 1, $date_start, $date_end);
-			$group_video = $this->model_adm->group_akses_by_id($id_siswa, 2, $date_start, $date_end);
-			$group_soal = $this->model_adm->group_akses_soal_by_id($id_siswa, $date_start, $date_end);
+			$group_teks = $this->Model_adm->group_akses_by_id($id_siswa, 1, $date_start, $date_end);
+			$group_video = $this->Model_adm->group_akses_by_id($id_siswa, 2, $date_start, $date_end);
+			$group_soal = $this->Model_adm->group_akses_soal_by_id($id_siswa, $date_start, $date_end);
 			
 			$ranged_data = array('data_teks'=>'', 'data_video'=>'', 'data_soal'=>'','count_teks'=>0,'count_video'=>0,'count_soal'=>0 
 				);

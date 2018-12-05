@@ -17,7 +17,7 @@ class Pencarian extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			'navbar_links' => $this->model_pg->get_navbar_links() 
+			'navbar_links' => $this->Model_pg->get_navbar_links()
 			);
 
 		$this->load->view('pg_user/search', $data);
@@ -26,7 +26,7 @@ class Pencarian extends CI_Controller {
 	public function index_old()
 	{
 		$data = array(
-			'navbar_links' => $this->model_pg->get_navbar_links() 
+			'navbar_links' => $this->Model_pg->get_navbar_links()
 			);
 
 		//catch GET variable for pencarian
@@ -50,7 +50,7 @@ class Pencarian extends CI_Controller {
 		
 		if(!empty($kata_kunci))
 		{
-			$search_result = $this->model_pg->search_materi($kata_kunci);
+			$search_result = $this->Model_pg->search_materi($kata_kunci);
 		}
 
 		return $search_result;
@@ -65,7 +65,7 @@ class Pencarian extends CI_Controller {
 	}
 	
 		$data = array(
-			'navbar_links' => $this->model_pg->get_navbar_links() 
+			'navbar_links' => $this->Model_pg->get_navbar_links()
 			);
 
 		$key = $this->input->get('key');
@@ -88,9 +88,9 @@ class Pencarian extends CI_Controller {
 		
 		$config['per_page'] = "8";
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-		$search_result = (!empty($key)) ? ($this->model_pg->search_materi($config["per_page"], $page, $key, $tipe, $paketaktif)) : null;
+		$search_result = (!empty($key)) ? ($this->Model_pg->search_materi($config["per_page"], $page, $key, $tipe, $paketaktif)) : null;
 		
-		$config['total_rows'] = (!empty($key)) ? count($this->model_pg->search_materi(0, 0, $key, $tipe, $paketaktif)) : 0;
+		$config['total_rows'] = (!empty($key)) ? count($this->Model_pg->search_materi(0, 0, $key, $tipe, $paketaktif)) : 0;
 		$choice = $config["total_rows"]/$config["per_page"];
 		$config["num_links"] = floor($choice);
 

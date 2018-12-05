@@ -16,13 +16,13 @@ class User extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 function index(){
 	$data = array(
 		'navbar_title' 	=> "Manajemen User LPIH",
-		'data_table' 	=> $this->model_adm->fetch_all_user()
+		'data_table' 	=> $this->Model_adm->fetch_all_user()
 		);
 
 	$this->load->view('pg_admin/user', $data);
@@ -50,10 +50,10 @@ function proses_tambah(){
 		redirect("pg_admin/user/tambah");
 	}
 	
-	$cariuserpass = $this->model_adm->cari_user($username, $password);
+	$cariuserpass = $this->Model_adm->cari_user($username, $password);
 	
 	if($cariuserpass === FALSE){
-		$prosestambah = $this->model_adm->tambah_user($username, md5($password), $level);
+		$prosestambah = $this->Model_adm->tambah_user($username, md5($password), $level);
 		alert_success("Berhasil", "User LPIH Berhasil Ditambahkan");
 		redirect('pg_admin/user');
 	}
@@ -66,7 +66,7 @@ function proses_tambah(){
 function edit($iduser){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'user'			=> $this->model_adm->get_user_by_id($iduser)
+		'user'			=> $this->Model_adm->get_user_by_id($iduser)
 	);
 	
 	$this->load->view('pg_admin/user_edit', $data);
@@ -79,7 +79,7 @@ function proses_edit(){
 	$username 	= $params['username'];
 	$level 		= $params['level'];
 	
-	$prosestambah = $this->model_adm->edit_user($iduser, $username, $level);
+	$prosestambah = $this->Model_adm->edit_user($iduser, $username, $level);
 	alert_success("Berhasil", "User LPIH Berhasil Dirubah");
 	redirect('pg_admin/user');
 }
@@ -87,7 +87,7 @@ function proses_edit(){
 function edit_password($iduser){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'user'			=> $this->model_adm->get_user_by_id($iduser)
+		'user'			=> $this->Model_adm->get_user_by_id($iduser)
 	);
 	
 	$this->load->view('pg_admin/user_edit_password', $data);
@@ -104,13 +104,13 @@ function proses_edit_password(){
 		alert_error("Gagal Register", "Password tidak sama");
 		redirect("pg_admin/user/edit_password/".$iduser);
 	}
-	$prosestambah = $this->model_adm->edit_password_user($iduser, $password);
+	$prosestambah = $this->Model_adm->edit_password_user($iduser, $password);
 	alert_success("Berhasil", "Password User LPIH Berhasil Dirubah");
 	redirect('pg_admin/user');
 }
 
 function hapus($iduser){
-	$proseshapus = $this->model_adm->hapus_user($iduser);
+	$proseshapus = $this->Model_adm->hapus_user($iduser);
 	redirect('pg_admin/user');
 }
 
@@ -135,7 +135,7 @@ function send_Smtp2go($idbayar, $email)
 	$this->email->to($email);// change it to yours
 	$this->email->subject('Voucher LPIH');
 	$dataemail = array (
-		'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+		'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 	);
 
 	$body = $this->load->view('pg_admin/email.php',$dataemail,TRUE);

@@ -63,14 +63,14 @@ class Login extends CI_Controller {
 			$this->load->view('pg_admin/login_page', $data);
 		}
 		//passing input value to Model
-		$result = $this->model_adm->do_login($username, $password);
+		$result = $this->Model_adm->do_login($username, $password);
 		
 		if($result === FALSE){
 			alert_error("Error", "Username atau Password salah!");
 			$this->load->view('pg_admin/login_page', $data);
 		}
 		else{
-			$login = $this->model_adm->data_login($username, $password);
+			$login = $this->Model_adm->data_login($username, $password);
 			$this->session->set_userdata('is_logged_in',TRUE);
 			$this->session->set_userdata('username');
 			$this->session->set_userdata('level', $login->level);
