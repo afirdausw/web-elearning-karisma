@@ -16,15 +16,15 @@ class Banksoal extends CI_Controller
         $this->load->model('model_tryout');
         $this->load->model('model_banksoal');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     function index_lama()
     {
         $data = array(
             'navbar_title' => 'Data Bank Soal',
-            'data_soal' => $this->model_banksoal->fetch_banksoal(),
-            'select_options_kelas' => $this->model_banksoal->get_kelas()
+            'data_soal' => $this->Model_banksoal->fetch_banksoal(),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoal', $data);
     }
@@ -32,13 +32,13 @@ class Banksoal extends CI_Controller
     function indexlama()
     {
         $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-        $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+        $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
         $config['per_page'] = 10;
         $page = (isset($_GET['page']) ? $_GET['page'] : 1);
         // menentukan offset record dari uri segment
         $start = ($page - 1) * $config['per_page'];
         // ubah data menjadi tampilan per limit
-        $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+        $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
         $pages = ceil($config['total_rows'] / $config['per_page']);
         $data = array(
             'page' => $page,
@@ -46,7 +46,7 @@ class Banksoal extends CI_Controller
             'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
             //'pagination' => $this->pagination->create_links(),
             'start' => $start,
-            'select_options_kelas' => $this->model_banksoal->get_kelas()
+            'select_options_kelas' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoalbaru', $data);
 
@@ -55,13 +55,13 @@ class Banksoal extends CI_Controller
     function index()
     {
         $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-        $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+        $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
         $config['per_page'] = 10;
         $page = (isset($_GET['page']) ? $_GET['page'] : 1);
         // menentukan offset record dari uri segment
         $start = ($page - 1) * $config['per_page'];
         // ubah data menjadi tampilan per limit
-        $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+        $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
         $pages = ceil($config['total_rows'] / $config['per_page']);
         $data = array(
             'page' => $page,
@@ -69,7 +69,7 @@ class Banksoal extends CI_Controller
             'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
             //'pagination' => $this->pagination->create_links(),
             'start' => $start,
-            'select_options_kelas' => $this->model_banksoal->get_kelas()
+            'select_options_kelas' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoalbaru', $data);
     }
@@ -78,7 +78,7 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => 'Upload Excel Bank Soal',
-            'select_options_mapel' => $this->model_banksoal->get_kelas()
+            'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoalupload', $data);
     }
@@ -143,7 +143,7 @@ class Banksoal extends CI_Controller
 
             }
 
-            $import = $this->model_adm->import_bank_soal($data_sekolah);
+            $import = $this->Model_adm->import_bank_soal($data_sekolah);
             if ($import) {
                 alert_success('Sukses', "Data berhasil diimport!");
             }
@@ -174,13 +174,13 @@ class Banksoal extends CI_Controller
         //configurasi pagination
         if ($kelas == 0 && $mapel == 0 && $topik == '') {
             $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             // ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page' => $page,
@@ -188,17 +188,17 @@ class Banksoal extends CI_Controller
                 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start' => $start,
-                'select_options_kelas' => $this->model_banksoal->get_kelas()
+                'select_options_kelas' => $this->Model_banksoal->get_kelas()
             );
         } elseif ($kelas != 0 && $mapel == 0 && $topik == '') {
             $config['base_url'] = base_url() . 'pg_admin/banksoal/filter/' . $kelas . '/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_kelas($kelas);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_kelas($kelas);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_kelas($kelas, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_kelas($kelas, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page' => $page,
@@ -207,18 +207,18 @@ class Banksoal extends CI_Controller
                 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start' => $start,
-                'select_options_kelas' => $this->model_banksoal->get_kelas(),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas)
+                'select_options_kelas' => $this->Model_banksoal->get_kelas(),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas)
             );
         } elseif ($kelas != 0 && $mapel != 0 && $topik == '') {
             $config['base_url'] = base_url() . 'pg_admin/banksoal/filter/' . $kelas . '/' . $mapel . '/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page' => $page,
@@ -228,20 +228,20 @@ class Banksoal extends CI_Controller
                 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start' => $start,
-                'select_options_kelas' => $this->model_banksoal->get_kelas(),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
-                'select_options_topik' => $this->model_banksoal->get_topik_by_mapel($mapel)
+                'select_options_kelas' => $this->Model_banksoal->get_kelas(),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
+                'select_options_topik' => $this->Model_banksoal->get_topik_by_mapel($mapel)
             );
 
         } elseif ($kelas != 0 && $mapel != 0 && $topik != '') {
             $config['base_url'] = base_url() . 'pg_admin/banksoal/filter/' . $kelas . '/' . $mapel . '/' . $topik;
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_topik($mapel,$topik);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_topik($mapel,$topik);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_topik($mapel,$topik, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_topik($mapel,$topik, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page' => $page,
@@ -251,19 +251,19 @@ class Banksoal extends CI_Controller
                 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start' => $start,
-                'select_options_kelas' => $this->model_banksoal->get_kelas(),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
-                'select_options_topik' => $this->model_banksoal->get_topik_by_mapel($mapel)
+                'select_options_kelas' => $this->Model_banksoal->get_kelas(),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
+                'select_options_topik' => $this->Model_banksoal->get_topik_by_mapel($mapel)
             );
         } else {
             $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             // ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page' => $page,
@@ -271,7 +271,7 @@ class Banksoal extends CI_Controller
                 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start' => $start,
-                'select_options_kelas' => $this->model_banksoal->get_kelas()
+                'select_options_kelas' => $this->Model_banksoal->get_kelas()
             );
         }
 
@@ -340,7 +340,7 @@ class Banksoal extends CI_Controller
         $data = array(
             'navbar_title' => "Tambah Bank Soal",
             'form_action' => current_url(),
-            'select_options_mapel' => $this->model_banksoal->get_kelas()
+            'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoal_form', $data);
     }
@@ -368,7 +368,7 @@ class Banksoal extends CI_Controller
         $kategori = $params['kategori'];
         $tipe = $params['tipe'];
 
-        $result = $this->model_banksoal->tambah_banksoal($mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
+        $result = $this->Model_banksoal->tambah_banksoal($mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
         redirect('pg_admin/banksoal');
     }
 
@@ -376,7 +376,7 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => "Tambah Kategori Bank Soal",
-            'kategoribanksoal' => $this->model_banksoal->fetch_kategori_bank_soal()
+            'kategoribanksoal' => $this->Model_banksoal->fetch_kategori_bank_soal()
         );
         $this->load->view('pg_admin/kategori_banksoal', $data);
     }
@@ -385,7 +385,7 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => "Tambah Kategori Bank Soal",
-            'datakelas' => $this->model_banksoal->get_kelas()
+            'datakelas' => $this->Model_banksoal->get_kelas()
         );
 
         $this->load->view('pg_admin/kategori_banksoal_form', $data);
@@ -393,7 +393,7 @@ class Banksoal extends CI_Controller
 
     function pilihmapel($idkelas)
     {
-        $carimapel = $this->model_banksoal->get_mapel_by_kelas($idkelas);
+        $carimapel = $this->Model_banksoal->get_mapel_by_kelas($idkelas);
 
         echo "<option value=''>-- pilih mata pelajaran --</option>";
         foreach ($carimapel as $mapel) {
@@ -405,7 +405,7 @@ class Banksoal extends CI_Controller
 
     function pilihkategori($idmapel)
     {
-        $carikategori = $this->model_banksoal->get_kategori_by_mapel($idmapel);
+        $carikategori = $this->Model_banksoal->get_kategori_by_mapel($idmapel);
 
         echo "<option value='0'>Uncategorized</option>";
         foreach ($carikategori as $kategori) {
@@ -417,7 +417,7 @@ class Banksoal extends CI_Controller
 
     function pilihtopik($idmapel)
     {
-        $caritopik = $this->model_banksoal->get_topik_by_mapel($idmapel);
+        $caritopik = $this->Model_banksoal->get_topik_by_mapel($idmapel);
 
         echo "<option value=''>Pilih Topik</option>";
         foreach ($caritopik as $topik) {
@@ -441,7 +441,7 @@ class Banksoal extends CI_Controller
         $idmapel = $params['mapel'];
         $namakategori = $params['nama_kastegori'];
 
-        $result = $this->model_banksoal->tambah_kategori($idmapel, $namakategori);
+        $result = $this->Model_banksoal->tambah_kategori($idmapel, $namakategori);
 
         redirect('pg_admin/banksoal/kategori');
     }
@@ -450,8 +450,8 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => "Edit Kategori Bank Soal",
-            'datakategori' => $this->model_banksoal->cari_kategori($idkategori),
-            'datakelas' => $this->model_banksoal->get_kelas()
+            'datakategori' => $this->Model_banksoal->cari_kategori($idkategori),
+            'datakelas' => $this->Model_banksoal->get_kelas()
         );
 
         $this->load->view('pg_admin/kategori_banksoal_edit', $data);
@@ -464,14 +464,14 @@ class Banksoal extends CI_Controller
         $namakategori = $params['nama_kastegori'];
         $idkategori = $params['id_kategori'];
 
-        $result = $this->model_banksoal->edit_kategori($idkategori, $idmapel, $namakategori);
+        $result = $this->Model_banksoal->edit_kategori($idkategori, $idmapel, $namakategori);
 
         redirect('pg_admin/banksoal/kategori');
     }
 
     function hapuskategori($idkategori)
     {
-        $hapus = $this->model_banksoal->hapus_kategori($idkategori);
+        $hapus = $this->Model_banksoal->hapus_kategori($idkategori);
 
         redirect('pg_admin/banksoal/kategori');
     }
@@ -480,9 +480,9 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => "Edit Bank Soal",
-            'datasoal' => $this->model_banksoal->cari_bank_soal_by_id($idbanksoal),
-            'datakelas' => $this->model_banksoal->get_kelas(),
-            'select_options_mapel' => $this->model_banksoal->get_kelas()
+            'datasoal' => $this->Model_banksoal->cari_bank_soal_by_id($idbanksoal),
+            'datakelas' => $this->Model_banksoal->get_kelas(),
+            'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
         $this->load->view('pg_admin/banksoal_edit', $data);
     }
@@ -491,9 +491,9 @@ class Banksoal extends CI_Controller
     {
         $data = array(
             'navbar_title' => "Edit Bank Soal",
-            'datasoal' => $this->model_banksoal->cari_bank_soal_by_id($idbanksoal),
-            'datakelas' => $this->model_banksoal->get_kelas(),
-            'select_options_mapel' => $this->model_banksoal->get_kelas()
+            'datasoal' => $this->Model_banksoal->cari_bank_soal_by_id($idbanksoal),
+            'datakelas' => $this->Model_banksoal->get_kelas(),
+            'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
         return $this->output
             ->set_content_type('application/json')
@@ -526,19 +526,19 @@ class Banksoal extends CI_Controller
         $kategori = $params['kategori'];
         $tipe = $params['tipe'];
 
-        $result = $this->model_banksoal->edit_banksoal($idbanksoal, $mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
+        $result = $this->Model_banksoal->edit_banksoal($idbanksoal, $mapel, $topik, $soal, $bobot, $jawabbenar, $jawab1, $jawab2, $jawab3, $jawab4, $jawab5, $bahasteks, $bahasvideo, $kategori, $tipe);
         redirect('pg_admin/banksoal');
     }
 
     function hapus($idbanksoal)
     {
-        $hapus = $this->model_banksoal->hapus($idbanksoal);
+        $hapus = $this->Model_banksoal->hapus($idbanksoal);
         redirect('pg_admin/banksoal');
     }
 
     function ajax_mapel($kelas)
     {
-        $carimapel = $this->model_banksoal->get_mapel_by_kelas($kelas);
+        $carimapel = $this->Model_banksoal->get_mapel_by_kelas($kelas);
 
         echo "<option value=''>-- Pilih Mata Pelajaran --</option>";
         foreach ($carimapel as $mapel) {
@@ -551,7 +551,7 @@ class Banksoal extends CI_Controller
 
     function ajax_topik($mapel)
     {
-        $caritopik = $this->model_banksoal->get_topik_by_mapel($mapel);
+        $caritopik = $this->Model_banksoal->get_topik_by_mapel($mapel);
 
         echo "<option value=''>-- Pilih Topik --</option>";
         foreach ($caritopik as $topik) {
@@ -563,7 +563,7 @@ class Banksoal extends CI_Controller
 
     function ajax_soal($kelas, $mapel)
     {
-        $carisoal = $this->model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
+        $carisoal = $this->Model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
         foreach ($carisoal as $data) {
             ?>
             <tr>
@@ -631,7 +631,7 @@ class Banksoal extends CI_Controller
 
     function ajax_soal_modal($kelas, $mapel)
     {
-        $carisoal = $this->model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
+        $carisoal = $this->Model_banksoal->fetch_banksoal_by_kelas_mapel($kelas, $mapel);
         $no = 1;
         foreach ($carisoal as $data) {
             ?>

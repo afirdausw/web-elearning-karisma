@@ -16,7 +16,7 @@ class Log extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 	public function index()
@@ -24,7 +24,7 @@ class Log extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Log Akses",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_log_siswa()
+			'table_data' 		=> $this->Model_adm->fetch_log_siswa()
 			);
 
 		$this->load->view('pg_admin/log_siswa', $data);
@@ -35,18 +35,18 @@ class Log extends CI_Controller {
 		$id = 'ALL';
 		$date_start = date('Ym', strtotime(date('M Y').'-4 months'));
 		$date_end = date('Ym');
-		$result_teks = $this->model_adm->track_akses_by_date($date_start, $date_end, 1);	
-		$result_video = $this->model_adm->track_akses_by_date($date_start, $date_end, 2);	
-		$result_soal = $this->model_adm->track_akses_soal_by_date($date_start, $date_end);	
+		$result_teks = $this->Model_adm->track_akses_by_date($date_start, $date_end, 1);
+		$result_video = $this->Model_adm->track_akses_by_date($date_start, $date_end, 2);
+		$result_soal = $this->Model_adm->track_akses_soal_by_date($date_start, $date_end);
 
 		$data = array(
 			'navbar_title' 	=> "Log Akses",
 			'navbar_title'	=> "Log Akses Siswa",
 			'page_title' 		=> "Detail Log Siswa",
 			'form_action' 	=> current_url() . "?id=$id",
-			'group_log_teks' => $this->model_adm->group_akses_by_id($id, 1, $date_start, $date_end),
-			'group_log_video' => $this->model_adm->group_akses_by_id($id, 2, $date_start, $date_end),
-			'group_log_soal' => $this->model_adm->group_akses_soal_by_id($id, $date_start, $date_end),
+			'group_log_teks' => $this->Model_adm->group_akses_by_id($id, 1, $date_start, $date_end),
+			'group_log_video' => $this->Model_adm->group_akses_by_id($id, 2, $date_start, $date_end),
+			'group_log_soal' => $this->Model_adm->group_akses_soal_by_id($id, $date_start, $date_end),
 			);
 
 		$start    = new DateTime(date('M Y', strtotime(date('M Y').'-4 months')));
@@ -96,9 +96,9 @@ class Log extends CI_Controller {
 
 		$date_start = date('Ym', strtotime($log_date_start));
 		$date_end = date('Ym', strtotime($log_date_end));
-		$result_teks = $this->model_adm->track_akses_by_date($date_start, $date_end, 1);	
-		$result_video = $this->model_adm->track_akses_by_date($date_start, $date_end, 2);	
-		$result_soal = $this->model_adm->track_akses_soal_by_date($date_start, $date_end);	
+		$result_teks = $this->Model_adm->track_akses_by_date($date_start, $date_end, 1);
+		$result_video = $this->Model_adm->track_akses_by_date($date_start, $date_end, 2);
+		$result_soal = $this->Model_adm->track_akses_soal_by_date($date_start, $date_end);
 
 		$start    = new DateTime($log_date_start);
 		$start->modify('first day of this month');
@@ -154,14 +154,14 @@ class Log extends CI_Controller {
 					'navbar_title'	=> "Log Akses Siswa",
 					'page_title' 		=> "Detail Log Siswa",
 					'form_action' 	=> current_url() . "?id=$id",
-					'data_siswa' 		=> $this->model_adm->fetch_siswa_by_id($id),
-					'log_teks' 			=> $this->model_adm->track_akses_by_id($id, 1), // 1=teks 
-					'log_video' 		=> $this->model_adm->track_akses_by_id($id, 2), // 2=video 
-					'log_soal' 			=> $this->model_adm->track_akses_soal_by_id($id), // 3=soal 
-					'group_log_teks' => $this->model_adm->group_akses_by_id($id, 1),
-					'group_log_video' => $this->model_adm->group_akses_by_id($id, 2),
-					'group_log_soal' => $this->model_adm->group_akses_soal_by_id($id),
-					'akses_terakhir' 	=> $this->model_adm->last_akses_by_id($id),
+					'data_siswa' 		=> $this->Model_adm->fetch_siswa_by_id($id),
+					'log_teks' 			=> $this->Model_adm->track_akses_by_id($id, 1), // 1=teks
+					'log_video' 		=> $this->Model_adm->track_akses_by_id($id, 2), // 2=video
+					'log_soal' 			=> $this->Model_adm->track_akses_soal_by_id($id), // 3=soal
+					'group_log_teks' => $this->Model_adm->group_akses_by_id($id, 1),
+					'group_log_video' => $this->Model_adm->group_akses_by_id($id, 2),
+					'group_log_soal' => $this->Model_adm->group_akses_soal_by_id($id),
+					'akses_terakhir' 	=> $this->Model_adm->last_akses_by_id($id),
 					);
 
 					//Redirect to siswa if id is not exist
@@ -197,7 +197,7 @@ class Log extends CI_Controller {
 			if($this->form_validation->run())
 			{
 				$id 		= $this->input->post('hidden_row_id');
-				$result = $this->model_adm->delete_log_siswa($id);
+				$result = $this->Model_adm->delete_log_siswa($id);
 				
 				alert_success('Sukses', "Data berhasil dihapus");
 				redirect('pg_admin/log');
@@ -218,9 +218,9 @@ class Log extends CI_Controller {
 			$date_start = date('Ym', strtotime($log_date_start));
 			$date_end = date('Ym', strtotime($log_date_end));
 			
-			$group_teks = $this->model_adm->group_akses_by_id($id_siswa, 1, $date_start, $date_end);
-			$group_video = $this->model_adm->group_akses_by_id($id_siswa, 2, $date_start, $date_end);
-			$group_soal = $this->model_adm->group_akses_soal_by_id($id_siswa, $date_start, $date_end);
+			$group_teks = $this->Model_adm->group_akses_by_id($id_siswa, 1, $date_start, $date_end);
+			$group_video = $this->Model_adm->group_akses_by_id($id_siswa, 2, $date_start, $date_end);
+			$group_soal = $this->Model_adm->group_akses_soal_by_id($id_siswa, $date_start, $date_end);
 			
 			$ranged_data = array('data_teks'=>'', 'data_video'=>'', 'data_soal'=>'','count_teks'=>0,'count_video'=>0,'count_soal'=>0 
 				);

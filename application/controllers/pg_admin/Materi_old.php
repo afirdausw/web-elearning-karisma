@@ -17,7 +17,7 @@ class Materi extends CI_Controller {
 		$this->load->helper('url_validation_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 	public function index()
@@ -25,7 +25,7 @@ class Materi extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Materi",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_materi()
+			'table_data' 		=> $this->Model_adm->fetch_all_materi()
 			);
 		// tester
 		// alert_success('', "");
@@ -50,8 +50,8 @@ class Materi extends CI_Controller {
 					'navbar_title'								=> "Manajemen Materi",
 					'page_title' 									=> "Tambah Materi",
 					'form_action' 								=> current_url(),
-					'select_options_mapel'				=> $this->model_adm->fetch_options_materi_pokok(),
-					'select_options_materi_pokok'	=> $this->model_adm->fetch_options_materi(),
+					'select_options_mapel'				=> $this->Model_adm->fetch_options_materi_pokok(),
+					'select_options_materi_pokok'	=> $this->Model_adm->fetch_options_materi(),
 					'jumlah_soal_submateri'				=> 0
 					);
 
@@ -76,10 +76,10 @@ class Materi extends CI_Controller {
 					'navbar_title'								=> "Manajemen Materi",
 					'page_title' 									=> "Ubah Materi",
 					'form_action' 								=> current_url() . "?id=$id",
-					'select_options_mapel'				=> $this->model_adm->fetch_options_materi_pokok(),
-					'select_options_materi_pokok'	=> $this->model_adm->fetch_options_materi(),
-					'jumlah_soal_submateri'				=> $this->model_adm->fetch_jumlah_soal($id),
-					'data_soal_submateri'					=> $this->model_adm->fetch_soal_by_submateri($id)
+					'select_options_mapel'				=> $this->Model_adm->fetch_options_materi_pokok(),
+					'select_options_materi_pokok'	=> $this->Model_adm->fetch_options_materi(),
+					'jumlah_soal_submateri'				=> $this->Model_adm->fetch_jumlah_soal($id),
+					'data_soal_submateri'					=> $this->Model_adm->fetch_soal_by_submateri($id)
 					);
 
 					//Redirect to materi if id is not exist
@@ -92,7 +92,7 @@ class Materi extends CI_Controller {
 						//Calling values from database by id and pass them to View
 						//fetching konten_materi by id
 						$data['data'] 			= $this->fetch_materi_by_id($id);
-						$data['data_soal'] 	= $this->model_adm->fetch_soal_by_id($id);
+						$data['data_soal'] 	= $this->Model_adm->fetch_soal_by_id($id);
 						// var_dump($data['data_soal']);
 
 						//Form materi submit handler. See if the user is attempting to submit a form or not
@@ -127,8 +127,8 @@ class Materi extends CI_Controller {
 		$data = array(
 			'page_title' 									=> "Tambah Materi", 
 			'form_action' 								=> current_url(),
-			'select_options_mapel'				=> $this->model_adm->fetch_options_materi_pokok(),
-			'select_options_materi_pokok'	=> $this->model_adm->fetch_options_materi()
+			'select_options_mapel'				=> $this->Model_adm->fetch_options_materi_pokok(),
+			'select_options_materi_pokok'	=> $this->Model_adm->fetch_options_materi()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -144,7 +144,7 @@ class Materi extends CI_Controller {
 		$gambar_materi	 			= $params['gambar_materi']; 
 		$tanggal	 						= $params['tanggal_post']; 
 		$waktu	 							= $params['waktu_post'];
-		$max 									= $this->model_adm->select_max('sub_materi', 'urutan_materi');
+		$max 									= $this->Model_adm->select_max('sub_materi', 'urutan_materi');
 		$urutan_materi 				= ($max->urutan_materi + 1);
 
 		//fetch input for soal
@@ -170,12 +170,12 @@ class Materi extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$insert_id = $this->model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
+			$insert_id = $this->Model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
 
 			//continue passing soal input value to Model
 			if($insert_id && $kategori == 3) 
 			{
-				$result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
+				$result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
 			} 
 
 			alert_success("Sukses", "Data berhasil ditambahkan");
@@ -190,8 +190,8 @@ class Materi extends CI_Controller {
 		$data = array(
 			'page_title' 									=> "Ubah Materi",
 			'form_action' 								=> current_url(). "?id=$id",
-			'select_options_mapel'				=> $this->model_adm->fetch_options_materi_pokok(),
-			'select_options_materi_pokok'	=> $this->model_adm->fetch_options_materi()
+			'select_options_mapel'				=> $this->Model_adm->fetch_options_materi_pokok(),
+			'select_options_materi_pokok'	=> $this->Model_adm->fetch_options_materi()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -228,13 +228,13 @@ class Materi extends CI_Controller {
 
 				if($id_soal != 0)
 				{
-					$this->model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
+					$this->Model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
 					$ke++;
 				}
 				else if($id_soal == 0)
 				{
 					$sub_materi_id = $this->input->get('id') ? $this->input->get('id') : null ;
-					$this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
+					$this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
 				}
 			}
 		}
@@ -248,7 +248,7 @@ class Materi extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);
+			$result = $this->Model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('pg_admin/materi');
 			// echo "Status Update: " . $result;
@@ -266,7 +266,7 @@ class Materi extends CI_Controller {
 			if($this->form_validation->run())
 			{
 				$id 	= $this->input->post('hidden_row_id');
-				$result = $this->model_adm->delete_materi($id);
+				$result = $this->Model_adm->delete_materi($id);
 				
 				alert_success('Sukses', "Data berhasil dihapus");
 				redirect('pg_admin/materi');
@@ -281,7 +281,7 @@ class Materi extends CI_Controller {
 	{
 		if($sub_materi_id)
 		{
-			$data['content_preview'] 	= $this->model_adm->fetch_content_by_id($sub_materi_id);
+			$data['content_preview'] 	= $this->Model_adm->fetch_content_by_id($sub_materi_id);
 			$gambar_materi = isset($data['content_preview']->gambar_materi) ? $data['content_preview']->gambar_materi : '';
 			$data['thumbnail_dir'] 		= base_url('') . "assets/img/no-image.jpg";
 			
@@ -317,8 +317,8 @@ class Materi extends CI_Controller {
 	function fetch_materi_by_id($id)
 	{
 		$data 					= new stdClass();
-		$table_data 		= $this->model_adm->fetch_materi_by_id($id); 
-		$table_fields 	= $this->model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
+		$table_data 		= $this->Model_adm->fetch_materi_by_id($id);
+		$table_fields 	= $this->Model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
 		//tester
 		// var_dump($table_data);
 		// var_dump($table_fields);
@@ -340,7 +340,7 @@ class Materi extends CI_Controller {
 		
 		if($id)
 		{
-			$dynamic_options = $this->model_adm->fetch_materi_pokok_by_mapel($id);
+			$dynamic_options = $this->Model_adm->fetch_materi_pokok_by_mapel($id);
 
 			if($dynamic_options){
 				foreach ($dynamic_options as $item) {
@@ -367,7 +367,7 @@ class Materi extends CI_Controller {
 		$target = explode('_', $target);
 		$id_sub = end($target);
 
-		$result = $this->model_adm->set_status_materi($id_sub, $state);
+		$result = $this->Model_adm->set_status_materi($id_sub, $state);
 		
 		echo "target: $id_sub, state: $state, resultDB: $result";
 	}

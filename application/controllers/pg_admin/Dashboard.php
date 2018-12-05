@@ -16,17 +16,17 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-  		$this->model_security->is_logged_in();
+  	$this->Model_security->is_logged_in();
 	}
 
 	public function index()
 	{
 		$data = array(
 			'navbar_title' 					=> "Dashboard",
-			'list_jenjang_kelas' 		=> $this->model_adm->fetch_list_group_by('kelas', 'jenjang', 'tingkatan_kelas'),
-			'list_tingkatan_kelas' 	=> $this->model_adm->fetch_list_group_by('kelas', 'tingkatan_kelas', 'tingkatan_kelas'),
-			'list_mapel' 						=> $this->model_adm->fetch_list_group_by('mata_pelajaran', '', 'kelas_id'),
-			'list_materi_pokok'			=> $this->model_adm->fetch_list_group_by('materi_pokok', '', 'urutan'),
+			'list_jenjang_kelas' 		=> $this->Model_adm->fetch_list_group_by('kelas', 'jenjang', 'tingkatan_kelas'),
+			'list_tingkatan_kelas' 	=> $this->Model_adm->fetch_list_group_by('kelas', 'tingkatan_kelas', 'tingkatan_kelas'),
+			'list_mapel' 						=> $this->Model_adm->fetch_list_group_by('mata_pelajaran', '', 'kelas_id'),
+			'list_materi_pokok'			=> $this->Model_adm->fetch_list_group_by('materi_pokok', '', 'urutan'),
 			// 'list_sub_materi'				=> $this->model_adm->fetch_list_group_by('sub_materi', '', 'urutan_materi'),
 			// 'list_kategori_konten'	=> $this->model_adm->fetch_kategori_konten()
 			//'list_sub_materi'				=> $this->model_adm->fetch_kategori_konten(),
@@ -119,8 +119,8 @@ class Dashboard extends CI_Controller {
 		// echo "\n";
 		// print_r($id_konten);
 
-		echo $this->model_adm->update_urutan_materi_pokok($id_mapel, $id_materi_pokok);
-		echo $this->model_adm->update_urutan_sub_materi($id_materi_pokok, $id_sub_materi);
+		echo $this->Model_adm->update_urutan_materi_pokok($id_mapel, $id_materi_pokok);
+		echo $this->Model_adm->update_urutan_sub_materi($id_materi_pokok, $id_sub_materi);
 		// REVERT
 		// echo $this->model_adm->update_urutan_konten($id_konten);
 	}
@@ -132,13 +132,13 @@ class Dashboard extends CI_Controller {
 		if ($this->input->post('id') != null)
 		{
 			$id = $this->input->post('id');
-			$cek_demo = $this->model_adm->cek_demo($id);
+			$cek_demo = $this->Model_adm->cek_demo($id);
 
 			if($cek_demo->is_demo == 1) {
-				$result = $this->model_adm->set_demo($id, 0); //set video bukan menjadi video demo
+				$result = $this->Model_adm->set_demo($id, 0); //set video bukan menjadi video demo
 			}
 			else {
-				$result = $this->model_adm->set_demo($id, 1); //set video menjadi video demo
+				$result = $this->Model_adm->set_demo($id, 1); //set video menjadi video demo
 			}
 
 			echo $result;

@@ -16,7 +16,7 @@ class LsTest extends CI_Controller
         $this->load->model('Model_lstest');
         $this->load->model('model_dashboard');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     function index()

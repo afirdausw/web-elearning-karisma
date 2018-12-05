@@ -16,7 +16,7 @@ class Poin extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->psep_sekolah_is_logged_in();
+		$this->Model_security->psep_sekolah_is_logged_in();
   }
 
 	public function index()
@@ -24,7 +24,7 @@ class Poin extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Poin",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_poin()
+			'table_data' 		=> $this->Model_adm->fetch_all_poin()
 			);
 
 		$this->load->view('psep_sekolah/poin', $data);
@@ -58,7 +58,7 @@ class Poin extends CI_Controller {
 					{
 						//Calling values from database by id and pass them to View
 						//fetching poin by id
-						$data['data'] = $this->model_adm->fetch_poin_by_id($id);
+						$data['data'] = $this->Model_adm->fetch_poin_by_id($id);
 
 						//Form submit handler. See if the user is attempting to submit a form or not
 						if($this->input->post('form_submit')) 
@@ -110,7 +110,7 @@ class Poin extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_poin($id, $data_model);
+			$result = $this->Model_adm->update_poin($id, $data_model);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('psep_sekolah/poin');
 		}	
@@ -127,7 +127,7 @@ class Poin extends CI_Controller {
       if($this->form_validation->run())
       {
         $id   = $this->input->post('hidden_row_id');
-        $result = $this->model_adm->delete_poin($id);
+        $result = $this->Model_adm->delete_poin($id);
         
         alert_success('Sukses', "Data berhasil dihapus");
         redirect('psep_sekolah/poin');

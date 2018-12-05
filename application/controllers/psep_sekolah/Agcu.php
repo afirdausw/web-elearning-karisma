@@ -21,18 +21,18 @@ class Agcu extends CI_Controller {
 		$this->load->model('model_lstest');
 		$this->load->model('model_pg');
 		$this->load->model('model_security');
-		$this->model_security->psep_sekolah_is_logged_in();
+		$this->Model_security->psep_sekolah_is_logged_in();
 	}
 
 public function report_siswa(){
 	$idpsep = $this->session->userdata('idpsepsekolah');
 	
-	$carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+	$carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 	
 	$data = array(
 		'navbar_title' 	=> "Academic General Check Up",
 		'active'		=> "agcu",
-		'datakelas'		=> $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
+		'datakelas'		=> $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
 	);
 	
 	$this->load->view('psep_sekolah/report_siswa', $data);
@@ -41,8 +41,8 @@ public function report_siswa(){
 function ajax_siswa_by_jenjang($kelas){
 	$idsekolah = $this->session->userdata('idsekolah');
 	
-	$carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
-	$carisiswa_agcu = $this->model_psep->cari_siswa_by_kelas_who_do_agcutest($kelas, $idsekolah);
+	$carisiswa = $this->Model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
+	$carisiswa_agcu = $this->Model_psep->cari_siswa_by_kelas_who_do_agcutest($kelas, $idsekolah);
 	
 	$no = 1;
 	foreach($carisiswa as $siswa){
@@ -76,24 +76,24 @@ function ajax_siswa_by_jenjang($kelas){
 
 function siswa($idsiswa){
 	
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-	$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+	$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 	$kelas = $carikelas->kelas;
 	
-	$kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-	$datasoal = $this->model_agcu->get_jumlahsoal();
+	$kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+	$datasoal = $this->Model_agcu->get_jumlahsoal();
 	
-	$jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+	$jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 	
-	$jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-	$jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+	$jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+	$jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 	
-	$analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+	$analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
 	
 	
-	$skor = $this->model_lstest->skor($idsiswa);
-	$hasildiagnostic = $this->model_agcu->get_ordered_hasildiagnostic();
-	$peringkatsiswa = $this->model_agcu->get_peringkatsiswabykelas($kelas);
+	$skor = $this->Model_lstest->skor($idsiswa);
+	$hasildiagnostic = $this->Model_agcu->get_ordered_hasildiagnostic();
+	$peringkatsiswa = $this->Model_agcu->get_peringkatsiswabykelas($kelas);
 	
 	foreach($skor as $dataskor){
 		$hasil[$dataskor->no] = $dataskor->skor;
@@ -191,7 +191,7 @@ function siswa($idsiswa){
 		Cobalah belajar dalam kelompok untuk membentuk suasana bermain peran dari pelajaran yang dibahas - Tulislah poin - poin penting dari pelajaran dalam bentuk kartu - kartu yang disusun secara logis -  Buatlah semacam percobaan atau model dari apa yang sedang kamu pelajari - Libatkan tubuh dalam belajar dengan mencoba meniru apa yang dipelajari dengan gaya guru saat menyampaikan materi - Setiap kali membaca atau mendengarkan seseorang berbicara, bangkitlah untuk sedikit bergerak setiap 15 - 20 menit sekali';
 	}
 	
-	$data_eq = $this->model_agcu->get_eq($idsiswa);
+	$data_eq = $this->Model_agcu->get_eq($idsiswa);
 	
 	if($data_eq->skor_aq < 7){
 		$analisis_aq = "Mudah gelisah, bingung dan sering cemas - Sering kehilangan rasa humor - Menyalahkan diri sendiri terhadap berbagai kegagalan - Analisisnya dangkal ";
@@ -230,7 +230,7 @@ function siswa($idsiswa){
 	}
 	
 	$data = array(
-	'navbar_links' 	=> $this->model_pg->get_navbar_links(),
+	'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
 	'infosiswa'				=> $infosiswa,
 	'kategoridiagnostic'	=> $kategoridiagnostic,
 	'hasildiagnostic'		=> $hasildiagnostic,
@@ -246,7 +246,7 @@ function siswa($idsiswa){
 	'dominasi'				=> $dominasi,
 	'karakteristik'			=> $karakteristik,
 	'saran'					=> $saran,
-	'data_eq'				=> $this->model_agcu->get_eq($idsiswa),
+	'data_eq'				=> $this->Model_agcu->get_eq($idsiswa),
 	'analisis_aq'			=> $analisis_aq,
 	'analisis_eq'			=> $analisis_eq,
 	'analisis_am'			=> $analisis_am,

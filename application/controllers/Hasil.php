@@ -20,9 +20,9 @@ class Hasil extends CI_Controller
         if($pretest_logged){
             redirect(base_url('hasil/pretest'));
         }else if($siswa_logged){
-            $siswa = $this->model_pg->get_data_user($this->session->userdata('id_siswa'));
-            $log_ujian = $this->model_pg->get_nilai_siswa_by_mapel($this->session->userdata('id_siswa'));
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
+            $log_ujian = $this->Model_pg->get_nilai_siswa_by_mapel($this->session->userdata('id_siswa'));
+            $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
             $data = array(
                 'siswa' => $siswa,
@@ -32,9 +32,9 @@ class Hasil extends CI_Controller
             if($id_submateri==""){
                 $id_submateri = $log_ujian[0]->sub_materi_id;
             }
-            $konten = $this->model_pg->get_konten_materi_by_id($id_submateri,3);
-            $soal = $this->model_pg->get_soal_by_sub_materi($id_submateri, $siswa->id_siswa);
-            $siswa_quiz = $this->model_pg->get_nilai_siswa_by_mapel("", "", $id_submateri) ;
+            $konten = $this->Model_pg->get_konten_materi_by_id($id_submateri,3);
+            $soal = $this->Model_pg->get_soal_by_sub_materi($id_submateri, $siswa->id_siswa);
+            $siswa_quiz = $this->Model_pg->get_nilai_siswa_by_mapel("", "", $id_submateri) ;
 
             $data['siswa_quiz'] = $siswa_quiz;
             $data['konten'] = $konten;
@@ -62,12 +62,12 @@ class Hasil extends CI_Controller
             $pretest_id = $this->session->userdata('pretest_id');
             // $pretest = $this->model_pg->get_data_user($pretest_id);
             $pretest = "";
-            $pretest_nilai = $this->model_pg->get_nilai_siswa_pretest_by_mapel();
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $pretest_nilai = $this->Model_pg->get_nilai_siswa_pretest_by_mapel();
+            $kelas_navbar = $this->Model_pg->fetch_all_kelas();
 
-            $konten = $this->model_pg->get_konten_materi_by_id( 8,3 );
+            $konten = $this->Model_pg->get_konten_materi_by_id( 8,3 );
 
-            $soal = $this->model_pg->get_soal_by_sub_materi( 4,2 );
+            $soal = $this->Model_pg->get_soal_by_sub_materi( 4,2 );
 
             $data = array(
                 'pretest' => $pretest,

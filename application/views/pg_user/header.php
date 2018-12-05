@@ -122,6 +122,7 @@ if ($this->uri->segment(1) != '') { ?>
                                aria-expanded="false">Kursus <span class="arrow-down ti-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <?php
+                                $kelas_navbar = $this->Model_pg->fetch_all_kelas();
                                 foreach ($kelas_navbar as $key) :
                                     echo "<li><a href='" . base_url("kelas/$key->id_kelas") . "'>$key->alias_kelas</a> </li>";
                                 endforeach;
@@ -139,6 +140,7 @@ if ($this->uri->segment(1) != '') { ?>
                         <?php
                         $idsiswa = $this->session->userdata('id_siswa');
                         if ($idsiswa != NULL) {
+                            $siswa = $this->Model_pg->get_data_user($idsiswa);
                             ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -154,18 +156,19 @@ if ($this->uri->segment(1) != '') { ?>
                                     <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
                                 </ul>
                             </li>
-
+                            <?php
+                            $cart = $this->Model_Cart->getCartByIdSiswa($_SESSION['id_siswa']);
+                            $cart = obj_to_arr($cart);
+                            ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     <i class="ti-shopping-cart"></i><span
-                                            class="badge"><?= $_SESSION['jumlah_cart'] ?></span>
+                                            class="badge"><?= count($cart) ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right min-width-320"
                                     aria-labelledby="dropdownMenuCart">
                                     <?php
-                                    $cart = $this->Model_Cart->getCartByIdSiswa($_SESSION['id_siswa']);
-                                    $cart = obj_to_arr($cart);
                                     foreach ($cart as $key => $value) {
                                         ?>
                                         <li class="cart-dropdown" style="display: block;">
@@ -185,7 +188,7 @@ if ($this->uri->segment(1) != '') { ?>
                                         </li>
                                     <?php } ?>
                                     <li class="text-center">
-                                        <a class="mt-2" style="display: block;" href="#">Checkout Cart</a>
+                                        <a class="mt-2" style="display: block;" href="<?= base_url('keranjang') ?>">Checkout Cart</a>
                                     </li>
                                 </ul>
                             </li>

@@ -26,7 +26,7 @@ class Pretest extends CI_Controller
         }else if ($siswa_logged){
             redirect(base_url()."#materi_list");
         }else{
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $kelas_navbar = $this->Model_pg->fetch_all_kelas();
             $data = array(
                 'title' => 'Judul',
                 'form_aksi' => base_url(uri_string())."/daftar",
@@ -41,16 +41,16 @@ class Pretest extends CI_Controller
     {
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         if($pretest_logged){ //jika siswa telah login dan mendaftar pretest
-            $kelas_navbar = $this->model_pg->fetch_all_kelas();
+            $kelas_navbar = $this->Model_pg->fetch_all_kelas();
             if($id_materi){
-                $mapok = $this->model_pg->get_materi_by_mapel($id_materi);
-                $mapel = $this->model_pg->get_mapel_by_id($id_materi);
+                $mapok = $this->Model_pg->get_materi_by_mapel($id_materi);
+                $mapel = $this->Model_pg->get_mapel_by_id($id_materi);
 
                 $mapok_baru = [];
                 $mapok_ids_in = "";
                 foreach ($mapok as $key => $value) {
                     $v = $array = json_decode(json_encode($value), true);
-                    $v['mapok'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                    $v['mapok'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
                     $mapok_baru[] = $v;
 
                     //create string for IN statement on sql
@@ -60,11 +60,11 @@ class Pretest extends CI_Controller
                 $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
 
                 // PRE
-                $mapok_pre = $this->model_pg->get_materi_pre_by_mapel($id_materi);
+                $mapok_pre = $this->Model_pg->get_materi_pre_by_mapel($id_materi);
                 $mapok_baru_pre = [];
                 foreach ($mapok_pre as $key => $value) {
                     $v = $array = json_decode(json_encode($value), true);
-                    $v['sub_materi'] = $this->model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+                    $v['sub_materi'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
                     $mapok_baru_pre[] = $v;
                 }
                 $mapok_baru_pre = json_decode(json_encode($mapok_baru_pre), FALSE);
@@ -72,17 +72,17 @@ class Pretest extends CI_Controller
 
                 //remove last comma
                 $mapok_ids_in = rtrim($mapok_ids_in,",");
-                $materi_ids =  $this->model_pg->get_count_submateri($mapok_ids_in);
+                $materi_ids =  $this->Model_pg->get_count_submateri($mapok_ids_in);
 
                 $id = $this->session->userdata('pretest_id');
-                $cek = $this->model_pg->get_log_baca($id);
+                $cek = $this->Model_pg->get_log_baca($id);
 
                 $data = [
                     "kelas" => $mapel,
                     'status' => $cek,
                     'materi' => $mapok_baru,
                     'materi_pre' => $mapok_baru_pre,
-                    'mapel_lain' => $this->model_pg->get_mapel_random(),
+                    'mapel_lain' => $this->Model_pg->get_mapel_random(),
                     'materi_total' => $materi_ids->jumlah_sub,
                     'baca_total' => $cek->baca_total,
 
@@ -104,15 +104,15 @@ class Pretest extends CI_Controller
                 $start-=1;
                 if($start<0) $start = 0;
                 $start*=$limit;
-                $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+                $mapel = $this->Model_pg->get_all_mapel(1, $limit, $start);
 
-                $kelas = $this->model_pg->fetch_all_kelas();
+                $kelas = $this->Model_pg->fetch_all_kelas();
 
                 $data = [
                     "mapel" => $mapel,
                     "kelas" => $kelas, 
                     "limit" => $limit,
-                    "jumlah_mapel" => $this->model_pg->get_all_mapel(2)->jumlah_mapel,
+                    "jumlah_mapel" => $this->Model_pg->get_all_mapel(2)->jumlah_mapel,
 
                     "kelas_navbar" => $kelas_navbar, 
                 ];
@@ -142,7 +142,7 @@ class Pretest extends CI_Controller
         $start-=1;
         if($start<0) $start = 0;
         $start*=$limit;
-        $mapel = $this->model_pg->get_all_mapel(1, $limit, $start);
+        $mapel = $this->Model_pg->get_all_mapel(1, $limit, $start);
 
         //TODO SAMAKAN DENGAN homebaru.php
 
@@ -186,16 +186,16 @@ class Pretest extends CI_Controller
 //        if ($this->form_validation->run() == FALSE) {
 //            alert_error("Error", "Terjadi Kesalahan Saat Daftar!");
 //        } else {
-            $cek1 = $this->model_login->cek_pretest_namaemail($nama, $email);
+            $cek1 = $this->Model_login->cek_pretest_namaemail($nama, $email);
             //jika siswa telah mendaftar akun tetap
             if ($cek1 == null) {
                 //jika pretest telah mendaftar pretest sebelumnya
-                $cek2 = $this->model_login->cek_pretest_sebelumnya($nama, $telepon, $email, $alamat, $tanggal);
+                $cek2 = $this->Model_login->cek_pretest_sebelumnya($nama, $telepon, $email, $alamat, $tanggal);
                 if($cek2 == null){
-                    $aksi = $this->model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                    $aksi = $this->Model_login->daftar_pretest($nama, $telepon, $email, $alamat, $tanggal);
                     $id = $this->db->insert_id();
                 }else{
-                    $aksi = $this->model_login->update_pretest($nama, $telepon, $email, $alamat, $tanggal);
+                    $aksi = $this->Model_login->update_pretest($nama, $telepon, $email, $alamat, $tanggal);
                     $id = $aksi;
                 }
 

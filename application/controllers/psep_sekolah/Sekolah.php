@@ -16,7 +16,7 @@ class Sekolah extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->psep_sekolah_is_logged_in();
+		$this->Model_security->psep_sekolah_is_logged_in();
   }
 
 	public function index()
@@ -24,7 +24,7 @@ class Sekolah extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Sekolah",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_sekolah()
+			'table_data' 		=> $this->Model_adm->fetch_all_sekolah()
 			);
 
 		$this->load->view('psep_sekolah/sekolah', $data);
@@ -46,9 +46,9 @@ class Sekolah extends CI_Controller {
 					'navbar_title'		=> "Manajemen Sekolah",
 					'page_title' 			=> "Tambah Sekolah",
 					'form_action' 		=> current_url(),
-					'select_jenjang' 	=> $this->model_adm->fetch_options_jenjang(),
-					'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-					'select_kota' 		=> $this->model_adm->fetch_options_kota()
+					'select_jenjang' 	=> $this->Model_adm->fetch_options_jenjang(),
+					'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+					'select_kota' 		=> $this->Model_adm->fetch_options_kota()
 					);
 
 					//Form materi submit handler. See if the user is attempting to submit a form or not
@@ -72,9 +72,9 @@ class Sekolah extends CI_Controller {
 					'navbar_title'		=> "Manajemen Sekolah",
 					'page_title' 			=> "Ubah Sekolah",
 					'form_action' 		=> current_url() . "?id=$id",
-					'select_jenjang' 	=> $this->model_adm->fetch_options_jenjang(),
-					'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-					'select_kota' 		=> $this->model_adm->fetch_options_kota()
+					'select_jenjang' 	=> $this->Model_adm->fetch_options_jenjang(),
+					'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+					'select_kota' 		=> $this->Model_adm->fetch_options_kota()
 					);
 
 					//Redirect to kelas if id is not exist
@@ -86,7 +86,7 @@ class Sekolah extends CI_Controller {
 					{
 						//Calling values from database by id and pass them to View
 						//fetching kelas by id
-						$data['data'] = $this->model_adm->fetch_sekolah_by_id($id);
+						$data['data'] = $this->Model_adm->fetch_sekolah_by_id($id);
 
 						//Form submit handler. See if the user is attempting to submit a form or not
 						if($this->input->post('form_submit')) 
@@ -142,9 +142,9 @@ class Sekolah extends CI_Controller {
 		$data = array(
 			'page_title' 			=> "Tambah Sekolah", 
 			'form_action' 		=> current_url(),
-			'select_jenjang' 	=> $this->model_adm->fetch_options_jenjang(),
-			'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-			'select_kota' 		=> $this->model_adm->fetch_options_kota()
+			'select_jenjang' 	=> $this->Model_adm->fetch_options_jenjang(),
+			'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+			'select_kota' 		=> $this->Model_adm->fetch_options_kota()
 
 			);
 
@@ -166,7 +166,7 @@ class Sekolah extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->add_sekolah($nama_sekolah, $jenjang, $email, $telepon, $kota, $alamat_sekolah);
+			$result = $this->Model_adm->add_sekolah($nama_sekolah, $jenjang, $email, $telepon, $kota, $alamat_sekolah);
 			alert_success("Sukses", "Data berhasil ditambahkan");
 			redirect('psep_sekolah/sekolah');
 			// echo "Status Insert: " . $result;
@@ -179,9 +179,9 @@ class Sekolah extends CI_Controller {
 		$data = array(
 			'page_title' 			=> "Ubah Sekolah",
 			'form_action' 		=> current_url(). "?id=$id",
-			'select_jenjang' 	=> $this->model_adm->fetch_options_jenjang(),
-			'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-			'select_kota' 		=> $this->model_adm->fetch_options_kota()
+			'select_jenjang' 	=> $this->Model_adm->fetch_options_jenjang(),
+			'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+			'select_kota' 		=> $this->Model_adm->fetch_options_kota()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -202,7 +202,7 @@ class Sekolah extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_sekolah($id, $nama_sekolah, $jenjang, $email, $telepon, $kota, $alamat_sekolah);
+			$result = $this->Model_adm->update_sekolah($id, $nama_sekolah, $jenjang, $email, $telepon, $kota, $alamat_sekolah);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('psep_sekolah/sekolah');
 			// echo "Status Update: " . $result;
@@ -268,7 +268,7 @@ class Sekolah extends CI_Controller {
              
       }
 
-      $import = $this->model_adm->import_sekolah($data_sekolah);
+      $import = $this->Model_adm->import_sekolah($data_sekolah);
       if($import){
       	alert_success('Sukses', "Data berhasil diimport!");
       }
@@ -295,7 +295,7 @@ class Sekolah extends CI_Controller {
 			if($this->form_validation->run())
 			{
 				$id 		= $this->input->post('hidden_row_id');
-				$result = $this->model_adm->delete_sekolah($id);
+				$result = $this->Model_adm->delete_sekolah($id);
 				
 				alert_success('Sukses', "Data berhasil dihapus");
 				redirect('psep_sekolah/sekolah');
@@ -312,7 +312,7 @@ class Sekolah extends CI_Controller {
     
     if($id)
     {
-      $dynamic_options = $this->model_adm->fetch_kota_by_provinsi($id);
+      $dynamic_options = $this->Model_adm->fetch_kota_by_provinsi($id);
 
       if($dynamic_options){
         echo "<option value=''></option>";

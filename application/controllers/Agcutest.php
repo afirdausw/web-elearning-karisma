@@ -23,15 +23,15 @@ class Agcutest extends CI_Controller
         if ($idsiswa == "") {
             redirect('login');
         }
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
-        $kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal = $this->model_agcu->get_jumlahsoal();
+        $kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal = $this->Model_agcu->get_jumlahsoal();
 
 
-        $cek_eq = $this->model_agcu->cek_eq($idsiswa);
-        $cek_ls = $this->model_agcu->cek_ls($idsiswa);
+        $cek_eq = $this->Model_agcu->cek_eq($idsiswa);
+        $cek_ls = $this->Model_agcu->cek_ls($idsiswa);
 
         if ($cek_eq == 0) {
             $hasileq = 0;
@@ -45,13 +45,13 @@ class Agcutest extends CI_Controller
             $hasills = 0;
         }
 
-        $jumlahsoaldiagnostic = $this->model_agcu->get_jumlah_soal_diagnostic($kelas);
+        $jumlahsoaldiagnostic = $this->Model_agcu->get_jumlah_soal_diagnostic($kelas);
 
-        $jumlahsoaldikerjakan = $this->model_agcu->get_jumlah_soal_diagnostic_dikerjakan($idsiswa);
+        $jumlahsoaldikerjakan = $this->Model_agcu->get_jumlah_soal_diagnostic_dikerjakan($idsiswa);
 
         $data = array(
             'infosiswa'            => $infosiswa,
-            'navbar_links'         => $this->model_pg->get_navbar_links(),
+            'navbar_links'         => $this->Model_pg->get_navbar_links(),
             'kelas'                => $kelas,
             'hasileq'              => $hasileq,
             'hasills'              => $hasills,
@@ -67,8 +67,8 @@ class Agcutest extends CI_Controller
     function mulaieqtest()
     {
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_soal'    => $this->model_eqtest->get_eqtest(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_soal'    => $this->Model_eqtest->get_eqtest(),
         );
 
         $no = 1;
@@ -85,11 +85,11 @@ class Agcutest extends CI_Controller
     function mulailstest()
     {
         $idsiswa = $this->session->userdata('id_siswa');
-        $hapushasil = $this->model_lstest->hapus_ls($idsiswa);
+        $hapushasil = $this->Model_lstest->hapus_ls($idsiswa);
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_soal'    => $this->model_lstest->get_lstest(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_soal'    => $this->Model_lstest->get_lstest(),
         );
 
         $this->load->view('pg_user/lstest_mulai', $data);
@@ -100,8 +100,8 @@ class Agcutest extends CI_Controller
         $idsiswa = $this->session->userdata('id_siswa');
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_soal'    => $this->model_lstest->get_lstest2(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_soal'    => $this->Model_lstest->get_lstest2(),
         );
 
 
@@ -130,7 +130,7 @@ class Agcutest extends CI_Controller
         $id_soal = $this->input->post('id');
         $jawaban = $this->input->post('jawaban');
 
-        $insert = $this->model_lstest->insert_skor($idsiswa, $id_soal, $jawaban);
+        $insert = $this->Model_lstest->insert_skor($idsiswa, $id_soal, $jawaban);
         $result = "benar";
 
         echo $result;
@@ -151,7 +151,7 @@ class Agcutest extends CI_Controller
 
         $idsiswa = $this->session->userdata('id_siswa');
 
-        $insert = $this->model_eqtest->insert_skor($idsiswa, $aq, $eq, $am);
+        $insert = $this->Model_eqtest->insert_skor($idsiswa, $aq, $eq, $am);
 
         redirect('agcutest');
     }
@@ -159,7 +159,7 @@ class Agcutest extends CI_Controller
     public function hasillstest()
     {
         $idsiswa = $this->session->userdata('id_siswa');
-        $skor = $this->model_lstest->skor($idsiswa);
+        $skor = $this->Model_lstest->skor($idsiswa);
 
         foreach ($skor as $dataskor) {
             $hasil[$dataskor->no] = $dataskor->skor;
@@ -258,7 +258,7 @@ class Agcutest extends CI_Controller
         }
 
         $data = array(
-            'navbar_links'  => $this->model_pg->get_navbar_links(),
+            'navbar_links'  => $this->Model_pg->get_navbar_links(),
             'totalv'        => $totalv,
             'totala'        => $totala,
             'totalk'        => $totalk,
@@ -275,7 +275,7 @@ class Agcutest extends CI_Controller
 
         $idsiswa = $this->session->userdata('id_siswa');
 
-        $data_eq = $this->model_agcu->get_eq($idsiswa);
+        $data_eq = $this->Model_agcu->get_eq($idsiswa);
 
         if ($data_eq->skor_aq < 7) {
             $analisis_aq = "Mudah gelisah, bingung dan sering cemas - Sering kehilangan rasa humor - Menyalahkan diri sendiri terhadap berbagai kegagalan - Analisisnya dangkal ";
@@ -314,8 +314,8 @@ class Agcutest extends CI_Controller
         }
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_eq'      => $this->model_agcu->get_eq($idsiswa),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_eq'      => $this->Model_agcu->get_eq($idsiswa),
             'analisis_aq'  => $analisis_aq,
             'analisis_eq'  => $analisis_eq,
             'analisis_am'  => $analisis_am,
@@ -330,13 +330,13 @@ class Agcutest extends CI_Controller
         if ($idsiswa == "") {
             redirect("login");
         }
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
-        $kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal = $this->model_agcu->get_jumlahsoal();
+        $kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal = $this->Model_agcu->get_jumlahsoal();
 
         $data = array(
-            'navbar_links'       => $this->model_pg->get_navbar_links(),
+            'navbar_links'       => $this->Model_pg->get_navbar_links(),
             'kategoridiagnostic' => $kategoridiagnostic,
             'datasoal'           => $datasoal,
         );
@@ -349,9 +349,9 @@ class Agcutest extends CI_Controller
     {
         $iddiagnostic = $id_diagnostic;
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_soal'    => $this->model_agcu->fetch_soal_by_diagnostic($iddiagnostic),
-            'durasi'       => $this->model_agcu->get_timer($iddiagnostic),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_soal'    => $this->Model_agcu->fetch_soal_by_diagnostic($iddiagnostic),
+            'durasi'       => $this->Model_agcu->get_timer($iddiagnostic),
         );
 
         $idsiswa = $this->session->userdata('id_siswa');
@@ -372,7 +372,7 @@ class Agcutest extends CI_Controller
         }
         $_SESSION['id_diagnostic'] = $iddiagnostic;
 
-        $id_kelas = $this->model_agcu->get_mapel_by_diagnostic($iddiagnostic);
+        $id_kelas = $this->Model_agcu->get_mapel_by_diagnostic($iddiagnostic);
 
 
         $session = array(
@@ -381,7 +381,7 @@ class Agcutest extends CI_Controller
                 'skor'               => 0,
                 'id_materi'          => $iddiagnostic,
             ),
-            'kunci_soal'   => $this->model_agcu->fetch_array_id_soal($iddiagnostic),
+            'kunci_soal'   => $this->Model_agcu->fetch_array_id_soal($iddiagnostic),
         );
         $this->session->set_userdata($session);
         session_write_close();
@@ -399,13 +399,13 @@ class Agcutest extends CI_Controller
         if ($iddiagnostic == "") {
             redirect('diagnostictest');
         }
-        $jumlahsoal = $this->model_agcu->cari_jumlahsoal_by_diagnostic($iddiagnostic, $idsiswa);
+        $jumlahsoal = $this->Model_agcu->cari_jumlahsoal_by_diagnostic($iddiagnostic, $idsiswa);
 
-        $jumlahbenar = $this->model_agcu->cari_diagnostic_benar_by_diagnostic($iddiagnostic, $idsiswa);
+        $jumlahbenar = $this->Model_agcu->cari_diagnostic_benar_by_diagnostic($iddiagnostic, $idsiswa);
 
-        $jumlahsalah = $this->model_agcu->cari_diagnostic_salah_by_diagnostic($iddiagnostic, $idsiswa);
+        $jumlahsalah = $this->Model_agcu->cari_diagnostic_salah_by_diagnostic($iddiagnostic, $idsiswa);
 
-        $cariketuntasan = $this->model_agcu->get_diagnosticbyid($iddiagnostic);
+        $cariketuntasan = $this->Model_agcu->get_diagnosticbyid($iddiagnostic);
         $ketuntasan = $cariketuntasan->ketuntasan;
 
         $skor = round(($jumlahbenar / $jumlahsoal) * 100, 2);
@@ -417,7 +417,7 @@ class Agcutest extends CI_Controller
         }
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
             'skor'         => $skor,
             'tuntas'       => $tuntas,
         );
@@ -434,20 +434,20 @@ class Agcutest extends CI_Controller
             redirect("login");
         }
 
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
-        $kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal = $this->model_agcu->get_jumlahsoal();
+        $kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal = $this->Model_agcu->get_jumlahsoal();
 
-        $jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+        $jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 
-        $jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-        $jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+        $jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+        $jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 
-        $analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+        $analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
         $data = array(
-            'navbar_links'       => $this->model_pg->get_navbar_links(),
+            'navbar_links'       => $this->Model_pg->get_navbar_links(),
             'kategoridiagnostic' => $kategoridiagnostic,
             'datasoal'           => $datasoal,
             'jumlahbenar'        => $jumlahbenar,
@@ -502,12 +502,12 @@ class Agcutest extends CI_Controller
                         $result = "benar";
 
                         //input analisis topik
-                        $carihasildiagnostic = $this->model_agcu->carihasildiagnostic($idkategori, $idsiswa, $id_soal);
+                        $carihasildiagnostic = $this->Model_agcu->carihasildiagnostic($idkategori, $idsiswa, $id_soal);
 
                         if ($carihasildiagnostic > 0) {
-                            $edithasildiagnostic = $this->model_agcu->edithasildiagnostic($idkategori, $idsiswa, $id_soal, 1);
+                            $edithasildiagnostic = $this->Model_agcu->edithasildiagnostic($idkategori, $idsiswa, $id_soal, 1);
                         } else {
-                            $inputhasildiagnostic = $this->model_agcu->inputhasildiagnostic($idkategori, $idsiswa, $id_soal, 1);
+                            $inputhasildiagnostic = $this->Model_agcu->inputhasildiagnostic($idkategori, $idsiswa, $id_soal, 1);
                         }
 
                     } else {
@@ -520,12 +520,12 @@ class Agcutest extends CI_Controller
                         }
 
                         //input analisis topik
-                        $carihasildiagnostic = $this->model_agcu->carihasildiagnostic($idkategori, $idsiswa, $id_soal);
+                        $carihasildiagnostic = $this->Model_agcu->carihasildiagnostic($idkategori, $idsiswa, $id_soal);
 
                         if ($carihasildiagnostic > 0) {
-                            $edithasildiagnostic = $this->model_agcu->edithasildiagnostic($idkategori, $idsiswa, $id_soal, 0);
+                            $edithasildiagnostic = $this->Model_agcu->edithasildiagnostic($idkategori, $idsiswa, $id_soal, 0);
                         } else {
-                            $inputhasildiagnostic = $this->model_agcu->inputhasildiagnostic($idkategori, $idsiswa, $id_soal, 0);
+                            $inputhasildiagnostic = $this->Model_agcu->inputhasildiagnostic($idkategori, $idsiswa, $id_soal, 0);
                         }
 
 
@@ -544,24 +544,24 @@ class Agcutest extends CI_Controller
             redirect('login');
         }
 
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
-        $kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-        $datasoal = $this->model_agcu->get_jumlahsoal();
+        $kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+        $datasoal = $this->Model_agcu->get_jumlahsoal();
 
-        $jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+        $jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 
-        $jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-        $jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+        $jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+        $jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 
-        $analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+        $analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
 
 
-        $skor = $this->model_lstest->skor($idsiswa);
-        $hasildiagnostic = $this->model_agcu->get_ordered_hasildiagnostic();
-        $peringkatsiswa = $this->model_agcu->get_peringkatsiswabykelas($kelas);
+        $skor = $this->Model_lstest->skor($idsiswa);
+        $hasildiagnostic = $this->Model_agcu->get_ordered_hasildiagnostic();
+        $peringkatsiswa = $this->Model_agcu->get_peringkatsiswabykelas($kelas);
 
         foreach ($skor as $dataskor) {
             $hasil[$dataskor->no] = $dataskor->skor;
@@ -659,7 +659,7 @@ class Agcutest extends CI_Controller
 		Cobalah belajar dalam kelompok untuk membentuk suasana bermain peran dari pelajaran yang dibahas - Tulislah poin - poin penting dari pelajaran dalam bentuk kartu - kartu yang disusun secara logis -  Buatlah semacam percobaan atau model dari apa yang sedang kamu pelajari - Libatkan tubuh dalam belajar dengan mencoba meniru apa yang dipelajari dengan gaya guru saat menyampaikan materi - Setiap kali membaca atau mendengarkan seseorang berbicara, bangkitlah untuk sedikit bergerak setiap 15 - 20 menit sekali';
         }
 
-        $data_eq = $this->model_agcu->get_eq($idsiswa);
+        $data_eq = $this->Model_agcu->get_eq($idsiswa);
 
         if ($data_eq->skor_aq < 7) {
             $analisis_aq = "Mudah gelisah, bingung dan sering cemas - Sering kehilangan rasa humor - Menyalahkan diri sendiri terhadap berbagai kegagalan - Analisisnya dangkal ";
@@ -698,7 +698,7 @@ class Agcutest extends CI_Controller
         }
 
         $data = array(
-            'navbar_links'       => $this->model_pg->get_navbar_links(),
+            'navbar_links'       => $this->Model_pg->get_navbar_links(),
             'infosiswa'          => $infosiswa,
             'kategoridiagnostic' => $kategoridiagnostic,
             'hasildiagnostic'    => $hasildiagnostic,
@@ -714,7 +714,7 @@ class Agcutest extends CI_Controller
             'dominasi'           => $dominasi,
             'karakteristik'      => $karakteristik,
             'saran'              => $saran,
-            'data_eq'            => $this->model_agcu->get_eq($idsiswa),
+            'data_eq'            => $this->Model_agcu->get_eq($idsiswa),
             'analisis_aq'        => $analisis_aq,
             'analisis_eq'        => $analisis_eq,
             'analisis_am'        => $analisis_am,

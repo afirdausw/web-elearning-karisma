@@ -9,6 +9,20 @@
 class Keranjang extends CI_Controller
 {
 
+    public function index()
+    {
+        $cart = $this->Model_Cart->getCartByIdSiswa($_SESSION['id_siswa']);
+        $data = array(
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'video_demo'   => $this->Model_pg->get_video_demo(null),
+            'judul_tab'    => "Keranjang",
+            'data'         => $cart,
+        );
+
+
+        $this->load->view('pg_user/keranjang', $data);
+    }
+
     public function simpan()
     {
         $id_mapel = $_POST['id_mapel'];

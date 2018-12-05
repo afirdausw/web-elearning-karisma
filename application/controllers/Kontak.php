@@ -16,7 +16,7 @@ class Kontak extends CI_Controller
 
 	function index(){
 		$data = array(
-			'navbar_links' 	=> $this->model_pg->get_navbar_links(),
+			'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
 			'nama'			=> '',
 			'email'			=> '',
 			'hp'			=> '',
@@ -34,7 +34,7 @@ class Kontak extends CI_Controller
 		$hp    		= $params['hp'];
 		$pesan   	= $params['pesan'];
 
-		$result = $this->model_kontak->add_pesan($nama, $email, $hp, $pesan);
+		$result = $this->Model_kontak->add_pesan($nama, $email, $hp, $pesan);
 		$this->session->set_flashdata('sukses','Terima kasih untuk Pesan yang telah anda sampaikan, Customer service kami akan segera merespon pesan anda');
 
 		redirect('kontak');
@@ -42,7 +42,7 @@ class Kontak extends CI_Controller
 
 	function send_email($id_pesan)
 	{
-		$data = $this->model_kontak->get_pesan($id_pesan);
+		$data = $this->Model_kontak->get_pesan($id_pesan);
 
 		$config = Array(
 			'protocol' 		=> 'smtp',

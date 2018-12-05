@@ -16,13 +16,13 @@ class Akun_psep extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 function sekolah(){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'table_data' 	=> $this->model_adm->fetch_all_akun_sekolah()
+		'table_data' 	=> $this->Model_adm->fetch_all_akun_sekolah()
 		);
 
 	$this->load->view('pg_admin/psep_akun_sekolah', $data);

@@ -19,18 +19,18 @@ class Latihansoal extends CI_Controller
         $this->load->model('model_security');
         $this->load->model('model_psep');
         $this->load->model('model_banksoal');
-        $this->model_security->psep_sekolah_is_logged_in();
+        $this->Model_security->psep_sekolah_is_logged_in();
     }
 
     public function index()
     {
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
         $data = array(
             'navbar_title' => "Semua Soal",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_all_soal_by_jenjang($carisekolah->jenjang),
+            'table_data'   => $this->Model_adm->fetch_all_soal_by_jenjang($carisekolah->jenjang),
         );
         // tester
         // alert_success('', "");
@@ -48,8 +48,8 @@ class Latihansoal extends CI_Controller
         $data = array(
             'navbar_title' => "Latihan Soal",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_soal_by_submateri($id_sub_materi),
-            'submateri'    => $this->model_adm->fetch_materi_by_id($id_sub_materi),
+            'table_data'   => $this->Model_adm->fetch_soal_by_submateri($id_sub_materi),
+            'submateri'    => $this->Model_adm->fetch_materi_by_id($id_sub_materi),
         );
 
         // tester
@@ -74,9 +74,9 @@ class Latihansoal extends CI_Controller
                         'navbar_title'                => "Manajemen Latihan Soal",
                         'page_title'                  => "Buat Latihan Soal",
                         'form_action'                 => current_url(),
-                        'select_options_mapel'        => $this->model_adm->fetch_options_materi_pokok(),
-                        'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
-                        'submateri'                   => $this->model_adm->fetch_all_materi(),
+                        'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
+                        'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
+                        'submateri'                   => $this->Model_adm->fetch_all_materi(),
                     );
 
                     //Form materi submit handler. See if the user is attempting to submit a form or not
@@ -126,7 +126,7 @@ class Latihansoal extends CI_Controller
                     } else {
                         //Calling values from database by id and pass them to View
                         //fetching jawaban by id
-                        $data['data'] = $this->model_adm->fetch_soal_by_id($id);
+                        $data['data'] = $this->Model_adm->fetch_soal_by_id($id);
 
                         //Form materi submit handler. See if the user is attempting to submit a form or not
                         if ($this->input->post('form_submit')) {
@@ -156,13 +156,13 @@ class Latihansoal extends CI_Controller
                         $this->proses_tambah_soal($id);
                     } else {
                         $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-                        $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+                        $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
                         $config['per_page'] = 10;
                         $page = (isset($_GET['page']) ? $_GET['page'] : 1);
                         // menentukan offset record dari uri segment
                         $start = ($page - 1) * $config['per_page'];
                         // ubah data menjadi tampilan per limit
-                        $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+                        $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
                         $pages = ceil($config['total_rows'] / $config['per_page']);
                         $data = array(
                             'page'                 => $page,
@@ -170,7 +170,7 @@ class Latihansoal extends CI_Controller
                             'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                             //'pagination' => $this->pagination->create_links(),
                             'start'                => $start,
-                            'select_options_kelas' => $this->model_banksoal->get_kelas(),
+                            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
                         );
                         $this->load->view('pg_admin/banksoalbaru', $data);
                     }
@@ -242,7 +242,7 @@ class Latihansoal extends CI_Controller
             $this->load->view('psep_sekolah/latihansoal_detail_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
+            $result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/latihansoal/detail/' . $id);
             // echo "Status Insert: " . $result;
@@ -282,7 +282,7 @@ class Latihansoal extends CI_Controller
             $this->load->view('psep_sekolah/latihansoal_detail_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
+            $result = $this->Model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
 
             alert_success("Sukses", "Data berhasil diubah");
             redirect('psep_sekolah/latihansoal/detail/' . $sub_materi_id, $data);
@@ -298,7 +298,7 @@ class Latihansoal extends CI_Controller
 
             if ($this->form_validation->run()) {
                 $id = $this->input->post('hidden_row_id');
-                $result = $this->model_adm->delete_item_soal($id);
+                $result = $this->Model_adm->delete_item_soal($id);
 
                 alert_success('Sukses', "Data berhasil dihapus");
                 redirect($_SERVER['HTTP_REFERER']);
@@ -316,7 +316,7 @@ class Latihansoal extends CI_Controller
         $data = array(
             'page_title'  => "Tambah Latihan Soal",
             'form_action' => current_url(),
-            'submateri'   => $this->model_adm->fetch_all_materi(),
+            'submateri'   => $this->Model_adm->fetch_all_materi(),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -331,7 +331,7 @@ class Latihansoal extends CI_Controller
             $this->load->view('psep_sekolah/latihansoal_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_latihan_soal($sub_materi);
+            $result = $this->Model_adm->add_latihan_soal($sub_materi);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/latihansoal');
             // echo "Status Insert: " . $result;
@@ -364,7 +364,7 @@ class Latihansoal extends CI_Controller
             $this->load->view('psep_sekolah/materi_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $isi_materi, $gambar_materi, $tanggal, $waktu);
+            $result = $this->Model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $isi_materi, $gambar_materi, $tanggal, $waktu);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/materi');
             // echo "Status Insert: " . $result;
@@ -375,7 +375,7 @@ class Latihansoal extends CI_Controller
     function preview_konten($sub_materi_id)
     {
         if ($sub_materi_id) {
-            $data['content_preview'] = $this->model_adm->fetch_content_by_id($sub_materi_id);
+            $data['content_preview'] = $this->Model_adm->fetch_content_by_id($sub_materi_id);
             $gambar_materi = isset($data['content_preview']->gambar_materi) ? $data['content_preview']->gambar_materi : '';
             $data['thumbnail_dir'] = base_url('') . "assets/img/no-image.jpg";
 
@@ -398,8 +398,8 @@ class Latihansoal extends CI_Controller
     function fetch_materi_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_materi_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
+        $table_data = $this->Model_adm->fetch_materi_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('mata_pelajaran', 'materi_pokok', 'sub_materi', 'konten_materi');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);
@@ -420,7 +420,7 @@ class Latihansoal extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_adm->fetch_materi_pokok_by_mapel($id);
+            $dynamic_options = $this->Model_adm->fetch_materi_pokok_by_mapel($id);
 
             if ($dynamic_options) {
                 foreach ($dynamic_options as $item) {
@@ -441,7 +441,7 @@ class Latihansoal extends CI_Controller
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_adm->fetch_submateri_by_materi_pokok($id);
+            $dynamic_options = $this->Model_adm->fetch_submateri_by_materi_pokok($id);
 
             if ($dynamic_options) {
                 $no = 1;
@@ -464,20 +464,20 @@ class Latihansoal extends CI_Controller
         //22 November 2017
         //UNTUK FETCH MASIH PENDING
         $config['base_url'] = base_url() . 'psep_sekolah/latihansoal/ambilbanksoal/' . $id_sub_materi;
-        $smateri = $this->model_adm->fetch_materi_by_id_result($id_sub_materi);
+        $smateri = $this->Model_adm->fetch_materi_by_id_result($id_sub_materi);
         foreach ($smateri as $it) {
             $kelas = $it->kelas_id;
             $mapel = $it->id_mapel;
         }
         // $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
-        $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
+        $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
         $config['per_page'] = 10;
         $page = (isset($_GET['page']) ? $_GET['page'] : 1);
         // menentukan offset record dari uri segment
         $start = ($page - 1) * $config['per_page'];
         // ubah data menjadi tampilan per limit
-        $rows = $this->model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
-        $datas = array_column($this->model_adm->select_item($id_sub_materi), 'id_banksoal');
+        $rows = $this->Model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
+        $datas = array_column($this->Model_adm->select_item($id_sub_materi), 'id_banksoal');
         $pages = ceil($config['total_rows'] / $config['per_page']);
         $data = array(
             'navbar_title'         => "Latihan Ambil Bank Soal",
@@ -488,8 +488,8 @@ class Latihansoal extends CI_Controller
             'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
             //'pagination' => $this->pagination->create_links(),
             'start'                => $start,
-            'select_options_kelas' => $this->model_banksoal->get_kelas(),
-            'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
+            'select_options_kelas' => $this->Model_banksoal->get_kelas(),
+            'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
             'id_sub_materi'        => $id_sub_materi,
         );
         $this->load->view('psep_sekolah/ambilbanksoal', $data);
@@ -547,7 +547,7 @@ class Latihansoal extends CI_Controller
     public function simpanbanksoal($id_sub_materi, $id_banksoal, $hal)
     {
         //fetch input (make sure that the variable name is the same as column name in database!)
-        $soal = $this->model_banksoal->cari_bank_soal_by_id($id_banksoal);
+        $soal = $this->Model_banksoal->cari_bank_soal_by_id($id_banksoal);
         $isi_soal = $soal->pertanyaan;
         $kunci_jawaban = $soal->kunci;
         $jawab_1 = $soal->jawab_1;
@@ -558,7 +558,7 @@ class Latihansoal extends CI_Controller
         $sub_materi_id = $id_sub_materi;
         $pembahasan = $soal->pembahasan_teks;
         $pembahasan_video = $soal->pembahasan_video;
-        $result = $this->model_adm->add_item_soal_bank_soal($id_banksoal, $isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
+        $result = $this->Model_adm->add_item_soal_bank_soal($id_banksoal, $isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
 
         if ($result) {
             alert_success("Sukses", "Data berhasil ditambahkan");
@@ -573,10 +573,10 @@ class Latihansoal extends CI_Controller
     public function hapusbanksoal($id_sub_materi, $id_banksoal, $hal)
     {
         //fetch input (make sure that the variable name is the same as column name in database!)
-        $soal = $this->model_adm->select_item_soal_bank_soal($id_banksoal, $id_sub_materi);
+        $soal = $this->Model_adm->select_item_soal_bank_soal($id_banksoal, $id_sub_materi);
         if (count($soal) > 0) {
             $id = $soal[0]['id_soal'];
-            $result = $this->model_adm->delete_item_soal($id);
+            $result = $this->Model_adm->delete_item_soal($id);
             if ($result) {
                 alert_success("Sukses", "Data berhasil di hapus");
             } else {
@@ -621,7 +621,7 @@ class Latihansoal extends CI_Controller
                 $err++;
             } else {
                 //passing input value to Model
-                $result = $this->model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2,
+                $result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2,
                     $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
                 // echo "Status Insert: " . $result;
             }

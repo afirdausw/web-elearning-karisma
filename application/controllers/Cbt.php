@@ -31,12 +31,12 @@ public function index(){
 	if($idsiswa == ""){
 		redirect('login');
 	}
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 	$tanggalsekarang = date('Y-m-d');
 	$data = array(
 		'infosiswa'		=> $infosiswa,
-		'kelasaktif'	=> $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang),
-		'data_profil' 	=> $this->model_dashboard->fetch_all_cbtcontest()
+		'kelasaktif'	=> $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang),
+		'data_profil' 	=> $this->Model_dashboard->fetch_all_cbtcontest()
 		);
 
 	$this->load->view('pg_user/cbt_index', $data);
@@ -48,15 +48,15 @@ function cbt_detail($idprofil){
 	if($idsiswa == ""){
 		redirect('login');
 	}
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 	$tanggalsekarang = date('Y-m-d');
 	
-	$caripendaftaran = $this->model_dashboard->cari_daftar_cbt_by_siswa_and_profil($idsiswa, $idprofil);
+	$caripendaftaran = $this->Model_dashboard->cari_daftar_cbt_by_siswa_and_profil($idsiswa, $idprofil);
 	
 	$data = array(
 		'infosiswa'		=> $infosiswa,
-		'data_profil' 	=> $this->model_dashboard->get_cbt_by_profil($idprofil),
-		'navbar_links' 		=> $this->model_pg->get_navbar_links()
+		'data_profil' 	=> $this->Model_dashboard->get_cbt_by_profil($idprofil),
+		'navbar_links' 		=> $this->Model_pg->get_navbar_links()
 		);
  
 	$this->load->view('pg_user/cbt_detail', $data);
@@ -65,7 +65,7 @@ function cbt_detail($idprofil){
 function proses_daftar($idprofil){
 	$idsiswa = $this->session->userdata('id_siswa');
 	
-	$daftar = $this->model_dashboard->proses_daftar_cbt($idsiswa, $idprofil);
+	$daftar = $this->Model_dashboard->proses_daftar_cbt($idsiswa, $idprofil);
 	
 	redirect('cbt/daftar/'.$daftar);
 }
@@ -79,8 +79,8 @@ function daftar($iddaftar){
 	
 	
 	$data = array(
-		'infosiswa'			=> $this->model_dashboard->get_info_siswa($idsiswa),
-		'infopendaftaran'	=> $this->model_dashboard->get_info_pembayaran_cbt($iddaftar)
+		'infosiswa'			=> $this->Model_dashboard->get_info_siswa($idsiswa),
+		'infopendaftaran'	=> $this->Model_dashboard->get_info_pembayaran_cbt($iddaftar)
 		);
 	
 	$this->load->view('pg_user/cbt_bayar', $data);
@@ -107,7 +107,7 @@ function proses_bukti(){
 	$this->load->library('upload', $config);
 	$this->upload->do_upload('bukti');
 	
-	$proses = $this->model_dashboard->proses_bukti_cbt($idsiswa, $iddaftar, $namafile);
+	$proses = $this->Model_dashboard->proses_bukti_cbt($idsiswa, $iddaftar, $namafile);
 	
 	redirect('cbt/daftar/'.$iddaftar);
 }
@@ -134,7 +134,7 @@ private function cek_tipe($tipe){
 
 
 function ajax_list_cbt($idprofil, $statusbayar){
-		$caritryout = $this->model_dashboard->get_tryout_by_profil($idprofil);
+		$caritryout = $this->Model_dashboard->get_tryout_by_profil($idprofil);
 		$idsiswa = $this->session->userdata('id_siswa');
 		foreach($caritryout as $tryout){
 			?>
@@ -146,9 +146,9 @@ function ajax_list_cbt($idprofil, $statusbayar){
 					<h3><?php echo $tryout->nama_kategori;?></h3>
 					
 					<?php
-						$cariskor 		= $this->model_dashboard->cari_skor($tryout->id_kategori, $idsiswa);
-						$cariskorsalah 	= $this->model_dashboard->cari_skor_salah($tryout->id_kategori, $idsiswa);
-						$cariwaktu 		= $this->model_dashboard->cari_waktu($tryout->id_kategori, $idsiswa);
+						$cariskor 		= $this->Model_dashboard->cari_skor($tryout->id_kategori, $idsiswa);
+						$cariskorsalah 	= $this->Model_dashboard->cari_skor_salah($tryout->id_kategori, $idsiswa);
+						$cariwaktu 		= $this->Model_dashboard->cari_waktu($tryout->id_kategori, $idsiswa);
 						
 						$prosentase = round(($cariskor/$tryout->jumlah_soal) * 100, 2);
 						

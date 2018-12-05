@@ -17,18 +17,18 @@ class Kelas extends CI_Controller
         $this->load->model('model_adm');
         $this->load->model('model_security');
         $this->load->model('model_psep');
-        $this->model_security->psep_sekolah_is_logged_in();
+        $this->Model_security->psep_sekolah_is_logged_in();
     }
 
     public function index()
     {
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
         $data = array(
             'navbar_title' => "Kelas",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+            'table_data'   => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
         );
 
         $this->load->view('psep_sekolah/kelas', $data);
@@ -107,7 +107,7 @@ class Kelas extends CI_Controller
         );
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
         $jenjang = $carisekolah->jenjang;
@@ -120,7 +120,7 @@ class Kelas extends CI_Controller
             $this->load->view('psep_sekolah/kelas_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas);
+            $result = $this->Model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('psep_sekolah/kelas');
             // echo "Status Insert: " . $result;
@@ -137,7 +137,7 @@ class Kelas extends CI_Controller
 
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, true);
@@ -151,7 +151,7 @@ class Kelas extends CI_Controller
             $this->load->view('psep_sekolah/kelas_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas);
+            $result = $this->Model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('psep_sekolah/kelas');
             // echo "Status Update: " . $result;
@@ -167,7 +167,7 @@ class Kelas extends CI_Controller
 
             if ($this->form_validation->run()) {
                 $id = $this->input->post('hidden_row_id');
-                $result = $this->model_adm->delete_kelas($id);
+                $result = $this->Model_adm->delete_kelas($id);
 
                 alert_success('Sukses', "Data berhasil dihapus");
                 redirect('psep_sekolah/kelas');
@@ -192,8 +192,8 @@ class Kelas extends CI_Controller
     function fetch_kelas_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_kelas_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('kelas');
+        $table_data = $this->Model_adm->fetch_kelas_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('kelas');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);

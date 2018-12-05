@@ -25,13 +25,13 @@ class Latihan extends CI_Controller
         }
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'header'       => $this->model_pg->get_mapel_by_konten($id_sub_materi),
-            'data'         => $this->model_pg->get_sub_materi_by_id($id_sub_materi),
-            'infolatihan'  => $this->model_pg->get_info_latihan($id_sub_materi),
-            'jumlahsoal'   => $this->model_pg->get_jumlah_soal_latihan($id_sub_materi),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'header'       => $this->Model_pg->get_mapel_by_konten($id_sub_materi),
+            'data'         => $this->Model_pg->get_sub_materi_by_id($id_sub_materi),
+            'infolatihan'  => $this->Model_pg->get_info_latihan($id_sub_materi),
+            'jumlahsoal'   => $this->Model_pg->get_jumlah_soal_latihan($id_sub_materi),
         );
-        $id_kelas = $this->model_pg->get_mapel_by_materi($data['data']->materi_pokok_id);
+        $id_kelas = $this->Model_pg->get_mapel_by_materi($data['data']->materi_pokok_id);
         //	$allow_akses = $this->validasi_akses_siswa($id_kelas);
 //        $allow_akses = $this->validasi_akses_siswa($data['header']->id_kelas);
 
@@ -50,19 +50,19 @@ class Latihan extends CI_Controller
         $_SESSION['data_latihan'] = null;
         $_SESSION['kunci_soal'] = null;
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_soal'    => $this->model_pg->fetch_soal_by_submateri($id_sub_materi),
-            'header'       => $this->model_pg->get_mapel_by_konten($id_sub_materi),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_soal'    => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
+            'header'       => $this->Model_pg->get_mapel_by_konten($id_sub_materi),
 //            'header'       => $this->model_pg->get_sub_materi_by_id($id_sub_materi),
-            'data'         => $this->model_pg->get_sub_materi_by_id($id_sub_materi),
-            'poin'         => $this->model_poin->fetch_poin_bonus('jawaban_benar'),
+            'data'         => $this->Model_pg->get_sub_materi_by_id($id_sub_materi),
+            'poin'         => $this->Model_poin->fetch_poin_bonus('jawaban_benar'),
         );
 
 //        $id_kelas = $this->model_pg->get_mapel_by_materi($data['header']->materi_pokok_id);
 //        $allow_akses = $this->validasi_akses_siswa($id_kelas);
 //        $data['allow_akses'] = $allow_akses;
 
-        $id_kelas = $this->model_pg->get_mapel_by_materi($data['data']->materi_pokok_id);
+        $id_kelas = $this->Model_pg->get_mapel_by_materi($data['data']->materi_pokok_id);
 //        $allow_akses = $this->validasi_akses_siswa($id_kelas);
 //        $allow_akses = $this->validasi_akses_siswa($data['header']->id_kelas);
 
@@ -82,9 +82,9 @@ class Latihan extends CI_Controller
                     'sedang_mengerjakan' => true,
                     'skor'               => 0,
                     'id_materi'          => $id_sub_materi,
-                    'id_pokok'           => $this->model_pg->get_sub_materi_by_id($id_sub_materi)->materi_pokok_id,
+                    'id_pokok'           => $this->Model_pg->get_sub_materi_by_id($id_sub_materi)->materi_pokok_id,
                 ),
-                'kunci_soal'   => $this->model_pg->fetch_array_id_soal($id_sub_materi),
+                'kunci_soal'   => $this->Model_pg->fetch_array_id_soal($id_sub_materi),
 //				'kunci' 	=> $this->model_pg->fetch_array_kunci()
             );
             $this->session->unset_userdata('kunci_soal');
@@ -92,7 +92,7 @@ class Latihan extends CI_Controller
             unset($_SESSION['data_latihan']);
             unset($_SESSION['kunci_soal']);
 //            $this->session->set_userdata($session);
-            $_SESSION['kunci_soal'] = $this->model_pg->fetch_array_id_soal($id_sub_materi);
+            $_SESSION['kunci_soal'] = $this->Model_pg->fetch_array_id_soal($id_sub_materi);
 
             
             $_SESSION['data_latihan'] = array(
@@ -100,7 +100,7 @@ class Latihan extends CI_Controller
                 'sedang_mengerjakan' => true,
                 'skor'               => 0,
                 'id_materi'          => $id_sub_materi,
-                'id_pokok'           => $this->model_pg->get_sub_materi_by_id($id_sub_materi)->materi_pokok_id,
+                'id_pokok'           => $this->Model_pg->get_sub_materi_by_id($id_sub_materi)->materi_pokok_id,
             );
 //            session_write_close();
         }
@@ -131,7 +131,7 @@ class Latihan extends CI_Controller
         $skor = $this->input->post('skor');
         $id_sub_materi = $_SESSION['data_latihan']['id_materi'] ? $_SESSION['data_latihan']['id_materi'] : 0;
         // $jumlah_soal = $this->model_pg->jumlah_soal($id_sub_materi);
-        $data_soal = $this->model_pg->fetch_soal_by_submateri($id_sub_materi);
+        $data_soal = $this->Model_pg->fetch_soal_by_submateri($id_sub_materi);
         $jumlah_soal = count($data_soal);
 
         // $data_latihan = array('skor' => $skor);
@@ -166,7 +166,7 @@ class Latihan extends CI_Controller
         // print_r($this->session->userdata('data_latihan')['sedang_mengerjakan']);
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
             'skor'         => $final_skor,
         );
 
@@ -226,7 +226,7 @@ class Latihan extends CI_Controller
                         $result = "benar";
                         //SET POIN SISWA
                         if (isset($_SESSION['id_siswa'])) {
-                            $addpoin = $this->model_poin->add_poin_siswa($_SESSION['id_siswa'], 'jawaban_benar');
+                            $addpoin = $this->Model_poin->add_poin_siswa($_SESSION['id_siswa'], 'jawaban_benar');
                         }
                     } else {
 
@@ -259,7 +259,7 @@ class Latihan extends CI_Controller
         $tipe_pembahasan = $this->input->post('tipe');
 
         if (!empty($id_soal) && !empty($tipe_pembahasan)) {
-            $row = $this->model_pg->fetch_jawaban_by_soal($id_soal);
+            $row = $this->Model_pg->fetch_jawaban_by_soal($id_soal);
 
             if (!empty($row)) {
                 //if tipe pembahasan == teks

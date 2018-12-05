@@ -16,7 +16,7 @@ class Siswa extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->psep_sekolah_is_logged_in();
+		$this->Model_security->psep_sekolah_is_logged_in();
   }
 
 	public function index()
@@ -25,7 +25,7 @@ class Siswa extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Siswa",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_all_siswa($jenjangnya)
+			'table_data' 		=> $this->Model_adm->fetch_all_siswa($jenjangnya)
 			);
 
 		$this->load->view('psep_sekolah/siswa', $data);
@@ -37,7 +37,7 @@ class Siswa extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Pendaftar",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_siswa_pendaftar($jenjangnya)
+			'table_data' 		=> $this->Model_adm->fetch_siswa_pendaftar($jenjangnya)
 			);
 
 		$this->load->view('psep_sekolah/siswa_pendaftar', $data);
@@ -49,7 +49,7 @@ class Siswa extends CI_Controller {
 		$data = array(
 			'navbar_title' 	=> "Siswa Aktif",
 			'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-			'table_data' 		=> $this->model_adm->fetch_siswa_aktif($jenjangnya)
+			'table_data' 		=> $this->Model_adm->fetch_siswa_aktif($jenjangnya)
 			);
 
 		$this->load->view('psep_sekolah/siswa_aktif', $data);
@@ -70,11 +70,11 @@ class Siswa extends CI_Controller {
 					'navbar_title'	=> "Manajemen Siswa",
 					'page_title' 		=> "Tambah Siswa",
 					'form_action' 	=> current_url(),
-					'select_sekolah' 	=> $this->model_adm->fetch_all_sekolah($jenjangnya),
-					'select_options' 	=> $this->model_adm->fetch_all_kelas($jenjangnya),
-					'select_jenjang' 	=> $this->model_adm->fetch_options_jenjang(),
-					'select_provinsi' => $this->model_adm->fetch_options_provinsi(),
-					'select_kota' 		=> $this->model_adm->fetch_options_kota()
+					'select_sekolah' 	=> $this->Model_adm->fetch_all_sekolah($jenjangnya),
+					'select_options' 	=> $this->Model_adm->fetch_all_kelas($jenjangnya),
+					'select_jenjang' 	=> $this->Model_adm->fetch_options_jenjang(),
+					'select_provinsi' => $this->Model_adm->fetch_options_provinsi(),
+					'select_kota' 		=> $this->Model_adm->fetch_options_kota()
 					);
 
 					//Form materi submit handler. See if the user is attempting to submit a form or not
@@ -98,9 +98,9 @@ class Siswa extends CI_Controller {
 					'navbar_title'	=> "Manajemen Siswa",
 					'page_title' 		=> "Ubah Siswa",
 					'form_action' 	=> current_url() . "?id=$id",
-					'data_siswa'		=> $this->model_adm->fetch_siswa_by_id($id),
-					'select_sekolah' 	=> $this->model_adm->fetch_all_sekolah(),
-					'select_options' 	=> $this->model_adm->fetch_all_kelas()
+					'data_siswa'		=> $this->Model_adm->fetch_siswa_by_id($id),
+					'select_sekolah' 	=> $this->Model_adm->fetch_all_sekolah(),
+					'select_options' 	=> $this->Model_adm->fetch_all_kelas()
 					);
 
 					//Redirect to siswa if id is not exist
@@ -146,8 +146,8 @@ class Siswa extends CI_Controller {
 		$data = array(
 			'page_title' 	=> "Pendaftaran Siswa", 
 			'form_action' => current_url(),
-			'select_sekolah' 	=> $this->model_adm->fetch_all_sekolah(),
-			'select_options' 	=> $this->model_adm->fetch_all_kelas()
+			'select_sekolah' 	=> $this->Model_adm->fetch_all_sekolah(),
+			'select_options' 	=> $this->Model_adm->fetch_all_kelas()
 			);
 
 		//fetch input (make sure that the variable name is the same as column name in database!) 
@@ -164,8 +164,8 @@ class Siswa extends CI_Controller {
 		//$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
 
 		if(!empty($tambah_sekolah)) {
-			$jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-			$insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
+			$jenjang = $this->Model_adm->fetch_kelas_by_id($kelas)->jenjang;
+			$insert_id = $this->Model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
 			$sekolah_id = $insert_id;
 		}
 
@@ -178,7 +178,7 @@ class Siswa extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis);
+			$result = $this->Model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis);
 			alert_success("Sukses", "Data berhasil ditambahkan");
 			redirect('psep_sekolah/siswa');
 			// echo "Status Insert: " . $result;
@@ -190,8 +190,8 @@ class Siswa extends CI_Controller {
 		//set the page title
 		$data = array(
 			'page_title' 	=> "Ubah Data Siswa",
-			'select_sekolah' 	=> $this->model_adm->fetch_all_sekolah(),
-			'select_options' 	=> $this->model_adm->fetch_all_kelas(),
+			'select_sekolah' 	=> $this->Model_adm->fetch_all_sekolah(),
+			'select_options' 	=> $this->Model_adm->fetch_all_kelas(),
 			'form_action' => current_url(). "?id=$id"
 			);
 
@@ -209,8 +209,8 @@ class Siswa extends CI_Controller {
 		//$tambah_sekolah	= $params['tambah_sekolah'] ? $params['tambah_sekolah'] : null;
 
 		if(!empty($tambah_sekolah)) {
-			$jenjang = $this->model_adm->fetch_kelas_by_id($kelas)->jenjang;
-			$insert_id = $this->model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
+			$jenjang = $this->Model_adm->fetch_kelas_by_id($kelas)->jenjang;
+			$insert_id = $this->Model_adm->add_quick_sekolah($tambah_sekolah, $jenjang);
 			$sekolah_id = $insert_id;
 		}
 		
@@ -223,7 +223,7 @@ class Siswa extends CI_Controller {
 		else 
 		{
 			//passing input value to Model
-			$result = $this->model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas,$nis,$nisn);
+			$result = $this->Model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas,$nis,$nisn);
 			alert_success("Sukses", "Data berhasil diubah");
 			redirect('psep_sekolah/siswa');
 			// echo "Status Update: " . $result;
@@ -241,7 +241,7 @@ class Siswa extends CI_Controller {
 			if($this->form_validation->run())
 			{
 				$id 		= $this->input->post('hidden_row_id');
-				$result = $this->model_adm->delete_siswa($id);
+				$result = $this->Model_adm->delete_siswa($id);
 				
 				alert_success('Sukses', "Data berhasil dihapus");
 				redirect('psep_sekolah/siswa');
@@ -270,8 +270,8 @@ class Siswa extends CI_Controller {
 	private function fetch_siswa_by_id($id)
 	{
 		$data 					= new stdClass();
-		$table_data 		= $this->model_adm->fetch_siswa_by_id($id); 
-		$table_fields 	= $this->model_adm->get_table_fields('siswa');
+		$table_data 		= $this->Model_adm->fetch_siswa_by_id($id);
+		$table_fields 	= $this->Model_adm->get_table_fields('siswa');
 		//tester
 		// var_dump($table_data);
 		// var_dump($table_fields);
@@ -295,7 +295,7 @@ class Siswa extends CI_Controller {
     if($id)
     {
       // $dynamic_options = $this->model_pg->fetch_sekolah_by_kota($id);
-      $dynamic_options = $this->model_adm->fetch_all_sekolah($id);
+      $dynamic_options = $this->Model_adm->fetch_all_sekolah($id);
 
       if($dynamic_options){
         echo "<option value='' disabled selected>Pilih Sekolah...</option>";
@@ -319,8 +319,8 @@ class Siswa extends CI_Controller {
     
     if($id)
     {
-    	$sekolah = $this->model_adm->fetch_sekolah_by_id($id);
-      $dynamic_options = $this->model_adm->fetch_kelas_by_jenjang($sekolah->jenjang);
+    	$sekolah = $this->Model_adm->fetch_sekolah_by_id($id);
+      $dynamic_options = $this->Model_adm->fetch_kelas_by_jenjang($sekolah->jenjang);
 
       if($dynamic_options){
         foreach ($dynamic_options as $item) {
@@ -351,9 +351,9 @@ class Siswa extends CI_Controller {
     
     if(!empty($id_kota) AND !empty($jenjang) AND !empty($sekolah) AND !empty($email)) {
       //checking if nama sekolah is already exist
-      $sekolah_found = $this->model_adm->check_sekolah_by_nama($sekolah);
+      $sekolah_found = $this->Model_adm->check_sekolah_by_nama($sekolah);
       if(empty($sekolah_found)) {
-        $result_id = $this->model_adm->add_sekolah($sekolah, $jenjang, $email, $telepon, $id_kota, $alamat);
+        $result_id = $this->Model_adm->add_sekolah($sekolah, $jenjang, $email, $telepon, $id_kota, $alamat);
       }
     }
     echo json_encode($result_id);

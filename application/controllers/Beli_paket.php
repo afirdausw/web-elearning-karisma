@@ -17,9 +17,9 @@ class Beli_paket extends CI_Controller
 
 	function index($id_paket=null){
 		$data = array(
-			'navbar_links' 	=> $this->model_pg->get_navbar_links(),
-			'data_reguler'	=> $this->model_paket->get_paket_reguler(),
-			'data_premium'	=> $this->model_paket->get_paket_premium()
+			'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
+			'data_reguler'	=> $this->Model_paket->get_paket_reguler(),
+			'data_premium'	=> $this->Model_paket->get_paket_premium()
 		);
 		//$this->load->view("pg_user/beli_paket", $data);
 		$this->load->view("pg_user/beli_paket", $data);
@@ -49,7 +49,7 @@ class Beli_paket extends CI_Controller
 		//PERSIAPAN 3
 		//fetching post with name contains 'paket_'
 		$assoc_keys = preg_grep('/^paket_/', array_keys($params));
-		$data_paket = $this->model_paket->get_all_paket();
+		$data_paket = $this->Model_paket->get_all_paket();
 		$detail_pembelian = array();
 		foreach ($assoc_keys as $index) {
 			if($params["{$index}"] > 0)
@@ -65,7 +65,7 @@ class Beli_paket extends CI_Controller
 
 		if(!empty($detail_pembelian) OR !empty($metode_pembayaran))
 		{
-			$result = $this->model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
+			$result = $this->Model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
 			$this->send_email_invoice($result, $params['email']);
 			redirect("beli-paket");
 		}
@@ -79,8 +79,8 @@ class Beli_paket extends CI_Controller
 	function send_email_invoice($id_pembelian,$email)
 	{
 		$data = array(
-			'buy'			   => $this->model_pembayaran->get_pembelian_umum($id_pembelian),
-			'detail_pembelian' => $this->model_pembayaran->get_detail_pembelian($id_pembelian)
+			'buy'			   => $this->Model_pembayaran->get_pembelian_umum($id_pembelian),
+			'detail_pembelian' => $this->Model_pembayaran->get_detail_pembelian($id_pembelian)
 		);
 
 		$config = Array(

@@ -28,7 +28,7 @@ class Kelas_ampu extends CI_Controller
 
         $this->load->model('model_psep');
 
-        $this->model_security->psep_sekolah_is_logged_in();
+        $this->Model_security->psep_sekolah_is_logged_in();
 
     }
 
@@ -37,11 +37,11 @@ class Kelas_ampu extends CI_Controller
 
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $id_mapel = $cariidmapel->id_mapel;
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $data = array(
 
@@ -49,9 +49,9 @@ class Kelas_ampu extends CI_Controller
 
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
 
-            'table_data'   => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+            'table_data'   => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
 
-            'carikelas'    => $this->model_psep->cari_kelas_in_id_mapel($id_mapel),
+            'carikelas'    => $this->Model_psep->cari_kelas_in_id_mapel($id_mapel),
 
         );
         // return $this->output
@@ -109,11 +109,11 @@ class Kelas_ampu extends CI_Controller
 
                     $idpsep = $this->session->userdata('idpsepsekolah');
 
-                    $cariidmapel = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $cariidmapel = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                     $id_mapel = $cariidmapel->id_mapel;
 
-                    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                     $data = array(
 
@@ -123,9 +123,9 @@ class Kelas_ampu extends CI_Controller
 
                         'form_action'    => current_url(),
 
-                        'carikelas'      => $this->model_psep->cari_kelas_by_id_mapel($id_mapel),
+                        'carikelas'      => $this->Model_psep->cari_kelas_by_id_mapel($id_mapel),
 
-                        'select_options' => $this->model_adm->fetch_options_materi_pokok(),
+                        'select_options' => $this->Model_adm->fetch_options_materi_pokok(),
 
                     );
 
@@ -228,7 +228,7 @@ class Kelas_ampu extends CI_Controller
 
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         //fetch input (make sure that the variable name is the same as column name in database!)
 
@@ -252,7 +252,7 @@ class Kelas_ampu extends CI_Controller
 
             //passing input value to Model
 
-            $result = $this->model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas);
+            $result = $this->Model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas);
 
             alert_success("Sukses", "Data berhasil ditambahkan");
 
@@ -279,7 +279,7 @@ class Kelas_ampu extends CI_Controller
 
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         //fetch input (make sure that the variable name is the same as column name in database!)
 
@@ -303,7 +303,7 @@ class Kelas_ampu extends CI_Controller
 
             //passing input value to Model
 
-            $result = $this->model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas);
+            $result = $this->Model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas);
 
             alert_success("Sukses", "Data berhasil diubah");
 
@@ -328,7 +328,7 @@ class Kelas_ampu extends CI_Controller
 
                 $id = $this->input->post('hidden_row_id');
 
-                $result = $this->model_adm->delete_kelas($id);
+                $result = $this->Model_adm->delete_kelas($id);
 
                 alert_success('Sukses', "Data berhasil dihapus");
 
@@ -366,9 +366,9 @@ class Kelas_ampu extends CI_Controller
 
         $data = new stdClass();
 
-        $table_data = $this->model_adm->fetch_kelas_by_id($id);
+        $table_data = $this->Model_adm->fetch_kelas_by_id($id);
 
-        $table_fields = $this->model_adm->get_table_fields('kelas');
+        $table_fields = $this->Model_adm->get_table_fields('kelas');
 
         //tester
 

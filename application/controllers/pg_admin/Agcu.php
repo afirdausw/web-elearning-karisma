@@ -21,22 +21,22 @@ class Agcu extends CI_Controller {
 		$this->load->model('model_lstest');
 		$this->load->model('model_pg');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
 	}
 
     public function report_sekolah(){
 
 
-        $carisekolah = $this->model_pg->fetch_all_kelas();
+        $carisekolah = $this->Model_pg->fetch_all_kelas();
 
         $data = array(
             'navbar_title' 	=> "Academic General Check Up",
             'active'		=> "agcu",
-            'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-            'select_kota'     => $this->model_pg->fetch_all_kota(),
-            'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-            'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-            'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+            'select_provinsi' => $this->Model_pg->fetch_all_provinsi(),
+            'select_kota'     => $this->Model_pg->fetch_all_kota(),
+            'select_sekolah'  => $this->Model_pg->fetch_all_sekolah(),
+            'select_kelas'    => $this->Model_pg->fetch_all_kelas(),
+            'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
         );
 
         $this->load->view('pg_admin/report_sekolah', $data);
@@ -44,7 +44,7 @@ class Agcu extends CI_Controller {
 
     function kota($idprovinsi)
     {
-        $carikota = $this->model_signup->get_kota_by_provinsi($idprovinsi);
+        $carikota = $this->Model_signup->get_kota_by_provinsi($idprovinsi);
 
         foreach ($carikota as $kota) {
             echo "
@@ -56,7 +56,7 @@ class Agcu extends CI_Controller {
 
     function sekolah($idkota)
     {
-        $carisekolah = $this->model_signup->get_sekolah_by_kota($idkota);
+        $carisekolah = $this->Model_signup->get_sekolah_by_kota($idkota);
 
         echo "
 		<option value=''>Pilih Sekolah...</option>
@@ -71,9 +71,9 @@ class Agcu extends CI_Controller {
     function kelas($idsekolah)
     {
         if ($idsekolah !== 'sekolahbaru') {
-            $carijenjang = $this->model_signup->cari_jenjang($idsekolah);
+            $carijenjang = $this->Model_signup->cari_jenjang($idsekolah);
 
-            $carikelas = $this->model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
+            $carikelas = $this->Model_signup->cari_kelas_by_jenjang($carijenjang->jenjang);
 
             foreach ($carikelas as $kelas) {
                 echo "
@@ -87,12 +87,12 @@ class Agcu extends CI_Controller {
 public function report_siswa(){
 	$idpsep = $this->session->userdata('idpsepsekolah');
 	
-	$carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+	$carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 	
 	$data = array(
 		'navbar_title' 	=> "Academic General Check Up",
 		'active'		=> "agcu",
-		'datakelas'		=> $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
+		'datakelas'		=> $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang)
 	);
 	
 	$this->load->view('psep_sekolah/report_siswa', $data);
@@ -101,8 +101,8 @@ public function report_siswa(){
 function ajax_siswa_by_jenjang($kelas,$sekolah){
 	//$idsekolah = $this->session->userdata('idsekolah');
 	
-	$carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $sekolah);
-	$carisiswa_agcu = $this->model_psep->cari_siswa_by_kelas_who_do_agcutest($kelas, $sekolah);
+	$carisiswa = $this->Model_psep->cari_siswa_by_kelas($kelas, $sekolah);
+	$carisiswa_agcu = $this->Model_psep->cari_siswa_by_kelas_who_do_agcutest($kelas, $sekolah);
 	
 	$no = 1;
 	foreach($carisiswa as $siswa){
@@ -138,24 +138,24 @@ function ajax_siswa_by_jenjang($kelas,$sekolah){
 
 function siswa($idsiswa){
 	
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-	$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+	$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 	$kelas = $carikelas->kelas;
 	
-	$kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-	$datasoal = $this->model_agcu->get_jumlahsoal();
+	$kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+	$datasoal = $this->Model_agcu->get_jumlahsoal();
 	
-	$jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+	$jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 	
-	$jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-	$jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+	$jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+	$jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 	
-	$analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+	$analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
 	
 	
-	$skor = $this->model_lstest->skor($idsiswa);
-	$hasildiagnostic = $this->model_agcu->get_ordered_hasildiagnostic();
-	$peringkatsiswa = $this->model_agcu->get_peringkatsiswabykelas($kelas);
+	$skor = $this->Model_lstest->skor($idsiswa);
+	$hasildiagnostic = $this->Model_agcu->get_ordered_hasildiagnostic();
+	$peringkatsiswa = $this->Model_agcu->get_peringkatsiswabykelas($kelas);
 	
 	foreach($skor as $dataskor){
 		$hasil[$dataskor->no] = $dataskor->skor;
@@ -253,7 +253,7 @@ function siswa($idsiswa){
 		Cobalah belajar dalam kelompok untuk membentuk suasana bermain peran dari pelajaran yang dibahas - Tulislah poin - poin penting dari pelajaran dalam bentuk kartu - kartu yang disusun secara logis -  Buatlah semacam percobaan atau model dari apa yang sedang kamu pelajari - Libatkan tubuh dalam belajar dengan mencoba meniru apa yang dipelajari dengan gaya guru saat menyampaikan materi - Setiap kali membaca atau mendengarkan seseorang berbicara, bangkitlah untuk sedikit bergerak setiap 15 - 20 menit sekali';
 	}
 	
-	$data_eq = $this->model_agcu->get_eq($idsiswa);
+	$data_eq = $this->Model_agcu->get_eq($idsiswa);
 	
 	if($data_eq->skor_aq < 7){
 		$analisis_aq = "Mudah gelisah, bingung dan sering cemas - Sering kehilangan rasa humor - Menyalahkan diri sendiri terhadap berbagai kegagalan - Analisisnya dangkal ";
@@ -292,7 +292,7 @@ function siswa($idsiswa){
 	}
 	
 	$data = array(
-	'navbar_links' 	=> $this->model_pg->get_navbar_links(),
+	'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
 	'infosiswa'				=> $infosiswa,
 	'kategoridiagnostic'	=> $kategoridiagnostic,
 	'hasildiagnostic'		=> $hasildiagnostic,
@@ -308,7 +308,7 @@ function siswa($idsiswa){
 	'dominasi'				=> $dominasi,
 	'karakteristik'			=> $karakteristik,
 	'saran'					=> $saran,
-	'data_eq'				=> $this->model_agcu->get_eq($idsiswa),
+	'data_eq'				=> $this->Model_agcu->get_eq($idsiswa),
 	'analisis_aq'			=> $analisis_aq,
 	'analisis_eq'			=> $analisis_eq,
 	'analisis_am'			=> $analisis_am,
@@ -319,24 +319,24 @@ function siswa($idsiswa){
 
 private function siswa_backup($idsiswa){
 	
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
-	$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
+	$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 	$kelas = $carikelas->kelas;
 	
-	$kategoridiagnostic = $this->model_agcu->get_diagnosticbykelas($kelas);
-	$datasoal = $this->model_agcu->get_jumlahsoal();
+	$kategoridiagnostic = $this->Model_agcu->get_diagnosticbykelas($kelas);
+	$datasoal = $this->Model_agcu->get_jumlahsoal();
 	
-	$jumlahbenar = $this->model_agcu->get_jumlah_benar($idsiswa);
+	$jumlahbenar = $this->Model_agcu->get_jumlah_benar($idsiswa);
 	
-	$jumlahhasil = $this->model_agcu->get_jumlah_hasil();
-	$jumlahbenarhasil = $this->model_agcu->get_jumlah_benar_hasil();
+	$jumlahhasil = $this->Model_agcu->get_jumlah_hasil();
+	$jumlahbenarhasil = $this->Model_agcu->get_jumlah_benar_hasil();
 	
-	$analisistopik = $this->model_agcu->get_analisis_topik($idsiswa);
+	$analisistopik = $this->Model_agcu->get_analisis_topik($idsiswa);
 	
 	
-	$skor = $this->model_lstest->skor($idsiswa);
-	$hasildiagnostic = $this->model_agcu->get_ordered_hasildiagnostic();
-	$peringkatsiswa = $this->model_agcu->get_peringkatsiswabykelas($kelas);
+	$skor = $this->Model_lstest->skor($idsiswa);
+	$hasildiagnostic = $this->Model_agcu->get_ordered_hasildiagnostic();
+	$peringkatsiswa = $this->Model_agcu->get_peringkatsiswabykelas($kelas);
 	
 	foreach($skor as $dataskor){
 		$hasil[$dataskor->no] = $dataskor->skor;
@@ -475,7 +475,7 @@ private function siswa_backup($idsiswa){
         }
 
         $data = array(
-            'navbar_links' 	=> $this->model_pg->get_navbar_links(),
+            'navbar_links' 	=> $this->Model_pg->get_navbar_links(),
             'infosiswa'				=> $infosiswa,
             'kategoridiagnostic'	=> $kategoridiagnostic,
             'hasildiagnostic'		=> $hasildiagnostic,
@@ -491,7 +491,7 @@ private function siswa_backup($idsiswa){
             'dominasi'				=> $dominasi,
             'karakteristik'			=> $karakteristik,
             'saran'					=> $saran,
-            'data_eq'				=> $this->model_agcu->get_eq($idsiswa),
+            'data_eq'				=> $this->Model_agcu->get_eq($idsiswa),
             'analisis_aq'			=> $analisis_aq,
             'analisis_eq'			=> $analisis_eq,
             'analisis_am'			=> $analisis_am,
@@ -499,7 +499,7 @@ private function siswa_backup($idsiswa){
         );
         $this->load->view('pg_admin/agcu_siswa', $data);
 	}else{
-		$data_eq = $this->model_agcu->get_eq($idsiswa);
+		$data_eq = $this->Model_agcu->get_eq($idsiswa);
     	alert_error("ERROR", "Siswa belum mengikuti test ");
         $this->load->view('pg_admin/agcu_siswa');
     }
@@ -509,11 +509,11 @@ function rekap(){
     $data = array(
         'navbar_title' 	=> "Academic General Check Up",
         'active'		=> "agcu",
-        'select_provinsi' => $this->model_pg->fetch_all_provinsi(),
-        'select_kota'     => $this->model_pg->fetch_all_kota(),
-        'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-        'select_kelas'    => $this->model_pg->fetch_all_kelas(),
-        'select_jenjang'  => $this->model_pg->fetch_options_jenjang(),
+        'select_provinsi' => $this->Model_pg->fetch_all_provinsi(),
+        'select_kota'     => $this->Model_pg->fetch_all_kota(),
+        'select_sekolah'  => $this->Model_pg->fetch_all_sekolah(),
+        'select_kelas'    => $this->Model_pg->fetch_all_kelas(),
+        'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
     );
 	$this->load->view('pg_admin/rekap_agcu_pilih_kelas', $data);
 }
@@ -527,11 +527,11 @@ function rekap_detail(){
 	$kelas = $params['kelas'];
 	
 	$idsekolah = $this->session->userdata('idsekolah');
-	$carisiswa = $this->model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
+	$carisiswa = $this->Model_psep->cari_siswa_by_kelas($kelas, $idsekolah);
 	
-	$kategoridiagnostic	= $this->model_agcu->get_diagnosticbykelas($kelas);
-	$datasoal			= $this->model_agcu->get_jumlahsoal();
-	$jumlahbenar 		= $this->model_agcu->get_jumlah_benar_by_kelas_sekolah($idsiswa, $idsekolah);
+	$kategoridiagnostic	= $this->Model_agcu->get_diagnosticbykelas($kelas);
+	$datasoal			= $this->Model_agcu->get_jumlahsoal();
+	$jumlahbenar 		= $this->Model_agcu->get_jumlah_benar_by_kelas_sekolah($idsiswa, $idsekolah);
 	
 }
 
@@ -540,7 +540,7 @@ function rekap_detail(){
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_pg->fetch_kota_by_provinsi($id);
+            $dynamic_options = $this->Model_pg->fetch_kota_by_provinsi($id);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Kota/Kabupaten...</option>";
@@ -560,7 +560,7 @@ function rekap_detail(){
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $dynamic_options = $this->model_pg->fetch_sekolah_by_kota($id);
+            $dynamic_options = $this->Model_pg->fetch_sekolah_by_kota($id);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Sekolah...</option>";
@@ -581,8 +581,8 @@ function rekap_detail(){
         $id = $this->input->post('id', true) ? $this->input->post('id', true) : null;
 
         if ($id) {
-            $sekolah = $this->model_pg->fetch_sekolah_by_id($id);
-            $dynamic_options = $this->model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
+            $sekolah = $this->Model_pg->fetch_sekolah_by_id($id);
+            $dynamic_options = $this->Model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
 
             if ($dynamic_options) {
                 echo "<option value='' disabled selected>Pilih Kelas...</option>";

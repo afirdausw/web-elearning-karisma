@@ -17,7 +17,7 @@ class Materi_pokok extends CI_Controller
         $this->load->helper('alert_helper');
         $this->load->model('model_adm');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     public function index()
@@ -25,7 +25,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'navbar_title' => "Materi Pokok",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_all_materi_pokok(),
+            'table_data'   => $this->Model_adm->fetch_all_materi_pokok(),
         );
 
         $this->load->view('pg_admin/materi_pokok', $data);
@@ -37,7 +37,7 @@ class Materi_pokok extends CI_Controller
             redirect('mapel');
         }else{
 
-            $table_data = $this->model_adm->fetch_all_materi_pokok_by_id_mapel($id_mapel);
+            $table_data = $this->Model_adm->fetch_all_materi_pokok_by_id_mapel($id_mapel);
 
             $data = array(
                 'navbar_title' => "Materi Pokok",
@@ -52,7 +52,7 @@ class Materi_pokok extends CI_Controller
                 $id_materipokok = $this->uri->segment(7);
                 $pretest_status=$this->uri->segment(8);
                 
-                $act = $this->model_adm->toogle_akses_materi_pokok($id_materipokok, $pretest_status);
+                $act = $this->Model_adm->toogle_akses_materi_pokok($id_materipokok, $pretest_status);
                 ;
                 if($act){
                     alert_success("Sukses", "Akses untuk mapel ".$id_mapel." materi pokok ".$id_materipokok." berhasil diubah!");
@@ -82,10 +82,10 @@ class Materi_pokok extends CI_Controller
                         'navbar_title'   => "Manajemen Materi Pokok",
                         'page_title'     => "Tambah Materi Pokok",
                         'form_action'    => current_url(),
-                        'select_options' => $this->model_adm->fetch_mapel_by_id_kelas($kelas),
+                        'select_options' => $this->Model_adm->fetch_mapel_by_id_kelas($kelas),
                     );
 
-                    $data['data'] = $this->model_adm->fetch_mapel_by_id($mapel);
+                    $data['data'] = $this->Model_adm->fetch_mapel_by_id($mapel);
                     //Form materi submit handler. See if the user is attempting to submit a form or not
                     if ($this->input->post('form_submit')) {
                         //Form is submitted. Now routing to proses_tambah method
@@ -104,7 +104,7 @@ class Materi_pokok extends CI_Controller
                         'navbar_title'   => "Manajemen Mata Pelajaran",
                         'page_title'     => "Ubah Mata Pelajaran",
                         'form_action'    => current_url() . "?id=$id",
-                        'select_options' => $this->model_adm->fetch_options_materi_pokok(),
+                        'select_options' => $this->Model_adm->fetch_options_materi_pokok(),
                     );
 
                     //Redirect to kelas if id is not exist
@@ -142,7 +142,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'page_title'     => "Tambah Materi Pokok",
             'form_action'    => current_url(),
-            'select_options' => $this->model_adm->fetch_options_materi_pokok(),
+            'select_options' => $this->Model_adm->fetch_options_materi_pokok(),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -152,7 +152,7 @@ class Materi_pokok extends CI_Controller
         $gambar_materi_pokok = $params['gambar_materi_pokok'];
         $pretest = $params['pretest'];
         $deskripsi_materi_pokok = $params['deskripsi_materi_pokok'];
-        $max = $this->model_adm->select_max('materi_pokok', 'urutan');
+        $max = $this->Model_adm->select_max('materi_pokok', 'urutan');
         $urutan = ($max->urutan + 1);
 
         //run the validation
@@ -161,7 +161,7 @@ class Materi_pokok extends CI_Controller
             $this->load->view('pg_admin/materi_pokok_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $pretest, $gambar_materi_pokok, $deskripsi_materi_pokok, $urutan);
+            $result = $this->Model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $pretest, $gambar_materi_pokok, $deskripsi_materi_pokok, $urutan);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/materi_pokok/mapel/' . $kelas . "/" . $mapel_id);
             // echo "Status Insert: " . $result;
@@ -174,7 +174,7 @@ class Materi_pokok extends CI_Controller
         $data = array(
             'page_title'     => "Ubah Materi Pokok",
             'form_action'    => current_url() . "?id=$id",
-            'select_options' => $this->model_adm->fetch_options_materi_pokok(),
+            'select_options' => $this->Model_adm->fetch_options_materi_pokok(),
         );
 
         //fetch input (make sure that the variable name is the same as column name in database!)
@@ -190,7 +190,7 @@ class Materi_pokok extends CI_Controller
             $this->load->view('pg_admin/materi_pokok_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $gambar_materi_pokok, $deskripsi_materi_pokok);
+            $result = $this->Model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $gambar_materi_pokok, $deskripsi_materi_pokok);
             alert_success("Sukses", "Data berhasil diubah");
             redirect('pg_admin/materi_pokok/mapel/' . $kelas . '/' . $mapel_id);
             // echo "Status Update: " . $result;
@@ -203,7 +203,7 @@ class Materi_pokok extends CI_Controller
         $data = $this->fetch_materi_pokok_by_id($id);
 //        var_dump($data);
             $id = $this->input->post('hidden_row_id');
-            $result = $this->model_adm->delete_materi_pokok($id);
+            $result = $this->Model_adm->delete_materi_pokok($id);
             if ($result) {
                 alert_success('Sukses', "Data berhasil dihapus");
                 redirect('pg_admin/materi_pokok/mapel/'.$data->kelas_id.'/'. $data->id_mapel);
@@ -226,8 +226,8 @@ class Materi_pokok extends CI_Controller
     function fetch_materi_pokok_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_materi_pokok_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('materi_pokok', 'mata_pelajaran', 'kelas');
+        $table_data = $this->Model_adm->fetch_materi_pokok_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('materi_pokok', 'mata_pelajaran', 'kelas');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);

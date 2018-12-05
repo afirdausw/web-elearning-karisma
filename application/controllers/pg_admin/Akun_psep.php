@@ -16,13 +16,13 @@ class Akun_psep extends CI_Controller {
 		$this->load->helper('alert_helper');
 		$this->load->model('model_adm');
 		$this->load->model('model_security');
-		$this->model_security->is_logged_in();
+		$this->Model_security->is_logged_in();
   }
 
 function sekolah(){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'data_table' 	=> $this->model_adm->fetch_all_akun_sekolah()
+		'data_table' 	=> $this->Model_adm->fetch_all_akun_sekolah()
 		);
 
 	$this->load->view('pg_admin/psep_akun_sekolah', $data);
@@ -31,15 +31,15 @@ function sekolah(){
 function tambah_sekolah(){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'dataprovinsi'	=> $this->model_adm->fetch_options_provinsi(),
-		'datasekolah' 	=> $this->model_adm->fetch_all_sekolah()
+		'dataprovinsi'	=> $this->Model_adm->fetch_options_provinsi(),
+		'datasekolah' 	=> $this->Model_adm->fetch_all_sekolah()
 		);
 
 	$this->load->view('pg_admin/psep_akun_sekolah_form', $data);
 }
 
 function ajax_kota($idprovinsi){
-	$carikota = $this->model_adm->fetch_kota_by_provinsi($idprovinsi);
+	$carikota = $this->Model_adm->fetch_kota_by_provinsi($idprovinsi);
 	
 	echo "<option value=''>-- Pilih Kota / Kabupaten --</option>";
 	foreach($carikota as $kota){
@@ -50,7 +50,7 @@ function ajax_kota($idprovinsi){
 }
 
 function ajax_sekolah($idkota){
-	$carisekolah = $this->model_adm->fetch_sekolah_by_kota($idkota);
+	$carisekolah = $this->Model_adm->fetch_sekolah_by_kota($idkota);
 	
 	echo "<option value=''>-- Pilih Sekolah --</option>";
 	foreach($carisekolah as $sekolah){
@@ -73,10 +73,10 @@ function proses_tambah_akun_sekolah(){
 		redirect("pg_admin/akun_psep/tambah_sekolah");
 	}
 	
-	$cariuserpass = $this->model_adm->cari_user_psep_sekolah($username, $password);
+	$cariuserpass = $this->Model_adm->cari_user_psep_sekolah($username, $password);
 	
 	if($cariuserpass === FALSE){
-		$prosestambah = $this->model_adm->tambah_akun_psep_sekolah($idsekolah, $username, md5($password));
+		$prosestambah = $this->Model_adm->tambah_akun_psep_sekolah($idsekolah, $username, md5($password));
 		alert_success("Berhasil", "Akun PSEP Sekolah Berhasil Ditampabahkan");
 		redirect('pg_admin/akun_psep/sekolah');
 	}
@@ -89,8 +89,8 @@ function proses_tambah_akun_sekolah(){
 function edit_sekolah($idsekolah){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'sekolah' 		=> $this->model_adm->fetch_akun_sekolah_by_id($idsekolah),
-		'dataprovinsi'	=> $this->model_adm->fetch_options_provinsi()
+		'sekolah' 		=> $this->Model_adm->fetch_akun_sekolah_by_id($idsekolah),
+		'dataprovinsi'	=> $this->Model_adm->fetch_options_provinsi()
 	);
 	
 	$this->load->view('pg_admin/psep_akun_sekolah_edit', $data);
@@ -103,7 +103,7 @@ function proses_edit_akun_sekolah(){
 	$idsekolah 	= $params['sekolah'];
 	$username 	= $params['username'];
 	
-	$prosestambah = $this->model_adm->edit_akun_psep_sekolah($idlogin, $idsekolah, $username);
+	$prosestambah = $this->Model_adm->edit_akun_psep_sekolah($idlogin, $idsekolah, $username);
 	alert_success("Berhasil", "Akun PSEP Sekolah Berhasil Dirubah");
 	redirect('pg_admin/akun_psep/sekolah');
 }
@@ -111,8 +111,8 @@ function proses_edit_akun_sekolah(){
 function edit_password_sekolah($idsekolah){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Akun PSEP",
-		'sekolah' 		=> $this->model_adm->fetch_akun_sekolah_by_id($idsekolah),
-		'dataprovinsi'	=> $this->model_adm->fetch_options_provinsi()
+		'sekolah' 		=> $this->Model_adm->fetch_akun_sekolah_by_id($idsekolah),
+		'dataprovinsi'	=> $this->Model_adm->fetch_options_provinsi()
 	);
 	
 	$this->load->view('pg_admin/psep_akun_sekolah_editpassword', $data);
@@ -129,13 +129,13 @@ function proses_edit_password_sekolah(){
 		alert_error("Gagal Register", "Password tidak sama");
 		redirect("pg_admin/akun_psep/edit_password_sekolah/".$idlogin);
 	}
-	$prosestambah = $this->model_adm->edit_password_psep_sekolah($idlogin, $password);
+	$prosestambah = $this->Model_adm->edit_password_psep_sekolah($idlogin, $password);
 	alert_success("Berhasil", "Password Akun PSEP Sekolah Berhasil Dirubah");
 	redirect('pg_admin/akun_psep/sekolah');
 }
 
 function hapus_sekolah($idsekolah){
-	$this->model_adm->hapus_sekolah($idsekolah);
+	$this->Model_adm->hapus_sekolah($idsekolah);
 	redirect('pg_admin/akun_psep/sekolah');
 }
 
@@ -160,7 +160,7 @@ function send_Smtp2go($idbayar, $email)
 	$this->email->to($email);// change it to yours
 	$this->email->subject('Voucher Prime Mobile');
 	$dataemail = array (
-		'table_data' => $this->model_pembayaran->cari_voucher($idbayar)
+		'table_data' => $this->Model_pembayaran->cari_voucher($idbayar)
 	);
 
 	$body = $this->load->view('pg_admin/email.php',$dataemail,TRUE);
@@ -180,14 +180,14 @@ function guru(){
 	$data = array(
 		'navbar_title' 	=> "Manajemen Guru",
 		'active'		=> "guru",
-		'dataguru'		=> $this->model_adm->fetch_all_guru()
+		'dataguru'		=> $this->Model_adm->fetch_all_guru()
 	);
 	
 	$this->load->view("pg_admin/guru", $data);
 }
 
 function verifikasi_guru($idlogin){
-	$this->model_adm->verifikasi_guru($idlogin);
+	$this->Model_adm->verifikasi_guru($idlogin);
 	redirect('pg_admin/akun_psep/guru');
 }
 

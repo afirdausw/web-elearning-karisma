@@ -21,8 +21,8 @@ class Beli extends CI_Controller
 			show_404();
 		}
 		$data = array(
-				'detail_paket' => $this->model_paket->get_detail_paket($id_paket),
-				'bank'=> $this->model_bank->get_bank()
+				'detail_paket' => $this->Model_paket->get_detail_paket($id_paket),
+				'bank'=> $this->Model_bank->get_bank()
 			);
 		$this->load->view("pg_user/beli", $data);
 	}
@@ -56,7 +56,7 @@ class Beli extends CI_Controller
 		$new_pembayaran['expired_on']=$now->format("Y-m-d H:i:00");
 		//var_dump($new_pembayaran);exit();
 		if($this->form_validation->run()==TRUE){
-			$result=$this->model_pembayaran->simpan($new_pembayaran);
+			$result=$this->Model_pembayaran->simpan($new_pembayaran);
 
 			redirect("beli/konfirmasi/".$result);
 		}
@@ -77,7 +77,7 @@ class Beli extends CI_Controller
 			show_404();
 		}
 		$this->cek_expired($id_pembayaran);
-		$detail_pembayaran=$this->model_pembayaran->get_detail_pembayaran($id_pembayaran);
+		$detail_pembayaran=$this->Model_pembayaran->get_detail_pembayaran($id_pembayaran);
 
 		switch ($detail_pembayaran[0]['status']) {
 			case '0':
@@ -93,14 +93,14 @@ class Beli extends CI_Controller
 			case '1':
 				// status:file uploaded
 				$data=array(
-					"info_paket"=>$this->model_pembayaran->get_info_paket($id_pembayaran)
+					"info_paket"=>$this->Model_pembayaran->get_info_paket($id_pembayaran)
 					);
 				$this->load->view("pg_user/konfirmasi_waiting_confirmation", $data);
 				break;
 			case '2':
 				# status:pembayaran accepted by admin
 				$data=array(
-					"info_paket"=>$this->model_pembayaran->get_info_paket_aktif($id_pembayaran)
+					"info_paket"=>$this->Model_pembayaran->get_info_paket_aktif($id_pembayaran)
 					);
 				$this->load->view("pg_user/konfirmasi_accepted", $data);
 				break;
@@ -137,17 +137,17 @@ class Beli extends CI_Controller
 		// if ($this->form_validation->run()==TRUE) {
 			
 			$file_bukti=$this->upload_file();
-			$this->model_pembayaran->update_file_bukti($file_bukti, $params['id_pembayaran']);
+			$this->Model_pembayaran->update_file_bukti($file_bukti, $params['id_pembayaran']);
 
 			redirect("beli/konfirmasi/".$params['id_pembayaran']);
 		// }
 	}
 
 	function cek_expired($id_pembayaran){
-		$pembayaran=$this->model_pembayaran->get_detail_pembayaran($id_pembayaran);
+		$pembayaran=$this->Model_pembayaran->get_detail_pembayaran($id_pembayaran);
 		
 		if (strtotime($pembayaran[0]['expired_on'])<=strtotime(date('Y-m-d H:i:00')) && $pembayaran[0]['status']==0) {
-			$this->model_pembayaran->update_status("3", $id_pembayaran);
+			$this->Model_pembayaran->update_status("3", $id_pembayaran);
 		}
 	}
 

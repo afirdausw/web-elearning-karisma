@@ -17,7 +17,7 @@ class Kelas extends CI_Controller
         $this->load->helper('alert_helper');
         $this->load->model('model_adm');
         $this->load->model('model_security');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
     }
 
     public function index()
@@ -25,7 +25,7 @@ class Kelas extends CI_Controller
         $data = array(
             'navbar_title' => "Kelas",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'table_data'   => $this->model_adm->fetch_all_kelas(),
+            'table_data'   => $this->Model_adm->fetch_all_kelas(),
         );
 
         $this->load->view('pg_admin/kelas', $data);
@@ -143,7 +143,7 @@ class Kelas extends CI_Controller
             $this->load->view('pg_admin/kelas_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar);
+            $result = $this->Model_adm->add_kelas($jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/kelas');
             // echo "Status Insert: " . $result;
@@ -202,7 +202,7 @@ class Kelas extends CI_Controller
             $this->load->view('pg_admin/kelas_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar);
+            $result = $this->Model_adm->update_kelas($id, $jenjang, $tingkatan_kelas, $alias_kelas, $deskripsi_kelas, $gambar);
             alert_success("Sukses", "Data berhasil diupdate");
             redirect('pg_admin/kelas');
             // echo "Status Update: " . $result;
@@ -217,7 +217,7 @@ class Kelas extends CI_Controller
 
         if ($this->form_validation->run()) {
             $id = $this->input->post('hidden_row_id');
-            $result = $this->model_adm->delete_kelas($id);
+            $result = $this->Model_adm->delete_kelas($id);
 
             if ($result) {
                 alert_success('Sukses', "Data berhasil dihapus");
@@ -252,8 +252,8 @@ class Kelas extends CI_Controller
     function fetch_kelas_by_id($id)
     {
         $data = new stdClass();
-        $table_data = $this->model_adm->fetch_kelas_by_id($id);
-        $table_fields = $this->model_adm->get_table_fields('kelas');
+        $table_data = $this->Model_adm->fetch_kelas_by_id($id);
+        $table_fields = $this->Model_adm->get_table_fields('kelas');
         //tester
         // var_dump($table_data);
         // var_dump($table_fields);

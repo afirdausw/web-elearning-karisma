@@ -37,7 +37,7 @@ class User extends CI_Controller
 
         $id_siswa = isset($_SESSION['id_siswa']) ? $_SESSION['id_siswa'] : 0;
         if (empty($this->session->userdata('akses'))) {
-            $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+            $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
             if (empty($datapembelian)) {
                 redirect("user/aktivasi");
             } else {
@@ -49,11 +49,11 @@ class User extends CI_Controller
 
         $data = array(
 
-            'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
 
         );
 
@@ -87,19 +87,19 @@ class User extends CI_Controller
         if ($idsiswa == "") {
             redirect('login');
         }
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
-        $carimapel = $this->model_dashboard->get_mapel_by_kelas($kelas);
+        $carimapel = $this->Model_dashboard->get_mapel_by_kelas($kelas);
 
         $tanggalsekarang = date('Y-m-d');
-        $kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+        $kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
 
-        $jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+        $jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
 
-        $bonus_unlocked = $this->model_bonus->fetch_bonus_unlocked($idsiswa);
+        $bonus_unlocked = $this->Model_bonus->fetch_bonus_unlocked($idsiswa);
         if (!empty($bonus_unlocked)) {
             $bonus_unlocked = explode(',', $bonus_unlocked->unlocked);
         } else {
@@ -108,7 +108,7 @@ class User extends CI_Controller
 
         //UPDATE 20 OKTOBER 2016
         //#####################################
-        $cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+        $cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 
         if ($cariaktivasi == 0) {
             $statussiswa = 'tidak_aktif';
@@ -122,13 +122,13 @@ class User extends CI_Controller
             'infosiswa' => $infosiswa,
             'datamapel' => $carimapel,
             'kelasaktif' => $kelasaktif,
-            'data_video_motivasi' => $this->model_bonus->fetch_limit_bonus_video(5), //limit = 5
-            'data_bonus' => $this->model_bonus->fetch_limit_bonus_konten(5), //limit = 5
-            'quote' => $this->model_bonus->fetch_random_quote(), //limit = 5
+            'data_video_motivasi' => $this->Model_bonus->fetch_limit_bonus_video(5), //limit = 5
+            'data_bonus' => $this->Model_bonus->fetch_limit_bonus_konten(5), //limit = 5
+            'quote' => $this->Model_bonus->fetch_random_quote(), //limit = 5
             'bonus_unlocked' => $bonus_unlocked, //limit = 5
             'status_siswa' => $statussiswa, //update 20 oktober 2016
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'select_provinsi' => $this->model_signup->get_provinsi(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'select_provinsi' => $this->Model_signup->get_provinsi(),
         );
 
         $this->load->view('pg_user/user_ubahprofil', $data);
@@ -141,7 +141,7 @@ class User extends CI_Controller
         if (empty($this->session->userdata('akses'))) {
             $param = ['siswa' => $id_siswa];
             $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
-            $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+            $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
             $json = json_decode($data, true);
             if ($json['exp']) {
                 redirect("user/aktivasi");
@@ -156,10 +156,10 @@ class User extends CI_Controller
         //     );
         //$this->load->view('pg_ortu/pilih_tryout', $data);
         $data = array(
-            'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
-            'profil_tryout' => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'profil_tryout' => $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']),
 
         );
         $table_data = $data['profil_tryout'];
@@ -167,16 +167,16 @@ class User extends CI_Controller
         $daftar_kategori_baru = [];
         $i = 0;
         foreach ($table_data as $kat) {
-            $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+            $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
             $daftar_kategori_baru[$i] = json_decode(json_encode($kat), true);
             $j = 0;
             $index = 0;
             if (count($daftar_kategori) > 0) {
                 foreach ($daftar_kategori as $subkey => $value) {
                     if ($value->id_profil == $kat->id_tryout) {
-                        $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                        $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                        $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                        $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                        $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                        $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), true);
                         $daftar_kategori_baru[$i]['cariskor'] = $cariskor;
                         $daftar_kategori_baru[$i]['cariskorsalah'] = $cariskorsalah;
@@ -213,7 +213,7 @@ class User extends CI_Controller
             if (empty($this->session->userdata('akses'))) {
                 $param = ['siswa' => $id_siswa];
                 $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
-                $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+                $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
                 $json = json_decode($data, true);
 
                 if ($json['exp']) {
@@ -230,12 +230,12 @@ class User extends CI_Controller
             //     );
             //$this->load->view('pg_ortu/pilih_tryout', $data);
             $data = array(
-                'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-                'navbar_links' => $this->model_pg->get_navbar_links(),
-                'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
-                'profil_tryout' => $this->model_adm->fetch_all_profil_by_id($idtryout),
-                'profil_tryout_all' => $this->model_adm->fetch_all_profil_by_kelas($session['kelas']),
-                'dataperingkat' => $this->model_dashboard->peringkat($idtryout),
+                'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+                'navbar_links' => $this->Model_pg->get_navbar_links(),
+                'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
+                'profil_tryout' => $this->Model_adm->fetch_all_profil_by_id($idtryout),
+                'profil_tryout_all' => $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']),
+                'dataperingkat' => $this->Model_dashboard->peringkat($idtryout),
             );
             $table_data = $data['profil_tryout'];
 
@@ -244,32 +244,32 @@ class User extends CI_Controller
             $totalsoal = 0;
             $totalbenar = 0;
             foreach ($table_data as $kat) {
-                $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+                $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
                 $daftar_kategori_baru[$i] = json_decode(json_encode($kat), true);
                 $j = 0;
                 $index = 0;
                 if (count($daftar_kategori) > 0) {
                     foreach ($daftar_kategori as $subkey => $value) {
                         if ($value->id_profil == $kat->id_tryout && $value->remidi == 0) {
-                            $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                            $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                            $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                            $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                            $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                            $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), true);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariwaktu'] = $cariwaktu;
                             $totalsoal += $daftar_kategori_baru[$i]['daftar_kategori'][$j]['jumlah_soal'];
                             $totalbenar += $cariskor;
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), true);
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->model_dashboard->analisistopik($value->id_kategori, $idsiswa)), true);
-                            $analisa_topik = json_decode(json_encode($this->model_dashboard->analisatopik($value->id_kategori, $idsiswa)), true);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisawaktu'] = json_decode(json_encode($this->Model_dashboard->analisis_waktu($value->id_kategori, $idsiswa)), true);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisistopik'] = json_decode(json_encode($this->Model_dashboard->analisistopik($value->id_kategori, $idsiswa)), true);
+                            $analisa_topik = json_decode(json_encode($this->Model_dashboard->analisatopik($value->id_kategori, $idsiswa)), true);
                             $k = 0;
                             foreach ($analisa_topik as $at) {
                                 if ($at['id_analisis_topik'] != null) {
-                                    $at['jml_benar'] = $this->model_dashboard->analisabytopikbenar($value->id_kategori, $at['topik'], $idsiswa);
+                                    $at['jml_benar'] = $this->Model_dashboard->analisabytopikbenar($value->id_kategori, $at['topik'], $idsiswa);
                                     $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k] = $at;
-                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
-                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
+                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['total'] = $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik']);
+                                    $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa_topik'][$k]['presentase'] = ($at['jml_benar'] == 0 ? 0 : ($at['jml_benar'] / $this->Model_dashboard->jumlahtopik($value->id_kategori, $idsiswa, $at['topik'])) * 100);
                                 } else {
                                     $daftar_kategori_baru[$i]['daftar_kategori'][$j][$k]['analisa_topik'] = null;
                                 }
@@ -305,13 +305,13 @@ class User extends CI_Controller
 
         $data = array(
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'data_user' => $this->model_pg->get_data_user($_SESSION['id_siswa']),
+            'data_user' => $this->Model_pg->get_data_user($_SESSION['id_siswa']),
 
-            'select_sekolah' => $this->model_pg->fetch_all_sekolah(),
+            'select_sekolah' => $this->Model_pg->fetch_all_sekolah(),
 
-            'select_kelas' => $this->model_pg->fetch_all_kelas(),
+            'select_kelas' => $this->Model_pg->fetch_all_kelas(),
 
         );
 
@@ -385,7 +385,7 @@ class User extends CI_Controller
 
                 // die();
 
-                $result = $this->model_pg->update_data_user($_SESSION['id_siswa'], $data_siswa, $data_login_siswa);
+                $result = $this->Model_pg->update_data_user($_SESSION['id_siswa'], $data_siswa, $data_login_siswa);
 
                 if ($result) {
 
@@ -426,17 +426,17 @@ class User extends CI_Controller
             redirect('login');
         }
         $idsiswa = $this->session->userdata('id_siswa');
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 
         $data = array(
 
             'infosiswa' => $infosiswa,
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'data_reguler' => $this->model_paket->get_paket_reguler(),
+            'data_reguler' => $this->Model_paket->get_paket_reguler(),
 
-            'data_premium' => $this->model_paket->get_paket_premium(),
+            'data_premium' => $this->Model_paket->get_paket_premium(),
 
         );
 
@@ -485,7 +485,7 @@ class User extends CI_Controller
 
         $assoc_keys = preg_grep('/^paket_/', array_keys($params));
 
-        $data_paket = $this->model_paket->get_all_paket();
+        $data_paket = $this->Model_paket->get_all_paket();
 
         $detail_pembelian = array();
 
@@ -521,7 +521,7 @@ class User extends CI_Controller
 
         if (!empty($detail_pembelian) or !empty($metode_pembayaran)) {
 
-            $result = $this->model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
+            $result = $this->Model_pembayaran->simpan($new_pembayaran, $detail_pembelian);
 
 //            $this->send_email_invoice($result);
 
@@ -539,12 +539,12 @@ class User extends CI_Controller
 
     public function send_email_invoice($id_pembelian)
     {
-        $siswa_id = $this->model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
-        $infosiswa = $this->model_dashboard->get_info_siswa($siswa_id);
+        $siswa_id = $this->Model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($siswa_id);
 
         $data = array(
-            'buy' => $this->model_pembayaran->get_pembelian($id_pembelian),
-            'detail_pembelian' => $this->model_pembayaran->get_detail_pembelian($id_pembelian),
+            'buy' => $this->Model_pembayaran->get_pembelian($id_pembelian),
+            'detail_pembelian' => $this->Model_pembayaran->get_detail_pembelian($id_pembelian),
         );
 
         $config = array(
@@ -602,11 +602,11 @@ class User extends CI_Controller
 
         $data = array(
 
-            'infosiswa' => $this->model_dashboard->get_info_siswa($id_siswa),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($id_siswa),
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'data_pembelian' => $this->model_pembayaran->get_pembelian_by_siswa($id_siswa),
+            'data_pembelian' => $this->Model_pembayaran->get_pembelian_by_siswa($id_siswa),
 
         );
 
@@ -625,7 +625,7 @@ class User extends CI_Controller
         }
 
         //SAGAB
-        $data['riwayat_cbt'] = $this->model_pembayaran->riwayat_join_cbt($id_siswa);
+        $data['riwayat_cbt'] = $this->Model_pembayaran->riwayat_join_cbt($id_siswa);
         //END SAGAB
 
         $this->load->view('pg_user/user_buylist', $data);
@@ -643,13 +643,13 @@ class User extends CI_Controller
 
         $param = ['siswa' => $id_siswa];
         $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
-        $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+        $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
         $json = json_decode($data, true);
 
         $data = array(
-            'infosiswa' => $this->model_dashboard->get_info_siswa($id_siswa),
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'select_options' => $this->model_pg->fetch_all_kelas(),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($id_siswa),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'select_options' => $this->Model_pg->fetch_all_kelas(),
         );
 
         $this->load->view('pg_user/user_aktivasi', $data);
@@ -663,11 +663,11 @@ class User extends CI_Controller
 
         $data = array(
 
-            'infosiswa' => $this->model_dashboard->get_info_siswa($id_siswa),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($id_siswa),
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'select_options' => $this->model_pg->fetch_all_kelas(),
+            'select_options' => $this->Model_pg->fetch_all_kelas(),
 
         );
 
@@ -679,13 +679,13 @@ class User extends CI_Controller
 
         $id_kelas = isset($params['kelas']) ? $params['kelas'] : 0;
 
-        $alias_kelas = $this->model_voucher->get_kelas_by_id($id_kelas);
+        $alias_kelas = $this->Model_voucher->get_kelas_by_id($id_kelas);
 
         $this->form_validation_rules('aktivasi');
 
         if ($this->form_validation->run() == true) {
 
-            $voucher = $this->model_voucher->check_voucher_by_aktivasi($nmr_aktivasi);
+            $voucher = $this->Model_voucher->check_voucher_by_aktivasi($nmr_aktivasi);
 
             if (empty($voucher)) {
 
@@ -729,7 +729,7 @@ class User extends CI_Controller
 
                         //add activation expired date
 
-                        $cekindihome = $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
+                        $cekindihome = $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
                         if ($cekindihome->id_indihome > 0) {
                             $now->add(new DateInterval('P' . (12 * 10) . 'M'));
                         } else {
@@ -740,23 +740,23 @@ class User extends CI_Controller
 
                         //cek apakah ada aktivasi sebelumnya
                         if (empty($this->session->userdata('akses'))) {
-                            $result = $this->model_voucher->add_paket_aktif($data_aktivasi);
-                            $set_aktif = $this->model_voucher->set_status_aktivasi($nmr_aktivasi);
+                            $result = $this->Model_voucher->add_paket_aktif($data_aktivasi);
+                            $set_aktif = $this->Model_voucher->set_status_aktivasi($nmr_aktivasi);
 
                             //edit kelas di tabel siswa sesuai dengan aktivasi
-                            $this->model_voucher->edit_kelas_siswa($idsiswa, $id_kelas);
+                            $this->Model_voucher->edit_kelas_siswa($idsiswa, $id_kelas);
 
                             //update session 'akses'
                             $this->update_session_akses();
                         } else {
                             //jika ada aktivasi sebelumnya, hapus dahulu, baru input aktivasi baru
-                            $hapusaktivasi = $this->model_voucher->hapus_paket_aktif($_SESSION['id_siswa']);
+                            $hapusaktivasi = $this->Model_voucher->hapus_paket_aktif($_SESSION['id_siswa']);
 
-                            $result = $this->model_voucher->add_paket_aktif($data_aktivasi);
-                            $set_aktif = $this->model_voucher->set_status_aktivasi($nmr_aktivasi);
+                            $result = $this->Model_voucher->add_paket_aktif($data_aktivasi);
+                            $set_aktif = $this->Model_voucher->set_status_aktivasi($nmr_aktivasi);
 
                             //edit kelas di tabel siswa sesuai dengan aktivasi
-                            $this->model_voucher->edit_kelas_siswa($_SESSION['id_siswa'], $id_kelas);
+                            $this->Model_voucher->edit_kelas_siswa($_SESSION['id_siswa'], $id_kelas);
 
                             //update session 'akses'
                             $this->update_session_akses();
@@ -820,7 +820,7 @@ class User extends CI_Controller
 
         if (!empty($id_pembelian)) {
 
-            $siswa_id = $this->model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
+            $siswa_id = $this->Model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
 
         }
 
@@ -830,13 +830,13 @@ class User extends CI_Controller
 
             $data = array(
 
-                'infosiswa' => $this->model_dashboard->get_info_siswa($id_siswa),
+                'infosiswa' => $this->Model_dashboard->get_info_siswa($id_siswa),
 
-                'navbar_links' => $this->model_pg->get_navbar_links(),
+                'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-                'buy' => $this->model_pembayaran->get_pembelian($id_pembelian),
+                'buy' => $this->Model_pembayaran->get_pembelian($id_pembelian),
 
-                'detail_pembelian' => $this->model_pembayaran->get_detail_pembelian($id_pembelian),
+                'detail_pembelian' => $this->Model_pembayaran->get_detail_pembelian($id_pembelian),
 
             );
 
@@ -873,7 +873,7 @@ class User extends CI_Controller
 
                 alert_success('Berhasil!', 'File bukti pembayaran telah diupload');
 
-                $this->model_pembayaran->update_file_bukti($file_bukti, $id_pembelian);
+                $this->Model_pembayaran->update_file_bukti($file_bukti, $id_pembelian);
 
                 redirect('user/buylist');
 
@@ -902,7 +902,7 @@ class User extends CI_Controller
 
         if (!empty($id_pembelian)) {
 
-            $siswa_id = $this->model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
+            $siswa_id = $this->Model_pembayaran->cek_siswa_by_pembelian($id_pembelian);
 
         }
 
@@ -912,11 +912,11 @@ class User extends CI_Controller
 
             $data = array(
 
-                'navbar_links' => $this->model_pg->get_navbar_links(),
+                'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-                'buy' => $this->model_pembayaran->get_pembelian($id_pembelian),
+                'buy' => $this->Model_pembayaran->get_pembelian($id_pembelian),
 
-                'detail_pembelian' => $this->model_pembayaran->get_detail_pembelian($id_pembelian),
+                'detail_pembelian' => $this->Model_pembayaran->get_detail_pembelian($id_pembelian),
 
             );
 
@@ -1111,13 +1111,13 @@ class User extends CI_Controller
     private function cek_expired($id_pembelian)
     {
 
-        $pembelian = $this->model_pembayaran->get_pembelian($id_pembelian);
+        $pembelian = $this->Model_pembayaran->get_pembelian($id_pembelian);
 
         if (strtotime($pembelian->expired_on) <= strtotime(date('Y-m-d H:i:00')) && ($pembelian->status == 0)) {
 
             //set status to "dibatalkan"
 
-            $this->model_pembayaran->update_status("3", $id_pembelian);
+            $this->Model_pembayaran->update_status("3", $id_pembelian);
 
         }
 
@@ -1132,7 +1132,7 @@ class User extends CI_Controller
 
             //get user access
 
-            $siswa_access = $this->model_login->cek_user_akses($_SESSION['id_siswa']);
+            $siswa_access = $this->Model_login->cek_user_akses($_SESSION['id_siswa']);
 
             $akses_kelas = array();
 
@@ -1182,9 +1182,9 @@ class User extends CI_Controller
 
         if ($id) {
 
-            $sekolah = $this->model_pg->fetch_sekolah_by_id($id);
+            $sekolah = $this->Model_pg->fetch_sekolah_by_id($id);
 
-            $dynamic_options = $this->model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
+            $dynamic_options = $this->Model_pg->fetch_kelas_by_jenjang($sekolah->jenjang);
 
             if ($dynamic_options) {
 
@@ -1221,7 +1221,7 @@ class User extends CI_Controller
 
         if (!empty($fb_id)) {
 
-            $link = $this->model_pg->link_akun_fb($id_siswa, $fb_id);
+            $link = $this->Model_pg->link_akun_fb($id_siswa, $fb_id);
 
             if ($link) {
 
@@ -1244,7 +1244,7 @@ class User extends CI_Controller
 
         if (!empty($fb_id)) {
 
-            $unlink = $this->model_pg->unlink_akun_fb($fb_id);
+            $unlink = $this->Model_pg->unlink_akun_fb($fb_id);
 
             if ($unlink) {
 
@@ -1306,7 +1306,7 @@ class User extends CI_Controller
         if (empty($this->session->userdata('akses'))) {
             $param = ['siswa' => $id_siswa];
             $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
-            $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+            $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
             $json = json_decode($data, true);
 
             if ($json['exp']) {
@@ -1323,23 +1323,23 @@ class User extends CI_Controller
         if ($idsiswa == "") {
             redirect('login');
         }
-        $infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+        $infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
         $carimapel = array();
         $akses = $this->session->userdata('akses');
         $tanggalsekarang = date("Y-m-d");
         if (array_key_exists('premium', $akses)) {
-            $kelasaktif = $this->model_dashboard->get_kelas_premium();
+            $kelasaktif = $this->Model_dashboard->get_kelas_premium();
         } else {
-            $kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+            $kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
         }
 
-        $jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+        $jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
 
-        $bonus_unlocked = $this->model_bonus->fetch_bonus_unlocked($idsiswa);
+        $bonus_unlocked = $this->Model_bonus->fetch_bonus_unlocked($idsiswa);
         if (!empty($bonus_unlocked)) {
             $bonus_unlocked = explode(',', $bonus_unlocked->unlocked);
         } else {
@@ -1348,7 +1348,7 @@ class User extends CI_Controller
 
         //UPDATE 20 OKTOBER 2016
         //#####################################
-        $cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+        $cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 
         if ($cariaktivasi == 0) {
             $statussiswa = 'tidak_aktif';
@@ -1361,11 +1361,11 @@ class User extends CI_Controller
 
         //UPDATE 08 Agustus 2017
         //#####################################
-        $kelasaktif = $this->model_dashboard->kelas_by_id_in($json['kelas']);
+        $kelasaktif = $this->Model_dashboard->kelas_by_id_in($json['kelas']);
         $menu = array();
         foreach ($kelasaktif as $kelas2) {
-            $carimapel[$kelas2->id_kelas] = $this->model_dashboard->get_mapel_by_kelas($kelas2->id_kelas);
-            $menu[$kelas2->jenjang][$kelas2->id_kelas] = $this->model_dashboard->get_mapel_by_kelas($kelas2->id_kelas);
+            $carimapel[$kelas2->id_kelas] = $this->Model_dashboard->get_mapel_by_kelas($kelas2->id_kelas);
+            $menu[$kelas2->jenjang][$kelas2->id_kelas] = $this->Model_dashboard->get_mapel_by_kelas($kelas2->id_kelas);
         }
 
         //END UPDATE 08 Agustus 2017
@@ -1376,36 +1376,36 @@ class User extends CI_Controller
             'tryout' => $idtryout,
             'infosiswa' => $infosiswa,
             'kelasaktif' => $kelasaktif,
-            'data_video_motivasi' => $this->model_bonus->fetch_limit_bonus_video(50), //limit = 5
-            'data_bonus' => $this->model_bonus->fetch_limit_bonus_konten(50), //limit = 5
-            'quote' => $this->model_bonus->fetch_random_quote(), //limit = 5
+            'data_video_motivasi' => $this->Model_bonus->fetch_limit_bonus_video(50), //limit = 5
+            'data_bonus' => $this->Model_bonus->fetch_limit_bonus_konten(50), //limit = 5
+            'quote' => $this->Model_bonus->fetch_random_quote(), //limit = 5
             'bonus_unlocked' => $bonus_unlocked, //limit = 5
             'status_siswa' => $statussiswa, //update 20 oktober 2016
-            'select_provinsi' => $this->model_signup->get_provinsi(),
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_profil' => $this->model_dashboard->fetch_all_cbtcontest(),
+            'select_provinsi' => $this->Model_signup->get_provinsi(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_profil' => $this->Model_dashboard->fetch_all_cbtcontest(),
 
             /* NEW MAPEL */
             'carimapel' => $carimapel,
 
         );
-        $table_data = $this->model_adm->fetch_all_profil_by_kelas($session['kelas']);
+        $table_data = $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']);
 
         $daftar_kategori_baru = [];
         $i = 0;
         $r = 0;
         foreach ($table_data as $kat) {
             $r = $kat->id_tryout;
-            $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+            $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
             $daftar_kategori_baru[$i] = json_decode(json_encode($kat), true);
             $j = 0;
             $index = 0;
             if (count($daftar_kategori) > 0) {
                 foreach ($daftar_kategori as $subkey => $value) {
                     if ($value->id_profil == $kat->id_tryout) {
-                        $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                        $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                        $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                        $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                        $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                        $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), true);
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
@@ -1433,7 +1433,7 @@ class User extends CI_Controller
 
     public function pilihmapel($idkelas)
     {
-        $carimapel = $this->model_dashboard->get_mapel_by_kelas($idkelas);
+        $carimapel = $this->Model_dashboard->get_mapel_by_kelas($idkelas);
         foreach ($carimapel as $mapel) {
             echo "
 				<li class='pilih' id='" . $mapel->id_mapel . "'><a href='#dropmapel' id='asdasdasd'>" . $mapel->nama_mapel . "<span class='circle' style='background-color:#e6353c;'></span></a></li>
@@ -1454,7 +1454,7 @@ class User extends CI_Controller
     public function lihatmapel($idkelas)
     {
         /* MARKED USER MAPEL */
-        $carimapel = $this->model_dashboard->get_mapel_by_kelas($idkelas);
+        $carimapel = $this->Model_dashboard->get_mapel_by_kelas($idkelas);
 
         echo "
 		<button class='btn btn-link kembalikelas pull-right hidden'></button>
@@ -1513,9 +1513,9 @@ class User extends CI_Controller
         $akses = $this->session->userdata('akses');
 
         if (array_key_exists('premium', $akses)) {
-            $kelasaktif = $this->model_dashboard->get_kelas_premium();
+            $kelasaktif = $this->Model_dashboard->get_kelas_premium();
         } else {
-            $kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+            $kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
         }
 
         foreach ($kelasaktif as $kelas) {
@@ -1550,7 +1550,7 @@ class User extends CI_Controller
     public function carimateri($keyword)
     {
         $keyword = rawurldecode($keyword);
-        $carimateri = $this->model_dashboard->get_materi_by_keyword($keyword);
+        $carimateri = $this->Model_dashboard->get_materi_by_keyword($keyword);
         //echo $keyword;
         foreach ($carimateri as $materi) {
             ?>
@@ -1571,7 +1571,7 @@ class User extends CI_Controller
 
     public function profil($idkelas)
     {
-        $cariprofil = $this->model_dashboard->get_profil_by_kelas($idkelas);
+        $cariprofil = $this->Model_dashboard->get_profil_by_kelas($idkelas);
 
         foreach ($cariprofil as $profil) {
             echo "
@@ -1594,8 +1594,8 @@ class User extends CI_Controller
 
     public function materi($idmapel)
     {
-        $carimateri = $this->model_dashboard->get_topik_by_mapel($idmapel);
-        $infomapel = $this->model_dashboard->get_info_mapel($idmapel);
+        $carimateri = $this->Model_dashboard->get_topik_by_mapel($idmapel);
+        $infomapel = $this->Model_dashboard->get_info_mapel($idmapel);
         echo "
 		<button class='btn btn-link hidden'><< Tutup</button>
 		<div class='col-lg-12'>
@@ -1653,7 +1653,7 @@ class User extends CI_Controller
         if (empty($this->session->userdata('akses'))) {
             $param = ['siswa' => $id_siswa];
             $data = $this->curl_download("http://aktivasi.bintangsekolah.co.id/api/cari-siswa", $param);
-            $datapembelian = $this->model_pembayaran->get_tagihan_by_siswa($id_siswa);
+            $datapembelian = $this->Model_pembayaran->get_tagihan_by_siswa($id_siswa);
             $json = json_decode($data, true);
 
             if ($json['exp']) {
@@ -1666,21 +1666,21 @@ class User extends CI_Controller
         $session = $this->session->userdata;
         $data = array(
             'tryout' => $idprofil,
-            'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
-            'caritryout' => $this->model_dashboard->get_tryout_by_profil($idprofil, $session['kelas']),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'caritryout' => $this->Model_dashboard->get_tryout_by_profil($idprofil, $session['kelas']),
             'idsiswa' => $this->session->userdata('id_siswa'),
 
         );
-        $table_data = $this->model_adm->fetch_all_profil_by_kelas($session['kelas']);
+        $table_data = $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']);
 
         $daftar_kategori_baru = [];
         $i = 0;
         $r = 0;
         foreach ($table_data as $kat) {
             $r = $kat->id_tryout;
-            $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+            $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
             $daftar_kategori_baru[$i] = json_decode(json_encode($kat), true);
             $j = 0;
             $index = 0;
@@ -1688,15 +1688,15 @@ class User extends CI_Controller
                 foreach ($daftar_kategori as $subkey => $value) {
                     if ($value->id_profil == $kat->id_tryout) {
                         if ($value->remidi == 0) {
-                            $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                            $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                            $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                            $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                            $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                            $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), true);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariwaktu'] = $cariwaktu;
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['presentase'] = ($value->jumlah_soal == 0 ? 0 : round(($cariskor / $value->jumlah_soal) * 100, 2));;
-                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa'] = json_decode(json_encode($this->model_dashboard->analisistopik($value->id_kategori, $idsiswa)), true);
+                            $daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa'] = json_decode(json_encode($this->Model_dashboard->analisistopik($value->id_kategori, $idsiswa)), true);
                             unset($daftar_kategori[$index]);
                             $daftar_kategori_baru[$i]['daftar_kategori'][$j]['jml_analisa'] = count($daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa']);
                             $nilai = 0;
@@ -1709,19 +1709,19 @@ class User extends CI_Controller
                             } else {
                                 $daftar_kategori_baru[$i]['daftar_kategori'][$j]['tuntas'] = false;
                             }
-                            $remidi = $this->model_fronttryout->fetch_remidi_by_id_remidi($value->id_kategori);
+                            $remidi = $this->Model_fronttryout->fetch_remidi_by_id_remidi($value->id_kategori);
                             if(count($remidi) > 0){
                             foreach ($remidi as $key => $rem) {
                                 $arr_rem = array();
-                                $cariskor = $this->model_dashboard->cari_skor($rem->id_kategori, $idsiswa);
-                                $cariskorsalah = $this->model_dashboard->cari_skor_salah($rem->id_kategori, $idsiswa);
-                                $cariwaktu = $this->model_dashboard->cari_waktu($rem->id_kategori, $idsiswa);
+                                $cariskor = $this->Model_dashboard->cari_skor($rem->id_kategori, $idsiswa);
+                                $cariskorsalah = $this->Model_dashboard->cari_skor_salah($rem->id_kategori, $idsiswa);
+                                $cariwaktu = $this->Model_dashboard->cari_waktu($rem->id_kategori, $idsiswa);
                                 $arr_rem = json_decode(json_encode($rem), true);
                                 $arr_rem['cariskor'] = $cariskor;
                                 $arr_rem['cariskorsalah'] = $cariskorsalah;
                                 $arr_rem['cariwaktu'] = $cariwaktu;
                                 $arr_rem['presentase'] = ($rem->jumlah_soal == 0 ? 0 : round(($cariskor / $rem->jumlah_soal) * 100, 2));;
-                                $arr_rem['analisa'] = json_decode(json_encode($this->model_dashboard->analisistopik($rem->id_kategori, $idsiswa)), true);
+                                $arr_rem['analisa'] = json_decode(json_encode($this->Model_dashboard->analisistopik($rem->id_kategori, $idsiswa)), true);
                                 $arr_rem['jml_analisa'] = count($daftar_kategori_baru[$i]['daftar_kategori'][$j]['analisa']);
                                 $nilai = 0;
                                 foreach ($arr_rem['analisa'] as $item) {
@@ -1767,30 +1767,30 @@ class User extends CI_Controller
         $session = $this->session->userdata;
         $data = array(
             'tryout' => $idprofil,
-            'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
-            'caritryout' => $this->model_dashboard->get_tryout_by_profil($idprofil, $session['kelas']),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'caritryout' => $this->Model_dashboard->get_tryout_by_profil($idprofil, $session['kelas']),
             'idsiswa' => $this->session->userdata('id_siswa'),
 
         );
-        $table_data = $this->model_adm->fetch_all_profil_by_kelas($session['kelas']);
+        $table_data = $this->Model_adm->fetch_all_profil_by_kelas($session['kelas']);
 
         $daftar_kategori_baru = [];
         $i = 0;
         $r = 0;
         foreach ($table_data as $kat) {
             $r = $kat->id_tryout;
-            $daftar_kategori = $this->model_fronttryout->fetch_kategori($kat->id_tryout);
+            $daftar_kategori = $this->Model_fronttryout->fetch_kategori($kat->id_tryout);
             $daftar_kategori_baru[$i] = json_decode(json_encode($kat), true);
             $j = 0;
             $index = 0;
             if (count($daftar_kategori) > 0) {
                 foreach ($daftar_kategori as $subkey => $value) {
                     if ($value->id_profil == $kat->id_tryout) {
-                        $cariskor = $this->model_dashboard->cari_skor($value->id_kategori, $idsiswa);
-                        $cariskorsalah = $this->model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
-                        $cariwaktu = $this->model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
+                        $cariskor = $this->Model_dashboard->cari_skor($value->id_kategori, $idsiswa);
+                        $cariskorsalah = $this->Model_dashboard->cari_skor_salah($value->id_kategori, $idsiswa);
+                        $cariwaktu = $this->Model_dashboard->cari_waktu($value->id_kategori, $idsiswa);
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j] = json_decode(json_encode($value), true);
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskor'] = $cariskor;
                         $daftar_kategori_baru[$i]['daftar_kategori'][$j]['cariskorsalah'] = $cariskorsalah;
@@ -1820,25 +1820,25 @@ class User extends CI_Controller
     function statistik()
     {
         $idkelas = $this->input->get('kelas');
-        $aliaskelas = $this->model_dashboard->kelas_by_id($idkelas);
+        $aliaskelas = $this->Model_dashboard->kelas_by_id($idkelas);
 
         $idsiswa = $this->session->userdata('id_siswa');
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'analisis_mapel' => $this->model_dashboard->get_analisis_mapel_bykelas($idsiswa, $idkelas),
-            'analisis_waktu' => $this->model_dashboard->get_analisis_waktu_bykelas($idsiswa, $idkelas),
-            'kategori' => $this->model_dashboard->get_kategori_tryout($idkelas),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'analisis_mapel' => $this->Model_dashboard->get_analisis_mapel_bykelas($idsiswa, $idkelas),
+            'analisis_waktu' => $this->Model_dashboard->get_analisis_waktu_bykelas($idsiswa, $idkelas),
+            'kategori' => $this->Model_dashboard->get_kategori_tryout($idkelas),
             'kelas' => $kelas,
-            'analisis_topik' => $this->model_dashboard->get_analisis_topik($idsiswa),
-            'kelasaktif' => $this->model_dashboard->get_kelas_aktif($idsiswa, date('Y-m-d')),
+            'analisis_topik' => $this->Model_dashboard->get_analisis_topik($idsiswa),
+            'kelasaktif' => $this->Model_dashboard->get_kelas_aktif($idsiswa, date('Y-m-d')),
             'aliaskelas' => $aliaskelas,
-            'totalpeserta' => $this->model_dashboard->peserta_tryout($idkelas),
-            'totalsoal' => $this->model_dashboard->total_soal_bykelas($idkelas),
-            'jumlahbenar' => $this->model_dashboard->jumlah_benar($idsiswa),
-            'dataperingkat' => $this->model_dashboard->peringkat($idkelas),
+            'totalpeserta' => $this->Model_dashboard->peserta_tryout($idkelas),
+            'totalsoal' => $this->Model_dashboard->total_soal_bykelas($idkelas),
+            'jumlahbenar' => $this->Model_dashboard->jumlah_benar($idsiswa),
+            'dataperingkat' => $this->Model_dashboard->peringkat($idkelas),
         );
 
         $this->load->view('pg_user/dashboard', $data);
@@ -1853,13 +1853,13 @@ class User extends CI_Controller
             redirect('user/dashboard');
         }
 
-        $aliaskelas = $this->model_dashboard->kelas_by_profil($idprofil);
+        $aliaskelas = $this->Model_dashboard->kelas_by_profil($idprofil);
 
         $idsiswa = $this->session->userdata('id_siswa');
-        $carikelas = $this->model_dashboard->get_kelas($idsiswa);
+        $carikelas = $this->Model_dashboard->get_kelas($idsiswa);
         $kelas = $carikelas->kelas;
 
-        $cariidkelas = $this->model_dashboard->get_idkelas_byprofil($idprofil);
+        $cariidkelas = $this->Model_dashboard->get_idkelas_byprofil($idprofil);
 
         if ($cariidkelas->id_kelas == "") {
             redirect('user/dashboard');
@@ -1868,21 +1868,21 @@ class User extends CI_Controller
         $idkelas = $cariidkelas->id_kelas;
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'infosiswa' => $this->model_dashboard->get_info_siswa($idsiswa),
-            'analisis_mapel_lama' => $this->model_dashboard->get_analisis_mapel_byprofil($idsiswa, $idprofil),
-            'analisis_waktu' => $this->model_dashboard->get_analisis_waktu_byprofil($idsiswa, $idprofil),
-            'kategori' => $this->model_dashboard->get_kategori_tryout_byprofil($idprofil),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($idsiswa),
+            'analisis_mapel_lama' => $this->Model_dashboard->get_analisis_mapel_byprofil($idsiswa, $idprofil),
+            'analisis_waktu' => $this->Model_dashboard->get_analisis_waktu_byprofil($idsiswa, $idprofil),
+            'kategori' => $this->Model_dashboard->get_kategori_tryout_byprofil($idprofil),
             'kelas' => $kelas,
-            'analisis_topik' => $this->model_dashboard->get_analisis_topik_2($idsiswa),
-            'kelasaktif' => $this->model_dashboard->get_kelas_aktif($idsiswa, date('Y-m-d')),
+            'analisis_topik' => $this->Model_dashboard->get_analisis_topik_2($idsiswa),
+            'kelasaktif' => $this->Model_dashboard->get_kelas_aktif($idsiswa, date('Y-m-d')),
             'aliaskelas' => $aliaskelas,
-            'totalpeserta' => $this->model_dashboard->peserta_tryout($idkelas),
-            'totalsoal' => $this->model_dashboard->total_soal_byprofil($idprofil),
-            'jumlahbenar' => $this->model_dashboard->jumlah_benar($idsiswa, $idprofil),
-            'dataperingkatlama' => $this->model_dashboard->peringkat($idprofil),
-            'dataperingkat' => $this->model_dashboard->peringkat($idprofil),
-            'analisis_mapel' => $this->model_dashboard->analisis_mapel_by_profil_siswa($idsiswa, $idprofil),
+            'totalpeserta' => $this->Model_dashboard->peserta_tryout($idkelas),
+            'totalsoal' => $this->Model_dashboard->total_soal_byprofil($idprofil),
+            'jumlahbenar' => $this->Model_dashboard->jumlah_benar($idsiswa, $idprofil),
+            'dataperingkatlama' => $this->Model_dashboard->peringkat($idprofil),
+            'dataperingkat' => $this->Model_dashboard->peringkat($idprofil),
+            'analisis_mapel' => $this->Model_dashboard->analisis_mapel_by_profil_siswa($idsiswa, $idprofil),
         );
 
         $this->load->view('pg_user/hasil_tryout', $data);
@@ -1895,7 +1895,7 @@ class User extends CI_Controller
         $msg = "Bonus gagal dibuka";
         $id_siswa = $this->session->userdata('id_siswa');
         $id_bonus = $this->input->post('id_bonus');
-        $bonus_unlocked = $this->model_bonus->fetch_bonus_unlocked($id_siswa);
+        $bonus_unlocked = $this->Model_bonus->fetch_bonus_unlocked($id_siswa);
         if (!empty($bonus_unlocked)) {
             $unlocked = explode(',', $bonus_unlocked->unlocked);
         } else {
@@ -1903,18 +1903,18 @@ class User extends CI_Controller
         }
 
         if (!empty($id_bonus)) {
-            $poin_siswa = $this->model_poin->fetch_poin_siswa($id_siswa);
-            $poin_minus = $this->model_poin->fetch_poin_minus($id_bonus);
+            $poin_siswa = $this->Model_poin->fetch_poin_siswa($id_siswa);
+            $poin_minus = $this->Model_poin->fetch_poin_minus($id_bonus);
             // echo "Poin Siswa: ".$poin_siswa." - ".Poin Minus: ".$poin_minus;
             if (!in_array($id_bonus, $unlocked)) {
                 if ($poin_siswa >= $poin_minus) {
                     //1. Cutting Siswa Poin
-                    $result = $this->model_poin->cut_poin_siswa($id_siswa, $id_bonus);
+                    $result = $this->Model_poin->cut_poin_siswa($id_siswa, $id_bonus);
                     //2. Unlocking Bonus
                     array_push($unlocked, $id_bonus);
                     $unlocked = implode(',', $unlocked);
                     $data_model = array('unlocked' => $unlocked);
-                    $result = $this->model_bonus->update_bonus_unlock($id_siswa, $data_model);
+                    $result = $this->Model_bonus->update_bonus_unlock($id_siswa, $data_model);
                 } else {
                     $poin = $poin_minus - $poin_siswa;
                     $msg = "Kamu masih kurang $poin poin untuk membuka bonus ini";
@@ -1925,7 +1925,7 @@ class User extends CI_Controller
         }
         $response['result'] = $result;
         $response['msg'] = $msg;
-        $response['poin'] = $this->model_poin->fetch_poin_siswa($id_siswa);
+        $response['poin'] = $this->Model_poin->fetch_poin_siswa($id_siswa);
         echo json_encode($response);
     }
 
@@ -1964,11 +1964,11 @@ class User extends CI_Controller
             $this->image_lib->resize();
             $this->image_lib->clear();
 
-            $edit = $this->model_dashboard->edit_profil($idsiswa, $nama, $phone, $email, $jeniskelamin, $alamat, $namafile);
+            $edit = $this->Model_dashboard->edit_profil($idsiswa, $nama, $phone, $email, $jeniskelamin, $alamat, $namafile);
 
             redirect('user/dashboard');
         } else {
-            $edit = $this->model_dashboard->edit_profil($idsiswa, $nama, $phone, $email, $jeniskelamin, $alamat, "");
+            $edit = $this->Model_dashboard->edit_profil($idsiswa, $nama, $phone, $email, $jeniskelamin, $alamat, "");
 
             redirect('user/dashboard');
         }
@@ -1977,7 +1977,7 @@ class User extends CI_Controller
     public
     function kelasbyjenjang($jenjang)
     {
-        $carikelas = $this->model_dashboard->cari_kelas_by_jenjang($jenjang);
+        $carikelas = $this->Model_dashboard->cari_kelas_by_jenjang($jenjang);
 
         foreach ($carikelas as $kelas) {
             echo "
@@ -1989,9 +1989,9 @@ class User extends CI_Controller
     public
     function kelasbysekolah($sekolah)
     {
-        $carisekolah = $this->model_dashboard->cari_sekolah($sekolah);
+        $carisekolah = $this->Model_dashboard->cari_sekolah($sekolah);
 
-        $carikelas = $this->model_dashboard->cari_kelas_by_jenjang($carisekolah->jenjang);
+        $carikelas = $this->Model_dashboard->cari_kelas_by_jenjang($carisekolah->jenjang);
 
         foreach ($carikelas as $kelas) {
             echo "
@@ -2012,14 +2012,14 @@ class User extends CI_Controller
             $sekolah = $params['sekolah'];
             $kelas = $params['kelas'];
 
-            $editsekolah = $this->model_dashboard->edit_sekolah_siswa($sekolah, $kelas, $idsiswa);
+            $editsekolah = $this->Model_dashboard->edit_sekolah_siswa($sekolah, $kelas, $idsiswa);
         } elseif ($jenis == "baru") {
             $kota = $params['kota'];
             $sekolah = $params['sekolahbaru'];
             $jenjang = $params['jenjang'];
             $kelas = $params['kelas'];
 
-            $editsekolah = $this->model_dashboard->edit_sekolah_siswa_baru($kota, $jenjang, $sekolah, $kelas, $idsiswa);
+            $editsekolah = $this->Model_dashboard->edit_sekolah_siswa_baru($kota, $jenjang, $sekolah, $kelas, $idsiswa);
         }
 
         redirect('user/dashboard');
@@ -2031,9 +2031,9 @@ class User extends CI_Controller
         $idsiswa = $this->session->userdata('id_siswa');
 
         $data = array(
-            'navbar_links' => $this->model_pg->get_navbar_links(),
-            'infosiswa' => $this->model_dashboard->get_info_siswa($idsiswa),
-            'dataprofil' => $this->model_dashboard->cari_profil_tryout(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($idsiswa),
+            'dataprofil' => $this->Model_dashboard->cari_profil_tryout(),
         );
 
         $this->load->view('pg_user/live_skor', $data);
@@ -2045,13 +2045,13 @@ class User extends CI_Controller
         if ($this->uri->segment(3) == "") {
             redirect('user/dashboard');
         } else {
-            $totalsoal = $this->model_dashboard->total_soal_byprofil($idtryout);
-            $dataperingkat = $this->model_dashboard->peringkat($idtryout);
+            $totalsoal = $this->Model_dashboard->total_soal_byprofil($idtryout);
+            $dataperingkat = $this->Model_dashboard->peringkat($idtryout);
 
             $no = 1;
             foreach ($dataperingkat as $peringkat) {
 
-                $datasiswa = $this->model_dashboard->data_peringkat($peringkat->id_siswa, $idtryout);
+                $datasiswa = $this->Model_dashboard->data_peringkat($peringkat->id_siswa, $idtryout);
 
                 if (isset($peringkat->waktu_kerja)) {
                     $waktu = round($peringkat->waktu_kerja / 60, 2);
@@ -2105,13 +2105,13 @@ class User extends CI_Controller
     public
     function listrekap($idprofil)
     {
-        $totalsoal = $this->model_dashboard->total_soal_byprofil($idprofil);
-        $dataperingkat = $this->model_dashboard->peringkat($idprofil);
+        $totalsoal = $this->Model_dashboard->total_soal_byprofil($idprofil);
+        $dataperingkat = $this->Model_dashboard->peringkat($idprofil);
 
         $no = 1;
         foreach ($dataperingkat as $peringkat) {
 
-            $datasiswa = $this->model_dashboard->data_peringkat($peringkat->id_siswa, $idprofil);
+            $datasiswa = $this->Model_dashboard->data_peringkat($peringkat->id_siswa, $idprofil);
 
             if (isset($peringkat->waktu_kerja)) {
                 $waktu = round($peringkat->waktu_kerja / 60, 2);
@@ -2133,7 +2133,7 @@ class User extends CI_Controller
                         <br> <?php echo $datasiswa->nama_kota; ?> - <?php echo $datasiswa->nama_provinsi; ?></td>
 
                     <?php
-                    $datanilai = $this->model_dashboard->rekap_nilai($idprofil, $peringkat->id_siswa);
+                    $datanilai = $this->Model_dashboard->rekap_nilai($idprofil, $peringkat->id_siswa);
 
                     foreach ($datanilai as $nilai) {
                         ?>
@@ -2173,10 +2173,10 @@ class User extends CI_Controller
         $renewpassword = $params['renewpassword'];
 
         if ($newpassword == $renewpassword) {
-            $caripasslama = $this->model_pg->cari_password_lama($idsiswa, $oldpassword);
+            $caripasslama = $this->Model_pg->cari_password_lama($idsiswa, $oldpassword);
             if (!empty($caripasslama)) {
                 //echo "old password cocok";
-                $this->model_pg->ganti_password($caripasslama->id_login, $newpassword);
+                $this->Model_pg->ganti_password($caripasslama->id_login, $newpassword);
                 alert_success('Berhasil!', 'Password telah diganti');
                 redirect('user/ubah_profil');
             } else {
@@ -2209,13 +2209,13 @@ class User extends CI_Controller
         }
         $data = array(
 
-            'infosiswa' => $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
+            'infosiswa' => $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa')),
 
-            'navbar_links' => $this->model_pg->get_navbar_links(),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
 
-            'data_user' => $this->model_pg->get_data_user($this->session->userdata('id_siswa')),
+            'data_user' => $this->Model_pg->get_data_user($this->session->userdata('id_siswa')),
 
-            'konten_download_kat' => $this->model_kontendownload->get_kategori_konten_download_by_jenjang($jenjang_str),
+            'konten_download_kat' => $this->Model_kontendownload->get_kategori_konten_download_by_jenjang($jenjang_str),
 
         );
 
@@ -2226,7 +2226,7 @@ class User extends CI_Controller
     public
     function download_konten_mapeldetail($id_kat)
     {
-        $konten_list = $this->model_kontendownload->get_konten_by_id_kat($id_kat);
+        $konten_list = $this->Model_kontendownload->get_konten_by_id_kat($id_kat);
 
         ?>
 
@@ -2277,14 +2277,14 @@ class User extends CI_Controller
                                     $poin_konten = $konten_val->point;
                                     
                                     //Dapatkan konten point            
-                                    $siswa = $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
+                                    $siswa = $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
                                     $poin_siswa = $siswa->poin;
                                     //Kurangi user point dalam var
                                     $poin_final =  $poin_siswa-$poin_konten;
 
 
                                     //cek download apakah sudah pernah
-                                    $kd_detail = $this->model_kontendownload->get_kd_by_idsiswakonten($this->session->userdata('id_siswa'), $konten_val->id);
+                                    $kd_detail = $this->Model_kontendownload->get_kd_by_idsiswakonten($this->session->userdata('id_siswa'), $konten_val->id);
 
                                     if($poin_final>=0 AND count($kd_detail) <= 0){
                                     ?>
@@ -2338,17 +2338,17 @@ class User extends CI_Controller
     public
     function kd_tambah($id_konten)
     {
-        $kd_detail = $this->model_kontendownload->get_kd_by_idsiswakonten($this->session->userdata('id_siswa'), $id_konten);
+        $kd_detail = $this->Model_kontendownload->get_kd_by_idsiswakonten($this->session->userdata('id_siswa'), $id_konten);
 
 
         if (count($kd_detail) <= 0) {
 
             //Dapatkan konten point
-            $konten_list = $this->model_kontendownload->get_konten_by_id($id_konten);
+            $konten_list = $this->Model_kontendownload->get_konten_by_id($id_konten);
             $poin_konten = $konten_list->point;
             
             //Dapatkan konten point            
-            $siswa = $this->model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
+            $siswa = $this->Model_dashboard->get_info_siswa($this->session->userdata('id_siswa'));
             $poin_siswa = $siswa->poin;
             //Kurangi user point dalam var
             $poin_final =  $poin_siswa-$poin_konten;
@@ -2360,14 +2360,14 @@ class User extends CI_Controller
                     'poin' => $poin_final
                 );
                 //proses
-                $this->model_kontendownload->kurangi_poin($this->session->userdata('id_siswa'),$data_update);
+                $this->Model_kontendownload->kurangi_poin($this->session->userdata('id_siswa'),$data_update);
 
 
                 $data_insert = array(
                     'id_siswa' => $this->session->userdata('id_siswa'),
                     'id_konten_download' => $id_konten
                 );
-                $this->model_kontendownload->insert_kd_siswa($data_insert);
+                $this->Model_kontendownload->insert_kd_siswa($data_insert);
 
                 echo "<script type='text/javascript'>
                     document.location='" . base_url() . "user/download_konten';

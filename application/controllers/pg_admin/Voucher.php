@@ -18,7 +18,7 @@ class Voucher extends CI_Controller
         $this->load->model('model_security');
         $this->load->model('model_voucher');
         $this->load->model('model_encrypt');
-        $this->model_security->is_logged_in();
+        $this->Model_security->is_logged_in();
         //$this->load->model('model_voucher');
     }
 
@@ -37,8 +37,8 @@ class Voucher extends CI_Controller
         $data = array(
             'navbar_title' => "Voucher",
             'form_action'  => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            'kelas'        => $this->model_voucher->get_kelas(),
-            'table_data'   => $this->model_adm->fetch_all_voucher(),
+            'kelas'        => $this->Model_voucher->get_kelas(),
+            'table_data'   => $this->Model_adm->fetch_all_voucher(),
         );
 
         $this->load->view('pg_admin/voucher', $data);

@@ -19,7 +19,7 @@ class Tryout extends CI_Controller
     {
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
         $jumdatalimit = 5;
 
@@ -33,12 +33,12 @@ class Tryout extends CI_Controller
             $page = 1;
         }
         $start = ($page - 1) * $jumdatalimit;
-        $jumhal = ceil(count($this->model_adm->fetch_all_profil_by_jenjang($carisekolah->jenjang)) / $jumdatalimit);
+        $jumhal = ceil(count($this->Model_adm->fetch_all_profil_by_jenjang($carisekolah->jenjang)) / $jumdatalimit);
 
         $data = array(
             'navbar_title'   => "Profil Try Out",
-            'table_data'     => $this->model_adm->fetch_all_profil_by_jenjang_limit($jumdatalimit, $start, $carisekolah->jenjang),
-            'table_kategori' => $this->model_adm->fetch_kategori(),
+            'table_data'     => $this->Model_adm->fetch_all_profil_by_jenjang_limit($jumdatalimit, $start, $carisekolah->jenjang),
+            'table_kategori' => $this->Model_adm->fetch_kategori(),
             'jumhal'         => $jumhal,
         );
         $this->load->view('psep_sekolah/profiltryout', $data);
@@ -52,13 +52,13 @@ class Tryout extends CI_Controller
                 case 'tambahprofil':
                     $idpsep = $this->session->userdata('idpsepsekolah');
 
-                    $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+                    $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                     $data = array(
                         'page_title'                  => "Tambah Profil Try Out",
                         'form_action'                 => current_url(),
-                        'select_options'              => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
-                        'select_options_materi_pokok' => $this->model_adm->fetch_options_materi(),
+                        'select_options'              => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                        'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
                     );
                     //jika tombol submit ditekan
                     if ($this->input->post('form_submit')) {
@@ -73,16 +73,16 @@ class Tryout extends CI_Controller
                     if ($this->uri->segment(5) == "") {
                         redirect('psep_sekolah/tryout');
                     } else {
-                        $data_profil = $this->model_adm->fetch_profiledit($this->uri->segment(5));
+                        $data_profil = $this->Model_adm->fetch_profiledit($this->uri->segment(5));
                         if (count($data_profil) > 0) {
                             $data = array(
 
                                 'idprofil'    => $this->uri->segment(5),
                                 'form_action' => current_url(),
                                 'page_title'  => 'Tambah Kategori Try Out',
-                                'datamapel'   => $this->model_adm->fetch_mapel_by_id_kelas($data_profil[0]->id_kelas),
-                                'data_table'  => $this->model_adm->fetch_banksoal(),
-                                'datakelas'   => $this->model_tryout->get_kelas(),
+                                'datamapel'   => $this->Model_adm->fetch_mapel_by_id_kelas($data_profil[0]->id_kelas),
+                                'data_table'  => $this->Model_adm->fetch_banksoal(),
+                                'datakelas'   => $this->Model_tryout->get_kelas(),
                             );
                             if ($this->input->post('form_submit')) {
                                 $this->proses_tambah_kat();
@@ -101,7 +101,7 @@ class Tryout extends CI_Controller
                         $data = array(
                             'form_action' => current_url(),
                             'page_title'  => 'Manajemen Soal',
-                            'data_table'  => $this->model_adm->fetch_soalkategori($idkategori),
+                            'data_table'  => $this->Model_adm->fetch_soalkategori($idkategori),
                         );
                         if ($this->input->post('form_submit')) {
                             $this->proses_managesoal();
@@ -116,7 +116,7 @@ class Tryout extends CI_Controller
                         redirect('psep_sekolah/tryout');
                     } else {
                         $idkategori = $this->uri->segment(5);
-                        $this->model_adm->aktivasi_kategori($idkategori);
+                        $this->Model_adm->aktivasi_kategori($idkategori);
                         redirect('psep_sekolah/tryout');
                     }
                     break;
@@ -125,7 +125,7 @@ class Tryout extends CI_Controller
                         redirect('psep_sekolah/tryout');
                     } else {
                         $idkategori = $this->uri->segment(5);
-                        $this->model_adm->nonaktif($idkategori);
+                        $this->Model_adm->nonaktif($idkategori);
                         redirect('psep_sekolah/tryout');
                     }
                     break;
@@ -137,7 +137,7 @@ class Tryout extends CI_Controller
                         $data = array(
                             'form_action' => current_url(),
                             'page_title'  => 'Manajemen Soal',
-                            'data_table'  => $this->model_adm->fetch_kategoriedit($idkategori),
+                            'data_table'  => $this->Model_adm->fetch_kategoriedit($idkategori),
                         );
                         if ($this->input->post('form_submit')) {
                             $this->proses_editkategori();
@@ -152,15 +152,15 @@ class Tryout extends CI_Controller
                         redirect('psep_sekolah/tryout');
                     } else {
                         $idkategori = $this->uri->segment(5);
-                        $result = $this->model_adm->hapus_kategori($idkategori);
-                        $result = $this->model_adm->hapus_soal($idkategori);
+                        $result = $this->Model_adm->hapus_kategori($idkategori);
+                        $result = $this->Model_adm->hapus_soal($idkategori);
                         redirect('psep_sekolah/tryout');
                     }
 
                     break;
                 case 'pilihmapel' :
                     $idkelas = $this->uri->segment(5);
-                    $carimapel = $this->model_tryout->get_mapel($idkelas);
+                    $carimapel = $this->Model_tryout->get_mapel($idkelas);
                     echo "<option value='semua'>Semua Mata Pelajaran</option>";
                     foreach ($carimapel as $mapel) { ?>
                         <option value="<?php echo $mapel->id_mapel; ?>">
@@ -170,7 +170,7 @@ class Tryout extends CI_Controller
                     break;
                 case 'pilihtopik' :
                     $idmapel = $this->uri->segment(5);
-                    $caritopik = $this->model_tryout->get_topik($idmapel);
+                    $caritopik = $this->Model_tryout->get_topik($idmapel);
                     echo "<option value='semua'>Semua topik</option>";
                     foreach ($caritopik as $topik) { ?>
                         <option value="<?php echo $topik->topik; ?>">
@@ -181,7 +181,7 @@ class Tryout extends CI_Controller
                     break;
                 case 'pilihsoalbymapel' :
                     $idmapel = $this->uri->segment(5);
-                    $carisoal = $this->model_tryout->get_soal_by_mapel($idmapel);
+                    $carisoal = $this->Model_tryout->get_soal_by_mapel($idmapel);
                     $no = 1;
                     foreach ($carisoal as $soal) { ?>
                         <tr colspan="8"><?php echo $topik; ?></tr>
@@ -204,7 +204,7 @@ class Tryout extends CI_Controller
                     break;
                 case 'pilihsoalbytopik' :
                     $topik = rawurldecode($this->uri->segment(5));
-                    $carisoal = $this->model_tryout->get_soal_by_topik($topik);
+                    $carisoal = $this->Model_tryout->get_soal_by_topik($topik);
                     $no = 1;
                     foreach ($carisoal as $soal) { ?>
                         <tr colspan="8"><?php echo $topik; ?></tr>
@@ -227,7 +227,7 @@ class Tryout extends CI_Controller
                     break;
                 case 'pilihkategori' :
                     $idmapel = $this->uri->segment(5);
-                    $carikategori = $this->model_tryout->get_kategori($idmapel);
+                    $carikategori = $this->Model_tryout->get_kategori($idmapel);
                     echo "<option value='0'> </option>";
                     echo "<option value='0'>Uncategorized</option>";
                     echo "<option value='semua'>Semua Kategori</option>";
@@ -240,7 +240,7 @@ class Tryout extends CI_Controller
                     break;
                 case 'pilihsoalbykategori' :
                     $idkategori = rawurldecode($this->uri->segment(5));
-                    $carisoal = $this->model_tryout->get_soal_by_kategori($idkategori);
+                    $carisoal = $this->Model_tryout->get_soal_by_kategori($idkategori);
                     $no = 1;
                     foreach ($carisoal as $soal) { ?>
                         <tr>
@@ -267,14 +267,14 @@ class Tryout extends CI_Controller
                     } else {
                         $idpsep = $this->session->userdata('idpsepsekolah');
 
-                        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+                        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
                         $id_tryout = $this->uri->segment(5);
                         $data = array(
                             'form_action'    => current_url(),
                             'page_title'     => 'Manajemen Soal',
-                            'select_options' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
-                            'data_table'     => $this->model_adm->fetch_profiledit($id_tryout),
+                            'select_options' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                            'data_table'     => $this->Model_adm->fetch_profiledit($id_tryout),
                         );
                         if ($this->input->post('form_submit')) {
                             $this->proses_edit();
@@ -310,7 +310,7 @@ class Tryout extends CI_Controller
         $kelas = $params['kelas'];
         $keterangan = $params['keterangan'];
         $type = $params['tipe'];
-        $max = $this->model_adm->select_max('sub_materi', 'urutan_materi');
+        $max = $this->Model_adm->select_max('sub_materi', 'urutan_materi');
         $urutan_materi = ($max->urutan_materi + 1);
         $tanggalpost = $params['tanggal_post'];
         $waktupost = $params['waktu_post'];
@@ -319,7 +319,7 @@ class Tryout extends CI_Controller
             alert_error("Error", "Data gagal ditambahkan");
             $this->load->view('psep_sekolah/profilform', $data);
         } else {
-            $profil = $this->model_adm->fetch_profiledit($id_tryout);
+            $profil = $this->Model_adm->fetch_profiledit($id_tryout);
             if (count($profil) > 0) {
                 if ($_FILES['banner']['name'] !== "") {
                     $tipe = $this->cek_tipe($_FILES['banner']['type']);
@@ -334,14 +334,14 @@ class Tryout extends CI_Controller
                     $this->load->library('upload', $config);
                     $this->upload->do_upload('banner');
 
-                    $result = $this->model_adm->edit_profil($id_tryout,
+                    $result = $this->Model_adm->edit_profil($id_tryout,
                         $kelas, $nama, $keterangan, $urutan_materi,
                         $penyelenggara, $tanggal, $jam, $biaya, $namafile, $tanggalpost, $waktupost, $type);
 
                     redirect('psep_sekolah/tryout');
                 } else {
                     //passing input value to Model
-                    $result = $this->model_adm->edit_profil($id_tryout,
+                    $result = $this->Model_adm->edit_profil($id_tryout,
                         $kelas, $nama, $keterangan, $urutan_materi,
                         $penyelenggara, $tanggal, $jam, $biaya, $profil[0]->banner, $tanggalpost, $waktupost, $type);
 
@@ -371,7 +371,7 @@ class Tryout extends CI_Controller
         $kelas = $params['kelas'];
         $keterangan = $params['keterangan'];
         $type = $params['tipe'];
-        $max = $this->model_adm->select_max('sub_materi', 'urutan_materi');
+        $max = $this->Model_adm->select_max('sub_materi', 'urutan_materi');
         $urutan_materi = ($max->urutan_materi + 1);
         $tanggalpost = $params['tanggal_post'];
         $waktupost = $params['waktu_post'];
@@ -394,14 +394,14 @@ class Tryout extends CI_Controller
                 $this->load->library('upload', $config);
                 $this->upload->do_upload('banner');
 
-                $result = $this->model_adm->add_profil(
+                $result = $this->Model_adm->add_profil(
                     $kelas, $nama, $keterangan, $urutan_materi,
                     $penyelenggara, $tanggal, $jam, $biaya, $namafile, $tanggalpost, $waktupost, $type);
 
                 redirect('psep_sekolah/tryout');
             } else {
                 //passing input value to Model
-                $result = $this->model_adm->add_profil(
+                $result = $this->Model_adm->add_profil(
                     $kelas, $nama, $keterangan, $urutan_materi,
                     $penyelenggara, $tanggal, $jam, $biaya, '-', $tanggalpost, $waktupost, $type);
 
@@ -442,7 +442,7 @@ class Tryout extends CI_Controller
             redirect('psep_sekolah/tryout');
         } else {
             //passing input value to Model
-            $result = $this->model_adm->add_kategori(
+            $result = $this->Model_adm->add_kategori(
                 $idprofil,
                 $nama,
                 $random,
@@ -455,11 +455,11 @@ class Tryout extends CI_Controller
             );
 
             for ($i = 0; $i <= $hitung_soal - 1; $i++) {
-                $kategoriterakhir = $this->model_adm->last_addedkategori();
+                $kategoriterakhir = $this->Model_adm->last_addedkategori();
 
                 foreach ($kategoriterakhir as $datakategori) {
                     //echo $datakategori->id_terakhir;
-                    $result = $this->model_adm->add_soal($datakategori->id_terakhir, $idbanksoal[$i]);
+                    $result = $this->Model_adm->add_soal($datakategori->id_terakhir, $idbanksoal[$i]);
                 }
             }
 
@@ -473,20 +473,20 @@ class Tryout extends CI_Controller
     {
         $idpsep = $this->session->userdata('idpsepsekolah');
 
-        $carisekolah = $this->model_psep->cari_sekolah_by_login($idpsep);
+        $carisekolah = $this->Model_psep->cari_sekolah_by_login($idpsep);
 
 
         //load library pagination
         //configurasi pagination
         if ($kelas == 0 && $mapel == 0 && $topik == '') {
             $config['base_url'] = base_url() . 'psep_sekolah/tryout/ambilbanksoalfilter/' . $id_kategori;
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             // ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page'                 => $page,
@@ -494,17 +494,17 @@ class Tryout extends CI_Controller
                 'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start'                => $start,
-                'select_options_kelas' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                'select_options_kelas' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
             );
         } elseif ($kelas != 0 && $mapel == 0 && $topik == '') {
             $config['base_url'] = base_url() . 'psep_sekolah/tryout/ambilbanksoalfilter/' . $id_kategori . '/' . $kelas . '/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_kelas($kelas);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_kelas($kelas);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_kelas($kelas, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_kelas($kelas, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page'                 => $page,
@@ -513,18 +513,18 @@ class Tryout extends CI_Controller
                 'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start'                => $start,
-                'select_options_kelas' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
+                'select_options_kelas' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
             );
         } elseif ($kelas != 0 && $mapel != 0 && $topik == '') {
             $config['base_url'] = base_url() . 'psep_sekolah/tryout/ambilbanksoalfilter/' . $id_kategori . '/' . $kelas . '/' . $mapel . '/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record_by_id_mapel($mapel);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_id_mapel($mapel, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page'                 => $page,
@@ -534,18 +534,18 @@ class Tryout extends CI_Controller
                 'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start'                => $start,
-                'select_options_kelas' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
+                'select_options_kelas' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
             );
         } elseif ($kelas != 0 && $mapel != 0 && $topik != '') {
             $config['base_url'] = base_url() . 'psep_sekolah/tryout/ambilbanksoalfilter/' . $id_kategori . '/' . $kelas . '/' . $mapel . '/' . $topik;
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_paging_by_topik($mapel, $topik);
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_paging_by_topik($mapel, $topik);
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             //ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging_by_id_topik($mapel, $topik, $config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging_by_id_topik($mapel, $topik, $config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page'                 => $page,
@@ -555,19 +555,19 @@ class Tryout extends CI_Controller
                 'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start'                => $start,
-                'select_options_kelas' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
-                'select_options_mapel' => $this->model_banksoal->get_mapel_by_kelas($kelas),
-                'select_options_topik' => $this->model_banksoal->get_topik_by_mapel($mapel),
+                'select_options_kelas' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas),
+                'select_options_topik' => $this->Model_banksoal->get_topik_by_mapel($mapel),
             );
         } else {
             $config['base_url'] = base_url() . 'psep_sekolah/tryout/ambilbanksoalfilter/' . $id_kategori . '/';
-            $config['total_rows'] = $this->model_banksoal->fetch_banksoal_total_record();
+            $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
             $config['per_page'] = 10;
             $page = (isset($_GET['page']) ? $_GET['page'] : 1);
             // menentukan offset record dari uri segment
             $start = ($page - 1) * $config['per_page'];
             // ubah data menjadi tampilan per limit
-            $rows = $this->model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
+            $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
             $pages = ceil($config['total_rows'] / $config['per_page']);
             $data = array(
                 'page'                 => $page,
@@ -575,14 +575,14 @@ class Tryout extends CI_Controller
                 'pagination'           => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
                 //'pagination' => $this->pagination->create_links(),
                 'start'                => $start,
-                'select_options_kelas' => $this->model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
+                'select_options_kelas' => $this->Model_psep->cari_kelas_by_jenjang($carisekolah->jenjang),
             );
         }
-        $datas = array_column($this->model_adm->all_soal_kategori($id_kategori), 'id_banksoal');
-        $kat = $this->model_adm->fetch_kategoriedit($id_kategori);
+        $datas = array_column($this->Model_adm->all_soal_kategori($id_kategori), 'id_banksoal');
+        $kat = $this->Model_adm->fetch_kategoriedit($id_kategori);
         if (count($kat) > 0) {
             $data['kategori'] = $kat[0];
-            $pro = $this->model_adm->fetch_profiledit($kat[0]->id_profil);
+            $pro = $this->Model_adm->fetch_profiledit($kat[0]->id_profil);
             if (count($pro) > 0) {
                 $data['profil'] = $pro[0];
             }
@@ -602,7 +602,7 @@ class Tryout extends CI_Controller
 
     function simpansoal($idkategori, $idsoal, $hal, $kelas = 0, $mapel = 0)
     {
-        $result = $this->model_adm->add_soal_kategori($idkategori, $idsoal);
+        $result = $this->Model_adm->add_soal_kategori($idkategori, $idsoal);
 
         if ($result) {
             alert_success("Sukses", "Data berhasil ditambahkan");
@@ -622,7 +622,7 @@ class Tryout extends CI_Controller
 
     function hapussoal($idkategori, $idsoal, $hal, $kelas = 0, $mapel = 0)
     {
-        $result = $this->model_adm->delete_soal_kategori($idkategori, $idsoal);
+        $result = $this->Model_adm->delete_soal_kategori($idkategori, $idsoal);
 
         if ($result) {
             alert_success("Sukses", "Data berhasil dihapus");
@@ -704,11 +704,11 @@ class Tryout extends CI_Controller
         }
         echo "<p>" . $idkategori;
         for ($i = 0; $i <= $hitung_soal - 1; $i++) {
-            $result = $this->model_adm->delete_soal($idkategori, $idbanksoal[$i]);
+            $result = $this->Model_adm->delete_soal($idkategori, $idbanksoal[$i]);
             //echo "<p>". $idbanksoal[$i];
         }
 
-        $result = $this->model_adm->update_jumlahsoal($idkategori, $hitung_soal);
+        $result = $this->Model_adm->update_jumlahsoal($idkategori, $hitung_soal);
         redirect('psep_sekolah/tryout');
     }
 
@@ -733,7 +733,7 @@ class Tryout extends CI_Controller
         $waktu = $params['durasi'];
         $ketuntasan = $params['ketuntasan'];
 
-        $result = $this->model_adm->edit_kategori(
+        $result = $this->Model_adm->edit_kategori(
             $idkategori,
             $nama,
             $random,
@@ -761,7 +761,7 @@ class Tryout extends CI_Controller
 
     function pilihmapel($idkelas)
     {
-        $carimapel = $this->model_tryout->get_mapel($idkelas);
+        $carimapel = $this->Model_tryout->get_mapel($idkelas);
         foreach ($carimapel as $mapel) { ?>
             <option value="<?php echo $mapel->id_mapel; ?>"><?php echo $mapel->nama_mapel; ?></option>    <?php }
     }
@@ -786,7 +786,7 @@ class Tryout extends CI_Controller
         }
         $idprofil = $this->uri->segment(4);
 
-        $aktifstatus = $this->model_tryout->aktifpendaftaran($idprofil);
+        $aktifstatus = $this->Model_tryout->aktifpendaftaran($idprofil);
         redirect('psep_sekolah/tryout');
     }
 
@@ -797,14 +797,14 @@ class Tryout extends CI_Controller
         }
         $idprofil = $this->uri->segment(4);
 
-        $aktifstatus = $this->model_tryout->nonaktifpendaftaran($idprofil);
+        $aktifstatus = $this->Model_tryout->nonaktifpendaftaran($idprofil);
         redirect('psep_sekolah/tryout');
     }
 
     function pembayarancbt()
     {
         $data = array(
-            'data_bayar' => $this->model_tryout->get_pembayaran(),
+            'data_bayar' => $this->Model_tryout->get_pembayaran(),
         );
 
         $this->load->view('psep_sekolah/cbt_pembayaran', $data);
@@ -812,13 +812,13 @@ class Tryout extends CI_Controller
 
     function konfirmasi_cbt($iddaftar, $idsiswa)
     {
-        $this->model_tryout->konfirmasi_bayar($iddaftar, $idsiswa);
+        $this->Model_tryout->konfirmasi_bayar($iddaftar, $idsiswa);
         redirect('psep_sekolah/tryout/pembayarancbt');
     }
 
     function tolak_cbt($iddaftar, $idsiswa)
     {
-        $this->model_tryout->tolak_bayar($iddaftar, $idsiswa);
+        $this->Model_tryout->tolak_bayar($iddaftar, $idsiswa);
         redirect('psep_sekolah/tryout/pembayarancbt');
     }
 }

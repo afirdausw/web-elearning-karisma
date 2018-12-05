@@ -14,15 +14,15 @@ public function __construct(){
 
 function index(){
 	$idsiswa = $this->session->userdata('id_siswa');
-	$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+	$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 	$kelas = $carikelas->kelas;
 	$data = array(
-		'navbar_links'		=> $this->model_pg->get_navbar_links(),
-		'analisis_mapel'	=> $this->model_dashboard->get_analisis_mapel($idsiswa),
-		'analisis_waktu'	=> $this->model_dashboard->get_analisis_waktu($idsiswa),
-		'kategori'			=> $this->model_dashboard->get_kategori_tryout($kelas),
+		'navbar_links'		=> $this->Model_pg->get_navbar_links(),
+		'analisis_mapel'	=> $this->Model_dashboard->get_analisis_mapel($idsiswa),
+		'analisis_waktu'	=> $this->Model_dashboard->get_analisis_waktu($idsiswa),
+		'kategori'			=> $this->Model_dashboard->get_kategori_tryout($kelas),
 		'kelas'				=> $kelas,
-		'analisis_topik'	=> $this->model_dashboard->get_analisis_topik($idsiswa)
+		'analisis_topik'	=> $this->Model_dashboard->get_analisis_topik($idsiswa)
 	);
 	
 	$this->load->view('pg_user/dashboard', $data);

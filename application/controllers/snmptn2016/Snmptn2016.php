@@ -26,19 +26,19 @@ class Snmptn2016 extends CI_Controller {
 	if($idsiswa == ""){
 		redirect('login');
 	}
-	$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+	$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 	
-	$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+	$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 	$kelas = $carikelas->kelas;
 	
-	$carimapel = $this->model_dashboard->get_mapel_by_kelas($kelas);
+	$carimapel = $this->Model_dashboard->get_mapel_by_kelas($kelas);
 	
 	$tanggalsekarang = date('Y-m-d');
-	$kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+	$kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
 	
-	$jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+	$jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
 	
-	$cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+	$cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 	
 	
 	if($cariaktivasi == 0){
@@ -61,19 +61,19 @@ class Snmptn2016 extends CI_Controller {
 		if($idsiswa == ""){
 			redirect('login');
 		}
-		$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+		$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 		
-		$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+		$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 		$kelas = $carikelas->kelas;
 		
-		$carimapel = $this->model_dashboard->get_mapel_by_kelas($kelas);
+		$carimapel = $this->Model_dashboard->get_mapel_by_kelas($kelas);
 		
 		$tanggalsekarang = date('Y-m-d');
-		$kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+		$kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
 		
-		$jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+		$jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
 		
-		$cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+		$cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 	
 	
 		if($cariaktivasi == 0){
@@ -97,18 +97,18 @@ class Snmptn2016 extends CI_Controller {
 		if($idsiswa == ""){
 			redirect('login');
 		}
-		$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+		$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 		
-		$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+		$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 		$kelas = $carikelas->kelas;
 		
-		$carimapel = $this->model_dashboard->get_mapel_by_kelas($kelas);
+		$carimapel = $this->Model_dashboard->get_mapel_by_kelas($kelas);
 		
 		$tanggalsekarang = date('Y-m-d');
-		$kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+		$kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
 		
-		$jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
-			$cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+		$jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+			$cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 		if($cariaktivasi == 0){
 			$statussiswa = 'tidak_aktif';
 		}else{
@@ -129,18 +129,18 @@ class Snmptn2016 extends CI_Controller {
 		if($idsiswa == ""){
 			redirect('login');
 		}
-		$infosiswa = $this->model_dashboard->get_info_siswa($idsiswa);
+		$infosiswa = $this->Model_dashboard->get_info_siswa($idsiswa);
 		
-		$carikelas = $this->model_dashboard->get_kelas($idsiswa);
+		$carikelas = $this->Model_dashboard->get_kelas($idsiswa);
 		$kelas = $carikelas->kelas;
 		
-		$carimapel = $this->model_dashboard->get_mapel_by_kelas($kelas);
+		$carimapel = $this->Model_dashboard->get_mapel_by_kelas($kelas);
 		
 		$tanggalsekarang = date('Y-m-d');
-		$kelasaktif = $this->model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
+		$kelasaktif = $this->Model_dashboard->get_kelas_aktif($idsiswa, $tanggalsekarang);
 		
-		$jumlahsoaltryout = $this->model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
-			$cariaktivasi = $this->model_dashboard->cari_aktivasi($idsiswa);
+		$jumlahsoaltryout = $this->Model_dashboard->get_jumlah_soaltryout_bykelas($kelas);
+			$cariaktivasi = $this->Model_dashboard->cari_aktivasi($idsiswa);
 		if($cariaktivasi == 0){
 			$statussiswa = 'tidak_aktif';
 		}else{
