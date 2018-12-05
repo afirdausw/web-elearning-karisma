@@ -81,7 +81,7 @@ if (isset($key->id_materi_pokok)) {
             </section> <!-- End of BANNER-->
             <?php
             //jika belum dibaca
-        } else { ?>
+        } elseif (isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in']) { ?>
             <section class="banner-top mt-0 pb-3" style="background: #F58634;">
                 <div class="container">
                     <div class="row">
@@ -103,6 +103,29 @@ if (isset($key->id_materi_pokok)) {
                                 <?php } else { ?>
                                     <a href="#">Go To Cart</a>
                                 <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> <!-- End of BANNER-->
+            <?php
+            //jika belum dibaca
+        } else { ?>
+            <section class="banner-top mt-0 pb-3" style="background: #F58634;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 banner-left">
+                            <h1>Ayo mulai belajar dengan kami</h1>
+                            <span>dan diskusi langsung dengan instruktur</span>
+                        </div>
+                        <div class="col-md-6 banner-right row">
+                            <div class="col-md-8 text-right mr-0">
+                                <h3 class="text-white mt-1 mb-2 font-w700">Rp. <?= money($data->harga) ?></h3>
+                                <h4 class="text-gray text-line-through mt-1 mb-2 font-w700">
+                                    Rp. <?= money($data->harga) ?></h4>
+                            </div>
+                            <div class="col-md-4 ml-0">
+                                <a href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Mulai Belajar</a>
                             </div>
                         </div>
                     </div>
@@ -342,7 +365,8 @@ if (isset($key->id_materi_pokok)) {
                                      alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
                                     <h4><?= $data->nama_mapel ?></h4>
-                                    <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($data->harga) ?></span></h5>
+                                    <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($data->harga) ?></span>
+                                    </h5>
                                 </div>
                             </a>
                         </div>

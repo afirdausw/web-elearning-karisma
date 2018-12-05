@@ -80,6 +80,7 @@ class Login extends CI_Controller
     {
         $this->session->unset_userdata('siswa_logged_in');
         $this->session->unset_userdata('id_siswa');
+        $this->session->sess_destroy();
         session_destroy();
         // $this->session->sess_destroy();
         if (isset($_SESSION['RedirectKe'])) {
