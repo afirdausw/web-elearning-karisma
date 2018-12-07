@@ -59,7 +59,7 @@ include('header.php');
 		<?php if(count($materi_list) != 0): ?>
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<h1>Daftar Materi Yang Diinstruksikan</h1>
 				</div>
 				<div class="col-md-12">

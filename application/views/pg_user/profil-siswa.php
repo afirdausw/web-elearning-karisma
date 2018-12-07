@@ -77,7 +77,7 @@ include('header.php');
 		</div>
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<h1>Riwayat Pembelajaran</h1>
 				</div>
 				<div class="col-md-12">
