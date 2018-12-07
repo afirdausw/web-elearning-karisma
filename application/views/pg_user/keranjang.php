@@ -15,9 +15,9 @@ include('header.php');
             </div>
         </div><!-- End of Row  -->
 
-        <div class="row mt-5">
-            <div class="col-md-8">
-                <table class="table table-bordered">
+        <div class="row mx-auto w-75 mt-5">
+            <div class=" col-md-12">
+                <table class="table ">
                     <?php
                     foreach ($data as $key => $value) {
                         ?>
@@ -27,11 +27,11 @@ include('header.php');
                                      src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>">
                             </td>
                             <td>
-                                <h2 class="w-100 font-weight-bold mt-0"><?= $value->nama_mapel ?></h2>
-                                <h3 class="w-100 mt-5 text-right">
+                                <h3 class="w-100 font-weight-bold mt-3"><?= $value->nama_mapel ?></h3>
+                                <h4 class="w-100 mt-5 text-right">
                                     <!--                                                        <span class="mr-3 text-gray text-line-through font-w700">Rp. 1.200.000</span>-->
                                     <span>Rp. <?= money($value->harga) ?></span>
-                                </h3>
+                                </h4>
                             </td>
                         </tr>
                     <?php } ?>
@@ -46,8 +46,8 @@ include('header.php');
                 <div class=" materi-lainnya p-3">
                     <a>
                         <img style="display: block;" class="w-75 mx-auto" src="<?= base_url() ?>assets/pg_user/images/bca.png">
-                        <div class="caption mt-5 text-gray-2 min-height-50">
-                            <h3 class="font-w400">BCA</h3>
+                        <div class="caption mt-3 text-gray-2 min-height-50">
+                            <h3 class="font-w500">BCA</h3>
                         </div>
                     </a>
                 </div>
@@ -56,8 +56,8 @@ include('header.php');
                 <div class="materi-lainnya p-3">
                     <a>
                         <img style="display: block;" class="w-75 mx-auto" src="<?= base_url() ?>assets/pg_user/images/bri.png">
-                        <div class="caption mt-5 text-gray-2 min-height-50">
-                            <h3 class="font-w400">BRI</h3>
+                        <div class="caption mt-3 text-gray-2 min-height-50">
+                            <h3 class="font-w500">BRI</h3>
                         </div>
                     </a>
                 </div>
@@ -66,8 +66,8 @@ include('header.php');
                 <div class=" materi-lainnya p-3">
                     <a>
                         <img style="display: block;" class="w-75 mx-auto" src="<?= base_url() ?>assets/pg_user/images/mandiri.png"   >
-                        <div class="caption mt-5 text-gray-2 min-height-50">
-                            <h3 class="font-w400">MANDIRI</h3>
+                        <div class="caption mt-3 text-gray-2 min-height-50">
+                            <h3 class="font-w500">MANDIRI</h3>
                         </div>
                     </a>
                 </div>
