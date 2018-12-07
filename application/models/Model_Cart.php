@@ -14,6 +14,8 @@ class Model_Cart extends CI_Model
         $data = $this->db
             ->where('siswa_id', $id_siswa)
             ->join('mata_pelajaran', 'mata_pelajaran.id_mapel = cart.mapel_id')
+            ->join('instruktur_mapel', 'mata_pelajaran.id_mapel = instruktur_mapel.id_mapel')
+            ->join('instruktur', 'instruktur_mapel.id_instruktur = instruktur.id_instruktur')
             ->get('cart');
 
         return $data->result();
