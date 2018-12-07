@@ -12,6 +12,9 @@
 .text-gray-2 {
     color: rgb(70, 70, 70);
 }
+.text-gray-3 {
+    color: #626262;
+}
 
 .text-line-through {
     text-decoration: line-through;
@@ -2040,6 +2043,16 @@
 .text-center {
     text-align: center !important;
 }
+
+
+/*//tambahan*/
+@media (max-width: 767px) {
+    .btn-sm-block{
+        display: block;
+        width: 100%;
+    }
+}
+/*//tambahan*/
 
 @media (min-width: 576px) {
     .text-sm-left {
