@@ -1458,7 +1458,8 @@ footer a:hover:not(.logo-footer) {
 .materi-lainnya:hover,
 .materi-lainnya:focus {
     cursor: pointer;
-    border: solid 1px #999;
+    border: solid 1px;
+    border-color:#999 !important;
     box-shadow: 1px 2px 1px 0 rgba(20, 23, 28, .1), 0 2px 1px 0 rgba(20, 23, 28, .1)
 }
 
