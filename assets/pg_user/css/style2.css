@@ -443,7 +443,8 @@ a > div.to-top > span {
     color: #676767;
 }
 
-.home-materi-list h2 span {
+.home-materi-list h2 > span,
+.section-qoutes h2 > span {
     color: #F3771B;
 }
 

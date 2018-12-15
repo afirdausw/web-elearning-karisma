@@ -1,4 +1,42 @@
 <?php include("header.php"); ?>
+
+<style>
+	#myCarousel{
+		background:white;
+	}
+	#myCarousel ol.carousel-indicators{
+		position: absolute;
+    top: -3rem;
+	}
+
+	.vertical-middle{
+		display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+	.vertical-middle>*{		
+		display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+	#myCarousel .panel-default{
+		box-shadow: none;
+		border:none;
+	}
+</style>
 <section class="banner-home">
     <div class="container">
         <div class="row">
@@ -15,6 +53,68 @@
     </div>
 </section>
 
+
+<section>
+    <div class="section-qoutes">
+        <div class="container">
+            <h1>Prestasi dalam Bidang Informasi dan Teknologi</h1>
+            <h2>Lihat semua konten di Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
+            <div class="row">
+                <div class="w-75 mx-auto">
+									<div id="myCarousel" class="carousel slide" data-ride="carousel" style="border:2px solid black;">                      
+										<!-- Indicators -->
+										<ol class="carousel-indicators my-0">
+                    <?php
+                    $prestasi = array(
+											0 => [
+												"title" => "Coba0",
+												"icon" => "http://lorempixel.com/g/50/50/technics/",
+												"detail" => "StartUp Digital Lenovo Do Network1",
+												"penyelenggara" => "Lenovo0",
+												"img" => "http://lorempixel.com/g/275/165/technics/E-Learning%20Karisma/",
+											],
+											1 => [
+												"title" => "Coba1",
+												"icon" => "http://lorempixel.com/g/50/50/technics/",
+												"detail" => "StartUp Digital Lenovo Do Network2",
+												"penyelenggara" => "Lenovo1",
+												"img" => "http://lorempixel.com/g/275/165/technics/E-Learning%20Karisma/",
+											],
+										);
+                    foreach ($prestasi as $key=>$value) {
+                        ?>
+														<li data-target="#myCarousel" data-slide-to="<?=$key?>" class="<?=($key==0?"active":"")?>"></li>
+                    <?php } ?>
+										</ol>
+										<!-- Wrapper for slides -->
+										<div class="carousel-inner">
+											<?php
+											foreach ($prestasi as $key=>$value) {
+												?>
+											<div class="item<?=($key==0?" active":"")?>">
+												<div class="col-md-8 col-sm-12 p-0">
+													<img src="<?="{$value['img']}"?>" alt="<?="{$value['title']}"?>" class="img-responsive w-100">
+												</div>
+												<div class="col-md-4 col-sm-12 py-5 text-center vertical-middle">
+													<div>	
+														<img src="<?="{$value['icon']}"?>" alt="<?="{$value['title']}"?>">
+														<h3 class="clearfix"><?="{$value['title']}"?></h3>
+													</div>
+													<div>
+														<i><b>"<?="{$value['detail']}"?>"</b>
+														<br>(<?="{$value['penyelenggara']}"?>)</i>
+													</div>
+												</div>
+											</div>
+											<?php } ?>
+										</div>
+									</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section>
     <div class="container home-materi-list" id="materi_list">
         <h1>Belajar Desain Grafis, Website, Digital Marketing, dan Arsitektur</h1>
@@ -24,7 +124,7 @@
             </div>
         </div>
         <div class="row" id="home_list_materi"> <!-- BARIS KE 1 -->
-            <?php
+						<?php
             foreach ($mapel as $value) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 pr-3 pl-3">
                     <div class="thumbnail materi-lainnya">
@@ -133,33 +233,6 @@
                             </div>
                         </div>
                     <?php } ?>
-                    <!--
-                        <div class="col-md-4">
-                            <div class="card">
-                                <a href="#">
-                                    <div class="card-header" style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg2.png'); ?>)">
-                                        <span>Adinda Dinda</span>
-                                    </div>
-                                    <span class="card-profile">A</span>
-                                    <div class="card-text">
-                                        <p>“Saya kursus disini punya ketertarikan sendiri karena di karisma watu kursusnya sangat fleksibal, saya pulang kerja bisa langsung belajar, tentor proffesional”</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <a href="#">
-                                    <div class="card-header" style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg1.png'); ?>)">
-                                        <span>Dinda Adinda</span>
-                                    </div>
-                                    <span class="card-profile">D</span>
-                                    <div class="card-text">
-                                        <p>“Saya kursus disini punya ketertarikan sendiri karena di karisma watu kursusnya sangat fleksibal, saya pulang kerja bisa langsung belajar, tentor proffesional”</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>-->
                 </div>
             </div>
         </div>
@@ -185,11 +258,18 @@
 <?php include('footer.php'); ?>
 
 </body>
-
+<script  type="text/javascript"
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.7.0/jquery.matchHeight-min.js"></script>
 <script type="text/javascript"
-        src="https://cdn.rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+				src="https://cdn.rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+				
+				
 
 <script>
+		$(function() {
+			
+			$('.item > div').matchHeight();
+		});
     var base_url = "<?= base_url() ?>";
     // init bootpag
     $('#home_materi_pagination_top,#home_materi_pagination_bot').bootpag({
