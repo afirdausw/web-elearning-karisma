@@ -59,11 +59,19 @@
                                     Academy
                                 </p>
                                 <hr style="border-top: 1px solid  #999"/>
-                                <div class="w-100">
-
-                                    <h5 class="text-right font-size-h1 mt-5"> <i class="glyphicon glyphicon-heart"></i> <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
-                                        <span style="color: #93bc3a">Rp. <?= money($value->harga) ?></span>
-                                    </h5>
+                                <div class="w-100 font-size-h1 mt-5 container-fluid">
+                                    <div class="row m-0">
+                                        <div class="col-md-2 col-sm-6 p-0">
+                                            <div class="glyphicon glyphicon-heart pull-left py-3"></div>
+                                        </div>                                        
+                                        <div class="col-md-3 col-sm-6 p-0">
+                                            <a class="btn btn-primary btn-lg btn-block" title="Tambahkan ke Cart" href="<?= base_url('keranjang/add/' . $value->id_mapel) ?>"><i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                        <div class="col-md-7 col-sm-12 text-right p-0">
+                                            <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
+                                            <span style="color: #93bc3a">Rp. <?= money($value->harga) ?></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </a>
