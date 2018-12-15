@@ -65,7 +65,19 @@
                                             <div class="glyphicon glyphicon-heart pull-left py-3"></div>
                                         </div>                                        
                                         <div class="col-md-3 col-sm-6 p-0">
-                                            <a class="btn btn-primary btn-lg btn-block" title="Tambahkan ke Cart" href="<?= base_url('keranjang/add/' . $value->id_mapel) ?>"><i class="fa fa-cart-plus"></i></a>
+                                            <?php
+                                            $link = "";
+                                            if ((isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in'])) {
+                                                $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], "{$value->id_mapel}");
+                                                if (count($mapel) <= 0) { 
+                                                    $link = base_url("keranjang/add/{$value->id_mapel}");
+                                                } else {
+                                                    $link =  base_url("keranjang/");
+                                                } ?>
+                                            <?php }else{
+                                                $link = base_url("login");
+                                            }?>
+                                            <a class="btn btn-primary btn-lg btn-block" title="Tambahkan ke Cart" href="<?=$link?>"><i class="fa fa-cart-plus"></i></a>
                                         </div>
                                         <div class="col-md-7 col-sm-12 text-right p-0">
                                             <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
