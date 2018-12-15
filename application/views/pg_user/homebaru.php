@@ -26,16 +26,16 @@
         <div class="row" id="home_list_materi"> <!-- BARIS KE 1 -->
             <?php
             foreach ($mapel as $value) { ?>
-                <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="col-xs-12 col-sm-6 col-md-4 pr-3 pl-3">
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'mapel/' . $value->id_mapel; ?>">
-                            <span class="badge-diskon">Diskon 25%</span>
-                            <img src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                            <!--                            <span class="badge-diskon">Diskon 25%</span>-->
+                            <img style="border: 1px solid  #999;" src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                  alt="<?= $value->nama_mapel ?>">
                             <div class="caption">
                                 <?php
-                                if (strlen($value->nama_mapel) >= 60) {
-                                    $mapel = substr($value->nama_mapel, 0, strpos($value->nama_mapel, ' ', 50)) . " . . .";
+                                if (strlen($value->nama_mapel) >= 20) {
+                                    $mapel = substr($value->nama_mapel, 0, 15) . " . . .";
                                 } else {
                                     $mapel = $value->nama_mapel;
                                 }
@@ -43,8 +43,28 @@
                                 <a href="<?= base_url() . 'kelas/' . $value->kelas_id; ?>" class="badge-kelas">
                                     <?= $value->alias_kelas ?>
                                 </a>
-                                <h4><?= $mapel ?></h4>
-                                <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($value->harga) ?></span></h5>
+                                <div class="w-100">
+                                    <div class="title w-75 pull-left">
+                                        <h4><?= $mapel ?></h4>
+                                    </div>
+                                    <div class="title w-25 pull-right text-right">
+                                        <span class="badge font-size-h5"
+                                              style="background-color:rgb(245, 134, 52); padding: 7px 20px;"> 7 Sesi</span>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <p class="m-t-2 font-size-md"
+                                   style="padding-right: 5rem !important;font-style: italic;">
+                                    Instruktur, Materi & Sertifikat sama persis Kelas Regular tatap muka di Karisma
+                                    Academy
+                                </p>
+                                <hr style="border-top: 1px solid  #999"/>
+                                <div class="w-100">
+
+                                    <h5 class="text-right font-size-h1 mt-5"> <i class="glyphicon glyphicon-heart"></i> <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
+                                        <span style="color: #93bc3a">Rp. <?= money($value->harga) ?></span>
+                                    </h5>
+                                </div>
                             </div>
                         </a>
                     </div>

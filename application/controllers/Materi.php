@@ -80,10 +80,10 @@ class Materi extends CI_Controller
             $data['baca_total'] = 0;
         }
 
-        // return $this->output
-        //      ->set_content_type('application/json')
-        //      ->set_status_header(500)
-        //      ->set_output(json_encode($data));
+//         return $this->output
+//              ->set_content_type('application/json')
+//              ->set_status_header(500)
+//              ->set_output(json_encode($data));
 
 
         $this->load->view('pg_user/materi_pokok', $data);

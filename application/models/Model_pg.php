@@ -961,6 +961,7 @@ function ganti_password($idlogin, $newpassword){
         $this->db->from('log_baca');
         $this->db->join('sub_materi', 'sub_materi.id_sub_materi = log_baca.sub_materi_id');
         $this->db->join('materi_pokok', 'sub_materi.materi_pokok_id = materi_pokok.id_materi_pokok');
+        $this->db->group_by('log_baca.sub_materi_id');
         $this->db->where('id_siswa', $id);
         if($id_sub != ''){
         	$this->db->where('sub_materi_id', $id_sub);
