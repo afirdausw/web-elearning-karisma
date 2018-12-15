@@ -1,10 +1,10 @@
 <?php include("header.php"); ?>
 
 <style>
-	#myCarousel{
+	#carouselAchievement{
 		background:white;
 	}
-	#myCarousel ol.carousel-indicators{
+	#carouselAchievement ol.carousel-indicators{
 		position: absolute;
     top: -3rem;
 	}
@@ -32,9 +32,31 @@
 		flex-direction: column;
 	}
 
-	#myCarousel .panel-default{
+	#carouselAchievement .panel-default{
 		box-shadow: none;
 		border:none;
+	}
+
+	/*
+	Text Middle Line
+	*/
+	.group { 
+		display: table;
+		width: 50%;
+		margin: 0 auto;
+	} 
+	.item {
+		display: table-cell;
+	}
+	.text { 
+		white-space: nowrap;
+		width: 1%;
+		padding: 0 10px;
+	}
+	.line {
+		border-bottom: 1px solid #A5A5A5;
+		position: relative;
+		top: -.5em;
 	}
 </style>
 <section class="banner-home">
@@ -61,7 +83,7 @@
             <h2>Lihat semua konten di Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
             <div class="row">
                 <div class="w-75 mx-auto">
-									<div id="myCarousel" class="carousel slide" data-ride="carousel" style="border:2px solid black;">                      
+									<div id="carouselAchievement" class="carousel slide" data-ride="carousel">                      
 										<!-- Indicators -->
 										<ol class="carousel-indicators my-0">
                     <?php
@@ -83,7 +105,7 @@
 										);
                     foreach ($prestasi as $key=>$value) {
                         ?>
-														<li data-target="#myCarousel" data-slide-to="<?=$key?>" class="<?=($key==0?"active":"")?>"></li>
+														<li data-target="#carouselAchievement" data-slide-to="<?=$key?>" class="<?=($key==0?"active":"")?>"></li>
                     <?php } ?>
 										</ol>
 										<!-- Wrapper for slides -->
@@ -109,6 +131,91 @@
 											<?php } ?>
 										</div>
 									</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container home-materi-list">
+        <h1>Kenapa Blended LEARNING I-KARISMAX Dapat Membantu Anda?</h1>
+        <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
+        <div class="row">
+					<?php
+					 $alasan = array(
+						0 => [
+							"title" => "Instruktur",
+							"icon" => "http://lorempixel.com/500/500/technics/",
+							"detail" => "Instruktur SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
+						],
+						1 => [
+							"title" => "Materi",
+							"icon" => "http://lorempixel.com/500/500/nightlife/",
+							"detail" => "Materi SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
+						],
+						2 => [
+							"title" => "Sertifikat",
+							"icon" => "http://lorempixel.com/500/500/sports/",
+							"detail" => "Sertifikat SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
+						],
+					);
+					$colBagi = 12/count($alasan);
+
+					foreach($alasan as $key=>$val){
+					?>
+						<div class="col-xs-<?=$colBagi?> col-md-<?=$colBagi?>">
+							<div class="p-5">
+								<img src="<?="{$val['icon']}"?>" alt="<?="{$val['title']}"?>" class="img-responsive" style="border-radius:100%;">
+							</div>
+							<h2 class="my-2"><b><?="{$val['title']}"?></b></h2>
+							<p class="text-gray-3 m-0 text-center"><?="{$val['detail']}"?></p>
+						</div>
+					<?php } ?>         
+        </div>
+				<div class="clearfix"></div>
+				<div class="col-md-12 font-italic text-center">
+					<div class="row">
+						<div class="group">
+							<div class="item line"></div>
+								<div class="item text">Bedanya:</div>
+							<div class="item line"></div>
+						</div>
+					</div>
+					<div class="row text-grey-2 font-weight-bold">
+						"Anda bisa belajar darimana saja dengan harga 80% Lebih Efisien > Hanya 1 Harga untuk Puluhan Paket Kursus"
+					</div>
+				</div>   
+    </div>
+
+</section>
+
+<section>
+    <div class="section-qoutes">
+        <div class="container">
+            <h1>Apa kata mereka tentang Karisma Academy?</h1>
+            <h2>Dengarkan pengalaman mereka belajar online dengan Karisma Academy</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <?php
+                    foreach ($testimoni as $testi) {
+                        ?>
+                        ?>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <a href="#">
+                                    <div class="card-header"
+                                         style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg1.png'); ?>)">
+                                        <span><?= $testi->id_siswa ?></span>
+                                    </div>
+                                    <span class="card-profile">S</span>
+                                    <div class="card-text">
+                                        <p>“<?= $testi->testimoni ?>”</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -266,9 +373,8 @@
 				
 
 <script>
-		$(function() {
-			
-			$('.item > div').matchHeight();
+		$(function() {			
+			$('#carouselAchievement .item > div').matchHeight();
 		});
     var base_url = "<?= base_url() ?>";
     // init bootpag
