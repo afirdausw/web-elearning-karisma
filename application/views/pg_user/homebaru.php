@@ -90,17 +90,17 @@
                     $prestasi = array(
 											0 => [
 												"title" => "Coba0",
-												"icon" => "http://lorempixel.com/g/50/50/technics/",
+												"icon" => "https://picsum.photos/50/50/?random&gravity=center",
 												"detail" => "StartUp Digital Lenovo Do Network1",
 												"penyelenggara" => "Lenovo0",
-												"img" => "http://lorempixel.com/g/275/165/technics/E-Learning%20Karisma/",
+												"img" => "https://picsum.photos/275/165/?random&gravity=center",
 											],
 											1 => [
 												"title" => "Coba1",
-												"icon" => "http://lorempixel.com/g/50/50/technics/",
+												"icon" => "https://picsum.photos/50/50/?random&gravity=center",
 												"detail" => "StartUp Digital Lenovo Do Network2",
 												"penyelenggara" => "Lenovo1",
-												"img" => "http://lorempixel.com/g/275/165/technics/E-Learning%20Karisma/",
+												"img" => "https://picsum.photos/275/165/?random&gravity=center",
 											],
 										);
                     foreach ($prestasi as $key=>$value) {
@@ -146,17 +146,17 @@
 					 $alasan = array(
 						0 => [
 							"title" => "Instruktur",
-							"icon" => "http://lorempixel.com/500/500/technics/",
+							"icon" => "https://picsum.photos/500/500/?random&gravity=center",
 							"detail" => "Instruktur SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
 						],
 						1 => [
 							"title" => "Materi",
-							"icon" => "http://lorempixel.com/500/500/nightlife/",
+							"icon" => "https://picsum.photos/500/500/?random&gravity=center",
 							"detail" => "Materi SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
 						],
 						2 => [
 							"title" => "Sertifikat",
-							"icon" => "http://lorempixel.com/500/500/sports/",
+							"icon" => "https://picsum.photos/500/500/?random&gravity=center",
 							"detail" => "Sertifikat SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
 						],
 					);
@@ -193,31 +193,24 @@
 <section>
     <div class="section-qoutes">
         <div class="container">
-            <h1>Apa kata mereka tentang Karisma Academy?</h1>
-            <h2>Dengarkan pengalaman mereka belajar online dengan Karisma Academy</h2>
+            <h1>Apa itu Live Instruktur?</h1>
+            <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
             <div class="row">
-                <div class="col-md-12">
-                    <?php
-                    foreach ($testimoni as $testi) {
-                        ?>
-                        ?>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <a href="#">
-                                    <div class="card-header"
-                                         style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg1.png'); ?>)">
-                                        <span><?= $testi->id_siswa ?></span>
-                                    </div>
-                                    <span class="card-profile">S</span>
-                                    <div class="card-text">
-                                        <p>“<?= $testi->testimoni ?>”</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    <?php } ?>
+                <div class="col-md-offset-1 col-md-10">
+                   <!-- 16:9 aspect ratio -->
+									<div class="embed-responsive embed-responsive-16by9 mx-auto">
+										<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/95q_npbZQ5o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="embed-responsive-item"></iframe>
+									</div>
                 </div>
             </div>
+						<div class="row">
+							<hr class="col-md-offset-1 col-md-10" style="color:inherit;">
+						</div>
+						<div class="row">
+							<p class="col-md-offset-1 col-md-10 font-italic text-justify">
+								Akan memastikan anda mudah menguasai Skill yang anda pelajari. Kapanpun anda bertanya pada masa Belajar, Instruktur akan menjawab secara realtime. Jika ada masalah dalam proses praktek anda, Instruktur akan LIVE mengkoreksi kesalahan Anda. Anda pun dapat berkomunitas dan berkomunikasi dengan murid dan alumni Karisma Academy. Instruktur LIVE Selasa s/d Jumat, pukul 13:00 s/d 21:00, Sabtu - Minggu Pukul 10:00 s/d 17:00.
+							</p>
+						</div>
         </div>
     </div>
 </section>
