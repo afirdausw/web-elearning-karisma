@@ -8,6 +8,15 @@
 		position: absolute;
     top: -3rem;
 	}
+	.section-abu .carousel ol.carousel-indicators li{
+		border:none;
+	}
+	.section-abu .carousel ol.carousel-indicators li.active{
+		background:#aaa;
+	}
+	.section-abu .carousel ol.carousel-indicators li:not(.active){
+		background:#ddd;
+	}
 
 	.vertical-middle{
 		display: -webkit-box;
@@ -36,6 +45,7 @@
 		box-shadow: none;
 		border:none;
 	}
+	
 
 	/*
 	Text Middle Line
@@ -77,13 +87,13 @@
 
 
 <section>
-    <div class="section-qoutes">
+    <div class="section-abu">
         <div class="container">
             <h1>Prestasi dalam Bidang Informasi dan Teknologi</h1>
             <h2>Lihat semua konten di Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
             <div class="row">
                 <div class="w-75 mx-auto">
-									<div id="carouselAchievement" class="carousel slide" data-ride="carousel">                      
+									<div id="carouselAchievement" class="carousel slide" data-ride="carousel">
 										<!-- Indicators -->
 										<ol class="carousel-indicators my-0">
                     <?php
@@ -93,14 +103,14 @@
 												"icon" => "https://picsum.photos/50/50/?random&gravity=center",
 												"detail" => "StartUp Digital Lenovo Do Network1",
 												"penyelenggara" => "Lenovo0",
-												"img" => "https://picsum.photos/275/165/?random&gravity=center",
+												"img" => "https://picsum.photos/580/380/?random&gravity=center",
 											],
 											1 => [
 												"title" => "Coba1",
-												"icon" => "https://picsum.photos/50/50/?random&gravity=center",
+												"icon" => "https://picsum.photos/50/50/?gravity=center",
 												"detail" => "StartUp Digital Lenovo Do Network2",
 												"penyelenggara" => "Lenovo1",
-												"img" => "https://picsum.photos/275/165/?random&gravity=center",
+												"img" => "https://picsum.photos/580/380/?gravity=center",
 											],
 										);
                     foreach ($prestasi as $key=>$value) {
@@ -191,7 +201,7 @@
 </section>
 
 <section>
-    <div class="section-qoutes">
+    <div class="section-abu">
         <div class="container">
             <h1>Apa itu Live Instruktur?</h1>
             <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
@@ -204,7 +214,7 @@
                 </div>
             </div>
 						<div class="row">
-							<hr class="col-md-offset-1 col-md-10" style="color:inherit;">
+							<hr class="col-md-offset-1 col-md-10" style="border-color:inherit;">
 						</div>
 						<div class="row">
 							<p class="col-md-offset-1 col-md-10 font-italic text-justify">
@@ -262,7 +272,7 @@
                                 <div class="w-100 font-size-h1 mt-5 container-fluid">
                                     <div class="row m-0">
                                         <div class="col-md-2 col-sm-6 p-0">
-                                            <div class="glyphicon glyphicon-heart pull-left py-3"></div>
+                                            <div class="glyphicon glyphicon-heart pull-left py-3" title="Tambah Kursus '<?=$value->nama_mapel?>' ke WISHLIST"></div>
                                         </div>                                        
                                         <div class="col-md-3 col-sm-6 p-0">
                                             <?php
@@ -308,7 +318,7 @@
 
 
 <section>
-    <div class="section-qoutes">
+    <div class="section-abu">
         <div class="container">
             <h1>Apa kata mereka tentang Karisma Academy?</h1>
             <h2>Dengarkan pengalaman mereka belajar online dengan Karisma Academy</h2>
@@ -316,7 +326,6 @@
                 <div class="col-md-12">
                     <?php
                     foreach ($testimoni as $testi) {
-                        ?>
                         ?>
                         <div class="col-md-4">
                             <div class="card">
