@@ -31,6 +31,7 @@ a {
 h1 {
 	color: rgba(255,255,255,0.3);
 	font-weight: normal;
+	margin-top: 2%;
 }
 
 code {
@@ -80,6 +81,7 @@ h3{
 <!-- include APPPATH.'/views/pg_user/header.php'; -->
 	<div class="error-404">
 		<div id="container">
+			<img src="<?=config_item('base_url'); ?>assets/img/404_robot.png" alt="robot.png" width="25%">
 			<h1>404</h1>
 			<h3>Halaman Tidak Ditemukan</h3>
 			<a href="javascript:history.back()">Kembali ke halaman sebelumnya</a> <span>atau</span>
