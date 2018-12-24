@@ -24,6 +24,32 @@
 		border:none;
 	}
 
+    
+	.vertical-middle-slide{
+		display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
+	.vertical-middle-slide>*{		
+		display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+		flex-direction: column;
+	}
+
+
+
 	/*
 	Text Middle Line
 	*/
@@ -104,7 +130,7 @@
 												<div class="col-md-8 col-sm-12 p-0">
 													<img src="<?="{$value['img']}"?>" alt="<?="{$value['title']}"?>" class="img-responsive w-100">
 												</div>
-												<div class="col-md-4 col-sm-12 py-5 text-center vertical-middle">
+												<div class="col-md-4 col-sm-12 py-5 text-center vertical-middle-slide">
 													<div>	
 														<img src="<?="{$value['icon']}"?>" alt="<?="{$value['title']}"?>">
 														<h3 class="clearfix"><?="{$value['title']}"?></h3>
