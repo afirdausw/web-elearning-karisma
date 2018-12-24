@@ -18,34 +18,11 @@
 		background:#ddd;
 	}
 
-	.vertical-middle{
-		display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-		align-items: center;
-		justify-content: center;
-	}
-	.vertical-middle>*{		
-		display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-		flex-direction: column;
-	}
 
 	#carouselAchievement .panel-default{
 		box-shadow: none;
 		border:none;
 	}
-	
 
 	/*
 	Text Middle Line
@@ -93,9 +70,9 @@
             <h2>Lihat semua konten di Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
             <div class="row">
                 <div class="w-75 mx-auto">
-									<div id="carouselAchievement" class="carousel slide" data-ride="carousel">
-										<!-- Indicators -->
-										<ol class="carousel-indicators my-0">
+                    <div id="carouselAchievement" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators my-0">
                     <?php
                     $prestasi = array(
 											0 => [
@@ -200,7 +177,7 @@
 
 </section>
 
-<section>
+<section class="live-instruktur">
     <div class="section-abu">
         <div class="container">
             <h1>Apa itu Live Instruktur?</h1>
@@ -234,7 +211,7 @@
             </div>
         </div>
         <div class="row" id="home_list_materi"> <!-- BARIS KE 1 -->
-						<?php
+            <?php
             foreach ($mapel as $value) { ?>
                 <div class="col-xs-12 col-sm-6 col-md-4 pr-3 pl-3">
                     <div class="thumbnail materi-lainnya">
@@ -374,16 +351,15 @@
 				
 				
 
-<script>
-		$(function() {			
-			$('#carouselAchievement .item > div').matchHeight();
-		});
-    var base_url = "<?= base_url() ?>";
+<script type="text/javascript">
+    $(function() {			
+        $("#carouselAchievement .item > div").matchHeight();
+    });
     // init bootpag
-    $('#home_materi_pagination_top,#home_materi_pagination_bot').bootpag({
-        total: <?=ceil($jumlah_mapel / $limit);?>,
+    $("#home_materi_pagination_top,#home_materi_pagination_bot").bootpag({
+        total: "<?=ceil($jumlah_mapel / $limit);?>",
         page: 1,
-        maxVisible: <?=$limit?>,
+        maxVisible: "<?=$limit;?>",
         leaps: true,
         firstLastUse: true,
         first: '←',
@@ -396,8 +372,8 @@
         lastClass: 'last',
         firstClass: 'first'
     }).on("page", function (event, /* page number here */ num) {
-        var url = base_url + "home/ajax_load_listmapel/<?= $limit ?>/" + num;
-        bnner = $("section.banner-home");
+        var url = "<?= base_url() ?>" + "home/ajax_load_listmapel/<?= $limit ?>/" + num;
+        bnner = $("section.live-instruktur");
         lst = $("#home_list_materi");
         nav = $("nav.navbar");
         $("html, body").animate({scrollTop: bnner.height() - nav.height()}, "slow");
