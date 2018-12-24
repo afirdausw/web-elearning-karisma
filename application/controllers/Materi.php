@@ -70,7 +70,11 @@ class Materi extends CI_Controller
             $cek = $this->Model_pg->get_log_baca($idsiswa, '', $id_materi);
             $siswa = $this->Model_pg->get_data_user($idsiswa);
             //DEBUG PREMIUM //DEBUG PREMIUM
-            $data["siswa_status"] = 0;
+            if($siswa->id_premium<1){
+                $data["siswa_status"] = 0;
+            }else{
+                $data["siswa_status"] = $siswa->id_premium;
+            }
             //DEBUG PREMIUM //DEBUG PREMIUM
 
             $data['siswa'] = $siswa;

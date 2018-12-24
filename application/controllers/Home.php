@@ -37,7 +37,7 @@ class Home extends CI_Controller
     public function index()
     {
         $start = 0;
-        $limit = 6;
+        $limit = 18;
         $start -= 1;
         if ($start < 0) $start = 0;
         $start *= $limit;

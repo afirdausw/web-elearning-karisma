@@ -50,7 +50,7 @@ if ($this->session->userdata("siswa_logged_in") AND $siswa_status) {
     $jumlahPretest = 1;
 }
 //jika materi ada
-if (isset($key->id_materi_pokok)) {
+if (isset($materi[0]->id_materi_pokok)) {
     //jika jumlah pretest lebih dari 1 / reset dari status premium
     if ($jumlahPretest > 0) {
         //jika telah dibaca
