@@ -50,7 +50,7 @@ if ($this->session->userdata("siswa_logged_in") AND $siswa_status) {
     $jumlahPretest = 1;
 }
 //jika materi ada
-if (isset($key->id_materi_pokok)) {
+if (isset($materi[0]->id_materi_pokok)) {
     //jika jumlah pretest lebih dari 1 / reset dari status premium
     if ($jumlahPretest > 0) {
         //jika telah dibaca
@@ -97,12 +97,13 @@ if (isset($key->id_materi_pokok)) {
                                     Rp. <?= money($data->harga) ?></h4>
                             </div>
                             <div class="col-md-4 ml-0">
-                                <a class="mb-3" href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Coba Pretest</a>
+                                <a class="mb-3" href="<?= base_url("konten/mapel/" . $key->mapel_id) ?>">Coba
+                                    Pretest</a>
                                 <?php
                                 if ((isset($_SESSION['siswa_logged_in']) && $_SESSION['siswa_logged_in'])) {
                                     $mapel = $this->Model_Cart->getCartByIdSiswaIdMapel($_SESSION['id_siswa'], $key->mapel_id);
                                     if (count($mapel) <= 0) { ?>
-                                        <a href="javascript:tambahCart(<?= $key->mapel_id ?>);">Mulai Belajar</a>
+                                        <a href="<?= base_url('keranjang/add/' . $key->mapel_id) ?>">Mulai Belajar</a>
                                     <?php } else { ?>
                                         <a href="#">Go To Cart</a>
                                     <?php } ?>

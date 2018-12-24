@@ -1,33 +1,37 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>404 Halaman Tidak Ditemukan - LPI Hidayatullah Semarang</title>
+<title>Halaman Tidak Ditemukan - Karisma Academy</title>
+<link rel="shortcut icon" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico">
+<link rel="icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico')">
+
 <style type="text/css">
 
 ::selection { background-color: rgba(255, 255, 255, 0.2); color: white; }
 ::-moz-selection { background-color: rgba(255, 255, 255, 0.2); color: white; }
 
 body {
-	background:url(http://belajar.lpi-hidayatullah.or.id/assets/dashboard/images/bg-main-banner.png) #1bbc9b center fixed;
+	background:url("assets/img/bg-pattern.png") #10171D center fixed;
 	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
+	font: 13px/25px normal Helvetica, Arial, sans-serif;
+	color: white;
 }
 
 a {
-	color: #003399;
-	background-color: transparent;
+	color: #F3771B;
 	font-weight: normal;
 	text-decoration:none;
 }
 
 h1 {
-	color: #444;
-	background-color: transparent;
+	color: rgba(255,255,255,0.3);
 	font-weight: normal;
+	margin-top: 2%;
 }
 
 code {
@@ -64,15 +68,24 @@ h3{
   align-items: center;
 }
 
+@media screen and (max-width:640px){
+	span{
+		display:block;
+	}
+}
+
 </style>
 </head>
 <body>
+
+<!-- include APPPATH.'/views/pg_user/header.php'; -->
 	<div class="error-404">
 		<div id="container">
+			<img src="<?=config_item('base_url'); ?>assets/img/404_robot.png" alt="robot.png" width="25%">
 			<h1>404</h1>
 			<h3>Halaman Tidak Ditemukan</h3>
-			<a href="javascript:history.back()">Kembali ke halaman sebelumnya</a> atau 
-			<a href="http://belajar.lpi-hidayatullah.or.id">Halaman utama</a>
+			<a href="javascript:history.back()">Kembali ke halaman sebelumnya</a> <span>atau</span>
+			<a href="<?=config_item('base_url'); ?>">Halaman utama</a>
 		</div>
 	</div>
 	

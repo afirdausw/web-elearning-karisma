@@ -70,7 +70,11 @@ class Materi extends CI_Controller
             $cek = $this->Model_pg->get_log_baca($idsiswa, '', $id_materi);
             $siswa = $this->Model_pg->get_data_user($idsiswa);
             //DEBUG PREMIUM //DEBUG PREMIUM
-            $data["siswa_status"] = 0;
+            if($siswa->id_premium<1){
+                $data["siswa_status"] = 0;
+            }else{
+                $data["siswa_status"] = $siswa->id_premium;
+            }
             //DEBUG PREMIUM //DEBUG PREMIUM
 
             $data['siswa'] = $siswa;
@@ -80,10 +84,10 @@ class Materi extends CI_Controller
             $data['baca_total'] = 0;
         }
 
-        // return $this->output
-        //      ->set_content_type('application/json')
-        //      ->set_status_header(500)
-        //      ->set_output(json_encode($data));
+//         return $this->output
+//              ->set_content_type('application/json')
+//              ->set_status_header(500)
+//              ->set_output(json_encode($data));
 
 
         $this->load->view('pg_user/materi_pokok', $data);
