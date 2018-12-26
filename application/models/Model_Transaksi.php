@@ -1,0 +1,55 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: KARISMA ACADEMY
+ * Date: 03/12/2018
+ * Time: 09:28
+ */
+
+class Model_Transaksi extends CI_Model
+{
+
+
+    public function addTransaksi($data)
+    {
+        $result = $this->db->insert('transaksi', $data);
+
+        return $result;
+    }
+
+    public function addDetailTransaksi($data)
+    {
+        $result = $this->db->insert('detail_transaksi', $data);
+
+        return $result;
+    }
+
+    public function getTransaksiById($id)
+    {
+        $this->db->where('id_transaksi', $id);
+        $result = $this->db->get('transaksi');
+
+        return $result->row();
+    }
+
+    public function updateTransaksiById($id, $data)
+    {
+        $this->db->where('id_transaksi', $id);
+        $result = $this->db->update('transaksi', $data);
+
+        return $result;
+    }
+
+    public function getDetailTransaksiById($id)
+    {
+        $this->db->where('transaksi_id', $id);
+        $result = $this->db
+            ->join('mata_pelajaran', 'mata_pelajaran.id_mapel = detail_transaksi.mapel_id')
+            ->join('instruktur_mapel', 'mata_pelajaran.id_mapel = instruktur_mapel.id_mapel')
+            ->join('instruktur', 'instruktur_mapel.id_instruktur = instruktur.id_instruktur')
+            ->get('detail_transaksi');
+
+        return $result->result();
+    }
+
+}
