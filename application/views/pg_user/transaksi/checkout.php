@@ -321,7 +321,7 @@ $this->load->view('pg_user/header');
                                 <?php if ($transaksi->status == 1 || $transaksi->status == 0) {
                                     $gambar = base_url() . "/assets/img/no-image.jpg";
                                 } else {
-                                    $gambar = base_url() . "/assets/uploads/bukti_transfer/".$transaksi->bukti_pembayaran;
+                                    $gambar = base_url() . "/assets/uploads/bukti_transfer/" . $transaksi->bukti_pembayaran;
                                 } ?>
                                 <tr>
                                     <td align="right" colspan="2">

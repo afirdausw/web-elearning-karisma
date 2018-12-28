@@ -28,6 +28,19 @@ class Konfirmasi extends CI_Controller
 
     }
 
+    function history_transaksi()
+    {
+        $data = [
+            'navbar_links'     => $this->Model_pg->get_navbar_links(),
+            'video_demo'       => $this->Model_pg->get_video_demo(null),
+            'judul_tab'        => "History Transaksi",
+            "transaksi"        => $this->Model_Transaksi->getTransaksiByIdSiswa($_SESSION['id_siswa']),
+        ];
+
+
+        return $this->load->view('pg_user/transaksi/history', $data);
+    }
+
     function pembayaran($id_pembayaran)
     {
         $this->rules_pembayaran();

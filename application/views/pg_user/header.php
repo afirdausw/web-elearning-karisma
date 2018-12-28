@@ -152,6 +152,7 @@ if ($this->uri->segment(1) != '') { ?>
                                     <span class="arrow-down ti-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="<?= base_url('profil') ?>">Profil</a></li>
+                                    <li><a href="<?= base_url('history-transaksi') ?>">History Transaksi</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
                                 </ul>

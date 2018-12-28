@@ -24,6 +24,20 @@ class Model_Transaksi extends CI_Model
         return $result;
     }
 
+    public function getTransaksiByIdSiswa($id)
+    {
+        $this->db->where('siswa_id', $id);
+        $result = $this->db
+            ->join('detail_transaksi', 'transaksi.id_transaksi = detail_transaksi.transaksi_id')
+            ->join('mata_pelajaran', 'mata_pelajaran.id_mapel = detail_transaksi.mapel_id')
+            ->join('instruktur_mapel', 'mata_pelajaran.id_mapel = instruktur_mapel.id_mapel')
+            ->join('instruktur', 'instruktur_mapel.id_instruktur = instruktur.id_instruktur')
+            ->group_by('transaksi.id_transaksi')
+            ->get('transaksi');
+
+        return $result->result();
+    }
+
     public function getTransaksiById($id)
     {
         $this->db->where('id_transaksi', $id);
