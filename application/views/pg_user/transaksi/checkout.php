@@ -217,9 +217,7 @@ $this->load->view('pg_user/header');
                                 ?>
                                 <tr>
                                     <td class="text-center">
-                                        <img class="img-responsive w-75 mx-auto"
-                                             src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>"
-                                             alt="<?= $value->nama_mapel ?>">
+                                        <div class="mx-auto"style="width: 200px;height: 200px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?=$value->gambar_mapel?>') center center / 400px no-repeat;"></div>
                                     </td>
                                     <td>
                                         <button class="btn btn-primary p-2">
