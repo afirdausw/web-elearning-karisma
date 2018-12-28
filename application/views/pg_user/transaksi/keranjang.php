@@ -151,7 +151,7 @@ $this->load->view('pg_user/header');
                             $total += $kodeUnik; ?>
                         </table>
                     </div>
-                    <div class="panel-footer px-10">
+                    <div class="panel-footer px-10 table-responsive">
                         <table class="table mx-0 my-3">
                             <colgroup>
                                 <col class="col-md-4">
