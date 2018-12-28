@@ -73,6 +73,22 @@ $this->load->view('pg_user/header');
     .cara-bayar .panel-footer {
         background: white;
     }
+    
+    .wrapper-img {
+        display: inline-block;
+        position: relative;
+    }
+
+    .wrapper-img > .circle-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        margin-top: -50%;
+        left: 50%;
+        margin-left: -50%;
+        border-radius: 100%;
+    }
 
 </style>
 <section class="wrap-deskripsi"> <!-- konten -->
@@ -105,9 +121,7 @@ $this->load->view('pg_user/header');
                                 ?>
                                 <tr>
                                     <td class="text-center">
-                                        <img class="img-responsive w-75 mx-auto"
-                                             src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>"
-                                             alt="<?= $value->nama_mapel ?>">
+                                        <div class="mx-auto"style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
                                     </td>
                                     <td>
                                         <button class="btn btn-primary p-2">
