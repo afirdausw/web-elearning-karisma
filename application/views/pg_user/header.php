@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?= ((isset($judul_tab) AND $judul_tab != '') ? $judul_tab . " - " : "") ?>Karisma Academy - Sertifikasi
+    <title>Fixing <?= ((isset($judul_tab) AND $judul_tab != '') ? $judul_tab . " - " : "") ?>Karisma Academy - Sertifikasi
         Online</title>
 
     <meta charset="utf-8">
