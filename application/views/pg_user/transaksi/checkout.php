@@ -317,8 +317,9 @@ $this->load->view('pg_user/header');
 					<form method="POST" action="<?= base_url('konfirmasi/pembayaran/' . $transaksi->id_transaksi) ?>" enctype="multipart/form-data">
 						<div class="modal-body px-5">
 							<div class="form-group">
-								<select class="form-control" name="data_pilih" required>
-									<option value="" disabled selected hidden>Data Baru</option>
+								<select class="form-control" name="data_pilih">
+									<option value="Data Baru" disabled selected hidden>Data Baru</option>
+									<option value="Data Lama">Data Baru</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -333,6 +334,12 @@ $this->load->view('pg_user/header');
 								<label for="bank_transfer">Bank Transfer</label>
 								<select class="form-control" name="bank_transfer" required>
 									<option value="" disabled selected hidden>Pilih</option>
+									<?php
+									foreach ($bank as $key => $val) { ?>
+										<option value="<?=strtoupper($key);?>"><?=strtoupper($key)?></option>
+									<?php
+									}
+									?>
 								</select>
 							</div>
 							<div class="form-group">
