@@ -307,7 +307,7 @@ $this->load->view('pg_user/header');
 
 		<!-- Modal -->
 		<!-- PROGRESS -->
-		<div class="modal fade in" id="modalCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:block;">
+		<div class="modal fade" id="modalCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog  mt-5" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
