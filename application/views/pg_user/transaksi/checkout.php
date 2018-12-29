@@ -211,10 +211,10 @@ $this->load->view('pg_user/header');
 						</div>
 					</div>
 					<div class="panel-footer px-10 text-md-right text-sm-center">
-			  <span class="text-gray-3">
+				<span class="text-gray-3">
 <!--                Transaksi otomatis akan dicancel pada <span style="color:#C9302C;">-->
-				  <? //= $expired ?><!--</span>-->
-			  </span>
+					<? //= $expired ?><!--</span>-->
+				</span>
 						<button class="btn btn-primary btn-lg btn-sm-block" data-toggle="modal" data-target="#modalCheckout"
 						style="border-radius:0;">Upload Bukti Pembayaran
 						</button>
@@ -307,60 +307,79 @@ $this->load->view('pg_user/header');
 
 		<!-- Modal -->
 		<!-- PROGRESS -->
-		<div class="modal fade" id="modalCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade in" id="modalCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display:block;">
 			<div class="modal-dialog  mt-5" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="mx-4 close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title mx-2" id="myModalLabel">Upload Bukti Pembayaran</h4>
+						<h4 class="modal-title mx-2" id="myModalLabel">Konfirmasi Pembayaran</h4>
 					</div>
-					<form method="POST" action="<?= base_url('konfirmasi/pembayaran/' . $transaksi->id_transaksi) ?>"
-						  enctype="multipart/form-data">
-						<div class="modal-body">
-							
-							<table class="table borderless">
-								<tr>
-									<th>Atas Nama :</th>
-									<td><input <?= $transaksi->status == 2 ? "readonly" : "" ?> class="form-control"
-									type="text"
-									name="atas_nama"
-									value="<?= $transaksi->atas_nama ?>">
-									</td>
-								</tr>
-								<tr>
-									<th>Total Yang Di Transfer :</th>
-									<td><input <?= $transaksi->status == 2 ? "readonly" : "" ?> class="form-control"type="text"
-									name="total_transfer"
-									value="<?= $transaksi->total_transfer ?>">
-									</td>
-								</tr>
-								<tr>
-									<th>Bukti Transfer :</th>
-									<td><input <?= $transaksi->status == 2 ? "disabled" : "" ?> type="file"
-									name="bukti_pembayaran">
-									</td>
-								</tr>
-								<?php if ($transaksi->status == 1 || $transaksi->status == 0) {
-									$gambar = base_url() . "/assets/img/no-image.jpg";
-								} else {
-									$gambar = base_url() . "/assets/uploads/bukti_transfer/" . $transaksi->bukti_pembayaran;
-								} ?>
-								<tr>
-									<td align="right" colspan="2">
-										<img src="<?= $gambar ?>" class="w-50"/>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<?php
-						if ($transaksi->status == 0) {
-							?>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-								<button type="submit" class="btn btn-primary">Kirim</button>
-
+					<form method="POST" action="<?= base_url('konfirmasi/pembayaran/' . $transaksi->id_transaksi) ?>" enctype="multipart/form-data">
+						<div class="modal-body px-5">
+							<div class="form-group">
+								<select class="form-control" name="data_pilih" required>
+									<option value="" disabled selected hidden>Data Baru</option>
+								</select>
 							</div>
-						<?php } ?>
+							<div class="form-group">
+								<label for="no_rekening">No. Rekening</label>
+								<input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="no_rekening" value="<?= $transaksi->atas_nama ?>" class="form-control" id="no_rekening" placeholder="00000000">
+							</div>
+							<div class="form-group">
+								<label for="atas_nama">Nama Pemilik Rekening</label>
+								<input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="atas_nama" value="<?= $transaksi->atas_nama ?>" class="form-control" id="atas_nama" placeholder="Nama">
+							</div>
+							<div class="form-group">
+								<label for="bank_transfer">Bank Transfer</label>
+								<select class="form-control" name="bank_transfer" required>
+									<option value="" disabled selected hidden>Pilih</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="bank_tujuan">Bank Tujuan</label>
+								<select class="form-control" name="bank_tujuan" required>
+									<?php
+									foreach ($bank as $key => $val) { ?>
+										<option value="<?=strtoupper($key);?>"><?=strtoupper($key)." a/n ".$val['atasNama'];?></option>
+									<?php
+									}
+									?>
+								</select>
+							</div>
+							<div class="form-group">									
+								<label for="total_transfer">Total Yang Di Transfer</label>
+								  <div class="input-group">
+    								<span class="input-group-addon">Rp </span>
+										<input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="number" name="total_transfer" value="<?= $transaksi->total_transfer ?>" class="form-control" placeholder="0000">
+									</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-6 col-sm-12 ">
+								<label for="bukti_pembayaran">Bukti Transfer</label>
+										<input <?= $transaksi->status == 2 ? "disabled" : "" ?> type="file"
+									name="bukti_pembayaran" accept="image/*">
+										<p class="help-block">Bukti transfer berupa gambar</p>
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<?php if ($transaksi->status == 1 || $transaksi->status == 0) {
+										$gambar = base_url() . "/assets/img/no-image.jpg";
+									} else {
+										$gambar = base_url() . "/assets/uploads/bukti_transfer/" . $transaksi->bukti_pembayaran; ?>
+										<a href="<?= $gambar ?>" class="col-md-6">Lihat Gambar</a>
+										<?php
+									} ?>
+								</div>
+								<?php
+								if ($transaksi->status == 0) {
+									?>
+									<div class="col-md-offset-2 col-sm-12 col-md-4"> 
+										<button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Tutup</button><br>
+										<button type="submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
+									</div>
+								<?php } ?>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
