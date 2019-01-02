@@ -4,7 +4,7 @@ if (isset($kelas->alias_kelas)) {
     $judul_tab .= $kelas->alias_kelas;
 }
 
-include('header.php');
+include(APPPATH.'views/pg_user/inc/header.php');
 ?>
 <section class="banner-top" style="background: #90BB35;"> <!-- BANNER-->
     <div class="container">
@@ -88,6 +88,6 @@ include('header.php');
     </div>
 </section> <!-- End of konten-->
 
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 </body>
 </html>

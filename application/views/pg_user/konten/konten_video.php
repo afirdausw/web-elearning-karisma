@@ -1,6 +1,6 @@
 <?php
 $judul_tab = $sub_materi->materi_pokok_id.".".$sub_materi->urutan_materi." ".$sub_materi->nama_sub_materi;
-include('header.php');
+include(APPPATH.'views/pg_user/inc/header.php');
 ?>
 
 <section> <!-- konten-->
@@ -94,6 +94,6 @@ include('header.php');
     </div>
 </section> <!-- End of konten-->
 
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 </body>
 </html>

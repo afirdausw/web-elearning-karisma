@@ -1,7 +1,7 @@
 <?php
 $judul_tab = "Profil Instruktur";
 
-include('header.php');
+include(APPPATH.'views/pg_user/inc/header.php');
 ?>
 
 <section class="banner-top banner-materi banner-profil darker"> <!-- konten Judul -->
@@ -87,6 +87,6 @@ include('header.php');
 	</div>
 </section> <!-- End of konten-->
 
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<?php include("header.php"); ?>
+<?php include(APPPATH.'views/pg_user/inc/header.php'); ?>
 
 <section>
     <div class="container">
@@ -53,7 +53,7 @@
 
 <!-- Footer -->
 <?php // include('modal/modal_lupa_password.php'); ?>
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 <!-- /Footer -->
 
 <!-- Javascript -->

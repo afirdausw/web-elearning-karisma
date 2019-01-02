@@ -1,6 +1,6 @@
 <?php
 $judul_tab = "Sign Up";
-include('header.php');
+include(APPPATH.'views/pg_user/inc/header.php');
 ?>
 
 <section>
@@ -57,7 +57,7 @@ include('header.php');
     </div>
 </section>
 
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-validation/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>/assets/js/jquery-validation/additional-methods.min.js"></script>
 <script type="text/javascript">

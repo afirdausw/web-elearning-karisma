@@ -1,7 +1,7 @@
 <?php
 $judul_tab = "Hasil Quiz";
 
-include('header.php');
+include(APPPATH.'views/pg_user/inc/header.php');
 ?>
 <?php if($konten == ""){ ?>
 
@@ -389,7 +389,7 @@ include('header.php');
 
 <?php } ?>
 
-<?php include('footer.php'); ?>
+<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 
 <?php if($konten != ""){ ?>
 <script>
