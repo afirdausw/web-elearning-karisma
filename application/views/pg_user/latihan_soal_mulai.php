@@ -33,7 +33,7 @@
 		<!-- Page Body -->
 		<div class="page-body latihan" style="">
 			<div class="container">
-				<?php include('modal_akses_materi.php'); ?>
+				<?php include('modal/modal_akses_materi.php'); ?>
 				<div class="row">
 					 <div class="content">					
 <!--

@@ -158,7 +158,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div> <!-- end .wrapper -->
 
-<?php include "modal_tambah_sekolah.php"; ?>
 </body>
 
 <!--   Core JS Files   -->

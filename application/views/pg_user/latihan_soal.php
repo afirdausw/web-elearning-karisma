@@ -49,8 +49,7 @@
 				  var hasWebKit = (window.WebKitMediaSource !== null && window.WebKitMediaSource !== undefined),
 					  hasMediaSource = (window.MediaSource !== null && window.MediaSource !== undefined);
 				  return (hasWebKit || hasMediaSource);
-			  }
-			</script>
+			  } </script>
 
 		<style>
 			.video{padding:0;}
@@ -62,9 +61,9 @@
 			<!-- Navbar  -->
 			<?php include('header_latihan.php'); ?>
 		</div>
-		<!-- /Header -->
+		<!-- Header -->
 
-	<?php include "modal_pembahasan.php"; ?>
+	<?php include "modal/modal_pembahasan.php"; ?>
 
 		<!-- Page Body -->
 		<div class="page-body latihan-soal">

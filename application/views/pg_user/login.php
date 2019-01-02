@@ -52,7 +52,7 @@
 </body>
 
 <!-- Footer -->
-<?php // include('modal_lupa_password.php'); ?>
+<?php // include('modal/modal_lupa_password.php'); ?>
 <?php include('footer.php'); ?>
 <!-- /Footer -->
 
