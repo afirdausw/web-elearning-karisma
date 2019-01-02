@@ -7,7 +7,7 @@ include('header.php');
     <div class="container fixed-top">
         <div class="row">
             <!-- Sub Materi Kanan -->
-            <?php include("konten-sidebar.php");?>
+            <?php include("konten_sidebar.php");?>
 
             <?php $isi = $konten; ?>
             <div class="col-lg-8 col-md-7 col-sm-7 materi" style="float: left">

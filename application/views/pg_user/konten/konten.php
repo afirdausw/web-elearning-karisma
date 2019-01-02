@@ -6,7 +6,7 @@ include('header.php');
 <section> <!-- konten-->
     <div class="container fixed-top">
         <div class="row">
-            <?php include("konten-sidebar.php");?>
+            <?php include("konten_sidebar.php");?>
             <div class="col-lg-8 col-md-7 col-sm-7 materi" style="float: left">
                 <!-- WRAP JUDUL MATERI -->
                 <?php $data = $materi ?>

@@ -59,11 +59,11 @@ class Konten extends CI_Controller
 //                ->set_output(json_encode($data));
 
             if ($konten->kategori == '1') {
-                $this->load->view('pg_user/konten', $data);
+                $this->load->view('pg_user/konten/konten', $data);
             } elseif ($konten->kategori == '2') {
-                $this->load->view('pg_user/konten_video', $data);
+                $this->load->view('pg_user/konten/konten_video', $data);
             } elseif ($konten->kategori == '3') {
-                $this->load->view('pg_user/konten_soal', $data);
+                $this->load->view('pg_user/konten/konten_soal', $data);
             }
         } else { ?>
             <div style="text-align:center; font-size:21px; font-weight:bolder; font-family:'Segoe UI'">Konten belum
@@ -248,7 +248,7 @@ class Konten extends CI_Controller
         //            ->set_output(json_encode($data));
         
 
-        $this->load->view('pg_user/konten', $data);
+        $this->load->view('pg_user/konten/konten', $data);
     }
 
     public function detail_video($id_sub_materi)
@@ -326,7 +326,7 @@ class Konten extends CI_Controller
             'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
             'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
         );
-        $this->load->view('pg_user/konten_video', $data);
+        $this->load->view('pg_user/konten/konten_video', $data);
     }
 
     public function detail_soal($id_sub_materi)
@@ -510,7 +510,7 @@ class Konten extends CI_Controller
         );
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
         $data["instruktur"] = $instruktur;
-        $this->load->view('pg_user/konten_soal', $data);
+        $this->load->view('pg_user/konten/konten_soal', $data);
     }
 
     public function start_soal($id_sub_materi)
