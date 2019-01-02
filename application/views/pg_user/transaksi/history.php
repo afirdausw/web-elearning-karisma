@@ -9,8 +9,8 @@ $this->load->view('pg_user/header');
 <!-- //sementara -->
 <style>
 	.row .vertical-align {
-    display: flex;
-    align-items: center;
+		display: flex;
+		align-items: center;
 	}
 
 	.panel, .panel > * {
@@ -48,14 +48,47 @@ $this->load->view('pg_user/header');
 	}
 
 	.cart-list #daftar_belanja div.row{
-		box-shadow:black 0px 0px 30px -5px
+		box-shadow:black 0px 0px 30px -5px;
+		position:relative;
 	}
+	.cart-list #daftar_belanja div.row::before,
+	.cart-list #daftar_belanja div.row::after {
+    	content:'';
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-color: transparent;
+		border-style: solid;
+	}
+
+	.cart-list #daftar_belanja div.row::after {
+		border-width: 1.35em;
+		border-left-color: #E69100;
+		border-top-color: #E69100;
+	}	
+	.cart-list #daftar_belanja div.row .numbering{
+		position:absolute;
+		padding:0 1%;
+		top:0;left:0;
+		z-index:2;
+		color:white;
+		font-size:110%;
+		font-weight:bold;
+	}
+
 	.cart-list #daftar_belanja span#harga{
 		color:#2A6C95;
 	}
 
 	.cart-list #daftar_belanja span.label{
 		border-radius:0;
+	}
+
+	@media (max-width: 970px) {
+		/* reset vertical-align */
+		.row .vertical-align {
+			display: flow-root;
+		}
 	}
 
 </style>
@@ -78,21 +111,23 @@ $this->load->view('pg_user/header');
 						<div id="daftar_belanja" class="tab-pane active">
 							<div class="p-4">
 									<?php
+									$i=1;
 									foreach ($transaksi as $key => $value) {
 										?>
 										<div class="row m-3 p-3 vertical-align">
-											<div class="text-center col-md-2">
+											<div class="numbering"><?=$i++;?></div>
+											<div class="text-center col-md-2 col-sm-12">
 												<div class="mx-auto"style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
 											</div>
-											<div class="col-md-7">
+											<div class="col-md-7 col-sm-12">
 												<button class="btn btn-primary btn-sm p-1">Kelas Premium</button>
 												<h4 class="font-weight-bold mb-0"><?= $value->nama_mapel ?></h4>
-												<span class="font-weight-bold">Tanggal</span>
+												<span class="font-weight-bold"><?=date("d F Y",strtotime($value->created_at))?></span>
 												<span id="id_transaksi" class="text-gray-3">ID Transaksi : <?=str_pad($value->id_transaksi, 10, "0", STR_PAD_LEFT)?></span>
 												<br>													
 												<label for="harga">Total Pembayaran : </label> <span id="harga" class="font-weight-bold font-size-h1">Rp. <?= money($value->jumlah_total) ?></span>													
 											</div>
-											<div class="col-md-3 text-right">
+											<div class="col-md-3 col-sm-12 text-right">
 												<label for="status" class="text-gray-3">Status :</label>
 												<br>
 												<?php
