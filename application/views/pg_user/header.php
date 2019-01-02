@@ -53,7 +53,6 @@ if ($this->uri->segment(1) != '') { ?>
             </ul>
         </div>
     </nav> <!-- Sidebar Menu -->
-
     <?php
 }
 ?>
