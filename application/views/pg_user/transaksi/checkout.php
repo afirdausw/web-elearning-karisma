@@ -102,11 +102,6 @@ $this->load->view('pg_user/header');
 </style>
 <section class="wrap-deskripsi"> <!-- konten -->
 	<div class="mt-5 mx-auto row">
-		<div class="row">
-			<div class=" col-md-12">
-
-			</div>
-		</div><!-- End of Row  -->
 		<div class="row mx-auto w-75">
 			<div class=" col-md-12">
 				<?php
