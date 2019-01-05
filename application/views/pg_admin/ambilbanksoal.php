@@ -1,12 +1,8 @@
-<?phpinclude "inc/html_header.php";
+<?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+include "inc/html_header.php";
 ?>
-
-
-
-<?php include "html_header.php"; ?>
 
 <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.css'); ?>">
 
