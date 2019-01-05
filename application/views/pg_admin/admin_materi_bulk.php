@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php $this->load->view('pg_admin/html_header'); ?>
+<?php $this->load->view('pg_admin/inc/html_header'); ?>
 
 <div class="wrapper">
 	<?php $this->load->view('pg_admin/sidebar'); ?>
