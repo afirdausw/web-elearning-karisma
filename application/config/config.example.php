@@ -53,7 +53,7 @@ if (function_exists('date_default_timezone_set')) {
 
 */
 
-$config['base_url'] = "http://localhost:8081/E-Learning_Karisma/";
+$config['base_url'] = "http://localhost:8081/e-learning_karisma/";
 
 
 /*
