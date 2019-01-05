@@ -154,40 +154,6 @@ Tip 2: you can also add an image using data-image tag
 			}
 		?>
 				<!-- END MENU TRY OUT -->
-				
-				 <!-- menu agcu test -->
-				<li class="sidebar-header"><span>AGCU</span></li>
-		<li class="<?php echo ($active=='diagnostictest' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/diagnostictest') ?>">
-							<i class="pe-7s-note2"></i>
-							<p>AGCU Test</p>
-					</a>
-				</li>
-            <li class="<?php echo ($active=='EqTest' ? 'active' : '')?>">
-                <a href="<?php echo site_url('pg_admin/EqTest') ?>">
-                    <i class="pe-7s-news-paper"></i>
-                    <p>Eq Test</p>
-                </a>
-            </li>
-            <li class="<?php echo ($active=='LsTest' ? 'active' : '')?>">
-                <a href="<?php echo site_url('pg_admin/LsTest') ?>">
-                    <i class="pe-7s-news-paper"></i>
-                    <p>Ls Test</p>
-                </a>
-            </li>
-			<li class="<?php echo ($active=='agcu' ? 'active' : '')?>">
-				<a href="<?php echo site_url('pg_admin/agcu/report_sekolah') ?>">
-					<i class="pe-7s-news-paper"></i>
-					<p>AGCU Report</p>
-				</a>
-			</li>
-			<li class="<?php echo ($active=='agcu_soal' ? 'active' : '')?>">
-				<a href="<?php echo site_url('pg_admin/agcu_soal') ?>">
-					<i class="pe-7s-news-paper"></i>
-					<p>AGCU Soal</p>
-				</a>
-			</li>
-		<!-- end menu agcu test -->
 
 		<!-- START INSTRUKTUR -->
 		<?php
@@ -436,52 +402,6 @@ Tip 2: you can also add an image using data-image tag
 		<!-- end -->
 		<!-- ############################ -->
 		<!-- ############################ -->
-
-			<?php
-					if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
-				?>
-
-
-				<!-- MENU REPORT AGCU -->
-				<!-- ################################# -->
-				<!-- ################################# -->
-				<!-- ################################# -->
-<!--                <li class="sidebar-header text-center"><span style="color:white!important;">Academic General Check Up</span></li>-->
-<!--                <li class="--><?php //echo ($active=='agcu' ? 'active' : '')?><!--">-->
-<!--                    <a href="--><?php //echo site_url('pg_admin/agcu/report_sekolah')?><!--" >-->
-<!--                        <i class="pe-7s-notebook"></i>-->
-<!--                        <p>AGCU <b class="caret"></b></p>-->
-<!--                    </a>-->
-<!--                    <ul class="dropdown-menu sub-nav">-->
-<!--                        <li>-->
-<!--                            <a href="--><?php //echo site_url('pg_admin/agcu/report_sekolah')?><!--">Report Siswa</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="--><?php //echo site_url('pg_admin/agcu/rekap')?><!--">Rekapitulasi AGCU</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
-
-
-<!--                        <li class="--><?php //echo ($active=='agcu' ? 'active' : '')?><!--">-->
-<!--                            <a href="--><?php //echo site_url('pg_admin/agcu/report_sekolah') ?><!--">-->
-<!--                                <i class="pe-7s-notebook"></i>-->
-<!--                                <p>AGCU</p>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!---->
-<!---->
-
-
-				<!-- END MENU REPORT AGCU -->
-				<!-- ################################# -->
-				<!-- ################################# -->
-				<!-- ################################# -->
-
-
-				<?php
-			}
-			?>
 
 			<?php
 			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
