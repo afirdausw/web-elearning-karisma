@@ -16,7 +16,7 @@ $(function(){
 </script>
 
 <div class="wrapper">
-  <?php include "sidebar.php"; ?>
+  <?php include "inc/sidebar.php"; ?>
 
   <div class="main-panel">
     <?php include "navbar.php"; ?>

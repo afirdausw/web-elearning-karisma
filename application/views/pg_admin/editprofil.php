@@ -7,7 +7,7 @@ include "inc/html_header.php";
 
 <div class="wrapper">
 
-	<?php include "sidebar.php"; ?>
+	<?php include "inc/sidebar.php"; ?>
 
 
 

@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="wrapper">
 
-	<?php include "sidebar.php"; ?>
+	<?php include "inc/sidebar.php"; ?>
 
 
 
