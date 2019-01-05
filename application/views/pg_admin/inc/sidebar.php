@@ -134,13 +134,6 @@ Tip 2: you can also add an image using data-image tag
 			</li>
 		</ul>
 		</li>
-		<li class="<?php echo ($active=='tryout' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/tryout') ?>">
-							<i class="pe-7s-note2"></i>
-							<p>Try Out</p>
-					</a>
-				</li>
-		
 		<?php
 			if($this->session->userdata('level') == "superadmin"){
 		?>
@@ -302,44 +295,6 @@ Tip 2: you can also add an image using data-image tag
 			}
 		?>
 		
-				<!-- tambahan menu reward & bonus -->
-		<!-- ############################ -->
-		<!-- ############################ -->
-		<?php
-			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
-		?>
-		<li class="sidebar-header"><span>Rewards & Quotes</span></li>
-<!--        <li class="--><?php //echo ($active=='voucher' ? 'active' : '')?><!--">-->
-<!--                    <a href="--><?php //echo site_url('pg_admin/voucher') ?><!--">-->
-<!--                        <i class="pe-7s-server"></i>-->
-<!--                        <p>Voucher</p>-->
-<!--                    </a>-->
-<!--                </li>-->
-
-		<li class="<?php echo ($active=='poin' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/poin') ?>">
-							<i class="pe-7s-server"></i>
-							<p>Poin</p>
-					</a>
-				</li>
-		<li class="<?php echo ($active=='bonus' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/bonus') ?>">
-							<i class="pe-7s-door-lock"></i>
-							<p>Bonus</p>
-					</a>
-				</li>
-		<li class="<?php echo ($active=='quote' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/quote') ?>">
-							<i class="pe-7s-chat"></i>
-							<p>Quotes</p>
-					</a>
-				</li>
-		<?php
-			}
-		?>
-		<!-- end -->
-		<!-- ############################ -->
-		<!-- ############################ -->
 		
 		<!-- tambahan menu untuk PSES dan manajemen login PSES -->
 		<!-- ############################ -->
