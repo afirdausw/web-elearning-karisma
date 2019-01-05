@@ -36,7 +36,7 @@ class Instruktur extends CI_Controller
     public function index()
     {
         $gVar = $this->gVar;
-        redirect("pg_admin/{$gVar['slug']}/daftar/");
+        redirect("pg_admin/instruktur/daftar/");
     }
 
     public function daftar($aksi="",$id_instruktur="")
@@ -47,9 +47,9 @@ class Instruktur extends CI_Controller
             "main_title"    => "Semua {$gVar['title']}",
             "navbar_title"    => "Daftar {$gVar['title']}",
             "form_action"     => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
-            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+            "table_fields"    => $this->Model_adm->get_table_fields("instruktur"),
             "data_materi_pokok"    => $this->Model_adm->fetch_all_table_data("materi_pokok"),
-            "data_instruktur" => $this->Model_adm->fetch_all_table_data("{$gVar['slug']}"),
+            "data_instruktur" => $this->Model_adm->fetch_all_table_data("instruktur"),
         );
         if(!empty($aksi)){
             switch($aksi):
@@ -78,12 +78,12 @@ class Instruktur extends CI_Controller
                     }
                 break;
                 default:
-                    redirect("pg_admin/{$gVar['slug']}");
+                    redirect("pg_admin/instruktur");
                 break;
             endswitch;
         }
 
-        $this->load->view("pg_admin/{$gVar['slug']}_daftar", $data);
+        $this->load->view("pg_admin/instruktur/instruktur_daftar", $data);
     }
 
     public function manajemen($aksi, $id_instruktur = "")
@@ -99,7 +99,7 @@ class Instruktur extends CI_Controller
                         "basic_info"      => $gVar,
                         "navbar_title"    => "Manajemen {$gVar['title']}",
                         "page_title"      => "Tambah {$gVar['title']}",
-                        "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+                        "table_fields"    => $this->Model_adm->get_table_fields("instruktur"),
                         "form_action"     => current_url(),
                     );
 
@@ -109,7 +109,7 @@ class Instruktur extends CI_Controller
                         $this->proses_tambah();
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
+                        $this->load->view("pg_admin/instruktur/instruktur_form", $data);
                     }
                     break;
 
@@ -120,14 +120,14 @@ class Instruktur extends CI_Controller
 
                     //Redirect to instruktur if id is not exist
                     if (!$id) {
-                        redirect("pg_admin/{$gVar['slug']}");
+                        redirect("pg_admin/instruktur");
                     } else {
                         $data = array(
                             "basic_info"      => $gVar,
                             "navbar_title"    => "Manajemen {$gVar['title']}",
                             "page_title"      => "Ubah {$gVar['title']}",
                             "form_action"    => current_url() . "?id=$id",
-                            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+                            "table_fields"    => $this->Model_adm->get_table_fields("instruktur"),
                             "data_instruktur"     => $this->Model_adm->fetch_instruktur_by_id($id),
                         );
 
@@ -137,7 +137,7 @@ class Instruktur extends CI_Controller
                             $this->proses_ubah($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
+                            $this->load->view("pg_admin/instruktur/instruktur_form", $data);
                         }
                     }
                     break;
@@ -168,20 +168,20 @@ class Instruktur extends CI_Controller
                             $this->proses_mapel($id_instruktur);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/{$gVar['slug']}_form_mapel", $data);
+                            $this->load->view("pg_admin/instruktur/instruktur_form_mapel", $data);
                         }
                     }else{
-                        redirect("pg_admin/{$gVar['slug']}");
+                        redirect("pg_admin/instruktur");
                     }
 
                 break;
 
                 default:
-                    redirect("pg_admin/{$gVar['slug']}");
+                    redirect("pg_admin/instruktur");
                 break;
             }
         } else {
-            redirect("pg_admin/{$gVar['slug']}");
+            redirect("pg_admin/instruktur");
         }
 
     }
@@ -194,7 +194,7 @@ class Instruktur extends CI_Controller
             "basic_info"      => $gVar,
             "page_title"     => "Pendaftaran Siswa",
             "form_action"    => current_url(),
-            "table_fields"    => $this->Model_adm->get_table_fields("{$gVar['slug']}"),
+            "table_fields"    => $this->Model_adm->get_table_fields("instruktur"),
         );
 
         $file_element_name = "foto";
@@ -225,12 +225,12 @@ class Instruktur extends CI_Controller
         // //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view("pg_admin/{$gVar['slug']}_form", $data);
+            $this->load->view("pg_admin/instruktur/instruktur_form", $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_instruktur($params);
             alert_success("Sukses", "Data berhasil ditambahkan");
-            redirect("pg_admin/{$gVar['slug']}");
+            redirect("pg_admin/instruktur");
         }
     }
 
@@ -242,10 +242,10 @@ class Instruktur extends CI_Controller
 
         if ($id!=null) {
             $where = array("id_instruktur" => $id);
-            $data_instruktur = $this->Model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            $data_instruktur = $this->Model_adm->fetch_all_table_data("instruktur", $where)[0];
             
             if($data_instruktur !== null){
-                unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
+                unlink("image/instruktur/" . $data_instruktur->foto);
             }
 
             $file_element_name = "foto";
@@ -276,7 +276,7 @@ class Instruktur extends CI_Controller
         }else{
             alert_error("Error", "Data gagal diupdate");
         }
-        redirect("pg_admin/{$gVar['slug']}");
+        redirect("pg_admin/instruktur");
     }
 
     public function proses_hapus()
@@ -287,16 +287,16 @@ class Instruktur extends CI_Controller
 
         if ($id!=null) {
             $where = array("id_instruktur" => $id);
-            $data_instruktur = $this->Model_adm->fetch_all_table_data("{$gVar['slug']}", $where)[0];
+            $data_instruktur = $this->Model_adm->fetch_all_table_data("instruktur", $where)[0];
             if($data_instruktur !== null){
-                unlink("image/{$gVar['slug']}/" . $data_instruktur->foto);
+                unlink("image/instruktur/" . $data_instruktur->foto);
             }
             $this->Model_adm->delete_instruktur($id);
             alert_success("Sukses", "Data berhasil dihapus");
         }else{
             alert_error("Error", "Data gagal dihapus");
         }
-        redirect("pg_admin/{$gVar['slug']}");
+        redirect("pg_admin/instruktur");
     }
 
     public function proses_mapel($id_instruktur){
