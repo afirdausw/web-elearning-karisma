@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <?php include "inc/sidebar.php"; ?>
 
     <div class="main-panel">
-        <?php include "navbar.php"; ?>
+        <?php include "inc/navbar.php"; ?>
 
 
         <div class="content">

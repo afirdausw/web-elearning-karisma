@@ -13,7 +13,7 @@ include "inc/html_header.php";
 
 	<div class="main-panel">
 
-		<?php include "navbar.php"; ?>
+		<?php include "inc/navbar.php"; ?>
 
 
 

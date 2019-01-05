@@ -8,7 +8,7 @@ include "inc/html_header.php";
 <div class="wrapper">
     <?php include "inc/sidebar.php"; ?>
     <div class="main-panel">
-        <?php include "navbar.php"; ?>
+        <?php include "inc/navbar.php"; ?>
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

@@ -45,7 +45,7 @@ $(function(){
   <?php include "inc/sidebar.php"; ?>
 
   <div class="main-panel">
-    <?php include "navbar.php";?>
+    <?php include "inc/navbar.php";?>
     
     <div class="content">
       <div class="container-fluid">
