@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 
 <style type="text/css">
 	@media(max-width:767px;){

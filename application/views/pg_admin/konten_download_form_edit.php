@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 <script>
 	$(function () {
 		$("#kelas").change(function () {
@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div> <!-- end .container-fluid -->
 		</div> <!-- end .content -->
 
-		<?php include "footer.php"; ?>
+		<?php include "inc/footer.php"; ?>
 
 	</div>
 </div>

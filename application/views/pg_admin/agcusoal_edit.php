@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 <div class="wrapper">
   <?php include "sidebar.php"; ?>
   <div class="main-panel">

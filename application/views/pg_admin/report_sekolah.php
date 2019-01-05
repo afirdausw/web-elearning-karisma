@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 <script>
     $("#pilihprovinsi").change(function(){
         $("#pilihkota").load("pg_admin/agcu/kota/" + $("#pilihprovinsi").val());
@@ -135,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div> <!-- end .container-fluid -->
         </div> <!-- end .content -->
 
-        <?php include "footer.php"; ?>
+        <?php include "inc/footer.php"; ?>
 
     </div>
 </div>

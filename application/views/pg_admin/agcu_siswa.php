@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 <?php
 //PERHITUNGAN SKOR
 foreach($kategoridiagnostic as $diagnostic){
@@ -629,7 +629,7 @@ foreach($kategoridiagnostic as $diagnostic){
       </div> <!-- end .container-fluid -->
     </div> <!-- end .content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
 </div>

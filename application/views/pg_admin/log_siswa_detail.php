@@ -219,7 +219,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div> <!-- end .container-fluid -->
     </div> <!-- end .content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
 
   </div>
 </div>

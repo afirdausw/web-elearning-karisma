@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 <script>
 $(function(){
 	$("#provinsi").change(function(){
@@ -70,7 +70,7 @@ $(function(){
       </div> 
     </div> <!-- end .content -->
 
-    <?php include "footer.php"; ?>
+    <?php include "inc/footer.php"; ?>
     
   </div> <!-- end .main-panel -->
 </div>
