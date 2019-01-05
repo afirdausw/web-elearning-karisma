@@ -112,21 +112,11 @@
 
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-							   aria-expanded="false">Beranda <span class="arrow-down ti-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Link</a></li>
-								<li><a href="#">Link</a></li>
-							</ul>
+						<li>
+							<a href="<?php echo base_url(); ?>" role="button"aria-expanded="false">Beranda</span></a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-							   aria-expanded="false">Tentang Kami <span class="arrow-down ti-angle-down"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Link</a></li>
-								<li><a href="#">Link</a></li>
-							</ul>
+						<li>
+							<a href="#" role="button" aria-expanded="false">Tentang Kami</a>
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
