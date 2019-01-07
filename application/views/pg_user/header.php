@@ -34,7 +34,6 @@
 		#wrap {
 			min-height: 100%;
 		}		
-		/* Footer optimization */
 	</style>
 </head>
 
@@ -169,27 +168,27 @@
 											class="badge"><?= count($cart) ?></span>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-right min-width-320"
-									aria-labelledby="dropdownMenuCart">
+									aria-labelledby="dropdownMenuCart" style="padding: 0px;">
 									<?php
 									foreach ($cart as $key => $value) {
 										?>
 										<li class="cart-dropdown" style="display: block;">
 											<a href="#">
-												<div class="pull-left w-25  mt-2">
-													<img class="w-100 my-auto"
+												<div class="pull-left w-25 mt-2">
+													<img class="w-100 thumb-cart"
 														 src="<?= base_url() ?>image/mapel/<?= $value['gambar_mapel'] ?>">
 												</div>
 												<div style="white-space: normal;" class="pull-right w-75 pl-3  mt-2">
-													<h4 class="w-100 mt-0"><?= $value['nama_mapel'] ?></h4>
-													<h5 class="w-100">
+													<h4 class="w-100 mt-0 font-weight-bold cart-judul"><?= $value['nama_mapel'] ?></h4> <h5 class="w-100">
 														<!--                                                        <span class="mr-3 text-gray text-line-through font-w700">Rp. 1.200.000</span>-->
-														<span class="font-weight-bold">Rp. <?= money($value['harga']) ?></span>
+														<small><span class="font-italic">Rp. <?= money($value['harga']) ?></span></small>
 													</h5>
+													<!-- <hr> -->
 												</div>
 											</a>
 										</li>
 									<?php } ?>
-									<li class="text-center">
+									<li class="text-center" style="margin-top: 80px;">
 										<a class="mt-2" style="display: block;" href="<?= base_url('keranjang') ?>">Checkout Cart</a>
 									</li>
 								</ul>
