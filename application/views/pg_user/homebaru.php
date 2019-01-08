@@ -424,7 +424,7 @@
 <script type="text/javascript">
 
     var current_page = 1;
-    var last = <?= $jumlah_page ?>;
+    var last = Math.floor(<?= $jumlah_page ?>);
     var first = 1;
     var previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
     var next = (current_page + 1) > last ? last : (current_page + 1);
@@ -441,56 +441,61 @@
 
     hide_all();
     page(1);
-    var nav = $("nav.navbar");
+    console.log(last);
 
     function next_page() {
         current_page = next;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function previous_page() {
         current_page = previous;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function first_page() {
         current_page = first;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function last_page() {
         current_page = last;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function page(i) {
         current_page = i;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
-        next = (current_page + 1) >= last ? last : (current_page + 1);
+        next = (current_page + 1) >= last ? last : (current_page + 1)
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     //    $(function () {
@@ -516,8 +521,8 @@
     //        var url = "<?//= base_url() ?>//" + "home/ajax_load_listmapel/<?//= $limit ?>///" + num;
     //        bnner = $("section.live-instruktur");
     //        lst = $("#home_list_materi");
-    //        nav = $("nav.navbar");
-    //        $("html, body").animate({scrollTop: bnner.height() - nav.height()}, "slow");
+    //        $("nav.navbar") = $("$("nav.navbar").$("nav.navbar")bar");
+    //        $("html, body").animate({scrollTop: bnner.height() - $("nav.navbar").height()}, "slow");
     //        $.ajax({
     //            url: url,
     //            success: function (result) {

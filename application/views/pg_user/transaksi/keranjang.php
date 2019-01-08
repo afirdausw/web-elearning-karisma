@@ -1,7 +1,7 @@
 <?php
 
 
-include('header.php');
+$this->load->view('pg_user/header');
 ?>
 
 <?php $_SESSION['RedirectKe'] = current_url(); ?>
@@ -73,14 +73,33 @@ include('header.php');
     .cara-bayar .panel-footer {
         background: white;
     }
+    
+    .wrapper-img {
+        display: inline-block;
+        position: relative;
+    }
+
+    .wrapper-img > .circle-img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 50%;
+        margin-top: -50%;
+        left: 50%;
+        margin-left: -50%;
+        border-radius: 100%;
+    }
 
 </style>
 <section class="wrap-deskripsi"> <!-- konten -->
     <div class="container">
         <div class="row mt-5 mx-auto w-75">
-            <div class=" col-md-12">
-                <h4 class="text-right text-gray-3">ID Transaksi #12930129310293</h4>
-            </div>
+            <?php if (isset($value->status)) {
+                ?>
+                <div class=" col-md-12">
+                    <h4 class="text-right text-gray-3">ID Transaksi #12930129310293</h4>
+                </div>
+            <?php } ?>
         </div><!-- End of Row  -->
         <div class="row mx-auto w-75">
             <div class=" col-md-12">
@@ -102,9 +121,7 @@ include('header.php');
                                 ?>
                                 <tr>
                                     <td class="text-center">
-                                        <img class="img-responsive w-75 mx-auto"
-                                             src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>"
-                                             alt="<?= $value->nama_mapel ?>">
+                                        <div class="mx-auto"style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
                                     </td>
                                     <td>
                                         <button class="btn btn-primary p-2">
@@ -116,24 +133,25 @@ include('header.php');
                                         </p>
                                     </td>
                                     <td class="text-right">
-                                        <a href="#" class="glyphicon glyphicon-trash"></a>
+                                        <a href="<?= base_url('keranjang/delete/' . $value->id_mapel) ?>"
+                                           class="glyphicon glyphicon-trash"></a>
                                         <div>
                                             <label for="harga">Harga:</label>
                                             <br>
-                                            <!--                                                        <span class="mr-3 text-gray text-line-through font-w700">Rp. 1.200.000</span>-->
+                                            <!--<span class="mr-3 text-gray text-line-through font-w700">Rp. 1.200.000</span>-->
                                             <h2 class="mt-0" id="harga">Rp. <?= money($value->harga) ?></h2>
                                         </div>
                                     </td>
                                 </tr>
                                 <?php
                                 $total += $value->harga;
-                                $kodeUnik += $hargaKodeUnik;
+//                                $kodeUnik += $hargaKodeUnik;
                                 ?>
                             <?php }
                             $total += $kodeUnik; ?>
                         </table>
                     </div>
-                    <div class="panel-footer px-10">
+                    <div class="panel-footer px-10 table-responsive">
                         <table class="table mx-0 my-3">
                             <colgroup>
                                 <col class="col-md-4">
@@ -144,9 +162,13 @@ include('header.php');
                                     <div><h4>Jumlah yang harus dibayar</h4></div>
                                     <span>Status: </span>
                                     <?php
-                                    if (!$value->status) { ?>
+                                    if (isset($value->status) && !$value->status) { ?>
                                         <span class="label label-warning">Belum Dibayar</span>
-                                    <?php } else { ?>
+                                    <?php } elseif (!isset($value->status)) {
+                                        ?>
+                                        <span class="label label-danger">Keranjang Kosong</span>
+                                        <?php
+                                    } else { ?>
                                         <span class="label label-success">Sudah Dibayar</span>
                                     <?php } ?>
                                 </td>
@@ -154,7 +176,8 @@ include('header.php');
                                     <h1 class="m-0">
                                         <?= "Rp. " . money($total); ?>
                                     </h1>
-                                    <span>Termasuk kode unik <?= "Rp. " . money($kodeUnik) ?></span>
+                                    <!--                                    <span>Termasuk kode unik -->
+                                    <? //= "Rp. " . money($kodeUnik) ?><!--</span>-->
                                 </td>
                             </tr>
                         </table>
@@ -164,77 +187,8 @@ include('header.php');
         </div>
 
         <div class="row mx-auto w-75">
-            <div class="col-md-12">
-                <div class="panel panel-primary cara-bayar">
-                    <div class="panel-heading text-center">Cara Pembayaran</div>
-                    <div class="panel-body">
-                        <div class="container w-100">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p style="padding:1.5rem 0;" class="text-gray-3">Silahkan
-                                        transfer <?= "Rp. " . money($total); ?> pada salah satu rekening berikut</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <?php
-                                $bank = array(
-                                    "bca"     => [
-                                        "image"    => ".png",
-                                        "rekening" => "4890279797",
-                                        "atasNama" => "Karisma Academy",
-                                        "link"     => "#",
-                                    ],
-                                    "bri"     => [
-                                        "image"    => ".png",
-                                        "rekening" => "4890279797",
-                                        "atasNama" => "Karisma Academy",
-                                        "link"     => "#",
-                                    ],
-                                    "mandiri" => [
-                                        "image"    => ".png",
-                                        "rekening" => "4890279797",
-                                        "atasNama" => "Karisma Academy",
-                                        "link"     => "#",
-                                    ],
-                                );
-                                $colBagi = 12 / count($bank);
-                                foreach ($bank as $key => $val) {
-                                    ?>
-                                    <div class="col-md-<?= $colBagi ?> col-sm-12">
-                                        <div class="materi-lainnya px-3 py-4" style="border: solid 1px white;box-shadow: 1px 2px 1px 0 rgba(20, 23, 28, .1), 0 2px 1px 0 rgba(20, 23, 28, .1)">
-                                            <a href="<?= $val['link'] ?>">
-                                                <img style="display: block;" class="w-75 mx-auto"
-                                                     src="<?= base_url() ?>assets/pg_user/images/<?= $key . $val['image'] ?>">
-                                                <div class="container w-100">
-                                                    <div class="mt-3 text-gray-2 min-height-20">
-                                                        <p class="m-0"><?= $val['rekening'] ?></p>
-                                                        <p class="m-0">a/n <?= $val['atasNama'] ?></p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p style="padding:1.5rem 0;" class="text-gray-3">Tulis berita acara dengan ID
-                                        transaksi, contoh transaksi 12839128391283</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer px-10 text-md-right text-sm-center">
-              <span class="text-gray-3">
-                Transaksi otomatis akan dicancel pada <span style="color:#C9302C;"><?= $expired ?></span>
-              </span>
-                        <button class="btn btn-primary btn-lg btn-sm-block" style="border-radius:0;">Konfirmasi
-                            Pembayaran
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <a href="<?= base_url('keranjang/checkout') ?>" class="btn btn-primary btn-lg btn-sm-block w-100 my-5"
+               style="border-radius:0;">Bayar</a>
         </div>
         <div class="row mx-auto w-75">
 
@@ -242,6 +196,6 @@ include('header.php');
     </div>
 </section> <!-- End of konten-->
 
-<?php include('footer.php'); ?>
+<?php $this->load->view('pg_user/footer'); ?>
 </body>
 </html>

@@ -1,3 +1,5 @@
+    </div>
+</div>
 <section id="bawah">
     <div class="container">
         <div class="row">

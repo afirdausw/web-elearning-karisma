@@ -49,8 +49,16 @@ class Model_Cart extends CI_Model
     public function deleteCartSiswa($id_siswa, $id_mapel)
     {
         $this->db->where('siswa_id', $id_siswa);
-        $this->db->where('id_mapel', $id_mapel);
-        $result = $this->db->delete('bonus_konten');
+        $this->db->where('mapel_id', $id_mapel);
+        $result = $this->db->delete('cart');
+
+        return $result;
+    }
+
+    public function deleteCartBySiswa($id_siswa)
+    {
+        $this->db->where('siswa_id', $id_siswa);
+        $result = $this->db->delete('cart');
 
         return $result;
     }
