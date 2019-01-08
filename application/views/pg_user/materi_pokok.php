@@ -343,8 +343,10 @@ if (isset($materi[0]->id_materi_pokok)) {
                             ?>
                             <a href="<?= $linkmaterilain; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
-                                     alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
+                                <div class="mapel-image">
+                                    <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                         alt="<?= $data->nama_mapel ?>" alt="Lights">
+                                </div>
                                 <div class="caption">
                                     <h4><?= $data->nama_mapel ?></h4>
                                     <h5 class="text-right font-size-h2 mt-5"><span>Rp. <?= money($data->harga) ?></span>

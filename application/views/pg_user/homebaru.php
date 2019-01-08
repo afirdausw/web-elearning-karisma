@@ -283,9 +283,11 @@
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'mapel/' . $value->id_mapel; ?>">
                             <!--                            <span class="badge-diskon">Diskon 25%</span>-->
-                            <img style="border: 1px solid  #999;"
-                                 src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
-                                 alt="<?= $value->nama_mapel ?>">
+                            <div class="mapel-image">
+                                <img style="border: 1px solid  #999;"
+                                src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                alt="<?= $value->nama_mapel ?>">
+                            </div>
                             <div class="caption">
                                 <?php
                                 if (strlen($value->nama_mapel) >= 20) {
