@@ -116,115 +116,6 @@
 	padding: 110px 12% 65px;
 	background-color: #ffffff; }
 
-.pay-list {
-	border: none !important; }
-	.pay-list > h3 {
-		text-align: center;
-		color: #1abc9c;
-		font-weight: bold;
-		font-size: 1.6em;
-		letter-spacing: 1px;
-		margin: 0;
-		text-transform: uppercase; }
-		.pay-list > h3.text-blue {
-			color: #386a75; }
-
-/* --- User Payment --- */
-.pay-bank{
-		text-align: center;
-}
-.pay-bank img{
-		display: inline;
-}
-.pay-bank p{
-		margin-top: 10px;
-		margin-bottom: 10px;
-}
-.failed-pay .alert p{
-		color: #a94442;
-}
-.buy-time{
-		padding-top: 10px;
-		padding-bottom: 15px;
-		margin-bottom: 20px;
-		background-color: #ec971f;
-		color: #fff;
-		border-radius: 10px;
-}
-.buy-item{
-		width: 20%;
-}
-.buy-deadline{
-		color: #a94442;
-}
-.pay-title{
-		font-size: 22px;
-		font-weight: 500;
-		padding-left: 7px;
-}
-.form-start .btn{
-		margin-top: 15px;
-		padding: 10px 20px;
-}
-.pay-list{
-		border-right: 1px solid #ddd;
-}
-.pay-method .pay-rek{
-		display: inline-block;
-		width: 49%;
-		height: 50px;
-		vertical-align: top;
-		padding-left: 15px;
-		padding-right: 15px;
-		text-align: center;
-}
-.pay-method .pay-indo{
-		display: inline-block;
-		width: 49%;
-		vertical-align: top;
-		padding-left: 15px;
-		padding-right: 15px;
-		text-align: center;
-}
-.pay-method .img-responsive{
-		width: auto;
-		height: 100px;
-		margin-bottom: 15px;
-		display: inline;
-}
-.pay-method {
-	margin: 25px 0 0; }
-	.pay-method h3 {
-		text-align: center;
-		color: #444444;
-		font-weight: bold;
-		font-size: 1.6em;
-		letter-spacing: 1px;
-		margin: 0 0 25px;
-		text-transform: uppercase; }
-
-.bayar-image {
-	height: 218px !important;
-	margin: 0 !important; }
-
-.pay-rek, .pay-indo {
-	height: auto !important; }
-	.pay-rek label, .pay-indo label {
-		width: 305px; }
-		.pay-rek label .panel, .pay-indo label .panel {
-			border: 2px solid #bcbdc0;
-			border-width: 0 0 2px;
-			box-shadow: none;
-			border-radius: 0; }
-			.pay-rek label .panel h4, .pay-indo label .panel h4 {
-				margin: 0 0 15px;
-				color: #0586ff;
-				text-align: center;
-				font-size: 1.4em;
-				letter-spacing: 2px; }
-			.pay-rek label .panel p, .pay-indo label .panel p {
-				color: #4c4c4c;
-				text-align: center; }
 
 .btn-bayar {
 	display: block;
@@ -238,10 +129,6 @@
 	background-color: #ffffff;
 	overflow: hidden;
 	padding: 45px 10% 75px; }
-
-.pay-title {
-	text-align: center;
-	padding: 0 0 25px; }
 
 .btn-cetak {
 	float: right;
@@ -393,9 +280,6 @@
 		.navbar-header {
 			padding: 5px 0 5px;
 		}
-		.akun-header{
-			/*top: 58px;*/
-		}
 		.megamenu{
 			padding: 0;
 		}
@@ -498,10 +382,6 @@
 .form-login .has-feedback.pilih-data .form-control{
 	padding-right: 42.5px;
 }
-.form-login .form-horizontal .form-group .help-block {
-	/*margin-top: 5px;
-	margin-bottom: 0px;*/
-}
 
 
 
@@ -575,13 +455,8 @@ padding: 7.5px;
 	align-items: center;
 }
 
-.download-konten .slider-nav .slick-carousel .slick-item:hover {
-	/*opacity: .7;*/
-}
 
 /*listnya*/
-.download-konten .slider-nav .slick-list{
-}
 .download-konten .slider-nav .mapel_link_detail {	
 	cursor:pointer;
 
