@@ -56,13 +56,6 @@
 <?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
 <!-- /Footer -->
 
-<!-- Javascript -->
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery-1.11.3.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/megamenu.js'); ?>"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/pg_user/js/form-validator/formValidation.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/bootstrap.js'); ?>"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
