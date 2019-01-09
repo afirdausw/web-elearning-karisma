@@ -183,55 +183,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <?php include "inc/footer.php"; ?>
-
-    </div>
-</div>
-
-</body>
-
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js'); ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js'); ?>"></script>
-
-<!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js'); ?>"></script>
-
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js'); ?>"></script>
-
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project!-->
-<script src="<?php echo base_url('assets/js/demo.js'); ?>"></script>
-
 <!--CUSTOM JS FUNCTION -->
 <!--Reset Form-->
-
-
-<script type="text/javascript">
-    // Used to get the video preview. But get discontinued
-    // function fetch_preview_konten_video(url)
-    // {
-    //   console.log(url)
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: "<?=base_url('pg_admin/materi/ajax_konten_video')?>",
-    //     data: { data:url },
-    //     success: function(response){
-    //       document.getElementById('video_preview').innerHTML=response;
-    //     }
-    //   });
-    // }
-</script>
-
-<!--
-PLUGINS
-FUNCTION -->
-<!--
-Chosen - select
-box
-plugin  -->
 
 
 <!-- TinyMCE - WYSIWYG plugin  -->

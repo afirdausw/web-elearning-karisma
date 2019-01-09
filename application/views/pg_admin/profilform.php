@@ -117,34 +117,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div> <!-- end .content -->
 
         <?php include "inc/footer.php"; ?>
-
-    </div> <!-- end .main-panel -->
-</div>
-
 <?php include "alert_modal.php"; ?>
-</body>
 
-
-
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript'); ?>"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js'); ?>"></script>
-
-<!--  Datatables Plugin -->
-<script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
-
-<!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js'); ?>"></script>
-
-<script src="http://parsleyjs.org/dist/parsley.js"></script>
-<script src="<?php echo base_url('assets/js/id.js'); ?>"></script>
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js'); ?>"></script>
 
 <!-- JS Function for this Modal -->
 <script type="text/javascript">

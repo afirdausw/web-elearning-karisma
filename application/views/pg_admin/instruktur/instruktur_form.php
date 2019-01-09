@@ -124,25 +124,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<?php include APPPATH."views/pg_admin/inc/footer.php"; ?>
 
-	</div>
-</div> <!-- end .wrapper -->
-
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js'); ?>" type="text/javascript"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js'); ?>" type="text/javascript"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js'); ?>"></script>
-
-<!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js'); ?>"></script>
-
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js'); ?>"></script>
-
-<!-- Awesomeplate -->
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/awesomplete.js'); ?>" async></script>
-
-
-
 </html>

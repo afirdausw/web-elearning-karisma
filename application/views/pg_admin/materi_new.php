@@ -229,25 +229,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </div>
 </div>
-</body>
-
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript'); ?>"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript'); ?>"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<!--<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js'); ?>"></script> -->
-
-<!-- Bootstrap Switch Plugin -->
-<script src="<?php echo base_url('assets/js/plugins/bootstrap-switch/bootstrap-switch.min.js'); ?>"></script>
-<!--  Datatables Plugin -->
-<script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
-<script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
-<!-- Progress -->
-<script src="<?= base_url('assets/js/nprogress.js') ?>"></script>
 
 <script type="text/javascript">
     function ajaxPage(urlLink) {

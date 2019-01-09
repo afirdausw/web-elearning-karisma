@@ -110,28 +110,6 @@ $(function(){
 
     <?php include "inc/footer.php"; ?>
 
-  </div>
-</div>
-
-</body>
-
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
-
-<!--  Nestable Plugin    -->
-<script src="<?php echo base_url('assets/js/plugins/nestable/jquery.nestable.js');?>"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
-
-<!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
-
-
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
-
 <!-- PLUGINS FUNCTION -->
  <!-- Nestable plugin  -->
 <script type="text/javascript">
@@ -151,10 +129,6 @@ $(document).ready(function()
       var target_name = e.target.name;
       var target_val = e.target.value;
       var id = parseInt(target_name.replace(/map-/g, ''))
-      // console.log("TRGET_name= " + e.target.name);
-      // console.log("TRGET_val = " + e.target.value);
-      // console.log("parseInt= " + i);
-      // console.log("isNan&= " + isNaN(target_name));
       if(id == target_val)
       { 
         sendAjaxPost(target_val, $('#nestable_' + id)); 

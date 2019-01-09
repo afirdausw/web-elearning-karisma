@@ -104,28 +104,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 
     <?php include "inc/footer.php"; ?>
-
-  </div>
-</div>
-
-</body>
-
-  <!--   Core JS Files   -->
-  <script src="<?php echo base_url('assets/js/jquery-3.2.1.js');?>" type="text/javascript"></script>
-  <script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js');?>" type="text/javascript"></script>
-
- <!--  Checkbox, Radio & Switch Plugins -->
- <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
-
-  <!--  Notifications Plugin    -->
-  <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
-
-  <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
- <script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
-
- <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
- <script src="<?php echo base_url('assets/js/demo.js');?>"></script>
-
 <!-- CUSTOM JS FUNCTION -->
 <!-- Reset Form -->
 <script type="text/javascript">
@@ -149,8 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         timer: 4000
       });
 
-   });
- </script>
+   }); </script>
 
 <!-- PLUGINS FUNCTION -->
  <!-- Chosen - select box plugin  -->
@@ -165,8 +142,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     for (var selector in config) {
       $(selector).chosen(config[selector]);
-    }
-  </script>
+    } </script>
 
  <!-- TinyMCE - WYSIWYG plugin  -->
  <script src="<?php echo base_url('assets/js/plugins/tinymce/tinymce.min.js');?>" type="text/javascript"></script>
@@ -205,8 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       });
       return false;
     }
-  });
-  </script>
+  }); </script>
 
   <!-- Manually open kcfinder -->
   <script type="text/javascript">

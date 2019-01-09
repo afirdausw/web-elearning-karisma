@@ -283,31 +283,7 @@ include "inc/html_header.php";
 		<?php include "inc/footer.php"; ?>
 
 
-
-	</div> <!-- end .main-panel -->
-
-</div>
-
-
-
 <?php include "alert_modal.php"; ?>
-
-</body>
-
-
-
-
-
-
-
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
-
-
-
-<!--  Checkbox, Radio & Switch Plugins -->
-
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
-
 
 
 <!--  Datatables Plugin -->

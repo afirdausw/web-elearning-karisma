@@ -105,36 +105,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div> <!-- end .container-fluid -->
 </div> <!-- end .content -->
 
-<footer class="footer">
-    <div class="container-fluid">
+<?php include "inc/footer.php"; ?>
 
-        <p class="copyright pull-right">
-            &copy; <?php echo date("Y"); ?> <a href="http://lpi-hidayatullah.or.id">Lembaga Pendidikan Islam Hidayatullah</a>
-        </p>
-    </div>
-</footer>
-
-        </div>
-        </div>
-
-        <?php include "alert_modal.php"; ?>
-        </body>
-
-        <!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
-
-        <!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
-
-        <!--  Datatables Plugin -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js');?>"></script>
-
-        <!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
-
+<?php include "alert_modal.php"; ?>
         <!-- JS Function for this Modal -->
 <script type="text/javascript">
     $('#deleteRow_modal').on('show.bs.modal', function (event) {

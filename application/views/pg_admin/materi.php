@@ -36,24 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <?php include "inc/footer.php"; ?>
 
-  </div>
-</div>
-
 <?php include "alert_modal.php"; ?>
-</body>
-
-<!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
-
-<!--  Checkbox, Radio & Switch Plugins -->
-<!--<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script> -->
-
-<!-- Bootstrap Switch Plugin -->
-<script src="<?php echo base_url('assets/js/plugins/bootstrap-switch/bootstrap-switch.min.js');?>"></script>
-
-<!-- Progress -->
-<script src="<?= base_url('assets/js/nprogress.js')?>" ></script>
 
 <script type="text/javascript">
 	function ajaxPage(urlLink)

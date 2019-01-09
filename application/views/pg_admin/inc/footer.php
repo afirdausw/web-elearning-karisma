@@ -28,3 +28,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
 <script src="<?php echo base_url('assets/js/plugins/chosen/chosen.jquery.js'); ?>" type="text/javascript"></script>
+
+
+<!--  Datatables Plugin -->
+<script type="text/javascript"
+				src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+<script type="text/javascript"
+				src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
+
+<!-- Awesomeplate -->
+<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/awesomplete.js'); ?>" async></script>
+
+
+<script src="http://parsleyjs.org/dist/parsley.js"></script>
+<script src="<?php echo base_url('assets/js/id.js'); ?>"></script>
+
+<!-- Progress -->
+<script src="<?= base_url('assets/js/nprogress.js')?>" ></script>
