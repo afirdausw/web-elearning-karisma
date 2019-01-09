@@ -452,19 +452,6 @@ body > .navbar-collapse[data-color="purple"]:after {
   background: linear-gradient(to bottom, #9368E9 0%, #943bea 100%);
   background-size: 150% 150%;
 }
-/*CUSTOM 2017*/
-.sidebar[data-color="turquoise"]:after,
-body > .navbar-collapse[data-color="turquoise"]:after {
-  background: #1bbc9b;
-  background: -moz-linear-gradient(top, #1bbc9b 0%, #1c8f9c 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1bbc9b), color-stop(100%, #1c8f9c));
-  background: -webkit-linear-gradient(top, #1bbc9b 0%, #1c8f9c 100%);
-  background: -o-linear-gradient(top, #1bbc9b 0%, #1c8f9c 100%);
-  background: -ms-linear-gradient(top, #1bbc9b 0%, #1c8f9c 100%);
-  background: linear-gradient(to bottom, #1bbc9b 0%, #1c8f9c 100%);
-  background-size: 150% 150%;
-}
-/*CUSTOM 2017 end*/
 .nav .sub-nav{
   list-style: none;
   -webkit-padding-start: 0;

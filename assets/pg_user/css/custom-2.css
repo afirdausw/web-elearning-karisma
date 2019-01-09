@@ -714,12 +714,6 @@ div.latihan-soal .jawaban .pembahasan p{
 /*PEMBAHASAN END*/
 
 
-
-
-
-
-
-
 body.fullpage-latihansoal{
 	background: url(../../../assets/dashboard/images/bg-reason.png) white;
 }
@@ -778,67 +772,6 @@ body.fullpage-latihansoal .pagination > li > a, body.fullpage-latihansoal .pagin
 }
 
 
-
-/* BUTTON TURQUOISE*/
-.btn-turquoise,
-.btn-info.next_soal, .btn-info.next_soal:active, .btn-info.next_soal:focus{
-	color: #fff;
-	background-color: #1abc9c;
-	border-color: #15af89;
-}
-
-.btn-turquoise:focus,
-.btn-turquoise.focus {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #255625;
-}
-.btn-turquoise:hover {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #398439;
-}
-.btn-turquoise:active,
-.btn-turquoise.active,
-.open > .dropdown-toggle.btn-turquoise {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise:active:hover,
-.btn-turquoise.active:hover,
-.open > .dropdown-toggle.btn-turquoise:hover,
-.btn-turquoise:active:focus,
-.btn-turquoise.active:focus,
-.open > .dropdown-toggle.btn-turquoise:focus,
-.btn-turquoise:active.focus,
-.btn-turquoise.active.focus,
-.open > .dropdown-toggle.btn-turquoise.focus {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise:active,
-.btn-turquoise.active,
-.open > .dropdown-toggle.btn-turquoise {
-	background-image: none;
-}
-.btn-turquoise.disabled:hover,
-.btn-turquoise[disabled]:hover,
-fieldset[disabled] .btn-turquoise:hover,
-.btn-turquoise.disabled:focus,
-.btn-turquoise[disabled]:focus,
-fieldset[disabled] .btn-turquoise:focus,
-.btn-turquoise.disabled.focus,
-.btn-turquoise[disabled].focus,
-fieldset[disabled] .btn-turquoise.focus {
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise .badge {
-	color: #5cb85c;
-	background-color: #fff;
-}
 
 
 

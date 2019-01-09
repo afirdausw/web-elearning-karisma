@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								
 									<div class="row">
 										<div class="col-sm-12">
-											<button type="submit" name="form_submit" value="submit" class="btn btn-fill btn-turquoise form-control">
+											<button type="submit" name="form_submit" value="submit" class="btn btn-fill btn-primary form-control">
 												<i class="glyphicon glyphicon-log-in"></i> Login
 											</button>
 										</div>
@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="footer text-right">
 									<hr>
 									<div class="stats">
-										<i class="fa fa-copyright"></i> <?php echo date('Y');?> <span class="text-turquoise">Lembaga Pendidikan Islam Hidayatullah</span>
+										<i class="fa fa-copyright"></i> <?php echo date('Y');?> <span class="text-primary">Lembaga Pendidikan Islam Hidayatullah</span>
 									</div>
 								</div>
 							</div>

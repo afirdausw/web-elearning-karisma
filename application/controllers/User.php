@@ -2288,7 +2288,7 @@ class User extends CI_Controller
 
                                     if($poin_final>=0 AND count($kd_detail) <= 0){
                                     ?>
-                                    <a class="btn btn-turquoise"
+                                    <a class="btn btn-primary"
                                        onclick="window.open('<?php echo site_url('user/kd_tambah/' . $konten_val->id); ?>','_self');"
                                        href="<?php echo $konten_val->link; ?>"
                                        target="_blank"
@@ -2297,7 +2297,7 @@ class User extends CI_Controller
                                     </a>
                                     <?php
                                     }else if(count($kd_detail) > 0){ ?>
-                                        <a class="btn btn-turquoise" href="<?php echo $konten_val->link; ?>"
+                                        <a class="btn btn-primary" href="<?php echo $konten_val->link; ?>"
                                             target="_blank"
                                             style="display:initial;vertical-align:baseline;padding:5px 35px;">
                                             <!-- Style untuk memperbaiki tampilan -->

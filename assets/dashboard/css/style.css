@@ -34,10 +34,7 @@ html, body {
 	font-family: 'Actor', sans-serif;
 	color: #161616;
 	/*background-color: #e9f0f4 */}
-	
-.turquoise{
-	color:#16a085 !important;
-}
+
 .container-fluid {
 	margin: 0;
 	padding: 0; }
@@ -412,9 +409,6 @@ hr.reason-grid{
 		color: #26292b;
 		font-size: 1.6em;
 		margin: 0;}
-		.reason-wrapper h4 .turquoise  {
-			color: #1abc9c;
-			font-weight: bold; }
 	.reason-wrapper > p {
 		font-size: 1.2em;
 		margin: 15px auto;
@@ -3315,10 +3309,6 @@ START
 			.akun-slider .content a {
 				font-size: 0.75em;
 				margin: 3px 0 0; }
-	.agcu-welcome .btn-turquoise{
-		display: block;
-		width: 100%;
-	}
 	.diagnistic-header{
 		padding-top:20px;
 	}
@@ -4119,66 +4109,6 @@ ul{
 	color:white;
 }
 
-/*turquoise*/
-
-.btn-turquoise{
-	color: #fff;
-	background-color: #1abc9c;
-	border-color: #15af89;
-}
-
-.btn-turquoise:focus,
-.btn-turquoise.focus {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #255625;
-}
-.btn-turquoise:hover {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #398439;
-}
-.btn-turquoise:active,
-.btn-turquoise.active,
-.open > .dropdown-toggle.btn-turquoise {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise:active:hover,
-.btn-turquoise.active:hover,
-.open > .dropdown-toggle.btn-turquoise:hover,
-.btn-turquoise:active:focus,
-.btn-turquoise.active:focus,
-.open > .dropdown-toggle.btn-turquoise:focus,
-.btn-turquoise:active.focus,
-.btn-turquoise.active.focus,
-.open > .dropdown-toggle.btn-turquoise.focus {
-	color: #fff;
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise:active,
-.btn-turquoise.active,
-.open > .dropdown-toggle.btn-turquoise {
-	background-image: none;
-}
-.btn-turquoise.disabled:hover,
-.btn-turquoise[disabled]:hover,
-fieldset[disabled] .btn-turquoise:hover,
-.btn-turquoise.disabled:focus,
-.btn-turquoise[disabled]:focus,
-fieldset[disabled] .btn-turquoise:focus,
-.btn-turquoise.disabled.focus,
-.btn-turquoise[disabled].focus,
-fieldset[disabled] .btn-turquoise.focus {
-	background-color: #0f947a;
-	border-color: #0e6f5c;
-}
-.btn-turquoise .badge {
-	color: #5cb85c;
-	background-color: #fff;
-}
 
 
 
