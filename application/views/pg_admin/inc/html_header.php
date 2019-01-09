@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 		<!-- Bootstrap core CSS     -->
-		<link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" />
+		<link href="<?php echo base_url('assets/plugin/bootstrap-3/bootstrap.min.css');?>" rel="stylesheet" />
 
 		<!-- Animation library for notifications   -->
 		<link href="<?php echo base_url('assets/css/animate.min.css');?>" rel="stylesheet"/>
