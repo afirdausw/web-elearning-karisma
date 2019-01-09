@@ -60,14 +60,13 @@ Tip 2: you can also add an image using data-image tag
 							<p>Dashboard</p>
 					</a>
 				</li>
-
-				<li class="sidebar-header"><span>Materi</span></li>
 		<!-- menu kelas -->
 		<!-- hanya bisa diakses superadmin dan admin -->
 		<!-- ############################-->
 		<?php
 			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
 		?>
+				<li class="sidebar-header"><span>Materi</span></li>
 				<li class="<?php echo ($active=='kelas' ? 'active' : '')?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 							<i class="pe-7s-notebook"></i>
@@ -134,18 +133,6 @@ Tip 2: you can also add an image using data-image tag
 			</li>
 		</ul>
 		</li>
-		<?php
-			if($this->session->userdata('level') == "superadmin"){
-		?>
-		<li class="<?php echo ($active=='analisis' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/analisis') ?>">
-							<i class="pe-7s-graph2"></i>
-							<p>Pencapaian Siswa</p>
-					</a>
-				</li>
-		<?php
-			}
-		?>
 				<!-- END MENU TRY OUT -->
 
 		<!-- START INSTRUKTUR -->
@@ -220,116 +207,6 @@ Tip 2: you can also add an image using data-image tag
 		<?php
 			}
 		?>
-		
-		<?php
-			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
-		?>
-<!--				<li class="--><?php //echo ($active=='sekolah' ? 'active' : '')?><!--">-->
-<!--					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">-->
-<!--							<i class="pe-7s-study"></i>-->
-<!--							<p>Sekolah <b class="caret"></b></p>-->
-<!--					</a>-->
-<!--					<ul class="dropdown-menu sub-nav">-->
-<!--						<li>-->
-<!--							<a href="--><?php //echo site_url('pg_admin/sekolah')?><!--">Semua Sekolah</a>-->
-<!--						</li>-->
-<!--						<li>-->
-<!--							<a href="--><?php //echo site_url('pg_admin/sekolah/manajemen/tambah')?><!--">Tambah Baru</a>-->
-<!--						</li>-->
-<!--						<li>-->
-<!--							<a href="--><?php //echo site_url('pg_admin/sekolah/manajemen/import')?><!--">Import Data</a>-->
-<!--						</li>-->
-<!--					</ul>-->
-<!--				</li>-->
-				<?php
-			}
-		?>
-		
-		<?php
-			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
-		?>
-<!--				<li class="sidebar-header"><span>Paket</span></li>-->
-<!--				<li class="--><?php //echo ($active=='paket' ? 'active' : '')?><!--">-->
-<!--					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">-->
-<!--							<i class="pe-7s-credit"></i>-->
-<!--							<p>Paket <b class="caret"></b></p>-->
-<!--					</a>-->
-<!--					<ul class="dropdown-menu sub-nav">-->
-<!--						<li>-->
-<!--							<a href="--><?php //echo site_url('pg_admin/paket')?><!--">Semua Paket</a>-->
-<!--						</li>-->
-<!--						<li>-->
-<!--							<a href="--><?php //echo site_url('pg_admin/paket/manajemen/tambah')?><!--">Tambah Baru</a>-->
-<!--						</li>-->
-<!--					</ul>-->
-<!--				</li>-->
-<!--				<li class="--><?php //echo ($active=='pembayaran' ? 'active' : '')?><!--">-->
-<!--					<a href="--><?php //echo site_url('pg_admin/pembayaran') ?><!--">-->
-<!--							<i class="pe-7s-cash"></i>-->
-<!--							<p>Pembayaran</p>-->
-<!--					</a>-->
-<!--				</li>-->
-		
-		<?php /*
-		<li class="<?php echo ($active=='voucher' ? 'active' : '')?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<i class="pe-7s-notebook"></i>
-							<p>Voucher<b class="caret"></b></p>
-					</a>
-					<ul class="dropdown-menu sub-nav">
-						<li>
-							<a href="<?php echo site_url('pg_admin/voucher')?>">
-								Semua Voucher
-							</a>
-						</li>
-						<li>
-							<a href="<?php echo site_url('pg_admin/voucher/manajemen/tambah')?>">
-								Tambah Voucher
-							</a>
-						</li>
-					</ul>
-				</li>
-				*/ ?>
-				 
-				<?php
-			}
-		?>
-		
-		
-		<!-- tambahan menu untuk PSES dan manajemen login PSES -->
-		<!-- ############################ -->
-		<!-- ############################ -->
-		<?php
-			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
-		?>
-		<li class="sidebar-header"><span>Manajemen PSEP</span></li>
-		<li class="<?php echo ($active=='akun_psep' && $active2!='guru' ? 'active' : '')?>">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				<i class="pe-7s-culture"></i>
-				<p>Akun Sekolah <b class="caret"></b></p>
-			</a>
-			<ul class="dropdown-menu sub-nav">
-			<li class="<?php echo ($active=='akun_psep' && $active2=='sekolah' ? 'active' : '')?>">
-				<a href="<?php echo site_url('pg_admin/akun_psep/sekolah')?>">Semua Akun</a>
-			</li>
-			<li class="<?php echo ($active=='akun_psep' && $active2=='tambah_sekolah' ? 'active' : '')?>">
-				<a href="<?php echo site_url('pg_admin/akun_psep/tambah_sekolah')?>">Tambah Baru</a>
-			</li>
-			</ul>
-		</li>
-		<li class="<?php echo ($active=='akun_psep' && $active2=='guru' ? 'active' : '')?>">
-					<a href="<?php echo site_url('pg_admin/akun_psep/guru') ?>">
-							<i class="pe-7s-study"></i>
-							<p>Manajemen Guru</p>
-					</a>
-				</li>
-		<?php
-			}
-		?>
-		<!-- end -->
-		<!-- ############################ -->
-		<!-- ############################ -->
-		
 		<!-- tambahan menu untuk manajemen user -->
 		<!-- ############################ -->
 		<!-- ############################ -->
