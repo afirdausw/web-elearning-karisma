@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 		<!-- Bootstrap core CSS     -->
-		<link href="<?php echo base_url('assets/plugin/bootstrap-3/bootstrap.min.css');?>" rel="stylesheet" />
+		<link href="<?php echo base_url('assets/plugin/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
 
 		<!-- Animation library for notifications   -->
 		<link href="<?php echo base_url('assets/css/animate.min.css');?>" rel="stylesheet"/>
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
 
 		<!--   Core JS Files   -->
-	 <script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
 		
 		<script src="<?php echo base_url('assets/js/jquery-ui/jquery-ui.js');?>"></script>
 </head>
