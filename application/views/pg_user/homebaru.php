@@ -283,8 +283,7 @@
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'mapel/' . $value->id_mapel; ?>">
                             <!--                            <span class="badge-diskon">Diskon 25%</span>-->
-                            <img style="border: 1px solid  #999;"
-                                 src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                            <img src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
                                  alt="<?= $value->nama_mapel ?>">
                             <div class="caption">
                                 <?php
@@ -309,15 +308,15 @@
                                 <div class="clearfix"></div>
                                 <p class="m-t-2 font-size-md"
                                    style="padding-right: 5rem !important;font-style: italic;">
-                                    Instruktur, Materi & Sertifikat sama persis Kelas Regular tatap muka di Karisma
+                                    Instruktur, Materi &amp; Sertifikat sama persis Kelas Regular tatap muka di Karisma
                                     Academy
                                 </p>
                                 <hr style="border-top: 1px solid  #999"/>
                                 <div class="w-100 font-size-h1 mt-5 container-fluid">
                                     <div class="row m-0">
                                         <div class="col-md-2 col-sm-6 p-0">
-                                            <div class="glyphicon glyphicon-heart pull-left py-3"
-                                                 title="Tambah Kursus '<?= $value->nama_mapel ?>' ke WISHLIST"></div>
+                                            <div class="fa fa-heart-o pull-left py-3"
+                                                 title="Tambah Materi '<?= $value->nama_mapel ?>' ke WISHLIST"></div>
                                         </div>
                                         <div class="col-md-3 col-sm-6 p-0">
                                             <?php
@@ -332,12 +331,12 @@
                                             <?php } else {
                                                 $link = base_url("login");
                                             } ?>
-                                            <a class="btn btn-primary btn-lg btn-block" title="Tambahkan ke Cart"
-                                               href="<?= $link ?>"><i class="fa fa-cart-plus"></i></a>
+                                            <a class="btn btn-success btn-lg" title="Tambahkan ke Cart"
+                                               href="<?= $link ?>"><i class="fa fa-plus"></i></a>
                                         </div>
                                         <div class="col-md-7 col-sm-12 text-right p-0">
-                                            <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
-                                            <span style="color: #93bc3a">Rp. <?= money($value->harga) ?></span>
+                                            <span class="font-size-h4 text-gray mr-3">  * Mulai dari </span>
+                                            <span class="price">Rp. <?= money($value->harga) ?></span>
                                         </div>
                                     </div>
                                 </div>

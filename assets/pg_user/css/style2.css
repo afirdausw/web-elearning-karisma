@@ -1445,6 +1445,7 @@ footer a:hover:not(.logo-footer) {
     padding: 0;
     width: 100%;
     border-radius: 0;
+    border: 1px solid #bfb9b9;
     /*background: #F0F0F0;*/
     transition: all .2s linear;
     display: inline-block;
@@ -1452,7 +1453,11 @@ footer a:hover:not(.logo-footer) {
 }
 
 .materi-lainnya .caption {
-    border: solid 1px #999;
+    border-top: 0;
+}
+
+.materi-lainnya .caption .badge {
+    border-radius: 35px;
 }
 
 .materi-lainnya:hover,
@@ -1460,7 +1465,7 @@ footer a:hover:not(.logo-footer) {
     cursor: pointer;
     border: solid 1px;
     border-color:#999 !important;
-    box-shadow: 1px 2px 1px 0 rgba(20, 23, 28, .1), 0 2px 1px 0 rgba(20, 23, 28, .1)
+    box-shadow: 0 2px 5px #CCC;
 }
 
 .materi-lainnya a {
@@ -1480,6 +1485,15 @@ footer a:hover:not(.logo-footer) {
     margin: 12px 0 0 0;
     font-size: 14px;
     font-weight: 500;
+}
+
+.materi-lainnya > .caption .row .text-right {
+    top: -20px;
+}
+
+.price {
+    color: #93bc3a;
+    display: block;
 }
 
 .badge-diskon {

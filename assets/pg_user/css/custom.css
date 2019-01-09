@@ -60,7 +60,7 @@ label {
     color: #FFF;
 }
 .navbar-nav > li > .dropdown-menu {
-    margin-top: -1px;
+    margin-top: 5px;
 }
 .nav > li > a{
     padding:10px;
