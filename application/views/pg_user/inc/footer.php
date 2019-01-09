@@ -71,7 +71,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/cart.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript"
-        src="<?php echo base_url('assets/pg_user/js/jquery.CustomScrollbar.min.js'); ?>"></script>
+        src="<?php echo base_url('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-sidebar.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-collapse.js'); ?>"></script>
 

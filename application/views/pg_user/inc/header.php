@@ -21,7 +21,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/pg_user/css/jquery.mCustomScrollbar.min.css'); ?>">
+          href="<?php echo base_url('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
