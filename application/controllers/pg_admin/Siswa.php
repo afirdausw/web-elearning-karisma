@@ -34,139 +34,11 @@ class Siswa extends CI_Controller
         );
 
 
-        $this->load->view('pg_admin/siswa', $data);
+        $this->load->view('pg_admin/siswa/siswa', $data);
     }
 
     public function upload()
     {
-        // $fileName = time().$_FILES['file']['name'];
-
-        // $config['upload_path'] = './assets/'; //buat folder dengan nama assets di root folder
-        // $config['file_name'] = $fileName;
-        // $config['allowed_types'] = 'xls|xlsx|csv';
-        // $config['max_size'] = 10000;
-
-        // $this->load->library('upload', $config);
-
-        // $this->load->library('upload');
-        // $this->upload->initialize($config);
-
-
-        // //if(!$this->upload->do_upload('file')) {
-        //     $this->upload->display_errors();
-        // //} 
-        // $media = $this->upload->data('file');
-        // $inputFileName = './assets/'.$media['file_name'];
-
-        // try {
-        //     $inputFileType = IOFactory::identify($inputFileName);
-        //     $objReader = IOFactory::createReader($inputFileType);
-        //     $objPHPExcel = $objReader->load($inputFileName);
-        // } catch(Exception $e) {
-        //     die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-        // }
-
-        // $sheet = $objPHPExcel->getSheet(0);
-        // $highestRow = $sheet->getHighestRow();
-        // $highestColumn = $sheet->getHighestColumn();
-
-        // for ($row = 2; $row <= $highestRow; $row++){                  //  Read a row of data into an array
-        //     $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
-        //         NULL,
-        //         TRUE,
-        //         FALSE);
-
-        //     //Sesuaikan sama nama kolom tabel di database
-        //     $data = array(
-        //         "nama_siswa"=> $rowData[0][0],
-        //         "alamat"    => $rowData[0][1],
-        //         "telepon"  => $rowData[0][2],
-        //     );
-
-        //     //sesuaikan nama dengan nama tabel
-        //     $insert = $this->db->insert("siswa",$data);
-        //     delete_files($media['file_path']);
-
-        // }
-        // redirect('pg_admin/siswa');
-
-//        $config['upload_path'] = './temp_upload/';
-//        //$config['allowed_types'] = 'xls';
-//        $config['allowed_types'] = 'xls|xlsx|csv';
-
-//        echo "disini";
-//
-//		$this->load->library('upload', $config);
-//
-//		if ( ! $this->upload->do_upload())
-//		{
-//			$data = array('error' => $this->upload->display_errors());
-//
-//		}
-//		else
-//		{
-//
-//            $data = array('error' => false);
-//			$upload_data = $this->upload->data();
-//
-//            $this->load->library('excel_reader');
-//			$this->excel_reader->setOutputEncoding('CP1251');
-//
-//			$file =  $upload_data['full_path'];
-//			$this->excel_reader->read($file);
-//			error_reporting(E_ALL ^ E_NOTICE);
-//
-//			// Sheet 1
-//			$data = $this->excel_reader->sheets[0] ;
-//                        $dataexcel = Array();
-//			for ($i = 1; $i <= $data['numRows']; $i++) {
-//
-//                            if($data['cells'][$i][1] == '') break;
-//                            $dataexcel[$i-1]['nama_siswa'] = $data['cells'][$i][1];
-//                            $dataexcel[$i-1]['alamat'] = $data['cells'][$i][2];
-//
-//			}
-//
-//            delete_files($upload_data['file_path']);
-//            $this->load->model('User_model');
-//            $this->User_model->tambahuser($dataexcel);
-//            $data['user'] = $this->User_model->getuser();
-//		}
-//        //$this->load->view('pg_admin/siswa', $data);
-//        //redirect('pg_admin/siswa');
-        //Path of files were you want to upload on localhost (C:/xampp/htdocs/ProjectName/uploads/excel/)
-//        $configUpload['upload_path'] = FCPATH . 'uploads/excel/';
-//        $configUpload['allowed_types'] = 'xls|xlsx|csv';
-//
-//        $configUpload['max_size'] = '5000';
-//        $this->load->library('upload', $configUpload);
-//        $this->upload->do_upload('userfile');
-//        $upload_data = $this->upload->data(); //Returns array of containing all of the data related to the file you uploaded.
-//        $file_name = $upload_data['file_name']; //uploded file name
-//        $extension = $upload_data['file_ext'];    // uploded file extension
-//
-//        $objReader = PHPExcel_IOFactory::createReader('Excel5');     //For excel 2003
-//        //$objReader= PHPExcel_IOFactory::createReader('Excel2007');	// For excel 2007
-//        //Set to read only
-//        $objReader->setReadDataOnly(true);
-//        //Load excel file
-//        $objPHPExcel = $objReader->load(FCPATH . 'uploads/excel/' . $file_name);
-//        $totalrows = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();   //Count Numbe of rows avalable in excel
-//        $objWorksheet = $objPHPExcel->setActiveSheetIndex(0);
-//        //loop from first data untill last data
-//        for ($i = 2; $i <= $totalrows; $i++) {
-//            $FirstName = $objWorksheet->getCellByColumnAndRow(0, $i)->getValue();
-//            $Address = $objWorksheet->getCellByColumnAndRow(4, $i)->getValue(); //Excel Column 4
-//            $Email = $objWorksheet->getCellByColumnAndRow(2, $i)->getValue(); //Excel Column 2
-//            $Mobile = $objWorksheet->getCellByColumnAndRow(3, $i)->getValue(); //Excel Column 3
-//            $data_user = array('nama_siswa' => $FirstName, 'alamat' => $Address, 'telepon' => $Email, 'email' => $Mobile);
-//            $this->excel_data_insert_model->Add_User($data_user);
-//
-//
-//        }
-//        //unlink('././uploads/excel/'.$file_name); //File Deleted After uploading in database .
-//        //redirect(base_url() . "put link were you want to redirect");
-
         $data = array(
             'navbar_title' => "Manajemen Sekolah",
             'page_title'   => "Import Data Sekolah",
@@ -183,7 +55,7 @@ class Siswa extends CI_Controller
         if (!$this->upload->do_upload('import_data')) {
             $errors = array('error' => $this->upload->display_errors());
             alert_error("Error", "Proses import data gagal");
-            //$this->load->view('pg_admin/siswa', $data);
+            //$this->load->view('pg_admin/siswa/siswa', $data);
             redirect('pg_admin/siswa');
             //echo "prosses upload gagal";
         } else {
@@ -250,7 +122,7 @@ class Siswa extends CI_Controller
             'navbar_title'         => 'Upload Excel Siswa',
             'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
-        $this->load->view('pg_admin/siswaupload', $data);
+        $this->load->view('pg_admin/siswa/siswaupload', $data);
     }
 
     private function upload_config()
@@ -280,7 +152,7 @@ class Siswa extends CI_Controller
             'select_jenjang'  => $this->Model_pg->fetch_options_jenjang(),
         );
 
-        $this->load->view('pg_admin/siswa_pendaftar', $data);
+        $this->load->view('pg_admin/siswa/siswa_pendaftar', $data);
     }
 
     function kota($idprovinsi)
@@ -356,7 +228,7 @@ class Siswa extends CI_Controller
             'table_data'   => $this->Model_adm->fetch_siswa_aktif()
         );
 
-        $this->load->view('pg_admin/siswa_aktif', $data);
+        $this->load->view('pg_admin/siswa/siswa_aktif', $data);
     }
 
     public function manajemen($aksi)
@@ -385,7 +257,7 @@ class Siswa extends CI_Controller
                         $this->proses_tambah();
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/siswa_form', $data);
+                        $this->load->view('pg_admin/siswa/siswa_form', $data);
                     }
                     break;
 
@@ -416,7 +288,7 @@ class Siswa extends CI_Controller
                             $this->proses_ubah($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/siswa_form', $data);
+                            $this->load->view('pg_admin/siswa/siswa_form', $data);
 //                            var_dump($data);
 //                            echo json_encode($data);
                         }
@@ -450,7 +322,7 @@ class Siswa extends CI_Controller
                             $this->proses_ubah_aktif($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/siswa_form', $data);
+                            $this->load->view('pg_admin/siswa/siswa_form', $data);
                         }
                     }
                     break;
@@ -500,7 +372,7 @@ class Siswa extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/siswa_form', $data);
+            $this->load->view('pg_admin/siswa/siswa_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_siswa($nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas, $nisn, $nis, $username, $password);
@@ -585,7 +457,7 @@ class Siswa extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal diubah");
-            $this->load->view('pg_admin/siswa_form', $data);
+            $this->load->view('pg_admin/siswa/siswa_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->update_siswa($id, $nama, $email, $telepon, $telepon_ortu, $alamat, $sekolah_id, $kelas);
