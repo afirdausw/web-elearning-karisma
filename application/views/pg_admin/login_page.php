@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="footer text-right">
 									<hr>
 									<div class="stats">
-										<i class="fa fa-copyright"></i> <?php echo date('Y');?> <span class="text-primary">Lembaga Pendidikan Islam Hidayatullah</span>
+										<i class="fa fa-copyright"></i> <?php echo date('Y');?> <span class="text-primary">Karisma Academy</span>
 									</div>
 								</div>
 							</div>
