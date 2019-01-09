@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 
 <!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js');?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery-1.12.4.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js');?>" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
