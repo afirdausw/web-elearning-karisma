@@ -52,30 +52,3 @@
 
 }
 
-
-
-/* BOOTSTRAP modif */
-
-.fullpage-login .form-control{
-
-	height:inherit;
-
-}
-
-.fullpage-login .form-control-feedback{
-
-	line-height:35px;
-
-	height:37px;
-
-	width:inherit;
-
-}
-
-
-
-.fullpage-login .form-group .has-feedback{
-
-	margin-bottom:0;
-
-}

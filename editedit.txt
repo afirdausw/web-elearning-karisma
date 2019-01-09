@@ -1,6 +1,0 @@
-Fuad
-- Nambah file gambar fitur1.png, fitur2.png, fitur3.png di folder assets/pg_user/images
-
-- Nambah file gambar materi1.jpg, materi2.jpg, materi3.jpg, profile.png di folder assets/dashboard/images
-
-- Edit homebaru.php di folder views/pg_user
