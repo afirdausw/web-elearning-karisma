@@ -527,7 +527,7 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
+    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga, $harga2, $harga3)
     {
         //Insert data into table mata_pelajaran
         $data = array(
@@ -536,6 +536,8 @@ class Model_adm extends CI_Model
             'deskripsi_mapel' => $deskripsi_mapel,
             'gambar_mapel'    => $gambar_mapel,
             'harga'    => $harga,
+            'harga2'    => $harga2,
+            'harga3'    => $harga3,
         );
         $result = $this->db->insert('mata_pelajaran', $data);
 

@@ -131,6 +131,8 @@ class Mapel extends CI_Controller
         $kelas_id = $params['kelas'];
         $nama_mapel = $params['mata_pelajaran'];
         $harga = $params['harga'];
+        $harga2 = $params['harga2'];
+        $harga3 = $params['harga3'];
         $deskripsi_mapel = isset($params['deskripsi_mapel']) ? $params['deskripsi_mapel'] : '';
 
         $gambar_mapel = "";
@@ -161,7 +163,7 @@ class Mapel extends CI_Controller
             $this->load->view('pg_admin/mapel_form', $data);
         } else {
             //passing input value to Model
-            $result = $this->Model_adm->add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel,$harga);
+            $result = $this->Model_adm->add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel,$harga,$harga2,$harga3);
             alert_success("Sukses", "Data berhasil ditambahkan");
             redirect('pg_admin/mapel/kelas/' . $kelas_id);
             // echo "Status Insert: " . $result;
