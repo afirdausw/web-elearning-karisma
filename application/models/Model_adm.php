@@ -910,15 +910,11 @@ class Model_adm extends CI_Model
 
 
     // SISWA (IFA)
-    function fetch_all_siswa($jenjang = '')
+    function fetch_all_siswa()
     {
         $this->db->select('*');
         $this->db->from('siswa');
-        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
-        if ($jenjang != '') {
-            $this->db->where('kelas.jenjang', $jenjang);
-        }
 
         $query = $this->db->get();
 
@@ -939,11 +935,10 @@ class Model_adm extends CI_Model
         return $query->row();
     }
 
-    function fetch_siswa_pendaftar($jenjang = '')
+    function fetch_siswa_pendaftar()
     {
-        $this->db->select('siswa.*, kelas.*');
+        $this->db->select('siswa.*');
         $this->db->from('siswa');
-        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->where(
             "siswa.id_siswa NOT IN (
 				SELECT paket_aktif.id_siswa 
@@ -951,9 +946,6 @@ class Model_adm extends CI_Model
 				WHERE paket_aktif.isaktif = '1'
 				) "
         );
-        if ($jenjang != '') {
-            $this->db->where('kelas.jenjang', $jenjang);
-        }
         $this->db->order_by('siswa.timestamp', 'ASC');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
         $query = $this->db->get();
@@ -961,11 +953,10 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function fetch_siswa_aktif($jenjang = '')
+    function fetch_siswa_aktif()
     {
-        $this->db->select('siswa.*, kelas.*');
+        $this->db->select('siswa.*');
         $this->db->from('siswa');
-        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->where(
             "siswa.id_siswa IN (
 				SELECT paket_aktif.id_siswa 
@@ -973,9 +964,6 @@ class Model_adm extends CI_Model
 				WHERE paket_aktif.isaktif = '1'
 				) "
         );
-        if ($jenjang != '') {
-            $this->db->where('kelas.jenjang', $jenjang);
-        }
         $this->db->order_by('siswa.timestamp', 'ASC');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
         $query = $this->db->get();
@@ -1046,9 +1034,6 @@ class Model_adm extends CI_Model
         $this->db->select('*');
         $this->db->from('kelas');
         $this->db->where('kelas.jenjang', $jenjang);
-        // echo $jenjang."\n";
-        // echo $this->db->_compile_select();
-        // die();
         $query = $this->db->get();
 
         return $query->result();

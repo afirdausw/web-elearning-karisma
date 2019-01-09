@@ -152,7 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div> <!-- end .main-panel -->
 </div>
 
-<?php include "alert_modal.php"; ?>
+<?php  include APPPATH."views/pg_admin/alert_modal.php"; ?>
 </body>
 
 <!--   Core JS Files   -->
