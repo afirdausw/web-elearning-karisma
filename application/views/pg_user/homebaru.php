@@ -104,7 +104,7 @@
                         <!-- Indicators -->
                         <ol class="carousel-indicators my-0">
                             <?php
-                            $prestasi = array(
+                            $prestasi = [
                                 0 => [
                                     "title"         => "Coba0",
                                     "icon"          => "https://picsum.photos/50/50/?random&gravity=center",
@@ -119,7 +119,7 @@
                                     "penyelenggara" => "Lenovo1",
                                     "img"           => "https://picsum.photos/580/380/?gravity=center",
                                 ],
-                            );
+                            ];
                             foreach ($prestasi as $key => $value) {
                                 ?>
                                 <li data-target="#carouselAchievement" data-slide-to="<?= $key ?>"
@@ -162,7 +162,7 @@
         <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
         <div class="row">
             <?php
-            $alasan = array(
+            $alasan = [
                 0 => [
                     "title"  => "Instruktur",
                     "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
@@ -178,7 +178,7 @@
                     "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
                     "detail" => "Sertifikat SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
-            );
+            ];
             $colBagi = 12 / count($alasan);
 
             foreach ($alasan as $key => $val) {
@@ -283,9 +283,11 @@
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'mapel/' . $value->id_mapel; ?>">
                             <!--                            <span class="badge-diskon">Diskon 25%</span>-->
-                            <img style="border: 1px solid  #999;"
-                                 src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
-                                 alt="<?= $value->nama_mapel ?>">
+                            <div class="mapel-image">
+                                <img style="border: 1px solid  #999;"
+                                     src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                     alt="<?= $value->nama_mapel ?>">
+                            </div>
                             <div class="caption">
                                 <?php
                                 if (strlen($value->nama_mapel) >= 20) {
@@ -309,15 +311,15 @@
                                 <div class="clearfix"></div>
                                 <p class="m-t-2 font-size-md"
                                    style="padding-right: 5rem !important;font-style: italic;">
-                                    Instruktur, Materi & Sertifikat sama persis Kelas Regular tatap muka di Karisma
+                                    Instruktur, Materi &amp; Sertifikat sama persis Kelas Regular tatap muka di Karisma
                                     Academy
                                 </p>
                                 <hr style="border-top: 1px solid  #999"/>
                                 <div class="w-100 font-size-h1 mt-5 container-fluid">
                                     <div class="row m-0">
                                         <div class="col-md-2 col-sm-6 p-0">
-                                            <div class="glyphicon glyphicon-heart pull-left py-3"
-                                                 title="Tambah Kursus '<?= $value->nama_mapel ?>' ke WISHLIST"></div>
+                                            <div class="fa fa-heart-o pull-left py-3"
+                                                 title="Tambah Materi '<?= $value->nama_mapel ?>' ke WISHLIST"></div>
                                         </div>
                                         <div class="col-md-3 col-sm-6 p-0">
                                             <?php
@@ -332,12 +334,12 @@
                                             <?php } else {
                                                 $link = base_url("login");
                                             } ?>
-                                            <a class="btn btn-primary btn-lg btn-block" title="Tambahkan ke Cart"
-                                               href="<?= $link ?>"><i class="fa fa-cart-plus"></i></a>
+                                            <a class="btn btn-success btn-lg" title="Tambahkan ke Cart"
+                                               href="<?= $link ?>"><i class="fa fa-plus"></i></a>
                                         </div>
                                         <div class="col-md-7 col-sm-12 text-right p-0">
-                                            <span class="font-size-h4 text-gray mr-3">  * mulai dari </span>
-                                            <span style="color: #93bc3a">Rp. <?= money($value->harga) ?></span>
+                                            <span class="font-size-h4 text-gray mr-3">  * Mulai dari </span>
+                                            <span class="price">Rp. <?= money($value->harga) ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -424,7 +426,7 @@
 <script type="text/javascript">
 
     var current_page = 1;
-    var last = <?= $jumlah_page ?>;
+    var last = Math.floor(<?= $jumlah_page ?>);
     var first = 1;
     var previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
     var next = (current_page + 1) > last ? last : (current_page + 1);
@@ -441,56 +443,61 @@
 
     hide_all();
     page(1);
-    var nav = $("nav.navbar");
+    console.log(last);
 
     function next_page() {
         current_page = next;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function previous_page() {
         current_page = previous;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function first_page() {
         current_page = first;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function last_page() {
         current_page = last;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
         next = (current_page + 1) >= last ? last : (current_page + 1);
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     function page(i) {
         current_page = i;
         previous = (current_page - 1) <= 0 ? 1 : (current_page - 1);
-        next = (current_page + 1) >= last ? last : (current_page + 1);
+        next = (current_page + 1) >= last ? last : (current_page + 1)
+        console.log(next);
         hide_all();
         $('.page-' + current_page).show();
         $('#paging-' + current_page).addClass('active');
-        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - nav.height() - nav.height()}, "slow");
+        $("html, body").animate({scrollTop: $('#home_list_materi').offset().top - $("nav.navbar").height() - $("nav.navbar").height()}, "slow");
     }
 
     //    $(function () {
@@ -516,8 +523,8 @@
     //        var url = "<?//= base_url() ?>//" + "home/ajax_load_listmapel/<?//= $limit ?>///" + num;
     //        bnner = $("section.live-instruktur");
     //        lst = $("#home_list_materi");
-    //        nav = $("nav.navbar");
-    //        $("html, body").animate({scrollTop: bnner.height() - nav.height()}, "slow");
+    //        $("nav.navbar") = $("$("nav.navbar").$("nav.navbar")bar");
+    //        $("html, body").animate({scrollTop: bnner.height() - $("nav.navbar").height()}, "slow");
     //        $.ajax({
     //            url: url,
     //            success: function (result) {

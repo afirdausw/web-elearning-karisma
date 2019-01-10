@@ -63,9 +63,11 @@ $route['instruktur/(:any)'] = 'instruktur/index/$1';
 
 $route['konten/(:any)'] = 'konten/index/$1';
 $route['materi/(:any)'] = 'materi/index/$1';
-$route['mapel/(:any)']  = 'mapel/index/$1';
-$route['kelas/(:any)']  = 'kelas/index/$1';
-$route['hasil/(:any)']  = 'hasil/index/$1';
+$route['mapel/(:any)'] = 'mapel/index/$1';
+$route['kelas/(:any)'] = 'kelas/index/$1';
+$route['hasil/(:any)'] = 'hasil/index/$1';
+$route['konfirmasi-pembayaran/(:any)'] = 'konfirmasi/index/$1';
+$route['history-transaksi'] = 'konfirmasi/history_transaksi';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

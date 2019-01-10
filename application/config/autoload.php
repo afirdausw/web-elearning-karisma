@@ -115,7 +115,7 @@ $autoload['packages'] = array();
 
 */
 
-$autoload['libraries'] = array('database', 'session','form_validation');
+$autoload['libraries'] = array('database', 'session', 'form_validation');
 
 
 /*
@@ -294,5 +294,7 @@ $autoload['model'] = array(
     "Model_signup",
     "Model_tryout",
     "Model_voucher",
-    "Model_voucher_baru",);
+    "Model_voucher_baru",
+    "Model_Transaksi",
+);
 

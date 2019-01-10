@@ -60,7 +60,7 @@ label {
     color: #FFF;
 }
 .navbar-nav > li > .dropdown-menu {
-    margin-top: -1px;
+    margin-top: 5px;
 }
 .nav > li > a{
     padding:10px;
@@ -81,6 +81,7 @@ label {
 .dropdown-menu li.cart-dropdown{
     text-transform: initial !important;
 }
+
 .dropdown-menu li.cart-dropdown > a {
     padding: 0 5px;
     transition: all 0.1s linear;
@@ -88,7 +89,24 @@ label {
 .dropdown-menu li.cart-dropdown > a:hover {
     /*background: #E5E5E5;*/
     background: #c6e5f7;
-    color: inherit;
+    color: #93bc3a;
+}
+.thumb-cart {
+    display: inline-block;
+    width: 20px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 3px;
+    object-fit: cover;
+    /*border: 3px solid #c99;*/
+    background-position: center center;
+    background-size: cover;
+}
+.cart-judul {
+    font-size: 11pt;
+    padding: 0px;
+    padding-top: 10px;
+    margin-bottom: -10px;
 }
 /*//cart end*/
 .navbar-default .navbar-toggle .icon-bar {
@@ -115,6 +133,7 @@ label {
     margin-top: 12.5px;
     padding: 9px 10px !important;
 }
+
 @media (min-width: 768px) {
     .navbar-nav > li > a {
         padding-top: 20px;

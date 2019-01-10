@@ -50,19 +50,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                        required="required">
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <?php //$hide = true;?>
+                                    <?php //if($hide == false) { ?>
+                                    <div class="row">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Harga<span class="text-danger">*</span></label>
+                                                <label>Harga Basic <span class="text-danger">*</span></label>
                                                 <?php echo form_error('harga', '<div class="text-danger">', '</div>'); ?>
                                                 <input type="text" name="harga" class="form-control"
-                                                       placeholder="Harga Kursus"
+                                                       placeholder="Harga Kursus Basic"
                                                        value="<?php echo set_value('harga', isset($data->harga) ? $data->harga : ''); ?>"
                                                        required="required">
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Harga Silver <span class="text-danger">*</span></label>
+                                                <?php echo form_error('harga', '<div class="text-danger">', '</div>'); ?>
+                                                <input type="text" name="harga2" class="form-control"
+                                                       placeholder="Harga Kursus Silver"
+                                                       value="<?php echo set_value('harga', isset($data->harga2) ? $data->harga3 : ''); ?>"
+                                                       required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Harga Gold <span class="text-danger">*</span></label>
+                                                <?php echo form_error('harga', '<div class="text-danger">', '</div>'); ?>
+                                                <input type="text" name="harga3" class="form-control"
+                                                       placeholder="Harga Kursus <Gold></Gold>"
+                                                       value="<?php echo set_value('harga', isset($data->harga3) ? $data->harga3 : ''); ?>"
+                                                       required="required">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <?php //$hide = true;?>
-                                    <?php //if($hide == false) { ?>
+                                    
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
