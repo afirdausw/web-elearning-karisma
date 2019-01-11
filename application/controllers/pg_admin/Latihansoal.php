@@ -34,7 +34,7 @@ class Latihansoal extends CI_Controller
         // alert_warning('info', "isi 2");
         // alert_info('info', "isi 2");
 
-        $this->load->view('pg_admin/latihansoal', $data);
+        $this->load->view('pg_admin/latihansoal/latihansoal', $data);
     }
 
     public function upload($id_sub_materi)
@@ -126,7 +126,7 @@ class Latihansoal extends CI_Controller
             // alert_warning('info', "isi 2");
             // alert_info('info', "isi 2");
 
-            $this->load->view('pg_admin/latihansoal_detail', $data);
+            $this->load->view('pg_admin/latihansoal/latihansoal_detail', $data);
         }else if ($act){
             switch($act){
                 case "ubah_waktu" :
@@ -167,7 +167,7 @@ class Latihansoal extends CI_Controller
         $pages = ceil($config['total_rows'] / $config['per_page']);
         $data = array('navbar_title' => "Latihan Ambil Bank Soal", 'submateri' => $smateri, 'page' => $page, 'data_soal' => $rows, 'datasoal' => $datas, 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']), //'pagination' => $this->pagination->create_links(),
                       'start'        => $start, 'select_options_kelas' => $this->Model_banksoal->get_kelas(), 'select_options_mapel' => $this->Model_banksoal->get_mapel_by_kelas($kelas), 'id_sub_materi' => $id_sub_materi,);
-        $this->load->view('pg_admin/ambilbanksoal', $data);
+        $this->load->view('pg_admin/banksoal/ambilbanksoal', $data);
     }
 
     function ambilbanksoalfilter($id_sub_materi, $kelas = 0, $mapel = 0, $topik = '')
@@ -291,7 +291,7 @@ class Latihansoal extends CI_Controller
                         $this->proses_tambah();
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/latihansoal_form', $data);
+                        $this->load->view('pg_admin/latihansoal/latihansoal_form', $data);
                     }
                     break;
                 case 'tambah_soal':
@@ -306,7 +306,7 @@ class Latihansoal extends CI_Controller
                         $this->proses_tambah_soal($id);
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/latihansoal_detail_form', $data);
+                        $this->load->view('pg_admin/latihansoal/latihansoal_detail_form', $data);
                     }
                     break;
                 case 'banksoal':
@@ -331,7 +331,7 @@ class Latihansoal extends CI_Controller
                         $pages = ceil($config['total_rows'] / $config['per_page']);
                         $data = array('page'  => $page, 'data_soal' => $rows, 'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']), //'pagination' => $this->pagination->create_links(),
                                       'start' => $start, 'select_options_kelas' => $this->Model_banksoal->get_kelas(),);
-                        $this->load->view('pg_admin/banksoalbaru', $data);
+                        $this->load->view('pg_admin/banksoal/banksoalbaru', $data);
                     }
                     break;
                 case 'tambah_banyak_soal':
@@ -350,7 +350,7 @@ class Latihansoal extends CI_Controller
                     } else {
 
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/latihansoal_banyak_detail_form', $data);
+                        $this->load->view('pg_admin/latihansoal/latihansoal_banyak_detail_form', $data);
                     }
                     break;
                 case 'tambah_soal_2':
@@ -365,7 +365,7 @@ class Latihansoal extends CI_Controller
                         $this->proses_tambah_soal($id);
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/latihansoal_detail_form', $data);
+                        $this->load->view('pg_admin/latihansoal/latihansoal_detail_form', $data);
                     }
                     break;
                 case 'ubah_soal':
@@ -390,7 +390,7 @@ class Latihansoal extends CI_Controller
                             $this->proses_ubah_soal($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/latihansoal_detail_form', $data);
+                            $this->load->view('pg_admin/latihansoal/latihansoal_detail_form', $data);
                         }
                     }
                     break;
@@ -431,7 +431,7 @@ class Latihansoal extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/latihansoal_detail_form', $data);
+            $this->load->view('pg_admin/latihansoal/latihansoal_detail_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $sub_materi_id, $pembahasan, $pembahasan_video);
@@ -559,7 +559,7 @@ class Latihansoal extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal diubah");
-            $this->load->view('pg_admin/latihansoal_detail_form', $data);
+            $this->load->view('pg_admin/latihansoal/latihansoal_detail_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->update_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $pembahasan, $pembahasan_video, $id_soal);
@@ -602,7 +602,7 @@ class Latihansoal extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/latihansoal_form', $data);
+            $this->load->view('pg_admin/latihansoal/latihansoal_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_latihan_soal($sub_materi);
