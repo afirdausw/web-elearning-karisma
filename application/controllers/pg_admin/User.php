@@ -25,7 +25,7 @@ function index(){
 		'data_table' 	=> $this->Model_adm->fetch_all_user()
 		);
 
-	$this->load->view('pg_admin/user', $data);
+	$this->load->view('pg_admin/user/user', $data);
 }
 
 function tambah(){
@@ -33,7 +33,7 @@ function tambah(){
 		'navbar_title' 	=> "Manajemen User LPIH"
 		);
 
-	$this->load->view('pg_admin/user_form', $data);
+	$this->load->view('pg_admin/user/user_form', $data);
 }
 
 
@@ -69,7 +69,7 @@ function edit($iduser){
 		'user'			=> $this->Model_adm->get_user_by_id($iduser)
 	);
 	
-	$this->load->view('pg_admin/user_edit', $data);
+	$this->load->view('pg_admin/user/user_edit', $data);
 }
 
 function proses_edit(){
@@ -90,7 +90,7 @@ function edit_password($iduser){
 		'user'			=> $this->Model_adm->get_user_by_id($iduser)
 	);
 	
-	$this->load->view('pg_admin/user_edit_password', $data);
+	$this->load->view('pg_admin/user/user_edit_password', $data);
 }
 
 function proses_edit_password(){
