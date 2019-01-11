@@ -19,39 +19,6 @@ class Banksoal extends CI_Controller
         $this->Model_security->is_logged_in();
     }
 
-    function index_lama()
-    {
-        $data = array(
-            'navbar_title' => 'Data Bank Soal',
-            'data_soal' => $this->Model_banksoal->fetch_banksoal(),
-            'select_options_kelas' => $this->Model_banksoal->get_kelas()
-        );
-        $this->load->view('pg_admin/banksoal', $data);
-    }
-
-    function indexlama()
-    {
-        $config['base_url'] = base_url() . 'pg_admin/banksoal/';
-        $config['total_rows'] = $this->Model_banksoal->fetch_banksoal_total_record();
-        $config['per_page'] = 10;
-        $page = (isset($_GET['page']) ? $_GET['page'] : 1);
-        // menentukan offset record dari uri segment
-        $start = ($page - 1) * $config['per_page'];
-        // ubah data menjadi tampilan per limit
-        $rows = $this->Model_banksoal->fetch_banksoal_paging($config['per_page'], $start);
-        $pages = ceil($config['total_rows'] / $config['per_page']);
-        $data = array(
-            'page' => $page,
-            'data_soal' => $rows,
-            'pagination' => $this->paginate($config['per_page'], $page, $config['total_rows'], $pages, $config['base_url']),
-            //'pagination' => $this->pagination->create_links(),
-            'start' => $start,
-            'select_options_kelas' => $this->Model_banksoal->get_kelas()
-        );
-        $this->load->view('pg_admin/banksoalbaru', $data);
-
-    }
-
     function index()
     {
         $config['base_url'] = base_url() . 'pg_admin/banksoal/';
@@ -71,7 +38,7 @@ class Banksoal extends CI_Controller
             'start' => $start,
             'select_options_kelas' => $this->Model_banksoal->get_kelas()
         );
-        $this->load->view('pg_admin/banksoalbaru', $data);
+        $this->load->view('pg_admin/banksoal/banksoalbaru', $data);
     }
 
     public function excelupload()
@@ -80,7 +47,7 @@ class Banksoal extends CI_Controller
             'navbar_title' => 'Upload Excel Bank Soal',
             'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
-        $this->load->view('pg_admin/banksoalupload', $data);
+        $this->load->view('pg_admin/banksoal/banksoalupload', $data);
     }
 
     public function upload()
@@ -90,7 +57,7 @@ class Banksoal extends CI_Controller
         if (!$this->upload->do_upload('import_data')) {
             $errors = array('error' => $this->upload->display_errors());
             alert_error("Error", "Proses import data gagal");
-            //$this->load->view('pg_admin/siswa', $data);
+            //$this->load->view('pg_admin/banksoal/siswa', $data);
             redirect('pg_admin/banksoal');
             //echo "prosses upload gagal";
         } else {
@@ -283,7 +250,7 @@ class Banksoal extends CI_Controller
 
         //var_dump($data['data_soal']);
 
-        $this->load->view('pg_admin/banksoalbaru', $data);
+        $this->load->view('pg_admin/banksoal/banksoalbaru', $data);
     }
 
     function paginate($item_per_page, $current_page, $total_records, $total_pages, $page_url)
@@ -342,7 +309,7 @@ class Banksoal extends CI_Controller
             'form_action' => current_url(),
             'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
-        $this->load->view('pg_admin/banksoal_form', $data);
+        $this->load->view('pg_admin/banksoal/banksoal_form', $data);
     }
 
     function prosesbanksoal()
@@ -378,7 +345,7 @@ class Banksoal extends CI_Controller
             'navbar_title' => "Tambah Kategori Bank Soal",
             'kategoribanksoal' => $this->Model_banksoal->fetch_kategori_bank_soal()
         );
-        $this->load->view('pg_admin/kategori_banksoal', $data);
+        $this->load->view('pg_admin/banksoal/kategori_banksoal', $data);
     }
 
     function tambahkategori()
@@ -388,7 +355,7 @@ class Banksoal extends CI_Controller
             'datakelas' => $this->Model_banksoal->get_kelas()
         );
 
-        $this->load->view('pg_admin/kategori_banksoal_form', $data);
+        $this->load->view('pg_admin/banksoal/kategori_banksoal_form', $data);
     }
 
     function pilihmapel($idkelas)
@@ -454,7 +421,7 @@ class Banksoal extends CI_Controller
             'datakelas' => $this->Model_banksoal->get_kelas()
         );
 
-        $this->load->view('pg_admin/kategori_banksoal_edit', $data);
+        $this->load->view('pg_admin/banksoal/kategori_banksoal_edit', $data);
     }
 
     function proseseditkategori()
@@ -484,7 +451,7 @@ class Banksoal extends CI_Controller
             'datakelas' => $this->Model_banksoal->get_kelas(),
             'select_options_mapel' => $this->Model_banksoal->get_kelas()
         );
-        $this->load->view('pg_admin/banksoal_edit', $data);
+        $this->load->view('pg_admin/banksoal/banksoal_edit', $data);
     }
 
     function editjson($idbanksoal)
@@ -499,7 +466,7 @@ class Banksoal extends CI_Controller
             ->set_content_type('application/json')
             ->set_status_header(500)
             ->set_output(json_encode($data));
-//	$this->load->view('pg_admin/banksoal_edit', $data);
+//	$this->load->view('pg_admin/banksoal/banksoal_edit', $data);
     }
 
     function proseseditbanksoal()
