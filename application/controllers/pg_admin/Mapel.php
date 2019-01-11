@@ -29,7 +29,7 @@ class Mapel extends CI_Controller
             'table_data'   => $this->Model_adm->fetch_all_mapel(),
         );
 
-        $this->load->view('pg_admin/mapel', $data);
+        $this->load->view('pg_admin/materi/mapel', $data);
     }
 
     public function kelas()
@@ -44,7 +44,7 @@ class Mapel extends CI_Controller
                 'table_data'   => $this->Model_adm->fetch_mapel_by_id_kelas($id_kelas),
                 'kelas'        => $id_kelas,
             );
-            $this->load->view('pg_admin/mapel', $data);
+            $this->load->view('pg_admin/materi/mapel', $data);
         }
     }
 
@@ -73,7 +73,7 @@ class Mapel extends CI_Controller
                         $this->proses_tambah();
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/mapel_form', $data);
+                        $this->load->view('pg_admin/materi/mapel_form', $data);
                     }
                     break;
 
@@ -102,7 +102,7 @@ class Mapel extends CI_Controller
                             $this->proses_ubah($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/mapel_form', $data);
+                            $this->load->view('pg_admin/materi/mapel_form', $data);
                         }
                     }
                     break;
@@ -158,7 +158,7 @@ class Mapel extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/mapel_form', $data);
+            $this->load->view('pg_admin/materi/mapel_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel,$harga);
@@ -208,7 +208,7 @@ class Mapel extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal diubah");
-            $this->load->view('pg_admin/mapel_form', $data);
+            $this->load->view('pg_admin/materi/mapel_form', $data);
         } else {
             if (empty($errors)) {
                 //passing input value to Model
@@ -223,7 +223,7 @@ class Mapel extends CI_Controller
                     $error_msg .= $error . '<br/>';
                 }
                 alert_error("Error", $error_msg);
-                $this->load->view('pg_admin/mapel_form', $data);
+                $this->load->view('pg_admin/materi/mapel_form', $data);
             }
         }
     }

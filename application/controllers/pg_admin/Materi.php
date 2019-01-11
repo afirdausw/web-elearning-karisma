@@ -74,7 +74,7 @@ class Materi extends CI_Controller
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
 
-        $this->load->view('pg_admin/materi', $data);
+        $this->load->view('pg_admin/materi/materi', $data);
     }
 
     public function index2($kelas = 0, $mapel = 0, $mapok = 0)
@@ -90,7 +90,7 @@ class Materi extends CI_Controller
             'idmapok'              => $mapok,
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
-        $this->load->view('pg_admin/materi_new', $data);
+        $this->load->view('pg_admin/materi/materi_new', $data);
     }
 
     public function listdata($kelas = 0, $mapel = 0, $mapok = 0)
@@ -111,7 +111,7 @@ class Materi extends CI_Controller
 //                    ->set_content_type('application/json')
 //                    ->set_status_header(500)
 //                    ->set_output(json_encode($data));
-        $this->load->view('pg_admin/materi_new', $data);
+        $this->load->view('pg_admin/materi/materi_new', $data);
     }
 
     public function tabel_ajax($kelas = 0, $mapel = 0, $mapok = 0, $page = 1)
@@ -177,7 +177,7 @@ class Materi extends CI_Controller
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
         );
 
-        $this->load->view('pg_admin/materi_ajaxpage', $data);
+        $this->load->view('pg_admin/materi/materi_ajaxpage', $data);
     }
 
     public function manajemen($aksi, $kelas = 0, $mapel = 0, $mapok = 0)
@@ -207,7 +207,7 @@ class Materi extends CI_Controller
                         $this->proses_tambah($kelas, $mapel, $mapok);
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/materi_form', $data);
+                        $this->load->view('pg_admin/materi/materi_form', $data);
                     }
                     break;
                 case 'tambah_materi':
@@ -229,7 +229,7 @@ class Materi extends CI_Controller
                         $this->proses_tambah($kelas, $mapel, $mapok);
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/materi_form2', $data);
+                        $this->load->view('pg_admin/materi/materi_form2', $data);
                     }
                     break;
                 case 'ubah':
@@ -265,7 +265,7 @@ class Materi extends CI_Controller
                             $this->proses_ubah($id, $kelas, $mapel, $mapok);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/materi_form2', $data);
+                            $this->load->view('pg_admin/materi/materi_form2', $data);
                         }
                     }
                     break;
@@ -323,7 +323,7 @@ class Materi extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/materi_form2', $data);
+            $this->load->view('pg_admin/materi/materi_form2', $data);
         } else {
 
 //            $isi_materi =  $this->convert_base64_to_image($isi_materi, 'materi/');
@@ -399,7 +399,7 @@ class Materi extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal diubah");
-            $this->load->view('pg_admin/materi_form', $data);
+            $this->load->view('pg_admin/materi/materi_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->update_materi($id, $kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, $isi_materi, $video_materi, $gambar_materi, $tanggal, $waktu);

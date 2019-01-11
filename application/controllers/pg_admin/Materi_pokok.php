@@ -28,7 +28,7 @@ class Materi_pokok extends CI_Controller
             'table_data'   => $this->Model_adm->fetch_all_materi_pokok(),
         );
 
-        $this->load->view('pg_admin/materi_pokok', $data);
+        $this->load->view('pg_admin/materi/materi_pokok', $data);
     }
 
     public function mapel($id_kelas = 0, $id_mapel = 0)
@@ -63,7 +63,7 @@ class Materi_pokok extends CI_Controller
             }
 
 
-            $this->load->view('pg_admin/materi_pokok', $data);
+            $this->load->view('pg_admin/materi/materi_pokok', $data);
         }
     }
 
@@ -92,7 +92,7 @@ class Materi_pokok extends CI_Controller
                         $this->proses_tambah($kelas);
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view('pg_admin/materi_pokok_form', $data);
+                        $this->load->view('pg_admin/materi/materi_pokok_form', $data);
                     }
                     break;
 
@@ -121,7 +121,7 @@ class Materi_pokok extends CI_Controller
                             $this->proses_ubah($id, $kelas);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view('pg_admin/materi_pokok_form', $data);
+                            $this->load->view('pg_admin/materi/materi_pokok_form', $data);
                         }
                     }
                     break;
@@ -158,7 +158,7 @@ class Materi_pokok extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view('pg_admin/materi_pokok_form', $data);
+            $this->load->view('pg_admin/materi/materi_pokok_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_materi_pokok($mapel_id, $nama_materi_pokok, $pretest, $gambar_materi_pokok, $deskripsi_materi_pokok, $urutan);
@@ -187,7 +187,7 @@ class Materi_pokok extends CI_Controller
         //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal diubah");
-            $this->load->view('pg_admin/materi_pokok_form', $data);
+            $this->load->view('pg_admin/materi/materi_pokok_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->update_materi_pokok($id, $mapel_id, $nama_materi_pokok, $gambar_materi_pokok, $deskripsi_materi_pokok);
