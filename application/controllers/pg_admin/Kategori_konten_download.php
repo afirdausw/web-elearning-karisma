@@ -25,7 +25,7 @@ class Kategori_konten_download extends CI_Controller
 			'activelink'       => "kategori_konten_download/tambah"
 		);
 
-		$this->load->view('pg_admin/form_kategori_konten_download', $data);
+		$this->load->view('pg_admin/konten_download/form_kategori_konten_download', $data);
 
 	}
 
@@ -88,7 +88,7 @@ class Kategori_konten_download extends CI_Controller
 			
 			'table_data' => $this->Model_kontendownload->get_kategori_konten_download(),
 		);
-		$this->load->view('pg_admin/kategori_konten_download', $data);
+		$this->load->view('pg_admin/konten_download/kategori_konten_download', $data);
 	}
 
 	public function ajax_mapel($kelas)
@@ -199,7 +199,7 @@ class Kategori_konten_download extends CI_Controller
 		//var_dump($data);
 
 
-		$this->load->view('pg_admin/kategori_konten_download_form_edit', $data);
+		$this->load->view('pg_admin/konten_download/kategori_konten_download_form_edit', $data);
 	}
 
 	function proses_update()
@@ -246,7 +246,7 @@ class Kategori_konten_download extends CI_Controller
 
             'form_action' 	=> base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
         );
-        $this->load->view('pg_admin/konten_download', $data);
+        $this->load->view('pg_admin/konten_download/konten_download', $data);
        
     }
 	function proses_hapus()
