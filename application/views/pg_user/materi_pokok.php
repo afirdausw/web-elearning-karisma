@@ -23,9 +23,11 @@ include('header.php');
                         <a target="_blank"
                            href="<?= base_url('instruktur/' . $instruktur[0]->id_instruktur) ?>"><?= $instruktur[0]->nama_instruktur ?></a>
                         <a class="button" href="tel:<?= $instruktur[0]->telepon ?>">Contact</a>
+                        <a href="<?= base_url() . 'materi/detail/'.$data->id_mapel ?>" class="button">Harga Kursus</a>
                         <?php
                     else: ?>
                         <a>Karisma Academy</a> <a class="button">Contact</a>
+                        <a href="<?= base_url() . 'materi/detail/'.$data->id_mapel ?>" class="button">Harga Kursus</a>
                         <?php
                     endif; ?>
                 </h3>
