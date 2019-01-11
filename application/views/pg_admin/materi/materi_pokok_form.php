@@ -113,19 +113,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   }
 </script>
 
- <script type="text/javascript">
-   $(document).ready(function(){
-
-     $.notify({
-       icon: 'pe-7s-gift',
-       message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-      },{
-        type: 'info',
-        timer: 4000
-      });
-
-   }); </script>
 
 <!-- PLUGINS FUNCTION -->
  <!-- Chosen - select box plugin  -->
