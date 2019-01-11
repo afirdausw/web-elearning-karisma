@@ -1,7 +1,7 @@
 <?php
 $judul_tab = "Profil Siswa";
 
-include(APPPATH.'views/pg_user/inc/header.php');
+$this->load->view('pg_user/inc/header.php');
 ?>
 
 <section class="banner-top banner-materi banner-profil darker"> <!-- konten Judul -->
@@ -106,6 +106,6 @@ include(APPPATH.'views/pg_user/inc/header.php');
 	</div>
 </section> <!-- End of konten-->
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 </body>
 </html>

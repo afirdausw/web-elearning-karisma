@@ -1,4 +1,4 @@
-<?php include(APPPATH.'views/pg_user/inc/header.php'); ?>
+<?php $this->load->view('pg_user/inc/header.php'); ?>
 
 <style>
     #carouselAchievement {
@@ -412,7 +412,7 @@
     </div>
 </section>
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 
 </body>
 <script type="text/javascript"

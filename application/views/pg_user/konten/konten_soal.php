@@ -1,6 +1,6 @@
 <?php
 $judul_tab = $sub_materi->materi_pokok_id.".".$sub_materi->urutan_materi." ".$sub_materi->nama_sub_materi;
-include(APPPATH.'views/pg_user/inc/header.php');
+$this->load->view('pg_user/inc/header.php');
 ?>
 <?php
 // Pengaturan waktu countdown
@@ -348,7 +348,7 @@ if ($waktu_sisa < 0) {
     </div>
 </section> <!-- End of konten-->
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 <script src="<?php echo base_url('assets/pg_user/js/my-multi-modal.js'); ?>"></script>
 <script src="<?php echo base_url('assets/pg_user/js/jquery.plugin.js'); ?>"></script>
 <script src="<?php echo base_url('assets/pg_user/js/jquery.countdown.js'); ?>"></script>

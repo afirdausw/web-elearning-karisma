@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include APPPATH."views/pg_admin/inc/html_header.php";
+$this->load->view("pg_admin/inc/html_header.php");
 
 ?>
 
@@ -34,13 +34,13 @@ include APPPATH."views/pg_admin/inc/html_header.php";
 
 <div class="wrapper">
 
-    <?php include APPPATH."views/pg_admin/inc/sidebar.php"; ?>
+    <?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 
 
 
     <div class="main-panel">
 
-        <?php include APPPATH."views/pg_admin/inc/navbar.php"; ?>
+        <?php $this->load->view("pg_admin/inc/navbar.php"); ?>
 
 
 
@@ -188,7 +188,7 @@ include APPPATH."views/pg_admin/inc/html_header.php";
 
 
 
-        <?php include APPPATH."views/pg_admin/inc/footer.php"; ?>
+        <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 
 </html>

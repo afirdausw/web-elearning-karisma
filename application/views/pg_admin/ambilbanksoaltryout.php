@@ -1,7 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-include "inc/html_header.php";
+$this->load->view("pg_admin/inc/html_header.php");
 
 ?>
 
@@ -43,13 +43,13 @@ include "inc/html_header.php";
 
 <div class="wrapper">
 
-    <?php include "inc/sidebar.php"; ?>
+    <?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 
 
 
     <div class="main-panel">
 
-        <?php include "inc/navbar.php"; ?>
+        <?php $this->load->view("pg_admin/inc/navbar.php"); ?>
 
 
 
@@ -377,7 +377,7 @@ include "inc/html_header.php";
 
 
 
-        <?php include "inc/footer.php"; ?>
+        <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 <!--  Datatables Plugin -->
 

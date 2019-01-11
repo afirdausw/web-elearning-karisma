@@ -1,7 +1,7 @@
 <?php
     $judul_tab = "Hasil Quiz Pretest";
 
-    include(APPPATH.'views/pg_user/inc/header.php');
+    $this->load->view('pg_user/inc/header.php');
 ?>
 
 <section class="banner-top banner-quiz-hasil" style="margin-bottom: 30px;"> <!-- BANNER-->
@@ -323,6 +323,6 @@
     </div>
 </section> <!-- End of konten-->
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 </body>
 </html>

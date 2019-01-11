@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include APPPATH."views/pg_admin/inc/html_header.php"; ?>
+<?php $this->load->view("pg_admin/inc/html_header.php"); ?>
 
 <div class="wrapper">
-    <?php include APPPATH."views/pg_admin/inc/sidebar.php"; ?>
+    <?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 
     <div class="main-panel">
-        <?php include APPPATH."views/pg_admin/inc/navbar.php"; ?>
+        <?php $this->load->view("pg_admin/inc/navbar.php"); ?>
 
         <div class="content">
             <div class="container-fluid">
@@ -153,7 +153,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div> <!-- end .content -->
 
-        <?php include APPPATH."views/pg_admin/inc/footer.php"; ?>
+        <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 <!-- CUSTOM JS FUNCTION -->
 <!-- Reset Form -->

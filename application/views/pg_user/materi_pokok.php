@@ -5,7 +5,7 @@ if (isset($data->nama_mapel)) {
     $judul_tab .= $data->nama_mapel;
 }
 
-include(APPPATH.'views/pg_user/inc/header.php');
+$this->load->view('pg_user/inc/header.php');
 ?>
 
 <?php $_SESSION['RedirectKe'] = current_url(); ?>
@@ -363,6 +363,6 @@ if (isset($materi[0]->id_materi_pokok)) {
     ?>
 </section> <!-- End of konten-->
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 </body>
 </html>

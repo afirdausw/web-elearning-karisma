@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "inc/html_header.php"; ?>
+<?php $this->load->view("pg_admin/inc/html_header.php"); ?>
 
 <style type="text/css">
 	@media(max-width:767px;){

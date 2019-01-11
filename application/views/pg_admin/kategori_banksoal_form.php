@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "inc/html_header.php"; ?>
+<?php $this->load->view("pg_admin/inc/html_header.php"); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
@@ -14,10 +14,10 @@ $(function(){
 });
 </script>
 <div class="wrapper">
-  <?php include "inc/sidebar.php"; ?>
+  <?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 
   <div class="main-panel">
-    <?php include "inc/navbar.php"; ?>
+    <?php $this->load->view("pg_admin/inc/navbar.php"); ?>
     
     <div class="content">      
       <div class="container-fluid">
@@ -56,8 +56,8 @@ $(function(){
         </div>
     </div> <!-- end .content -->
 
-    <?php include "inc/footer.php"; ?>
-<?php include "alert_modal.php"; ?>
+    <?php $this->load->view("pg_admin/inc/footer.php"); ?>
+<?php $this->load->view("pg_admin/alert_modal.php"); ?>
  <!-- JS Function for this Modal -->
 <script type="text/javascript">
   $('#deleteRow_modal').on('show.bs.modal', function (event) {

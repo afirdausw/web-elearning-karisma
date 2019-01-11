@@ -1,6 +1,6 @@
 <?php
 $judul_tab = "Pretest";
-include(APPPATH.'views/pg_user/inc/header.php');
+$this->load->view('pg_user/inc/header.php');
 ?>
 
 <section>
@@ -64,7 +64,7 @@ include(APPPATH.'views/pg_user/inc/header.php');
 
 </section>
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 <!-- Validasi -->
 <script type="text/javascript"
         src="<?php echo base_url('assets/pg_user/js/form-validator/formValidation.js'); ?>"></script>

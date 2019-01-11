@@ -1,7 +1,7 @@
 <?php
 $judul_tab = "Profil Pretest";
 
-include(APPPATH.'views/pg_user/inc/header.php');
+$this->load->view('pg_user/inc/header.php');
 ?>
 <?php
     if(empty($log_baca)){
@@ -92,6 +92,6 @@ include(APPPATH.'views/pg_user/inc/header.php');
     </div>
 </section> <!-- End of konten-->
 
-<?php include(APPPATH.'views/pg_user/inc/footer.php'); ?>
+<?php $this->load->view('pg_user/inc/footer.php'); ?>
 </body>
 </html>

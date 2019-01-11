@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "inc/html_header.php"; ?>
+<?php $this->load->view("pg_admin/inc/html_header.php"); ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
 </script>
@@ -24,10 +24,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <div class="wrapper">
-    <?php include "inc/sidebar.php"; ?>
+    <?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 
     <div class="main-panel">
-        <?php include "inc/navbar.php"; ?>
+        <?php $this->load->view("pg_admin/inc/navbar.php"); ?>
 
         <div class="content">
             <div class="container-fluid">
@@ -260,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
 
-        <?php include "inc/footer.php"; ?>
+        <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 <!-- CUSTOM JS FUNCTION -->
 <!-- Reset Form -->
