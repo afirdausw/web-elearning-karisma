@@ -5,23 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php $this->load->view("pg_admin/inc/html_header.php"); ?>
 
 
-<script>
-	// $("#pilihprovinsi").change(function(){
-	//     $("#pilihkota").load("pg_admin/siswa/kota/" + $("#pilihprovinsi").val());
-	// });
-
-	// $("#pilihkota").change(function(){
-	//     $("#btnTambahSekolah").prop('disabled', false);
-	//     $("#pilihsekolah").load("pg_admin/siswa/sekolah/" + $("#pilihkota").val());
-	// });
-
-	// $(function(){
-	//     $("#kelas").change(function(){
-	//         $("#listsiswa").load("ajax_siswa_by_jenjang/" + $("#kelas").val() +"/"+ $("#sekolah").val());
-	//     });
-	// });
-</script>
-
 <div class="wrapper">
 	<?php $this->load->view("pg_admin/inc/sidebar.php"); ?>
 

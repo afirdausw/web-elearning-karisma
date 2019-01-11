@@ -122,6 +122,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div> <!-- end .content -->
 
-		<?php $this->load->view("pg_admin/inc/footer.php"); ?>
+	<?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 </html>
