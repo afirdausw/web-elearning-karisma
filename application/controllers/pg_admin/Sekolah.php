@@ -27,7 +27,7 @@ class Sekolah extends CI_Controller {
 			'table_data' 		=> $this->Model_adm->fetch_all_sekolah()
 			);
 
-		$this->load->view('pg_admin/sekolah', $data);
+		$this->load->view('pg_admin/sekolah/sekolah', $data);
 	}
 
 	public function manajemen($aksi)
@@ -60,7 +60,7 @@ class Sekolah extends CI_Controller {
 					else 
 					{
 						//No form is submitted. Displaying the form page
-						$this->load->view('pg_admin/sekolah_form', $data);
+						$this->load->view('pg_admin/sekolah/sekolah_form', $data);
 					}
 					break;
 				
@@ -97,7 +97,7 @@ class Sekolah extends CI_Controller {
 						else 
 						{
 							//No form is submitted. Displaying the form page
-							$this->load->view('pg_admin/sekolah_form', $data);
+							$this->load->view('pg_admin/sekolah/sekolah_form', $data);
 						}
 					}
 					break;
@@ -119,7 +119,7 @@ class Sekolah extends CI_Controller {
 					else 
 					{
 						//No form is submitted. Displaying the form page
-						$this->load->view('pg_admin/sekolah_import', $data);
+						$this->load->view('pg_admin/sekolah/sekolah_import', $data);
 					}
 					break;
 
@@ -161,7 +161,7 @@ class Sekolah extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) 
 		{
 			alert_error("Error", "Data gagal ditambahkan");
-			$this->load->view('pg_admin/sekolah_form', $data);
+			$this->load->view('pg_admin/sekolah/sekolah_form', $data);
 		}
 		else 
 		{
@@ -197,7 +197,7 @@ class Sekolah extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) 
 		{
 			alert_error("Error", "Data gagal diubah");
-			$this->load->view('pg_admin/sekolah_form', $data);
+			$this->load->view('pg_admin/sekolah/sekolah_form', $data);
 		}
 		else 
 		{
@@ -222,7 +222,7 @@ class Sekolah extends CI_Controller {
 		{
 			$errors = array('error' => $this->upload->display_errors());
 			alert_error("Error", "Proses import data gagal");
-			$this->load->view('pg_admin/sekolah_import', $data);
+			$this->load->view('pg_admin/sekolah/sekolah_import', $data);
 		}
 		else
 		{
