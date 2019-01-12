@@ -350,8 +350,8 @@ if ($waktu_sisa < 0) {
 
 <?php $this->load->view('pg_user/inc/footer.php'); ?>
 <script src="<?php echo base_url('assets/pg_user/js/my-multi-modal.js'); ?>"></script>
-<script src="<?php echo base_url('assets/pg_user/js/jquery.plugin.js'); ?>"></script>
-<script src="<?php echo base_url('assets/pg_user/js/jquery.countdown.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/jquery/jquery.plugin.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/jquery/jquery.countdown.js'); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <?php if ($this->session->userdata('pretest_logged_in')) {

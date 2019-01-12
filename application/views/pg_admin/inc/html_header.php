@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--  CSS for Karisma PG_Admin  -->
 		<link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />
 		
-		<link href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
+		<link href="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
 
 
 		<!--     Fonts and icons     -->
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<!-- ADDITIONAL -->
 		<!--  Chosen Select Box Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/chosen.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/jquery/jquery-chosen/css/chosen.css');?>" rel="stylesheet"/>
 		
 		<!--  Awseomplate Plugin CSS  -->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/awesomplete.css');?>" />
@@ -73,6 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--   Core JS Files   -->
 	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
 		
-		<script src="<?php echo base_url('assets/js/jquery-ui/jquery-ui.js');?>"></script>
+		<script src="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.js');?>"></script>
 </head>
 <body>

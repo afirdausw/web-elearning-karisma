@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 <?php $this->load->view("pg_admin/inc/html_header.php"); ?>
-<link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.css');?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.css');?>">
 <style>
 	/*untuk spinner*/
 	#nprogress .spinner{

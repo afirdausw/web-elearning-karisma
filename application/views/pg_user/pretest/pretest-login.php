@@ -46,7 +46,7 @@ $this->load->view('pg_user/inc/header.php');
 <!-- Validasi -->
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/formValidation.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/bootstrap.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery.steps.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/pg_user/plugins/jquery/jquery.steps.min.js'); ?>"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
