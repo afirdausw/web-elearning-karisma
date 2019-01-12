@@ -22,10 +22,13 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css"
           href="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/jquery/jquery-steps/jquery.steps.css'); ?>">
+
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
 
 </head>
 

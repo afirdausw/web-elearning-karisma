@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/css/plugins/nestable.css');?>" rel="stylesheet"/>
 		
 		<!--  Bootstrap Switch Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/bootstrap-switch.min.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugin/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
 		
 		<!-- Progress -->
 		<link href="<?php echo base_url('assets/css/nprogress.css'); ?>" rel='stylesheet' />

@@ -67,9 +67,9 @@ $this->load->view('pg_user/inc/header.php');
 <?php $this->load->view('pg_user/inc/footer.php'); ?>
 <!-- Validasi -->
 <script type="text/javascript"
-        src="<?php echo base_url('assets/pg_user/js/form-validator/formValidation.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/form-validator/bootstrap.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery.steps.min.js'); ?>"></script>
+        src="<?php echo base_url('assets/plugins/form-validator/formValidation.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/form-validator/bootstrap.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery-steps/jquery.steps.min.js'); ?>"></script>
 <script type="text/javascript"
         src="https://cdn.rawgit.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
 

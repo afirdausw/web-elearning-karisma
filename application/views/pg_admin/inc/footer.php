@@ -22,6 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
 
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugin/bootstrap-switch/bootstrap-switch.min.js');?>"></script>
+
 <!--  Notifications Plugin    -->
 <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
 
