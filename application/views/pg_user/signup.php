@@ -58,8 +58,8 @@ $this->load->view('pg_user/inc/header.php');
 </section>
 
 <?php $this->load->view('pg_user/inc/footer.php'); ?>
-<script type="text/javascript" src="<?= base_url() ?>/assets/plugin/jquery/jquery-validation/jquery.validate.min.js"></script>
-<script type="text/javascript" src="<?= base_url() ?>/assets/plugin/jquery/jquery-validation/additional-methods.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/plugins/jquery/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>/assets/plugins/jquery/jquery-validation/additional-methods.min.js"></script>
 <script type="text/javascript">
     var formSignUp = $('#form-signup');
 

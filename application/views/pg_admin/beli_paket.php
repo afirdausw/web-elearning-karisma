@@ -123,8 +123,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 
   <!--   Core JS Files   -->
- <script src="<?php echo base_url('assets/plugin/jquery/jquery-1.12.4.js" type="text/javascript');?>"></script>
- <script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
+ <script src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.js" type="text/javascript');?>"></script>
+ <script src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
 
  <!--  Checkbox, Radio & Switch Plugins -->
  <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>

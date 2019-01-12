@@ -16,8 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 
 <!--   Core JS Files   -->
-<script type="text/javascript" src="<?php echo base_url('assets/plugin/jquery/jquery-1.12.4.min.js'); ?>"></script>
-<script src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js');?>" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js');?>" type="text/javascript"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
-<script src="<?php echo base_url('assets/js/plugins/chosen/chosen.jquery.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/plugins/jquery-chosen/chosen.jquery.js'); ?>" type="text/javascript"></script>
 
 
 <!--  Datatables Plugin -->

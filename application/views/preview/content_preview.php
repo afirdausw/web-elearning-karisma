@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
   <!-- Bootstrap core CSS     -->
-  <link href="<?php echo base_url('assets/plugin/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
+  <link href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

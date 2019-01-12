@@ -5,11 +5,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view("pg_admin/inc/html_header.php");
 
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-
-</script>
-
 <script>
 
     $(function () {

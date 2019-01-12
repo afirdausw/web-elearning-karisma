@@ -19,9 +19,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugin/bootstrap-3/css/bootstrap.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css'); ?>">
+          href="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
