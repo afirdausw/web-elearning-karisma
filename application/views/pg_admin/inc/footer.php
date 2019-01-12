@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
-<script src="<?php echo base_url('assets/plugins/jquery-chosen/js/chosen.jquery.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/plugins/jquery/jquery-chosen/js/chosen.jquery.js'); ?>" type="text/javascript"></script>
 
 
 <!--  Datatables Plugin -->

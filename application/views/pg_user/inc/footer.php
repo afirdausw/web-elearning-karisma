@@ -76,7 +76,7 @@
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/my/my-collapse.js'); ?>"></script>
 <script type="text/javascript"
         src="<?php echo base_url('assets/plugins/form-validator/formValidation.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/plugins/form-validator/form-validator/bootstrap.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/form-validator/bootstrap.js'); ?>"></script>
 
 <script>
     var base_url = "<?= base_url() ?>";

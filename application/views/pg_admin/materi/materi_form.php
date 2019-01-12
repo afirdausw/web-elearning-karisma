@@ -502,7 +502,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- PLUGINS FUNCTION -->
  <!-- Chosen - select box plugin  -->
- <script src="<?php echo base_url('assets/plugins/jquery-chosen/js/chosen.jquery.js');?>" type="text/javascript"></script>
+ <script src="<?php echo base_url('assets/plugins/jquery/jquery-chosen/js/chosen.jquery.js');?>" type="text/javascript"></script>
  <script type="text/javascript">
     var config = {
       '.chosen-select'           : {},
