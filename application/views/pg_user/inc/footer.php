@@ -72,8 +72,8 @@
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript"
         src="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-sidebar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-collapse.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/my/my-sidebar.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/my/my-collapse.js'); ?>"></script>
 <script type="text/javascript"
         src="<?php echo base_url('assets/plugins/form-validator/formValidation.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/form-validator/form-validator/bootstrap.js'); ?>"></script>
