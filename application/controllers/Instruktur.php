@@ -38,7 +38,7 @@ class Instruktur extends CI_Controller
         if($instruktur==null){
             redirect(base_url(),"refresh");
         }
-        $this->load->view('pg_user/profil-instruktur', $data);
+        $this->load->view('pg_user/profil/profil-instruktur', $data);
     }
 
 

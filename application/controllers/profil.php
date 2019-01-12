@@ -27,7 +27,7 @@ class profil extends CI_Controller
                 "kelas_navbar" => $kelas_navbar, 
 	        );
 
-	        $this->load->view('pg_user/profil-siswa', $data);
+	        $this->load->view('pg_user/profil/profil-siswa', $data);
             
     	}else if($this->session->userdata('pretest_id') != NULL){
 	    	$pretest = $this->Model_profil->get_data_user_pretest($this->session->userdata('pretest_id'));
@@ -36,7 +36,7 @@ class profil extends CI_Controller
                 "kelas_navbar" => $kelas_navbar, 
 	        );
 
-	        $this->load->view('pg_user/profil-pretest', $data);
+	        $this->load->view('pg_user/profil/profil-pretest', $data);
             
     	}else{
             redirect(base_url(), 'refresh');
