@@ -67,7 +67,7 @@
 <script>
     var base_url = "<?= base_url() ?>";
 </script>
-<script type="text/javascript" src="<?php echo base_url('assets/plugin/jquery-1.12.4.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugin/jquery/jquery-1.12.4.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/cart.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugin/bootstrap-3/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript"
