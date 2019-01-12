@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/plugins/jquery/jquery-chosen/css/chosen.css');?>" rel="stylesheet"/>
 		
 		<!--  Awseomplate Plugin CSS  -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/awesomplete.css');?>" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/awesomplete/awesomplete.css');?>" />
 		
 		<!--  Datatables (Bootstrap) Plugin CSS    -->
 		<link href="<?php echo base_url('assets/css/plugins/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
