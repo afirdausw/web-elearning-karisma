@@ -41,8 +41,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/awesomplete.js'); ?>" async></script>
 
 
-<script src="http://parsleyjs.org/dist/parsley.js"></script>
-<script src="<?php echo base_url('assets/js/id.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/parsley/parsley.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/parsley/id.js'); ?>"></script>
 
 <!-- Progress -->
 <script src="<?= base_url('assets/js/nprogress.js')?>" ></script>
