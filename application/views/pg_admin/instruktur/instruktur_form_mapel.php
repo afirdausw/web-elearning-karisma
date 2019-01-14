@@ -57,7 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																			if($val->$field)
 																				echo "image/mapel/"."{$val->$field}";
 																			else
-																				echo "assets/pg_user/images/icon/no-image.jpg";
+																				echo "assets/img/icon/no-image.jpg";
 																			echo "' width='75px' class='img-responsive m-auto'>";
 																		}else{
 																			echo $val->$field;

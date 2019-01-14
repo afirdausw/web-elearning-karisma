@@ -6,9 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 <meta charset="utf-8">
 <title>Halaman Tidak Ditemukan - Karisma Academy</title>
-<link rel="shortcut icon" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico">
-<link rel="icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico">
-<link rel="apple-touch-icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico')">
+<link rel="shortcut icon" href="<?=config_item('base_url'); ?>assets/img/merk/favicon.ico">
+<link rel="icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/img/merk/favicon.ico">
+<link rel="apple-touch-icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/img/merk/favicon.ico')">
 
 <style type="text/css">
 
@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ::-moz-selection { background-color: rgba(255, 255, 255, 0.2); color: white; }
 
 body {
-	background:url("<?=config_item('base_url'); ?>assets/pg_user/images/background/bg-pattern.png") #10171D center fixed;
+	background:url("<?=config_item('base_url'); ?>assets/img/background/bg-pattern.png") #10171D center fixed;
 	margin: 40px;
 	font: 13px/25px normal Helvetica, Arial, sans-serif;
 	color: white;
@@ -81,7 +81,7 @@ h3{
 <!-- include APPPATH.'/views/pg_user/header.php'; -->
 	<div class="error-404">
 		<div id="container">
-			<img src="<?=config_item('base_url'); ?>assets/pg_user/images/icon/404_robot.png" alt="robot.png" width="25%">
+			<img src="<?=config_item('base_url'); ?>assets/img/icon/404_robot.png" alt="robot.png" width="25%">
 			<h1>404</h1>
 			<h3>Halaman Tidak Ditemukan</h3>
 			<a href="javascript:history.back()">Kembali ke halaman sebelumnya</a> <span>atau</span>

@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </select>
                       </div>
                       <div id="ajax-loading" class="col-xs-1 col-md-1" style="display:none;"> 
-                        <img src="<?php echo base_url('assets/pg_user/images/icon/ajax-loading.gif')?>" alt="Loading..."></img>
+                        <img src="<?php echo base_url('assets/img/icon/ajax-loading.gif')?>" alt="Loading..."></img>
                       </div>
                     </div>
                   </div> 

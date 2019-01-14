@@ -6,9 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-			<link rel="icon" href="<?php echo base_url('assets/pg_user/images/merk/icon-lpi.png');?>">
-			<link rel="icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/icon-lpi.png');?>" >
-			<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/icon-lpi.png');?>" >
+			<link rel="icon" href="<?php echo base_url('assets/img/merk/icon-lpi.png');?>">
+			<link rel="icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/icon-lpi.png');?>" >
+			<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/icon-lpi.png');?>" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title> Fixing 

@@ -14,7 +14,7 @@ $this->load->view('pg_user/inc/header.php');
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>">
+                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/icon/no-image.jpg') : base_url() . 'assets/img/icon/no-image.jpg') ?>">
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $data->nama_mapel ?></h1>
@@ -343,7 +343,7 @@ if (isset($materi[0]->id_materi_pokok)) {
                             ?>
                             <a href="<?= $linkmaterilain; ?>">
                                 <span class="badge-diskon">Diskon 25%</span>
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>"
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/icon/no-image.jpg') : base_url() . 'assets/img/icon/no-image.jpg') ?>"
                                      alt="<?= $data->nama_mapel ?>" alt="Lights" style="width:100%">
                                 <div class="caption">
                                     <h4><?= $data->nama_mapel ?></h4>

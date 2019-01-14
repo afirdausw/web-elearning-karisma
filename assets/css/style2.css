@@ -25,7 +25,7 @@
 }
 
 .logo {
-    background: transparent url('../images/merk/header-logo.png') left center no-repeat;
+    background: transparent url('../img/merk/header-logo.png') left center no-repeat;
     background-size: 250px 38px;
     display: inline-block;
     height: 59px;
@@ -37,7 +37,7 @@
 }
 
 .logo-footer {
-    background: transparent url(../images/merk/header-logo.png) left center no-repeat;
+    background: transparent url(../img/merk/header-logo.png) left center no-repeat;
     display: inline-block;
     margin: 0;
     width: 300px;
@@ -124,7 +124,7 @@ a > div.to-top > span {
 
 .banner-home {
     background-color: #10171D;
-    background-image: url(../images/banner/banner-home.JPG);
+    background-image: url(../img/banner/banner-home.JPG);
     background-repeat: no-repeat;
     background-attachment: inherit;
     background-position: top right;
@@ -511,14 +511,14 @@ a > div.to-top > span {
     padding: 50px 0 70px 0;
     color: #FFF;
     width: 100%;
-    background-image: url('../images/banner/banner-desktop.jpeg');
+    background-image: url('../img/banner/banner-desktop.jpeg');
     background-position: top center;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .banner-profil {
-    background-image: url('../images/background/bg-profil.png');
+    background-image: url('../img/background/bg-profil.png');
     background-size: auto;
 }
 
@@ -611,7 +611,7 @@ a > div.to-top > span {
 /* SECTION QOUTES AND CARD*/
 .section-abu {
     position: relative;
-    background: url(../../pg_user/images/background/bg-pattern.png) #F2F2F2;
+    background: url(../img/background/bg-pattern.png) #F2F2F2;
     background-size: contain;
     width: 100%;
     padding-bottom: 100px;

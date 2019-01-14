@@ -75,7 +75,7 @@ if ($waktu_sisa < 0) {
                 <!-- WRAP ISI MATERI -->
                 <div class="row" style="text-align: center">
                     <div class="col-lg-12">
-                        <img src="<?php echo base_url('assets/pg_user/images/icon/icon-soal.png') ?>" width="552px"
+                        <img src="<?php echo base_url('assets/img/icon/icon-soal.png') ?>" width="552px"
                              class="img-soal"/><br>
                         <?php
                         $pretest = $key->pretest_status;

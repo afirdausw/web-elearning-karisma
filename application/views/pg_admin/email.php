@@ -19,7 +19,7 @@
       <table border="0" width="600" cellpadding="0" cellspacing="0" class="container" style="background-color: #FFFFFF; padding: 20px;">
         <tr>
           <td class="container-padding header" align="left">
-            <img src="<?= base_url('assets/pg_user/images/merk/logo-red.png'); ?>" alt="Logo Prime Mobile">
+            <img src="<?= base_url('assets/img/merk/logo-red.png'); ?>" alt="Logo Prime Mobile">
           </td>
         </tr>
         <tr>

@@ -227,7 +227,7 @@ $this->load->view('pg_user/inc/header.php');
                 <div class="row wrap-detail-materi">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 text-right">
                         <img class="centered-cover"
-                             src="<?= (isset($konten->gambar_mapel) ? (!empty($konten->gambar_mapel) && substr($konten->gambar_mapel, 0, 5) == 'data:' ? $konten->gambar_mapel : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>"
+                             src="<?= (isset($konten->gambar_mapel) ? (!empty($konten->gambar_mapel) && substr($konten->gambar_mapel, 0, 5) == 'data:' ? $konten->gambar_mapel : base_url() . 'assets/img/icon/no-image.jpg') : base_url() . 'assets/img/icon/no-image.jpg') ?>"
                              alt="Logo Materi">
                     </div>
                     <div class="col-lg-11 col-md-10 col-sm-10 col-xs-10">

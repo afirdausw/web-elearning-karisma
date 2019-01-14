@@ -44,7 +44,7 @@ $this->load->view('pg_user/inc/header.php');
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <img src="<?= base_url('assets/pg_user/images/icon/siswa-placeholder.jpg'); ?>" alt="Foto Profil Siswa">
+                <img src="<?= base_url('assets/img/icon/siswa-placeholder.jpg'); ?>" alt="Foto Profil Siswa">
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $pretest->nama_siswa_pretest ?></h1>

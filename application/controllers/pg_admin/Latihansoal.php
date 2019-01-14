@@ -646,7 +646,7 @@ class Latihansoal extends CI_Controller
         if ($sub_materi_id) {
             $data['content_preview'] = $this->Model_adm->fetch_content_by_id($sub_materi_id);
             $gambar_materi = isset($data['content_preview']->gambar_materi) ? $data['content_preview']->gambar_materi : '';
-            $data['thumbnail_dir'] = base_url('') . "assets/pg_user/images/icon/no-image.jpg";
+            $data['thumbnail_dir'] = base_url('') . "assets/img/icon/no-image.jpg";
 
             if ($gambar_materi) {
                 $data['thumbnail_dir'] = base_url('') . "assets/plugins/kcfinder/upload/images/" . $data['content_preview']->gambar_materi;

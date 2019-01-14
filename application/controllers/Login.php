@@ -286,7 +286,7 @@ class Login extends CI_Controller
     {
         $fb_config = array(
             'href'        => base_url(),
-            'picture'     => base_url() . 'assets/pg_user/images/icon/sma.jpg',
+            'picture'     => base_url() . 'assets/img/icon/sma.jpg',
             'title'       => '[Nama] Menyelesaikan [Judul Latihan]!',
             'description' => 'Aku sudah menyelesaikan latihan di LPI Hidayatullah. Ayo kamu juga!',
             'caption'     => 'belajar.lpi-hidayatullah.or.id',

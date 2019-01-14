@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
-    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
-    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
+    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
+    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/themify/css/themify-icons.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/fontawesome-5.6.3/css/all.min.css');?>">
@@ -28,7 +28,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style2.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css'); ?>">
 
 </head>
 
@@ -44,7 +44,7 @@ if ($this->uri->segment(1) != '') { ?>
             </div>
 
             <div class="sidebar-header">
-                <img src="<?php echo base_url('assets/pg_user/images/merk/header-logo.png') ?>" width="250px" height="38px"
+                <img src="<?php echo base_url('assets/img/merk/header-logo.png') ?>" width="250px" height="38px"
                      alt="Karisma Academy">
             </div>
 
@@ -67,7 +67,7 @@ if ($this->uri->segment(1) != '') { ?>
         </div>
 
         <div class="sidebar-header">
-            <img src="<?php echo base_url('assets/pg_user/images/merk/header-logo.png') ?>" width="250px" height="38px"
+            <img src="<?php echo base_url('assets/img/merk/header-logo.png') ?>" width="250px" height="38px"
                  alt="Karisma Academy">
         </div>
 
