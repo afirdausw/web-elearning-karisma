@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript"
         src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/plugins.js'); ?>"></script>
 
 <!-- JS Function for this Modal -->
 <script type="text/javascript">

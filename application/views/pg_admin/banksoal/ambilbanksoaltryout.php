@@ -389,7 +389,7 @@ $this->load->view("pg_admin/inc/html_header.php");
 
         src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/plugins.js'); ?>"></script>
 
 <div id="list_modal">
 
@@ -481,7 +481,7 @@ $this->load->view("pg_admin/inc/html_header.php");
 
         src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/plugins.js'); ?>"></script>
 
 
 
