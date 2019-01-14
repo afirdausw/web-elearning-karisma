@@ -130,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     } </script>
 
  <!-- TinyMCE - WYSIWYG plugin  -->
- <script src="<?php echo base_url('assets/js/plugins/tinymce/tinymce.min.js');?>" type="text/javascript"></script>
+ <script src="<?php echo base_url('assets/plugins/tinymce/tinymce.min.js');?>" type="text/javascript"></script>
  <script type="text/javascript">
   tinymce.init({
     selector: '#tinymce_textarea',
@@ -152,9 +152,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     //integrating tinymce 4 and kcfinder
     file_browser_callback: function(field, url, type, win) {
-      console.log("<?php echo base_url();?>" + 'assets/js/plugins/kcfinder/browse.php?opener=tinymce4&field=' + field + '&type=' + type);
+      console.log("<?php echo base_url();?>" + 'assets/plugins/kcfinder/browse.php?opener=tinymce4&field=' + field + '&type=' + type);
       tinyMCE.activeEditor.windowManager.open({
-          file:  "<?php echo base_url();?>" + 'assets/js/plugins/kcfinder/browse.php?opener=tinymce4&field=' + field + '&type=' + type,
+          file:  "<?php echo base_url();?>" + 'assets/plugins/kcfinder/browse.php?opener=tinymce4&field=' + field + '&type=' + type,
           title: 'KCFinder',
           width: 700,
           height: 500,

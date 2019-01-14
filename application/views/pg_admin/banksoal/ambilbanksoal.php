@@ -492,7 +492,7 @@ $this->load->view("pg_admin/inc/html_header.php");
 
 </script>
 
-<script src="<?= base_url('assets/js/nprogress.js') ?>"></script>
+<script src="<?= base_url('assets/plugins/nprogress/js/nprogress.js') ?>"></script>
 
 <!--  Datatables Plugin -->
 

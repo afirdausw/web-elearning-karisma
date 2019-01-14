@@ -649,7 +649,7 @@ class Latihansoal extends CI_Controller
             $data['thumbnail_dir'] = base_url('') . "assets/pg_user/images/icon/no-image.jpg";
 
             if ($gambar_materi) {
-                $data['thumbnail_dir'] = base_url('') . "assets/js/plugins/kcfinder/upload/images/" . $data['content_preview']->gambar_materi;
+                $data['thumbnail_dir'] = base_url('') . "assets/plugins/kcfinder/upload/images/" . $data['content_preview']->gambar_materi;
             }
 
             $this->load->view('preview/content_preview', $data);

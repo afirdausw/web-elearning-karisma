@@ -114,7 +114,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 <!-- TinyMCE - WYSIWYG plugin  -->
-<script src="<?php echo base_url('assets/js/plugins/tinymce/tinymce.min.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/plugins/tinymce/tinymce.min.js'); ?>" type="text/javascript"></script>
 <script type="text/javascript">
     tinymce.init({
         selector: '.tinymce_textarea',

@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/css/animate.min.css');?>" rel="stylesheet"/>
 
 		<!--  Light Bootstrap Table core CSS    -->
-		<link href="<?php echo base_url('assets/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
 
 		
 		<!--  CSS for Karisma PG_Admin  -->
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--     Fonts and icons     -->
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-		<link href="<?php echo base_url('assets/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
+		<link href="<?php echo base_url('assets/pg_user/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
 
 		<!-- ADDITIONAL -->
 		<!--  Chosen Select Box Plugin CSS    -->
@@ -60,13 +60,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/css/plugins/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
 		
 		<!--  Nestable (JQuery) Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/nestable.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/nestable/css/nestable.css');?>" rel="stylesheet"/>
 		
 		<!--  Bootstrap Switch Plugin CSS    -->
-		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugin/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
 		
 		<!-- Progress -->
-		<link href="<?php echo base_url('assets/css/nprogress.css'); ?>" rel='stylesheet' />
+		<link href="<?php echo base_url('assets/plugins/nprogress/css/nprogress.css'); ?>" rel='stylesheet' />
 		<!-- BS 4 Margin -->
 	    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
 

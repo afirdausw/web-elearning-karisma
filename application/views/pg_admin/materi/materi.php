@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/js/light-bootstrap-dashboard.js');?>"></script>
 
 
 <!--  Datatables Plugin -->

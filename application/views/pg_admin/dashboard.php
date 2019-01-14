@@ -20,16 +20,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<p class="category">Pengorganisasian Struktur Materi</p>
 							</div>
 							<div class="content">
-							
-								<!-- TESTING -->
-								
-								<!-- 
-								<div class="col-md-12">
-									<textarea id="nestable-output" readonly></textarea>
-									<button type="button" id="ajax-run" class="btn btn-secondary">Simpan Perubahan</button>
-								</div> -->
-								<!-- /TESTING -->
-
 								<div class="row">
 									<div class="col-md-12">
 										<ul class="nav nav-tabs">
@@ -50,16 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													</li>
 												<?php
 											}?>
-										 <!--  <li class="pull-right">
-												<div class="btn-group nestable-menu" role="group">
-													<button data-action="expand-all" title="Expand All" class="btn btn-sm btn-default btn-fill nestable-menu">
-														<span class="glyphicon glyphicon-collapse-down"></span> Expand
-													</button>
-													<button data-action="collapse-all" title="Collapse All" class="btn btn-sm btn-default btn-fill nestable-menu">
-														<span class="glyphicon glyphicon-collapse-up"></span> Collapse
-													</button>
-												</div>
-											</li> -->
 										</ul>
 
 										<div class="tab-content">
@@ -191,7 +171,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->load->view("pg_admin/alert_modal.php"); ?>
 <!--  Nestable Plugin    -->
-<script src="<?php echo base_url('assets/js/plugins/nestable/jquery.nestable.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/nestable/js/jquery.nestable.js');?>"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
@@ -201,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/js/light-bootstrap-dashboard.js');?>"></script>
 
 <!-- PLUGINS FUNCTION -->
  <!-- Nestable plugin  -->
@@ -213,7 +193,6 @@ $(document).ready(function()
 			$('.nav-pills.nav-stacked li:first-child a').trigger('click');
 		});
 		parentTab.trigger('click');
-	// console.log("opo:" + opo);
 
 	//disable all update button
 	$("button[name*='map-']").prop('disabled', true);
@@ -222,10 +201,6 @@ $(document).ready(function()
 			var target_name = e.target.name;
 			var target_val = e.target.value;
 			var id = parseInt(target_name.replace(/map-/g, ''))
-			// console.log("TRGET_name= " + e.target.name);
-			// console.log("TRGET_val = " + e.target.value);
-			// console.log("parseInt= " + i);
-			// console.log("isNan&= " + isNaN(target_name));
 			if(id == target_val)
 			{ 
 				sendAjaxPost(target_val, $('#nestable_' + id)); 

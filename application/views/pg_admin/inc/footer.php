@@ -22,13 +22,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
 
-<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugin/bootstrap-switch/bootstrap-switch.min.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-switch/bootstrap-switch.min.js');?>"></script>
 
 <!--  Notifications Plugin    -->
 <script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/js/light-bootstrap-dashboard.js');?>"></script>
 <script src="<?php echo base_url('assets/plugins/jquery/jquery-chosen/js/chosen.jquery.js'); ?>" type="text/javascript"></script>
 
 
@@ -47,4 +47,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('assets/plugins/parsley/id.js'); ?>"></script>
 
 <!-- Progress -->
-<script src="<?= base_url('assets/js/nprogress.js')?>" ></script>
+<script src="<?= base_url('assets/plugins/nprogress/js/nprogress.js')?>" ></script>

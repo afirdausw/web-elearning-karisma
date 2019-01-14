@@ -164,7 +164,7 @@
                 <!-- WRAP DETAIL MATERI -->
                 <div class="row wrap-detail-materi">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 text-right">
-                        <img class="centered-cover" src="<?php echo base_url('assets/js/plugins/kcfinder/upload/images/html.jpg') ?>" alt="Logo Materi">
+                        <img class="centered-cover" src="<?php echo base_url('assets/plugins/kcfinder/upload/images/html.jpg') ?>" alt="Logo Materi">
                     </div>
                     <div class="col-lg-11 col-md-10 col-sm-10 col-xs-10">
                         <h3>Apa itu HTML</h3>
