@@ -611,7 +611,7 @@ a > div.to-top > span {
 /* SECTION QOUTES AND CARD*/
 .section-abu {
     position: relative;
-    background: url(../../img/bg-pattern.png) #F2F2F2;
+    background: url(../../pg_user/images/background/bg-pattern.png) #F2F2F2;
     background-size: contain;
     width: 100%;
     padding-bottom: 100px;

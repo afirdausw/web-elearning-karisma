@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ::-moz-selection { background-color: rgba(255, 255, 255, 0.2); color: white; }
 
 body {
-	background:url("assets/img/bg-pattern.png") #10171D center fixed;
+	background:url("<?=config_item('base_url'); ?>assets/pg_user/images/background/bg-pattern.png") #10171D center fixed;
 	margin: 40px;
 	font: 13px/25px normal Helvetica, Arial, sans-serif;
 	color: white;
