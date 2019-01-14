@@ -177,7 +177,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-checkbox-radio-switch/bootstrap-checkbox-radio-switch.js');?>"></script>
 
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-notify/bootstrap-notify.js');?>"></script>
 
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->

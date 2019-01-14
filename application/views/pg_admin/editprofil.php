@@ -298,7 +298,7 @@ $this->load->view("pg_admin/inc/html_header.php");
 
 <!--  Notifications Plugin    -->
 
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-notify/bootstrap-notify.js');?>"></script>
 
 
 
