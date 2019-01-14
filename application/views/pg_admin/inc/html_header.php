@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
 
 		<!-- Animation library for notifications   -->
-		<link href="<?php echo base_url('assets/css/animate.min.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/animate/animate.min.css');?>" rel="stylesheet"/>
 
 		<!--  Light Bootstrap Table core CSS    -->
 		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
