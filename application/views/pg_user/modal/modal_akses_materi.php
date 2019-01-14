@@ -7,7 +7,7 @@
             <h4 class="modal-title" id="myModalLabel">Notifikasi</h4>
         </div>
         <div class="modal-body text-center">
-            <img src="<?php echo base_url('assets/pg_user/images/custom/sorry.jpg');?>" width="368" height="273" alt="Notifikasi Pembayaran" class="img-responsive">
+            <img src="<?php echo base_url('assets/pg_user/images/icon/sorry.jpg');?>" width="368" height="273" alt="Notifikasi Pembayaran" class="img-responsive">
             <br>
             <p>
                 Maaf... Konten ini khusus untuk premium member. Silahkan memilih paket dengan harga mulai Rp 150.000,-

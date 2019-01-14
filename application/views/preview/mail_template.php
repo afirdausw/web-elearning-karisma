@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <table class="outer" align="center" style="font-family:arial; line-height:125%;">
         <tr>
           <td class="full-width-image">
-            <img src="<?php echo base_url('assets/pg_user/images/mail-template-images/header_mail.jpg');?>" width="600" alt="" />
+            <img src="<?php echo base_url('assets/pg_user/images/merk/mail/header_mail.jpg');?>" width="600" alt="" />
           </td>
         </tr>
         <tr>

@@ -68,7 +68,7 @@
     var base_url = "<?= base_url() ?>";
 </script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/cart.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/cart.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript"
         src="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>

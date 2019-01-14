@@ -25,7 +25,7 @@
 }
 
 .logo {
-    background: transparent url('../images/header-logo.png') left center no-repeat;
+    background: transparent url('../images/merk/header-logo.png') left center no-repeat;
     background-size: 250px 38px;
     display: inline-block;
     height: 59px;
@@ -37,7 +37,7 @@
 }
 
 .logo-footer {
-    background: transparent url(../images/header-logo.png) left center no-repeat;
+    background: transparent url(../images/merk/header-logo.png) left center no-repeat;
     display: inline-block;
     margin: 0;
     width: 300px;
@@ -124,7 +124,7 @@ a > div.to-top > span {
 
 .banner-home {
     background-color: #10171D;
-    background-image: url(../images/banner-home.JPG);
+    background-image: url(../images/banner/banner-home.JPG);
     background-repeat: no-repeat;
     background-attachment: inherit;
     background-position: top right;
@@ -511,14 +511,14 @@ a > div.to-top > span {
     padding: 50px 0 70px 0;
     color: #FFF;
     width: 100%;
-    background-image: url('../images/pexels-photo.jpeg');
+    background-image: url('../images/banner/banner-desktop.jpeg');
     background-position: top center;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .banner-profil {
-    background-image: url('../images/bg-profil.png');
+    background-image: url('../images/background/bg-profil.png');
     background-size: auto;
 }
 
@@ -1216,78 +1216,6 @@ footer a:hover:not(.logo-footer) {
     transition: all .2s ease-in-out;
 }
 
-/*
-.materi-list {
-    padding: 0;
-    margin: 0;
-}
-.materi-list a:link,
-.materi-list a:visited {
-    color: #444;
-    font-weight: 500;
-    transition: all .2s ease-in-out;
-}
-.materi-list a:hover,
-.materi-list a:focus,
-.materi-list li .active {
-    color: #0679B0;
-    text-decoration: none;
-}
-.materi-list a:active {
-    color: #046391;
-}
-.materi-list li {
-    list-style: none;
-    padding: 10px;
-    border: solid 1px #f5f5f5;
-    border-bottom: 0;
-}
-.materi-list li:last-child {
-    border-bottom: solid 1px #f5f5f5;
-}
-.materi-list a:focus > .fa, .active > .fa {
-    border: solid 1px #0679B0 !important;
-}
-.materi-list li .fa {
-    position: relative;
-    border-radius: 30px;
-    font-size: 20px;
-    height: 45px;
-    width: 45px;
-    border: solid 1px #999;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 45px;
-}
-.materi-list a:hover > .fa {
-    border: solid 1px #0679B0; 
-}
-.materi-list a:active > .fa {
-    border: solid 1px #046391;
-}
-.materi-list li p {
-    font-size: 11px;
-    display: inline-block;
-    font-weight: normal;
-    position: absolute;
-    margin-left: 107px;
-    margin-top: 25px;
-    left: 0;
-}
-.submateri {
-    position: relative;
-    font-size: 15px;
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 10px;
-    margin-top: 3px;
-}
-.submateri-no {
-    width: 22px;
-    margin-right: -4px;
-    display: inline-block;
-}
-*/
 /* CUSTOM BTN STYLE */
 .btn-md {
     padding: 8px 25px;

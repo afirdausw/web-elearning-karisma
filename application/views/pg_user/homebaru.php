@@ -379,7 +379,7 @@
                             <div class="card">
                                 <a href="#">
                                     <div class="card-header"
-                                         style="background-image: url(<?php echo base_url('assets/pg_user/images/index-bg1.png'); ?>)">
+                                         style="background-image: url(<?php echo base_url('assets/pg_user/images/banner/index-bg1.png'); ?>)">
                                         <span><?= $testi->id_siswa ?></span>
                                     </div>
                                     <span class="card-profile">S</span>
@@ -403,10 +403,10 @@
                 <h1>Partner Kami</h1>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 text-center">
-                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/partner-ic3.png'); ?>" alt="IC3"></a>
-                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/partner-vedc.png'); ?>" alt="VEDC"></a>
-                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/partner-ub.png'); ?>" alt="UB"></a>
-                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/partner-um.png'); ?>" alt="UM"></a>
+                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/merk/partner/partner-ic3.png'); ?>" alt="IC3"></a>
+                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/merk/partner/partner-vedc.png'); ?>" alt="VEDC"></a>
+                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/merk/partner/partner-ub.png'); ?>" alt="UB"></a>
+                <a href="#"><img src="<?php echo base_url('assets/pg_user/images/merk/partner/partner-um.png'); ?>" alt="UM"></a>
             </div>
         </div>
     </div>

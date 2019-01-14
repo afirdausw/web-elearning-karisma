@@ -204,7 +204,7 @@ $this->load->view('pg_user/inc/header.php');
                                         <div class="materi-lainnya px-3 py-4" style="border: solid 1px white;box-shadow: 1px 2px 1px 0 rgba(20, 23, 28, .1), 0 2px 1px 0 rgba(20, 23, 28, .1)">
                                             <a href="<?= $val['link'] ?>">
                                                 <img style="display: block;" class="w-75 mx-auto"
-                                                     src="<?= base_url() ?>assets/pg_user/images/<?= $key . $val['image'] ?>">
+                                                     src="<?= base_url() ?>assets/pg_user/images/merk/bank/<?= $key . $val['image'] ?>">
                                                 <div class="container w-100">
                                                     <div class="mt-3 text-gray-2 min-height-20">
                                                         <p class="m-0"><?= $val['rekening'] ?></p>

@@ -11,7 +11,7 @@ if (!function_exists('fb_share_config'))
         case 'latihan_finish':
         $fb_config = array(
             'href'        => base_url(),
-            'picture'     => base_url().'assets/dashboard/images/sma.jpg',
+            'picture'     => base_url().'assets/pg_user/images/icon/sma.jpg',
             'title'       => '[Nama] Menyelesaikan [Judul Latihan]!',
             'description' => 'Aku sudah menyelesaikan latihan di PrimeMobile. Ayo kamu juga!',
             'caption'     => 'primemobile.co.id'
@@ -21,7 +21,7 @@ if (!function_exists('fb_share_config'))
         default:
         $fb_config = array(
             'href'        => base_url(),
-            'picture'     => base_url().'assets/dashboard/images/logo-red3.jpg',
+            'picture'     => base_url().'assets/pg_user/images/merk/logo-red3.jpg',
             'title'       => 'Prime Mobile',
             'description' => 'E-Learning Integrative Pertama di Indonesia',
             'caption'     => 'primemobile.co.id'

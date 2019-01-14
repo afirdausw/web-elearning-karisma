@@ -59,7 +59,7 @@
         margin-bottom: 30px;
     }
     .logo {
-        background: transparent url('../images/footer-logo.png') left center no-repeat;
+        background: transparent url('../images/merk/footer-logo.png') left center no-repeat;
         background-size: 123px 43px;
         display: inline-block;
         /*height: 43px;*/
@@ -122,8 +122,7 @@
     .banner-top .banner-left span {
         font-size: 18px;
     }
-    .banner-top {
-    }
+    
     .banner-top .banner-right a {
         height: 40px;
         padding: 0 20px;

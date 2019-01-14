@@ -6,9 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 <meta charset="utf-8">
 <title>Halaman Tidak Ditemukan - Karisma Academy</title>
-<link rel="shortcut icon" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico">
-<link rel="icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico">
-<link rel="apple-touch-icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/dashboard/images/favicon.ico')">
+<link rel="shortcut icon" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico">
+<link rel="icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico">
+<link rel="apple-touch-icon" sizes="130x128" href="<?=config_item('base_url'); ?>assets/pg_user/images/merk/favicon.ico')">
 
 <style type="text/css">
 

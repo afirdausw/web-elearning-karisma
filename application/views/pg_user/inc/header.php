@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
+    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
+    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
@@ -44,7 +44,7 @@ if ($this->uri->segment(1) != '') { ?>
             </div>
 
             <div class="sidebar-header">
-                <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px" height="38px"
+                <img src="<?php echo base_url('assets/pg_user/images/merk/header-logo.png') ?>" width="250px" height="38px"
                      alt="Karisma Academy">
             </div>
 
@@ -67,7 +67,7 @@ if ($this->uri->segment(1) != '') { ?>
         </div>
 
         <div class="sidebar-header">
-            <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px" height="38px"
+            <img src="<?php echo base_url('assets/pg_user/images/merk/header-logo.png') ?>" width="250px" height="38px"
                  alt="Karisma Academy">
         </div>
 

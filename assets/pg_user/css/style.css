@@ -18,7 +18,7 @@
 		-moz-appearance: none;
 		-ms-appearance: none;
 		appearance: none;
-		background-image: url("../images/custom/dropdown.jpg");
+		background-image: url("../images/sprites/dropdown.jpg");
 		background-repeat: no-repeat;
 		background-position: 100% 100%;
 		background-size: auto 100%;
@@ -32,7 +32,7 @@
 .bayar-table {
 	margin: 25px 0 0; }
 	.bayar-table table thead tr {
-		background: url("../../dashboard/images/bg-reason.png") #1abc9c;
+		background: url("../../pg_user/images/background/bg-reason.png") #1abc9c;
 		background-size: 20%;
 		text-transform: uppercase;
 		color: #ffffff; }
@@ -50,7 +50,7 @@
 	.bayar-table .table > thead > tr > th, .bayar-table .table > tbody > tr > th, .bayar-table .table > tfoot > tr > th, .bayar-table .table > thead > tr > td, .bayar-table .table > tbody > tr > td, .bayar-table .table > tfoot > tr > td {
 		border: none; }
 	.bayar-table.blue table thead tr {
-		background-image: url("../images/custom/titleBGBlue.jpg"); }
+		background-image: url("../images/sprites/titleBGBlue.jpg"); }
 	.bayar-table.blue table tbody tr {
 		background-color: #baedf9; }
 	.bayar-table.blue .table-striped > tbody > tr:nth-of-type(2n+1) {
@@ -105,7 +105,7 @@
 .tabel-rincian .table-striped > tbody > tr:nth-of-type(2n+1) {
 	background-color: #D2ECE7; }
 .tabel-rincian thead tr {
-	background: url("../../dashboard/images/bg-reason.png") #1abc9c;
+	background: url("../../pg_user/images/background/bg-reason.png") #1abc9c;
 	background-size: 20%;}
 	.tabel-rincian thead tr th {
 		color: #ffffff;
@@ -125,7 +125,7 @@
 .btn-confirm {
 	float: right;
 	margin: -50px 0 0;
-	background-image: url("../images/custom/bgButton3.jpg");
+	background-image: url("../images/sprites/bgButton3.jpg");
 	border: 1px solid #dc1826;
 	color: #ffffff;
 	font-size: 12px;
