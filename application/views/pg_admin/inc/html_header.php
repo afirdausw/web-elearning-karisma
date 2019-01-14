@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--     Fonts and icons     -->
 		<link href="<?php echo base_url('assets/plugins/fontawesome-5.6.3/css/all.min.css');?>" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-		<link href="<?php echo base_url('assets/pg_user/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
+		<link href="<?php echo base_url('assets/plugins/pe-icon-7/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
 
 		<!-- ADDITIONAL -->
 		<!--  Chosen Select Box Plugin CSS    -->

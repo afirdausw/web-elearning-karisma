@@ -16,18 +16,18 @@
     <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
     <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/pg_user/images/merk/favicon.ico'); ?>">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/themify/css/themify-icons.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/fontawesome-5.6.3/css/all.min.css');?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css"
           href="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/responsive.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-4/css/bs-4-margin.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/jquery/jquery-steps/jquery.steps.css'); ?>">
 
     
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
 
 </head>

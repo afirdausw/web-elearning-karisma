@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--<![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/mail_template_styles.css')?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/mail_template/css/mail_template_styles.css')?>" />
     <!--[if (gte mso 9)|(IE)]>
     <style type="text/css">
       table {border-collapse: collapse;}
@@ -30,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <table class="outer" align="center" style="font-family:arial; line-height:125%;">
         <tr>
           <td class="full-width-image">
-            <img src="<?php echo base_url('assets/pg_user/images/merk/mail/header_mail.jpg');?>" width="600" alt="" />
+            <img src="<?php echo base_url('assets/plugins/mail_template/img/header_mail.jpg');?>" width="600" alt="" />
           </td>
         </tr>
         <tr>
