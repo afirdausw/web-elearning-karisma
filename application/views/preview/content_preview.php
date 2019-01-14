@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <link href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-  <link href="<?php echo base_url('assets/plugins/fontawesome-5.6.3/css/all.min.css');?>" rel="stylesheet">
+  <link href="<?php echo base_url('assets/plugins/fontawesome-4.7/css/font-awesome.min.css');?>" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
   <link href="<?php echo base_url('assets/plugins/pe-icon-7/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
 

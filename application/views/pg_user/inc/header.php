@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/themify/css/themify-icons.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/fontawesome-5.6.3/css/all.min.css');?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/fontawesome-4.7/css/font-awesome.min.css');?>">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.css'); ?>">
     <link rel="stylesheet" type="text/css"
