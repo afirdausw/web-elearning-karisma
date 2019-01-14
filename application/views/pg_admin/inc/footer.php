@@ -48,3 +48,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <!-- Progress -->
 <script src="<?= base_url('assets/plugins/nprogress/js/nprogress.js')?>" ></script>
+
+
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/fontawesome-5.6.3/js/all.min.js'); ?>"></script>
