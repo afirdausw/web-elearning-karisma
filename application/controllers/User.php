@@ -1443,7 +1443,7 @@ class User extends CI_Controller
         <script>
             $(function () {
                 $(".pilih").click(function () {
-                    $("#materi").html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                    $("#materi").html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
                     $("#materi").load("materi/" + $(this).attr('id'));
                 });
             });
@@ -1482,7 +1482,7 @@ class User extends CI_Controller
             $(function () {
                 $(".btn-pilihmapel").click(function () {
                     var kelas = $("#m" + $(this).attr('id')).val();
-                    $("#materi" + kelas).html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                    $("#materi" + kelas).html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
                     $("[btn-ke=" + kelas + "]").removeClass("hidden");
                     $("[btn-ke=" + kelas + "]").addClass("kembalimapel");
                     $("[btn-ke=" + kelas + "]").addClass("show");
@@ -1490,7 +1490,7 @@ class User extends CI_Controller
 
                 });
                 // $(".kembalikelas").click(function () {
-                //  $("#materi").html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                //  $("#materi").html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
                 //  $("#materi").load("kembalikelas");
                 // });
             });
@@ -1535,7 +1535,7 @@ class User extends CI_Controller
         ?>
         <script>
             $(".btn-kelas").click(function () {
-                $("#materi").html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                $("#materi").html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
                 $("#materi").load("lihatmapel/" + $(this).attr('id'));
             });
         </script>
@@ -1582,7 +1582,7 @@ class User extends CI_Controller
         <script>
             $(function () {
                 $(".pilihprofil").click(function () {
-                    $("#tryout").html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                    $("#tryout").html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
                     $("#tryout").load("tryout/" + $(this).attr('id'));
                     $("#profilterpilih").val($(this).attr('id'));
                     $('#submitstatistik').css('display', 'inline-block');
@@ -1627,7 +1627,7 @@ class User extends CI_Controller
                 $(".kembalimapel").click(function () {
                     var kelas = $(this).attr('btn-ke');
 
-                    $("#materi" + kelas).html("<img src='<?php echo base_url('assets/img/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
+                    $("#materi" + kelas).html("<img src='<?php echo base_url('assets/pg_user/images/icon/gears.gif'); ?>' style='margin: 20px auto 0px; width: 200px;' />");
 
                     $("#materi" + kelas).load("lihatmapel/" + $(this).attr('id'));
 

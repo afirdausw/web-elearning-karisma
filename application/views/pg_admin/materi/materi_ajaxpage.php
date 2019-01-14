@@ -50,7 +50,7 @@
 													url:urlSearch,
 													beforeSend: function() {
 														NProgress.start();
-														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/img/table_loading.gif'; ?>"></div>');
+														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/pg_user/images/icon/table_loading.gif'; ?>"></div>');
 													},
 													success:function(data) {
 														NProgress.done(); 
@@ -65,7 +65,7 @@
 													url:urlSearch,
 													beforeSend: function() {
 														NProgress.start();
-														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/img/table_loading.gif'; ?>"></div>');
+														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/pg_user/images/icon/table_loading.gif'; ?>"></div>');
 													},
 													success:function(data) {
 														NProgress.done(); 
@@ -80,7 +80,7 @@
 													url:urlSearch,
 													beforeSend: function() {
 														NProgress.start();
-														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/img/table_loading.gif'; ?>"></div>');
+														//$("#containerajax").html('<div class="text-center"><img src="<?php echo base_url().'assets/pg_user/images/icon/table_loading.gif'; ?>"></div>');
 													},
 													success:function(data) {
 														NProgress.done(); 

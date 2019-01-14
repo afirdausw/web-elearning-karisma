@@ -19,12 +19,12 @@ $this->load->view('pg_user/inc/header.php');
         </div>
     </div>
 </section> <!-- End of BANNER-->
-<?php $background = (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>
+<?php $background = (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>
 <section class="banner-materi darker" style="background-image: url('<?= $background ?>')"> <!-- konten Judul -->
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-12">
-                <img src="<?= (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>">
+                <img src="<?= (isset($kelas->gambar_kelas) ? (!empty($kelas->gambar_kelas) ? base_url() . 'image/kelas/' . $kelas->gambar_kelas : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>">
             </div>
             <div class="col-md-9 col-sm-12">
                 <h1><?= $kelas->alias_kelas ?></h1>
@@ -60,7 +60,7 @@ $this->load->view('pg_user/inc/header.php');
                         <div class="thumbnail materi-lainnya">
                             <a href="<?= base_url() . 'materi/' . $data->id_mapel ?>">
                                 <!-- <span class="badge-diskon">Diskon 25%</span> -->
-                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>"
                                      alt="Thumbnail Kursus <?= $data->nama_mapel ?>" style="width:100%; height: 50px">
                                 <div class="caption">
                                     <h4><?= $data->nama_mapel ?></h4>

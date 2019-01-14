@@ -27,7 +27,7 @@ $this->load->view('pg_user/inc/header.php');
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'pretest/mapel/' . $value->id_mapel; ?>">
                             <span class="badge-diskon">Diskon 25%</span>
-                            <img src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) && substr($value->gambar_mapel, 0, 5) == 'data:' ? $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                            <img src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) && substr($value->gambar_mapel, 0, 5) == 'data:' ? $value->gambar_mapel : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>"
                                  alt="<?= $value->nama_mapel ?>">
                             <div class="caption">
                                 <?php

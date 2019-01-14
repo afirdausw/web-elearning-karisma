@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<?php if (isset($data_instruktur)) { ?>
                           <div class="form-group">
                               <label for="gambar_mapel">Gambar Thumbnail Sekarang</label>
-                              <img src="<?= (isset($data_instruktur->$table_fields[$i]) ? (!empty($data_instruktur->$table_fields[$i]) ? base_url() . 'image/instruktur/' . $data_instruktur->$table_fields[$i] : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>" alt="Foto Instruktur <?=str_replace(' ','',$data_instruktur->nama_instruktur)?>" style="display:block;max-width: 10vw;">
+                              <img src="<?= (isset($data_instruktur->$table_fields[$i]) ? (!empty($data_instruktur->$table_fields[$i]) ? base_url() . 'image/instruktur/' . $data_instruktur->$table_fields[$i] : base_url() . 'assets/pg_user/images/icon/no-image.jpg') : base_url() . 'assets/pg_user/images/icon/no-image.jpg') ?>" alt="Foto Instruktur <?=str_replace(' ','',$data_instruktur->nama_instruktur)?>" style="display:block;max-width: 10vw;">
                           </div>
                       <?php } ?>
 										</div>
