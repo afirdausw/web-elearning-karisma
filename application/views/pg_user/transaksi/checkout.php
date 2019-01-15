@@ -144,7 +144,7 @@ $this->load->view('pg_user/header');
                                         <p class="w-75 mt-5 mx-auto text-center">Bukti Pembayaran Berhasil Di Upload
                                             Masih Menunggu Konfirmasi Dari Admin</p>
                                     <?php } else { ?>
-                                        <h2 class="w-75 mt-5 mx-auto text-center h1" id="clock" style="font-size: 24pt;"></h2>
+                                        <h2 class="w-100 mt-5 mx-auto text-center h1" id="clock" style="font-size: 24pt;"></h2>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -181,10 +181,10 @@ $this->load->view('pg_user/header');
                                         <div id="bank-<?= $key ?>" class="col-md-12 col-sm-12 mt-3"
                                              style="display: none;">
                                             <div class="row mt-3">
-                                                <div class="col-md-5">
+                                                <div class="col-xs-5 col-md-5">
                                                     <img class="w-100" src="<?= base_url() ?>assets/pg_user/images/<?= $key . $val['image'] ?>">
                                                 </div>
-                                                <div class="col-md-7">
+                                                <div class="col-xs-7 col-md-7">
                                                     <div class=" text-gray-2 min-height-20">
                                                         <p class="m-0"><small><?= $val['rekening'] ?></small></p>
                                                         <p style="margin-top: -8px;"><small><small>a/n <?= $val['atasNama'] ?></small></small></p>
@@ -297,7 +297,7 @@ $this->load->view('pg_user/header');
         <!-- Modal -->
         <!-- PROGRESS -->
         <div class="modal fade" id="modalCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog  mt-5" role="document">
+            <div class="modal-dialog  mt-5 p-5" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="mx-4 close" data-dismiss="modal" aria-label="Close"><span
@@ -309,32 +309,32 @@ $this->load->view('pg_user/header');
                         <div class="modal-body px-5">
 
                             <div class="form-group">
-                                <label for="bank_anda">Bank Yang Anda Gunakan</label>
+                                <small><label for="bank_anda">Bank Yang Anda Gunakan</label></small>
                                 <input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="bank_anda"
-                                                                                        value="<?= $transaksi->bank_anda ?>"
-                                                                                        class="form-control"
+                                                                                        value=""
+                                                                                        class="form-control input-sm"
                                                                                         id="bank_anda"
                                                                                         placeholder="Ex. (BRI/BCA/MANDIRI/BNI)">
                             </div>
                             <div class="form-group">
-                                <label for="no_rekening">No. Rekening</label>
+                                <small><label for="no_rekening">No. Rekening</label></small>
                                 <input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="no_rekening"
                                                                                         value="<?= $transaksi->atas_nama ?>"
-                                                                                        class="form-control"
+                                                                                        class="form-control input-sm"
                                                                                         id="no_rekening"
                                                                                         placeholder="00000000">
                             </div>
                             <div class="form-group">
-                                <label for="atas_nama">Nama Pemilik Rekening</label>
+                                <small><label for="atas_nama">Nama Pemilik Rekening</label></small>
                                 <input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="atas_nama"
                                                                                         value="<?= $transaksi->atas_nama ?>"
-                                                                                        class="form-control"
+                                                                                        class="form-control input-sm"
                                                                                         id="atas_nama"
                                                                                         placeholder="Nama">
                             </div>
                             <div class="form-group">
-                                <label for="bank_tujuan">Bank Tujuan</label>
-                                <select class="form-control" name="bank_tujuan" required>
+                                <small><label for="bank_tujuan">Bank Tujuan</label></small>
+                                <select class="form-control input-sm" name="bank_tujuan" required>
                                     <?php
                                     foreach ($bank as $key => $val) { ?>
                                         <option value="<?= strtoupper($key); ?>"><?= strtoupper($key) . " a/n " . $val['atasNama']; ?></option>
@@ -344,45 +344,44 @@ $this->load->view('pg_user/header');
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="total_transfer">Total Yang Di Transfer</label>
+                                <small><label for="total_transfer">Total Yang Di Transfer</label></small>
                                 <div class="input-group">
                                     <span class="input-group-addon">Rp </span>
                                     <input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="number"
                                                                                             name="total_transfer"
                                                                                             value="<?= $transaksi->total_transfer ?>"
-                                                                                            class="form-control"
+                                                                                            class="form-control input-sm"
                                                                                             placeholder="0000">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-6 col-sm-12 ">
-                                    <label for="bukti_pembayaran">Bukti Transfer</label>
+                                    <small><label for="bukti_pembayaran">Bukti Transfer</label></small>
                                     <input <?= $transaksi->status == 2 ? "disabled" : "" ?> type="file"
                                                                                             name="bukti_pembayaran"
                                                                                             accept="image/*">
-                                    <p class="help-block">Bukti transfer berupa gambar</p>
+                                    <small><p class="help-block">Bukti transfer berupa gambar</p></small>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <?php if ($transaksi->status == 1 || $transaksi->status == 0) {
                                         $gambar = base_url() . "/assets/img/no-image.jpg";
                                     } else {
                                         $gambar = base_url() . "/assets/uploads/bukti_transfer/" . $transaksi->bukti_pembayaran; ?>
-                                        <a href="<?= $gambar ?>" class="col-md-6">Lihat Gambar</a>
+                                        <a href="<?= $gambar ?>" class="col-md-6 input-sm">Lihat Gambar</a>
                                         <?php
                                     } ?>
                                 </div>
-                                <?php
-                                if ($transaksi->status == 0) {
-                                    ?>
-                                    <div class="col-md-offset-2 col-sm-12 col-md-4">
-                                        <button type="button" class="btn btn-default btn-lg btn-block"
-                                                data-dismiss="modal">Tutup
-                                        </button>
-                                        <br>
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block">Kirim</button>
-                                    </div>
-                                <?php } ?>
+                                
                             </div>
+                            <?php
+                            if ($transaksi->status == 0) {
+                                ?>
+                                <div class="form-group">
+                                    <div class="offset-md-6 col-md-6 col-sm-12 pull-right text-right">
+                                        <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">Kirim</button>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
