@@ -32,9 +32,9 @@
             <h3>Harga Paket i-Karismax untuk 1 Tahun Akses Materi Online</h3>
         </div>
         <div class="wrap-materi-list">
-            <div class="row">
-                <div class="col-md-5">
-                    <h3 class="judul-list-materi">Materi Akses 1 (Basic)</h3>
+            <div class="wrap-content left">
+                <div class="content">
+                    <h2 class="judul-list-materi">Materi Akses 1 (Basic)</h2>
                     <ul>
                         <li><b>BAB 1</b> Lorem ipsum dolor adipiscing elit</li>
                         <li><b>BAB 2</b> Lorem ipsum dolor sit amet</li>
@@ -42,16 +42,10 @@
                         <li><b>BAB 4</b> Lorem adipiscing elit</li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <span class="icon">
-                        <img src="<?= base_url('assets/pg_user/images/open-book.png') ?>"/>
-                    </span>
-                </div>
-                <div class="border"></div>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <h3 class="judul-list-materi">Materi Akses 1 Tahun (Silver)</h3>
+            <div class="wrap-content right">
+                <div class="content">
+                    <h2 class="judul-list-materi">Materi Akses 2 (Silver)</h2>
                     <ul>
                         <li><b>BAB 1</b> Lorem ipsum dolor adipiscing elit</li>
                         <li><b>BAB 2</b> Lorem ipsum dolor sit amet</li>
@@ -62,16 +56,10 @@
                         <li><b>BAB 8</b> Lorem</li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <span class="icon">
-                        <img src="<?= base_url('assets/pg_user/images/open-book.png') ?>"/>
-                    </span>
-                </div>
-                <div class="border"></div>
             </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <h3 class="judul-list-materi">Materi Akses 1 Tahun (Gold)</h3>
+            <div class="wrap-content left">
+                <div class="content">
+                    <h2 class="judul-list-materi">Materi Akses 1 Tahun (Gold)</h2>
                     <ul>
                         <li><b>BAB 1</b> Lorem ipsum dolor adipiscing elit</li>
                         <li><b>BAB 2</b> Lorem ipsum dolor sit amet</li>
@@ -79,13 +67,75 @@
                         <li><b>BAB 5</b> Lorem adipiscing elit</li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <span class="icon">
-                        <img src="<?= base_url('assets/pg_user/images/open-book.png') ?>"/>
-                    </span>
-                </div>
-                <div class="border"></div>
             </div>
+        </div>
+        <div class="row materi-list text-center">
+            <div class="row materi-list-header">
+                <div class="col-md-4">
+                    <h3>Choose your plan</h3>
+                </div>
+                <div class="col-md-2">
+                    <span class="basic">Basic</span>
+                    <p>(Rp. 1.300.000)</p>
+                </div>
+                <div class="col-md-2">
+                    <span class="silver">Silver</span>
+                    <p>(Rp. 1.500.000)</p>
+                </div>
+                <div class="col-md-2">
+                    <span class="gold">Gold</span>
+                    <p>(Rp. 1.800.000)</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-left">Sertifikat Karisma Academy</div>
+                <div class="col-md-2">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-left">Sertifikat Internasional</div>
+                <div class="col-md-2">
+                    <i class="fa fa-times"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="fa fa-check"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-left">Live Instruktur</div>
+                <div class="col-md-2">
+                    <i class="fa fa-times"></i>
+                </div>
+                <div class="col-md-2">
+                    <b>60 Hari</b>
+                </div>
+                <div class="col-md-2">
+                    <b>120 Hari</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
+                </div>
+            </div>
+            
         </div>
     </div>
     
