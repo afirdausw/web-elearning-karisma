@@ -46,7 +46,7 @@ class Hasil extends CI_Controller
     //             ->set_output(json_encode($data));
 
 
-            $this->load->view("pg_user/hasil", $data);
+            $this->load->view('pg_user/hasil', $data);
         }else{
             alert_error("Login terlebih dahulu", "Anda harus login untuk memasuki laman HASIL");
             redirect(base_url('login'));
@@ -81,7 +81,7 @@ class Hasil extends CI_Controller
     //             ->set_status_header(500)
     //             ->set_output(json_encode($data));
 
-            $this->load->view("pg_user/hasil_pretest", $data);
+            $this->load->view('pg_user/hasil_pretest', $data);
         }else{
             alert_error("Login pretest terlebih dahulu", "Anda harus login untuk memasuki laman HASIL PRETEST");
             redirect(base_url('pretest'));

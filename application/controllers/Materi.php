@@ -117,6 +117,6 @@ class Materi extends CI_Controller
             'materi'       => $mapok_baru,
         );
         
-		$this->load->view("pg_user/materi_pokok_detail", $data);
+		$this->load->view('pg_user/materi_pokok_detail', $data);
     }
 }

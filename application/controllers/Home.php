@@ -17,23 +17,6 @@ class Home extends CI_Controller
 //      $this->load->model('model_modul');
     }
 
-    public function indexlama()
-
-    {
-
-        $data = array(
-
-            'navbar_links' => $this->Model_pg->get_navbar_links(),
-
-            'video_demo' => $this->Model_pg->get_video_demo(null),
-
-        );
-
-
-        $this->load->view('pg_user/home', $data);
-
-    }
-
     public function index()
     {
         $start = 0;
@@ -76,31 +59,6 @@ class Home extends CI_Controller
         $this->load->view('pg_user/konten', $data);
     }
 
-    /*
-    function index(){
-        $idsiswa = $this->session->userdata('id_siswa');
-        $idortu = $this->session->userdata('id_ortu');
-
-        if($idsiswa != ""){
-            redirect('user/dashboard');
-        }else if ($idortu != ""){
-            redirect('parents/dashboard');
-        }else{
-            $data = array(
-
-                'navbar_links' => $this->model_pg->get_navbar_links(),
-
-                'video_demo'  => $this->model_pg->get_video_demo(null),
-                'select_sekolah'  => $this->model_pg->fetch_all_sekolah(),
-                'select_kelas'  	=> $this->model_pg->fetch_all_kelas(),
-                'select_provinsi'	=> $this->model_signup->get_provinsi()
-                );
-
-
-
-            $this->load->view('pg_user/homebaru', $data);
-        }
-    } */
 
     function do_login()
     {

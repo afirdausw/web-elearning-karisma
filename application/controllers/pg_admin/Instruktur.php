@@ -83,7 +83,7 @@ class Instruktur extends CI_Controller
             endswitch;
         }
 
-        $this->load->view("pg_admin/instruktur/instruktur_daftar", $data);
+        $this->load->view('pg_admin/instruktur/instruktur_daftar', $data);
     }
 
     public function manajemen($aksi, $id_instruktur = "")
@@ -109,7 +109,7 @@ class Instruktur extends CI_Controller
                         $this->proses_tambah();
                     } else {
                         //No form is submitted. Displaying the form page
-                        $this->load->view("pg_admin/instruktur/instruktur_form", $data);
+                        $this->load->view('pg_admin/instruktur/instruktur_form', $data);
                     }
                     break;
 
@@ -137,7 +137,7 @@ class Instruktur extends CI_Controller
                             $this->proses_ubah($id);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/instruktur/instruktur_form", $data);
+                            $this->load->view('pg_admin/instruktur/instruktur_form', $data);
                         }
                     }
                     break;
@@ -168,7 +168,7 @@ class Instruktur extends CI_Controller
                             $this->proses_mapel($id_instruktur);
                         } else {
                             //No form is submitted. Displaying the form page
-                            $this->load->view("pg_admin/instruktur/instruktur_form_mapel", $data);
+                            $this->load->view('pg_admin/instruktur/instruktur_form_mapel', $data);
                         }
                     }else{
                         redirect("pg_admin/instruktur");
@@ -225,7 +225,7 @@ class Instruktur extends CI_Controller
         // //run the validation
         if ($this->form_validation->run() == FALSE) {
             alert_error("Error", "Data gagal ditambahkan");
-            $this->load->view("pg_admin/instruktur/instruktur_form", $data);
+            $this->load->view('pg_admin/instruktur/instruktur_form', $data);
         } else {
             //passing input value to Model
             $result = $this->Model_adm->add_instruktur($params);

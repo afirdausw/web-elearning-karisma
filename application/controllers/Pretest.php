@@ -33,7 +33,7 @@ class Pretest extends CI_Controller
 
                 "kelas_navbar" => $kelas_navbar, 
             );
-            $this->load->view("pg_user/pretest/pretest-login", $data);
+            $this->load->view('pg_user/pretest/pretest-login', $data);
         }
     }
 
@@ -129,7 +129,7 @@ class Pretest extends CI_Controller
                //     ->set_content_type('application/json')
                //     ->set_status_header(500)
                //     ->set_output(json_encode($data));
-                $this->load->view("pg_user/pretest/pretest-mapel", $data);
+                $this->load->view('pg_user/pretest/pretest-mapel', $data);
             }
 
         }else{

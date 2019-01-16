@@ -34,7 +34,7 @@ class Signup extends CI_Controller
 
                 "kelas_navbar" => $kelas_navbar,
             );
-            $this->load->view("pg_user/signup", $data);
+            $this->load->view('pg_user/signup', $data);
         }
     }
 
@@ -105,7 +105,7 @@ class Signup extends CI_Controller
 
         if ($this->form_validation->run() == FALSE || $this->cek_password($params['password'], $params['password']) == FALSE) {
             alert_error("Error", "Terjadi Kesalahan Saat Signup");
-            $this->load->view("pg_user/signup", $data);
+            $this->load->view('pg_user/signup', $data);
             // redirect("signup");
         } else {
             $result = $this->Model_signup->add_user($username, $password, $nama, $email, $telepon, $telepon_ortu, $sekolah, $kelas, $timestamp, $jeniskelamin, $kota, $jenjang, $sekolahbaru, $nis, $nisn);

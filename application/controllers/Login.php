@@ -34,7 +34,7 @@ class Login extends CI_Controller
         if ($this->session->userdata('id_siswa')) {
             redirect(base_url());
         } else {
-            $this->load->view("pg_user/login");
+            $this->load->view('pg_user/login');
         }
     }
 
@@ -304,7 +304,7 @@ class Login extends CI_Controller
             // 'fb_config' => fb_share_config('default')
         );
 
-        $this->load->view("pg_user/post_fb_trial_ver", $data);
+        $this->load->view('pg_user/post_fb_trial_ver', $data);
     }
 
     function login_from_signup($username, $password, $nama)

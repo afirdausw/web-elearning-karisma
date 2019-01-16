@@ -31,6 +31,6 @@ class Kelas extends CI_Controller
        //     ->set_status_header(500)
        //     ->set_output(json_encode($data));
 
-		$this->load->view("pg_user/kelas", $data);
+		$this->load->view('pg_user/kelas', $data);
 	}
 }

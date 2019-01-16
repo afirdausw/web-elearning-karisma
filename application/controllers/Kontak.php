@@ -23,7 +23,8 @@ class Kontak extends CI_Controller
 			'pesan'			=> '',
 		);
 
-		$this->load->view("pg_user/kontak_kami", $data);
+		redirect('');
+		// $this->load->view('pg_user/kontak_kami', $data);
 	}
 
 	public function proses_pesan()
