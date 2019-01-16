@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?php echo form_error('harga', '<div class="text-danger">', '</div>'); ?>
                                                 <input type="text" name="harga2" class="form-control"
                                                        placeholder="Harga Kursus Silver"
-                                                       value="<?php echo set_value('harga', isset($data->harga2) ? $data->harga3 : ''); ?>"
+                                                       value="<?php echo set_value('harga', isset($data->harga2) ? $data->harga2 : ''); ?>"
                                                        required="required">
                                             </div>
                                         </div>

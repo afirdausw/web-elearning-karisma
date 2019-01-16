@@ -90,6 +90,10 @@ label {
     background: #c6e5f7;
     color: #93bc3a;
 }
+.border-top {
+    border-top: solid 1px #000;
+    margin: 10px 0 0;
+}
 .thumb-cart {
     display: inline-block;
     width: 20px;

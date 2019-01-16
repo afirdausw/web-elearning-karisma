@@ -92,4 +92,31 @@ class Materi extends CI_Controller
 
         $this->load->view('pg_user/materi_pokok', $data);
     }
+
+    function detail($id_materi){
+        $kelas_navbar = $this->Model_pg->fetch_all_kelas();
+        $mapok = $this->Model_pg->get_materi_by_mapel($id_materi);
+        $mapel = $this->Model_pg->get_mapel_by_id($id_materi);
+        
+        $mapok_baru = [];
+        $mapok_ids_in = "";
+        foreach ($mapok as $key => $value) {
+            $v = $array = json_decode(json_encode($value), true);
+            $v['mapok'] = $this->Model_pg->get_sub_materi_by_materi($value->id_materi_pokok);
+            $mapok_baru[] = $v;
+
+            //create string for IN statement on sql
+            $mapok_ids_in .= $value->id_materi_pokok;
+            $mapok_ids_in .= ",";
+        }
+        $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
+        
+		$data = array(
+            "kelas"        => $mapel,
+            "kelas_navbar" => $kelas_navbar,
+            'materi'       => $mapok_baru,
+        );
+        
+		$this->load->view("pg_user/materi_pokok_detail", $data);
+    }
 }

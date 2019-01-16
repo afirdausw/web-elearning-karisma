@@ -115,7 +115,7 @@ if ($this->uri->segment(1) != '') { ?>
                 <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-							<a href="<?php echo base_url(); ?>" role="button"aria-expanded="false">Beranda</span></a>
+							<a href="<?php echo base_url(); ?>" role="button"aria-expanded="false">Beranda</a>
 						</li>
 						<li>
 							<a href="#" role="button" aria-expanded="false">Tentang Kami</a>
@@ -202,8 +202,11 @@ if ($this->uri->segment(1) != '') { ?>
                                         </li>
                                     <?php }
                                     }?>
-                                    <li class="text-center" style="margin-top: 80px;">
-                                        <a class="mt-2" style="display: block;" href="<?= base_url('keranjang') ?>">Checkout Cart</a>
+                                    <li class="text-center" style="margin-top: 85px;">
+                                        <a  class="mt-2 border-top" style="display: block;"
+                                            href="<?= base_url('keranjang') ?>">
+                                            Checkout Cart
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
