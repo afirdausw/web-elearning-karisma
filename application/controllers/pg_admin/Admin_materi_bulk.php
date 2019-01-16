@@ -22,7 +22,7 @@ class Admin_materi_bulk extends CI_Controller {
       'action'  										=> base_url()."pg_admin/admin_materi_bulk/importmateri",
     );
 
-    $this->load->view('pg_admin/admin_materi_bulk', $data);
+    $this->load->view('pg_admin/materi/admin_materi_bulk', $data);
   }
 
 	function importmateri() 
@@ -123,7 +123,7 @@ class Admin_materi_bulk extends CI_Controller {
       'action'  										=> base_url()."pg_admin/admin_materi_bulk/importsoal",
     );
 
-    $this->load->view('pg_admin/admin_materi_bulk', $data);
+    $this->load->view('pg_admin/materi/admin_materi_bulk', $data);
   }
 
 	function importsoal() 

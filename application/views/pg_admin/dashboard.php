@@ -169,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
-<?php $this->load->view("pg_admin/alert_modal.php"); ?>
+<?php $this->load->view("pg_admin/alert/alert_modal.php"); ?>
 <!--  Nestable Plugin    -->
 <script src="<?php echo base_url('assets/plugins/nestable/js/jquery.nestable.js');?>"></script>
 

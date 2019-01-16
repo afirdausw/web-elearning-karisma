@@ -117,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div> <!-- end .content -->
 
         <?php $this->load->view("pg_admin/inc/footer.php"); ?>
-<?php $this->load->view("pg_admin/alert_modal.php"); ?>
+<?php $this->load->view("pg_admin/alert/alert_modal.php"); ?>
 
 
 <!-- JS Function for this Modal -->
