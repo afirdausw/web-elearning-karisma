@@ -30,9 +30,21 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style2.css'); ?>">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/custom.css'); ?>">
 
+    <style>
+		/* Footer optimization */
+		html, body {
+			height: 77.3%;
+		}
+		#wrap {
+			min-height: 100%;
+		}		
+		/* Footer optimization */
+	</style>
 </head>
 
 <body>
+<div id="wrap">
+<div id="main" class="clear-top">
 <div id="navtop" style="opacity:0;width:0;height:0"></div>
 <?php
 if ($this->uri->segment(1) != '') { ?>
@@ -154,6 +166,7 @@ if ($this->uri->segment(1) != '') { ?>
                                     <span class="arrow-down ti-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="<?= base_url('profil') ?>">Profil</a></li>
+                                    <li><a href="<?= base_url('history-transaksi') ?>">History Transaksi</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="<?php echo base_url('login/logout') ?>">Logout</a></li>
                                 </ul>
