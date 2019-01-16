@@ -527,7 +527,7 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga)
+    function add_mapel($kelas_id, $nama_mapel, $deskripsi_mapel, $gambar_mapel, $harga, $harga2, $harga3)
     {
         //Insert data into table mata_pelajaran
         $data = array(
@@ -536,6 +536,8 @@ class Model_adm extends CI_Model
             'deskripsi_mapel' => $deskripsi_mapel,
             'gambar_mapel'    => $gambar_mapel,
             'harga'    => $harga,
+            'harga2'    => $harga2,
+            'harga3'    => $harga3,
         );
         $result = $this->db->insert('mata_pelajaran', $data);
 
@@ -910,11 +912,15 @@ class Model_adm extends CI_Model
 
 
     // SISWA (IFA)
-    function fetch_all_siswa()
+    function fetch_all_siswa($jenjang = '')
     {
         $this->db->select('*');
         $this->db->from('siswa');
+        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
+        if ($jenjang != '') {
+            $this->db->where('kelas.jenjang', $jenjang);
+        }
 
         $query = $this->db->get();
 
@@ -935,10 +941,11 @@ class Model_adm extends CI_Model
         return $query->row();
     }
 
-    function fetch_siswa_pendaftar()
+    function fetch_siswa_pendaftar($jenjang = '')
     {
-        $this->db->select('siswa.*');
+        $this->db->select('siswa.*, kelas.*');
         $this->db->from('siswa');
+        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->where(
             "siswa.id_siswa NOT IN (
 				SELECT paket_aktif.id_siswa 
@@ -946,6 +953,9 @@ class Model_adm extends CI_Model
 				WHERE paket_aktif.isaktif = '1'
 				) "
         );
+        if ($jenjang != '') {
+            $this->db->where('kelas.jenjang', $jenjang);
+        }
         $this->db->order_by('siswa.timestamp', 'ASC');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
         $query = $this->db->get();
@@ -953,10 +963,11 @@ class Model_adm extends CI_Model
         return $query->result();
     }
 
-    function fetch_siswa_aktif()
+    function fetch_siswa_aktif($jenjang = '')
     {
-        $this->db->select('siswa.*');
+        $this->db->select('siswa.*, kelas.*');
         $this->db->from('siswa');
+        $this->db->join('kelas', 'kelas.id_kelas = siswa.kelas', 'left');
         $this->db->where(
             "siswa.id_siswa IN (
 				SELECT paket_aktif.id_siswa 
@@ -964,6 +975,9 @@ class Model_adm extends CI_Model
 				WHERE paket_aktif.isaktif = '1'
 				) "
         );
+        if ($jenjang != '') {
+            $this->db->where('kelas.jenjang', $jenjang);
+        }
         $this->db->order_by('siswa.timestamp', 'ASC');
         $this->db->order_by('siswa.nama_siswa', 'ASC');
         $query = $this->db->get();
@@ -1034,6 +1048,9 @@ class Model_adm extends CI_Model
         $this->db->select('*');
         $this->db->from('kelas');
         $this->db->where('kelas.jenjang', $jenjang);
+        // echo $jenjang."\n";
+        // echo $this->db->_compile_select();
+        // die();
         $query = $this->db->get();
 
         return $query->result();

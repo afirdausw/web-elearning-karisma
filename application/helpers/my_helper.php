@@ -99,3 +99,13 @@ function tgl_indo($tanggal)
 
     return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
 }
+
+function alert($class, $message)
+{
+
+    $_SESSION['alert'][] = '
+                <div class="alert alert-' . $class . '">
+                    Pesan
+                     ' . $message . '
+                </div>';
+}
