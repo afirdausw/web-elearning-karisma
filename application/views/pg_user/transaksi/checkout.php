@@ -1,7 +1,7 @@
 <?php
 
 
-$this->load->view('pg_user/header');
+$this->load->view('pg_user/inc/header');
 ?>
 
 <?php $_SESSION['RedirectKe'] = current_url(); ?>
@@ -390,7 +390,9 @@ $this->load->view('pg_user/header');
     </div>
     </div>
 </section> <!-- End of konten-->
-<?php $this->load->view('pg_user/footer'); ?>
+<?php 
+$this->load->view('pg_user/inc/footer');
+?>
 
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery.countdown.js'); ?>"></script>
 <script type="text/javascript">
