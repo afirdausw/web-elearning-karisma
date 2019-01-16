@@ -103,8 +103,8 @@
                     <div id="carouselAchievement" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators my-0">
-                            <?php
-                            $prestasi = array(
+                        <?php
+                            $prestasi = [
                                 0 => [
                                     "title"         => "Coba0",
                                     "icon"          => "https://picsum.photos/50/50/?random&gravity=center",
@@ -119,7 +119,7 @@
                                     "penyelenggara" => "Lenovo1",
                                     "img"           => "https://picsum.photos/580/380/?gravity=center",
                                 ],
-                            );
+                            ];
                             foreach ($prestasi as $key => $value) {
                                 ?>
                                 <li data-target="#carouselAchievement" data-slide-to="<?= $key ?>"
@@ -162,23 +162,23 @@
         <h2>Lihat konten Karisma Academy lebih dari <span>500+</span> kelas yang tersedia</h2>
         <div class="row">
             <?php
-            $alasan = array(
+            $alasan = [
                 0 => [
                     "title"  => "Instruktur",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/img/icon/home/2.png",
                     "detail" => "Instruktur SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
                 1 => [
                     "title"  => "Materi",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/img/icon/home/1.png",
                     "detail" => "Materi SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
                 2 => [
                     "title"  => "Sertifikat",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/img/icon/home/3.png",
                     "detail" => "Sertifikat SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
-            );
+            ];
             $colBagi = 12 / count($alasan);
 
             foreach ($alasan as $key => $val) {
@@ -279,14 +279,14 @@
                 $i++;
                 ?>
 
-            <div style="display: none;" class="col-xs-12 col-sm-6 col-md-4 pr-3 pl-3 page-<?= $page ?>">
+                <div style="display: none;" class="col-xs-12 col-sm-6 col-md-4 pr-3 pl-3 page-<?= $page ?>">
                     <div class="thumbnail materi-lainnya">
                         <a href="<?php echo base_url() . 'mapel/' . $value->id_mapel; ?>">
                             <!--                            <span class="badge-diskon">Diskon 25%</span>-->
                             <div class="mapel-image">
                                 <img style="border: 1px solid  #999;"
-                                src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
-                                alt="<?= $value->nama_mapel ?>">
+                                     src="<?= (isset($value->gambar_mapel) ? (!empty($value->gambar_mapel) ? base_url() . 'image/mapel/' . $value->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                     alt="<?= $value->nama_mapel ?>">
                             </div>
                             <div class="caption">
                                 <?php
