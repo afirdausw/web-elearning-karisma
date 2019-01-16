@@ -8,88 +8,98 @@ $this->load->view('pg_user/header');
 
 <!-- //sementara -->
 <style>
-	.row .vertical-align {
-		display: flex;
-		align-items: center;
-	}
+    .row .vertical-align {
+        display: flex;
+        align-items: center;
+    }
 
-	.panel, .panel > * {
-		border-radius: 0;
-	}
+    .panel, .panel > * {
+        border-radius: 0;
+    }
 
-	.panel-primary{
-		border-color: #BABABA;
-	}
+    .panel-primary {
+        border-color: #BABABA;
+    }
 
-	.panel-primary > .panel-heading {
-		background-color: #F2F2F2;
-		border:none;
-	}
+    .panel-primary > .panel-heading {
+        background-color: #F2F2F2;
+        border: none;
+    }
 
-	.cart-list {
-		border-radius:2px;
-	}
+    .cart-list {
+        border-radius: 2px;
+    }
 
-	.cart-list .panel-heading ul.nav.nav-tabs{
-		font-weight:500;
-		border:none;}
-	.cart-list .panel-heading ul.nav.nav-tabs li{
-		border-radius:0;border-bottom:solid 3px #0779AF;}
-	.cart-list .panel-heading ul.nav.nav-tabs li > a{
-		background:none;border:none;
-		padding:1em 2em;}
+    .cart-list .panel-heading ul.nav.nav-tabs {
+        font-weight: 500;
+        border: none;
+    }
 
+    .cart-list .panel-heading ul.nav.nav-tabs li {
+        border-radius: 0;
+        border-bottom: solid 3px #0779AF;
+    }
 
-	.cart-list .panel-footer{
-		border:none;
-	} 
-	.cart-list .panel-footer > a{
-		text-decoration: underline;
-	}
+    .cart-list .panel-heading ul.nav.nav-tabs li > a {
+        background: none;
+        border: none;
+        padding: 1em 2em;
+    }
 
-	.cart-list #daftar_belanja div.row{
-		box-shadow:black 0px 0px 30px -5px;
-		position:relative;
-	}
-	.cart-list #daftar_belanja div.row::before,
-	.cart-list #daftar_belanja div.row::after {
-    	content:'';
-		position: absolute;
-		top: 0;
-		left: 0;
-		border-color: transparent;
-		border-style: solid;
-	}
+    .cart-list .panel-footer {
+        border: none;
+    }
 
-	.cart-list #daftar_belanja div.row::after {
-		border-width: 1.35em;
-		border-left-color: #E69100;
-		border-top-color: #E69100;
-	}	
-	.cart-list #daftar_belanja div.row .numbering{
-		position:absolute;
-		padding:0 1%;
-		top:0;left:0;
-		z-index:2;
-		color:white;
-		font-size:110%;
-		font-weight:bold;
-	}
+    .cart-list .panel-footer > a {
+        text-decoration: underline;
+    }
 
-	.cart-list #daftar_belanja span#harga{
-		color:#2A6C95;
-	}
+    .cart-list #daftar_belanja div.row {
+        box-shadow: black 0px 0px 30px -5px;
+        position: relative;
+    }
 
-	.cart-list #daftar_belanja span.label{
-		border-radius:0;
-	}
+    .cart-list #daftar_belanja div.row::before,
+    .cart-list #daftar_belanja div.row::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-color: transparent;
+        border-style: solid;
+    }
 
-	@media (max-width: 970px) {
-		/* reset vertical-align */
-		.row .vertical-align {
-			display: flow-root;
-		}
-	}
+    .cart-list #daftar_belanja div.row::after {
+        border-width: 1.35em;
+        border-left-color: #E69100;
+        border-top-color: #E69100;
+    }
+
+    .cart-list #daftar_belanja div.row .numbering {
+        position: absolute;
+        padding: 0 1%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        color: white;
+        font-size: 110%;
+        font-weight: bold;
+    }
+
+    .cart-list #daftar_belanja span#harga {
+        color: #2A6C95;
+    }
+
+    .cart-list #daftar_belanja span.label {
+        border-radius: 0;
+    }
+
+    @media (max-width: 970px) {
+        /* reset vertical-align */
+        .row .vertical-align {
+            display: flow-root;
+        }
+    }
 
 </style>
 <section class="wrap-deskripsi"> <!-- konten -->
