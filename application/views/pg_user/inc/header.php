@@ -163,12 +163,13 @@ if ($this->uri->segment(1) != '') { ?>
                             <?php
                             $cart = $this->Model_Cart->getCartByIdSiswa($_SESSION['id_siswa']);
                             $cart = obj_to_arr($cart);
+                            $numCart = count($cart);
                             ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                    aria-expanded="false">
                                     <i class="ti-shopping-cart"></i><span
-                                            class="badge"><?= count($cart) ?></span>
+                                            class="badge"><?= $numCart ?></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right min-width-320"
                                     aria-labelledby="dropdownMenuCart" style="padding: 0px;">

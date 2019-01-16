@@ -1,7 +1,7 @@
 <?php
 
 
-$this->load->view('pg_user/header');
+$this->load->view('pg_user/inc/header');
 ?>
 
 <?php $_SESSION['RedirectKe'] = current_url(); ?>
@@ -181,7 +181,7 @@ $this->load->view('pg_user/header');
 	</div>
 	</div>
 </section> <!-- End of konten-->
-<?php $this->load->view('pg_user/footer'); ?>
+<?php $this->load->view('pg_user/inc/footer'); ?>
 
 </body>
 </html>

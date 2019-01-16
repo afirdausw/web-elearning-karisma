@@ -7,7 +7,7 @@ $this->load->view('pg_user/inc/header.php');
     <div class="container fixed-top">
         <div class="row">
             <!-- Sub Materi Kanan -->
-            <?php include("konten_sidebar.php");?>
+            <?php $this->load->view("pg_user/konten/konten_sidebar") ?>
 
             <?php $isi = $konten; ?>
             <div class="col-lg-8 col-md-7 col-sm-7 materi" style="float: left">

@@ -6,7 +6,7 @@ $this->load->view('pg_user/inc/header.php');
 <section> <!-- konten-->
     <div class="container fixed-top">
         <div class="row">
-            <?php include("konten_sidebar.php");?>
+            <?php $this->load->view("pg_user/konten/konten_sidebar") ?>
             <div class="col-lg-8 col-md-7 col-sm-7 materi" style="float: left">
                 <!-- WRAP JUDUL MATERI -->
                 <?php $data = $materi ?>

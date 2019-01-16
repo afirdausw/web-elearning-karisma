@@ -78,7 +78,7 @@ h3{
 </head>
 <body>
 
-<!-- include APPPATH.'/views/pg_user/header.php'; -->
+<!-- include APPPATH.'/views/pg_user/inc/header.php'; -->
 	<div class="error-404">
 		<div id="container">
 			<img src="<?=config_item('base_url'); ?>assets/img/icon/404_robot.png" alt="robot.png" width="25%">
