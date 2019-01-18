@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/icon-lpi.png');?>" >
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title> Fixing 
+	<title> Ready to Merge  
 	<?php if(isset($page_title))
 	{echo $page_title." - ";}
 	?>Karisma 
