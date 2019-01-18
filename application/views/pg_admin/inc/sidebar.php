@@ -45,8 +45,8 @@ Tip 2: you can also add an image using data-image tag
 <div class="sidebar" data-color="blue" data-image="<?php echo base_url('assets/img/background/bg-reason.png');?>">
 	<div class="sidebar-wrapper">
 		<div class="logo">
-			<img src="<?php echo base_url('assets/img/merk/header-logo.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="margin:0 auto;">
 			<a href="<?=base_url();?>" class="simple-text">
+				<img src="<?php echo base_url('assets/img/merk/header-logo.png');?>" alt="logo.png" class="img-responsive hidden-sm hidden-xs" style="margin:0 auto;">
 				Selamat datang, <?php 
 						echo $this->session->userdata("level");
 				?>
