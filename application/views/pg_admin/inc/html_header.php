@@ -5,6 +5,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Ready to Merge 
+	<?php if(isset($page_title)){echo $page_title." - ";}?>Karisma 
+	<?php 
+		if(uri_string()== "psep_sekolah/login"){
+			echo "Sekolah / Guru";}else{echo "Admin";
+		}
+	?> Dashboard</title>
+	
 	<meta charset="utf-8" />
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -16,13 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico');?>" >
 	<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico');?>" >
 
-	<title>Ready to Merge 
-	<?php if(isset($page_title)){echo $page_title." - ";}?>Karisma 
-	<?php 
-		if(uri_string()== "psep_sekolah/login"){
-			echo "Sekolah / Guru";}else{echo "Admin";
-		}
-	?> Dashboard</title>
 
 		<!--
 			Fonts and icons
