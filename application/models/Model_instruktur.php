@@ -140,6 +140,44 @@ class Model_instruktur extends CI_Model
         }
     }
 
+    //Login Instruktur
+    function do_login($username, $password)
+    {
+
+        $cred = array('username_instruktur' => $username,
+                      'password_instruktur' => md5($password),
+        );
+
+        $this->db->select('*');
+        $this->db->from('instruktur');
+
+        $this->db->where($cred);
+
+        $query = $this->db->get();
+        $exist = $query->num_rows();
+
+        if ($exist > 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    function data_login($username, $password)
+    {
+        $cred = array('username_instruktur' => $username,
+                      'password_instruktur' => md5($password),
+        );
+        $this->db->select('*');
+        $this->db->from('instruktur');
+
+        $this->db->where($cred);
+
+        $query = $this->db->get();
+
+        return $query->row();
+    }
+
 
 // end model untuk instruktur
 // ##################################################
