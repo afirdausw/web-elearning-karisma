@@ -165,17 +165,17 @@
             $alasan = [
                 0 => [
                     "title"  => "Instruktur",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/pg_user/images/home/2.png",
                     "detail" => "Instruktur SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
                 1 => [
                     "title"  => "Materi",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/pg_user/images/home/1.png",
                     "detail" => "Materi SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
                 2 => [
                     "title"  => "Sertifikat",
-                    "icon"   => "https://picsum.photos/500/500/?random&gravity=center",
+                    "icon"   => base_url()."assets/pg_user/images/home/3.png",
                     "detail" => "Sertifikat SAMA PERSIS dengan kelas Reguler tatap muka di Karisma Academy",
                 ],
             ];

@@ -81,7 +81,6 @@ label {
 .dropdown-menu li.cart-dropdown{
     text-transform: initial !important;
 }
-
 .dropdown-menu li.cart-dropdown > a {
     padding: 0 5px;
     transition: all 0.1s linear;
@@ -90,6 +89,10 @@ label {
     /*background: #E5E5E5;*/
     background: #c6e5f7;
     color: #93bc3a;
+}
+.border-top {
+    border-top: solid 1px #000;
+    margin: 10px 0 0;
 }
 .thumb-cart {
     display: inline-block;
