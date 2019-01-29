@@ -131,7 +131,7 @@ $this->load->view('pg_user/header');
                                                 <div class="mx-auto"
                                                      style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
                                             </div>
-                                            <div class="col-md-7 col-sm-12">
+                                            <div class="col-md-6 col-sm-12">
                                                 <button class="btn btn-primary btn-sm p-1">Kelas Premium</button>
                                                 <h4 class="font-weight-bold mb-0"><?= $value->nama_mapel ?></h4>
                                                 <span class="font-weight-bold"><?= date("d F Y", strtotime($value->created_at)) ?></span>
@@ -141,7 +141,7 @@ $this->load->view('pg_user/header');
                                                 <label for="harga">Total Pembayaran : </label> <span id="harga"
                                                                                                      class="font-weight-bold font-size-h1">Rp. <?= money($value->jumlah_total) ?></span>
                                             </div>
-                                            <div class="col-md-3 col-sm-12 text-right">
+                                            <div class="col-md-4 col-sm-12 text-right pull-right">
                                                 <label for="status" class="text-gray-3">Status :</label>
                                                 <br>
                                                 <?php
