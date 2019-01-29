@@ -124,46 +124,47 @@ $this->load->view('pg_user/header');
                                 $i = 1;
                                 foreach ($transaksi as $key => $value) {
                                     ?>
+                                    <a class="link-history" href="<?= base_url('konfirmasi-pembayaran/' . $value->id_transaksi) ?>">
+                                        <div class="row m-3 p-3 vertical-align">
+                                            <div class="numbering"><?= $i++; ?></div>
+                                            <div class="text-center col-md-2 col-sm-12">
+                                                <div class="mx-auto"
+                                                     style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
+                                            </div>
+                                            <div class="col-md-7 col-sm-12">
+                                                <button class="btn btn-primary btn-sm p-1">Kelas Premium</button>
+                                                <h4 class="font-weight-bold mb-0"><?= $value->nama_mapel ?></h4>
+                                                <span class="font-weight-bold"><?= date("d F Y", strtotime($value->created_at)) ?></span>
+                                                <span id="id_transaksi"
+                                                      class="text-gray-3">ID Transaksi : <?= str_pad($value->id_transaksi, 10, "0", STR_PAD_LEFT) ?></span>
+                                                <br>
+                                                <label for="harga">Total Pembayaran : </label> <span id="harga"
+                                                                                                     class="font-weight-bold font-size-h1">Rp. <?= money($value->jumlah_total) ?></span>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12 text-right">
+                                                <label for="status" class="text-gray-3">Status :</label>
+                                                <br>
+                                                <?php
+                                                $status = [
+                                                    1 => [
+                                                        "tipe" => "success",
+                                                        "teks" => "Pesanan Selesai",
+                                                    ],
+                                                    0 => [
+                                                        "tipe" => "danger",
+                                                        "teks" => "Belum Di Bayar",
+                                                    ],
+                                                    2 => [
+                                                        "tipe" => "warning",
+                                                        "teks" => "Menunggu Konfirmasi Admin",
+                                                    ],
+                                                ];
 
-                                    <div class="row m-3 p-3 vertical-align">
-                                        <div class="numbering"><?= $i++; ?></div>
-                                        <div class="text-center col-md-2 col-sm-12">
-                                            <div class="mx-auto"
-                                                 style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
+                                                ?>
+                                                <span class="label label-<?= $status[$value->status]['tipe'] ?> px-5 font-size-h5"><?= $status[$value->status]['teks'] ?></span>
+                                            </div>
                                         </div>
-                                        <div class="col-md-7 col-sm-12">
-                                            <button class="btn btn-primary btn-sm p-1">Kelas Premium</button>
-                                            <h4 class="font-weight-bold mb-0"><?= $value->nama_mapel ?></h4>
-                                            <span class="font-weight-bold"><?= date("d F Y", strtotime($value->created_at)) ?></span>
-                                            <span id="id_transaksi"
-                                                  class="text-gray-3">ID Transaksi : <?= str_pad($value->id_transaksi, 10, "0", STR_PAD_LEFT) ?></span>
-                                            <br>
-                                            <label for="harga">Total Pembayaran : </label> <span id="harga"
-                                                                                                 class="font-weight-bold font-size-h1">Rp. <?= money($value->jumlah_total) ?></span>
-                                        </div>
-                                        <div class="col-md-3 col-sm-12 text-right">
-                                            <label for="status" class="text-gray-3">Status :</label>
-                                            <br>
-                                            <?php
-                                            $status = array(
-                                                1 => array(
-                                                    "tipe" => "success",
-                                                    "teks" => "Pesanan Selesai",
-                                                ),
-                                                0 => array(
-                                                    "tipe" => "danger",
-                                                    "teks" => "Belum Di Bayar",
-                                                ),
-                                                2 => array(
-                                                    "tipe" => "warning",
-                                                    "teks" => "Menunggu Konfirmasi Admin",
-                                                ),
-                                            );
-
-                                            ?>
-                                            <span class="label label-<?= $status[$value->status]['tipe'] ?> px-5 font-size-h5"><?= $status[$value->status]['teks'] ?></span>
-                                        </div>
-                                    </div>
+                                    </a>
                                     <?php
                                     ?>
                                 <?php }

@@ -108,7 +108,8 @@ $this->load->view('pg_user/header');
     <div class="mt-5 mx-auto row">
         <div class="row mx-auto w-75">
             <div class="text-right">
-                <h4 class="text-right text-gray-3 mr-4">ID Transaksi #<?= sprintf("%08d", $transaksi->id_transaksi); ?></h4>
+                <h4 class="text-right text-gray-3 mr-4">ID Transaksi
+                    #<?= sprintf("%08d", $transaksi->id_transaksi); ?></h4>
             </div>
             <div class=" col-md-5">
                 <?php
@@ -131,20 +132,23 @@ $this->load->view('pg_user/header');
                                     <div class="status-transaksi text-right">
                                         <?php
                                         if (isset($transaksi->status) && $transaksi->status == 0) { ?>
-                                            <span style="font-size: 14px;" class="label label-danger">Belum Dibayar</span>
+                                            <span style="font-size: 14px;"
+                                                  class="label label-danger">Belum Dibayar</span>
                                         <?php } elseif (isset($transaksi->status) && $transaksi->status == 2) { ?>
                                             <span style="font-size: 14px;" class="label label-warning">Menunggu Konfirmasi Admin</span>
                                         <?php } else { ?>
                                             <span class="label label-success">Sudah Dibayar</span>
                                         <?php } ?>
                                     </div>
-                                    <p class="text-gray-3 mt-5" style="line-height: 18px;">Silahkan transfer <strong><?= "Rp. " . money($transaksi->jumlah_total); ?></strong> pada
-                                        salah satu rekening berikut Sebelum : </p>                                    
+                                    <p class="text-gray-3 mt-5" style="line-height: 18px;">Silahkan transfer
+                                        <strong><?= "Rp. " . money($transaksi->jumlah_total); ?></strong> pada
+                                        salah satu rekening berikut Sebelum : </p>
                                     <?php if (isset($transaksi->status) && $transaksi->status == 2) { ?>
                                         <p class="w-75 mt-5 mx-auto text-center">Bukti Pembayaran Berhasil Di Upload
                                             Masih Menunggu Konfirmasi Dari Admin</p>
                                     <?php } else { ?>
-                                        <h2 class="w-100 mt-5 mx-auto text-center h1" id="clock" style="font-size: 24pt;"></h2>
+                                        <h2 class="w-100 mt-5 mx-auto text-center h1" id="clock"
+                                            style="font-size: 24pt;"></h2>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -156,38 +160,45 @@ $this->load->view('pg_user/header');
                                         <option value="mandiri">Transfer Ke Mandiri</option>
                                     </select>
                                     <?php
-                                    $bank = array(
-                                        "bca" => [
-                                            "image" => ".png",
+                                    $bank = [
+                                        "bca"     => [
+                                            "image"    => ".png",
                                             "rekening" => "4890279797",
                                             "atasNama" => "Karisma Academy",
-                                            "link" => "#",
+                                            "link"     => "#",
                                         ],
-                                        "bri" => [
-                                            "image" => ".png",
+                                        "bri"     => [
+                                            "image"    => ".png",
                                             "rekening" => "4890279797",
                                             "atasNama" => "Karisma Academy",
-                                            "link" => "#",
+                                            "link"     => "#",
                                         ],
                                         "mandiri" => [
-                                            "image" => ".png",
+                                            "image"    => ".png",
                                             "rekening" => "4890279797",
                                             "atasNama" => "Karisma Academy",
-                                            "link" => "#",
+                                            "link"     => "#",
                                         ],
-                                    );
+                                    ];
                                     foreach ($bank as $key => $val) {
                                         ?>
                                         <div id="bank-<?= $key ?>" class="col-md-12 col-sm-12 mt-3"
                                              style="display: none;">
                                             <div class="row mt-3">
                                                 <div class="col-xs-5 col-md-5">
-                                                    <img class="w-100" src="<?= base_url() ?>assets/pg_user/images/<?= $key . $val['image'] ?>">
+                                                    <img class="w-100"
+                                                         src="<?= base_url() ?>assets/pg_user/images/<?= $key . $val['image'] ?>">
                                                 </div>
                                                 <div class="col-xs-7 col-md-7">
                                                     <div class=" text-gray-2 min-height-20">
-                                                        <p class="m-0"><small><?= $val['rekening'] ?></small></p>
-                                                        <p style="margin-top: -8px;"><small><small>a/n <?= $val['atasNama'] ?></small></small></p>
+                                                        <p class="m-0">
+                                                            <small><?= $val['rekening'] ?></small>
+                                                        </p>
+                                                        <p style="margin-top: -8px;">
+                                                            <small>
+                                                                <small>a/n <?= $val['atasNama'] ?></small>
+                                                            </small>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -198,8 +209,10 @@ $this->load->view('pg_user/header');
                             <hr>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="text-gray-3">Tulis berita acara dengan ID transaksi, contoh transaksi <?= sprintf("%08d", $transaksi->id_transaksi); ?></p>
-                                    <p class="text-red" style="color: #ff0033; text-align: left;"><i>*Jangan Lupa Simpan atau Foto Bukti Pembayaran/transfer</i></p>
+                                    <p class="text-gray-3">Tulis berita acara dengan ID transaksi, contoh
+                                        transaksi <?= sprintf("%08d", $transaksi->id_transaksi); ?></p>
+                                    <p class="text-red" style="color: #ff0033; text-align: left;"><i>*Jangan Lupa Simpan
+                                            atau Foto Bukti Pembayaran/transfer</i></p>
                                 </div>
                             </div>
                         </div>
@@ -233,14 +246,16 @@ $this->load->view('pg_user/header');
                                     <td class="text-center">
                                         <!-- <div class="mx-auto"
                                              style="width: 50px;height: 50px; border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 400px no-repeat;"></div> -->
-                                        <img src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>" style="border-radius: 100%;" class="w-100">
+                                        <img src="<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>"
+                                             style="border-radius: 100%;" class="w-100">
                                     </td>
                                     <td>
                                         <button class="btn btn-primary p-2 mt-3" style="font-size: 10px;">
                                             Kelas Premium
                                         </button>
                                         <p class="w-100 font-weight-bold"><?= $value->nama_mapel ?></p>
-                                        <p style="margin-top: -10px;">Created by <a href="<?= base_url('instruktur/' . $value->id_instruktur); ?>"><b><?= $value->nama_instruktur ?></b></a>
+                                        <p style="margin-top: -10px;">Created by <a
+                                                    href="<?= base_url('instruktur/' . $value->id_instruktur); ?>"><b><?= $value->nama_instruktur ?></b></a>
                                         </p>
                                     </td>
                                     <td class="text-right">
@@ -281,7 +296,7 @@ $this->load->view('pg_user/header');
                                 </td>
                                 <td>
                                     <h2 class="m-0">
-                                        <small> <b><?= "Rp. " . money($total); ?></b></small>
+                                        <small><b><?= "Rp. " . money($total); ?></b></small>
                                     </h2>
                                     <!--                                    <span>Termasuk kode unik -->
                                     <? //= "Rp. " . money($kodeUnik) ?><!--</span>-->
@@ -371,14 +386,16 @@ $this->load->view('pg_user/header');
                                         <?php
                                     } ?>
                                 </div>
-                                
+
                             </div>
                             <?php
                             if ($transaksi->status == 0) {
                                 ?>
                                 <div class="form-group">
                                     <div class="offset-md-6 col-md-6 col-sm-12 pull-right text-right">
-                                        <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">Kirim</button>
+                                        <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">
+                                            Kirim
+                                        </button>
                                     </div>
                                 </div>
                             <?php } ?>

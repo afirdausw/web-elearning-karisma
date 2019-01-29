@@ -460,7 +460,7 @@ a > div.to-top > span {
 .home-materi-list .col-md-4 {
     padding-right: 25px;
     padding-left: 25px;
-/* + */
+    /* + */
 }
 
 .home-materi-list .badge-diskon {
@@ -1469,7 +1469,7 @@ footer a:hover:not(.logo-footer) {
 .materi-lainnya:focus {
     cursor: pointer;
     border: solid 1px;
-    border-color:#999 !important;
+    border-color: #999 !important;
     box-shadow: 0 2px 5px #CCC;
 }
 
@@ -1501,7 +1501,7 @@ footer a:hover:not(.logo-footer) {
     display: block;
 }
 
-.mapel-image{
+.mapel-image {
     width: 100%;
     height: 250px;
     line-height: 250px;
@@ -1638,6 +1638,7 @@ footer a:hover:not(.logo-footer) {
     height: 120px;
     background-color: #00000090;
 }
+
 .materi-top-header:after {
     width: 0;
     height: 0;
@@ -1647,8 +1648,9 @@ footer a:hover:not(.logo-footer) {
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     margin: 0 auto;
-    
+
 }
+
 .materi-top-header .background {
     background-position: center !important;
     background-size: cover !important;
@@ -1662,11 +1664,13 @@ footer a:hover:not(.logo-footer) {
     left: -5px;
     bottom: 10px;
 }
+
 .materi-top-header h1 {
     font-size: 30px;
     font-weight: 400;
     margin: 20px 0 0 0;
 }
+
 .materi-top-header h2 {
     color: #E59228;
     font-size: 26px;
@@ -1677,11 +1681,13 @@ footer a:hover:not(.logo-footer) {
     font-size: 26px;
     margin: 40px 0 10px;
 }
+
 .materi-konten .text-center h3 {
     font-size: 16px;
     font-weight: 400;
     margin: 0 0 20px;
 }
+
 .materi-video {
     margin: 20px auto;
     width: 70%;
@@ -1689,14 +1695,17 @@ footer a:hover:not(.logo-footer) {
     border: solid 1px #777;
     box-shadow: 1px 1px 15px #BBB;
 }
+
 .materi-video .top {
     padding: 20px;
 }
+
 .materi-video .bottom {
     border-top: solid 1px #AAA;
-    text-align: justify; 
+    text-align: justify;
     padding: 20px;
 }
+
 .materi-video img {
     width: 100%;
 }
@@ -1705,34 +1714,43 @@ footer a:hover:not(.logo-footer) {
     font-size: 20px;
     text-align: right;
 }
+
 .wrap-materi-list ul {
     margin: 0;
     padding: 0;
 }
+
 .wrap-materi-list ul li {
     text-align: right;
     font-style: italic;
     list-style: none;
     margin-bottom: 5px;
 }
+
 .wrap-materi-list ul li > b:after {
     content: " : "
 }
+
 .wrap-materi-list .row:nth-child(2n) > div {
     float: right;
 }
+
 .wrap-materi-list .row:nth-child(2n) .judul-list-materi,
 .wrap-materi-list .row:nth-child(2n) ul li {
     text-align: left
 }
+
 .wrap-materi-list .row:nth-child(1n) > .col-md-5 {
 }
+
 .wrap-materi-list .row:nth-child(2n) > .col-md-5 {
     border-right: 0;
 }
+
 .wrap-materi-list .row > .col-md-2 {
     text-align: center;
 }
+
 .wrap-materi-list .row > .col-md-2 .icon {
     margin-top: 40px;
     display: inline-block;
@@ -1745,9 +1763,11 @@ footer a:hover:not(.logo-footer) {
     border: solid 1px #777;
     background: #FFF;
 }
+
 .wrap-materi-list .row > .col-md-2 .icon img {
     width: 90%;
 }
+
 .wrap-materi-list .row .border {
     margin-top: 70px;
     border-right: 2px solid #777;
@@ -1760,7 +1780,12 @@ footer a:hover:not(.logo-footer) {
     width: 1px;
     z-index: -1;
 }
+
 .wrap-materi-list .row:nth-child(3) .border {
     height: 0;
     border-right: 3px solid blue;
+}
+
+.link-history:hover {
+    text-decoration: none;
 }
