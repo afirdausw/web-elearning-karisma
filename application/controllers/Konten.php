@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  */
@@ -39,9 +40,9 @@ class Konten extends CI_Controller
             $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
             $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
-                
+
                 'siswa'          => $siswa,
                 'materi'         => $materi,
                 'materi_pokok'   => $mapok_baru,
@@ -52,7 +53,7 @@ class Konten extends CI_Controller
                 'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
                 'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
                 'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-            );
+            ];
 //            return $this->output
 //                ->set_content_type('application/json')
 //                ->set_status_header(500)
@@ -81,11 +82,11 @@ class Konten extends CI_Controller
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if($siswa_logged){
+        if ($siswa_logged) {
             $id = $this->session->userdata('id_siswa');
             $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
             $jenis_siswa = "siswa";
-        }else if ($pretest_logged){
+        } else if ($pretest_logged) {
             $id = $this->session->userdata('pretest_id');
             $siswa = "";
             $jenis_siswa = "pretest";
@@ -120,40 +121,40 @@ class Konten extends CI_Controller
             // END PRE
             $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
-                'siswa'          => $siswa,
-                'materi'         => $materi,
-                'materi_pokok'   => $mapok_baru,
+                'siswa'            => $siswa,
+                'materi'           => $materi,
+                'materi_pokok'     => $mapok_baru,
                 'materi_pokok_pre' => $mapok_baru_pre,
-                'sub_materi'     => $sub_materi_1,
-                'konten'         => $konten,
-                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
-                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-            );
+                'sub_materi'       => $sub_materi_1,
+                'konten'           => $konten,
+                'list_submateri'   => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->id_sub_materi),
+                'next'             => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'             => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'       => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'       => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+            ];
 
             // return $this->output
             // ->set_content_type('application/json')
             // ->set_status_header(500)
             // ->set_output(json_encode($data));
             $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            $redirect_link="konten/detail";
-            
+            $redirect_link = "konten/detail";
+
             if ($konten->kategori == '1') {
                 //detail
-                $redirect_link.="";
+                $redirect_link .= "";
             } elseif ($konten->kategori == '2') {
                 //video
-                $redirect_link.="_video";
+                $redirect_link .= "_video";
             } elseif ($konten->kategori == '3') {
                 //soal
-                $redirect_link.="_soal";
+                $redirect_link .= "_soal";
             }
-            $redirect_link.="/".$id_mapel;
+            $redirect_link .= "/" . $id_mapel;
 
             redirect(base_url($redirect_link));
         } else { ?>
@@ -196,57 +197,56 @@ class Konten extends CI_Controller
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if ($konten->materi_status == 'buy') {
-            if(($siswa_logged && $siswa->id_premium==0) || $pretest_logged){
+            if (($siswa_logged && $siswa->id_premium == 0) || $pretest_logged) {
                 alert_error("Hanya untuk akun premium", "Silahkan login sebagai akun premium atau lakukan pendaftaran.");
                 redirect(base_url("profil"));
             }
         }
-        if($siswa_logged OR $pretest_logged){
-            if($siswa_logged){
+        if ($siswa_logged OR $pretest_logged) {
+            if ($siswa_logged) {
                 $id = $this->session->userdata('id_siswa');
                 $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                 $jenis_siswa = "siswa";
-            }else if ($pretest_logged){
+            } else if ($pretest_logged) {
                 $id = $this->session->userdata('pretest_id');
                 $siswa = "";
                 $jenis_siswa = "pretest";
             }
             $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-            if($cek_exist->baca_total==0){
+            if ($cek_exist->baca_total == 0) {
                 $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            }
-            else if($cek_exist->baca_total>0){
+            } else if ($cek_exist->baca_total > 0) {
                 $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
             }
         }
 
-        $where = array(
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
 
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
 
-        $data = array(
+        $data = [
             "kelas_navbar" => $kelas_navbar,
 
-            'siswa'          => $siswa,
-            'instruktur'     => $instruktur,
-            'materi'         => $materi,
-            'materi_pokok'   => $mapok_baru,
+            'siswa'            => $siswa,
+            'instruktur'       => $instruktur,
+            'materi'           => $materi,
+            'materi_pokok'     => $mapok_baru,
             'materi_pokok_pre' => $mapok_baru_pre,
-            'sub_materi'     => $sub_materi_1,
-            'konten'         => $konten,
-            'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-            'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
-            'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
-            'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
-            'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
+            'sub_materi'       => $sub_materi_1,
+            'konten'           => $konten,
+            'list_submateri'   => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+            'next'             => $this->Model_pg->get_next_konten($konten->id_konten),
+            'prev'             => $this->Model_pg->get_prev_konten($konten->id_konten),
+            'next_mapok'       => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+            'prev_mapok'       => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+        ];
         //        return $this->output
         //            ->set_content_type('application/json')
         //            ->set_status_header(500)
         //            ->set_output(json_encode($data));
-        
+
 
         $this->load->view('pg_user/konten', $data);
     }
@@ -281,51 +281,50 @@ class Konten extends CI_Controller
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if ($konten->materi_status == 'buy') {
-            if(($siswa_logged && $siswa->id_premium==0) || $pretest_logged){
+            if (($siswa_logged && $siswa->id_premium == 0) || $pretest_logged) {
                 alert_error("Hanya untuk akun premium", "Silahkan login sebagai akun premium atau lakukan pendaftaran.");
                 redirect(base_url("profil"));
             }
         }
-        if($siswa_logged OR $pretest_logged){
-            if($siswa_logged){
+        if ($siswa_logged OR $pretest_logged) {
+            if ($siswa_logged) {
                 $id = $this->session->userdata('id_siswa');
                 $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                 $jenis_siswa = "siswa";
-            }else if ($pretest_logged){
+            } else if ($pretest_logged) {
                 $id = $this->session->userdata('pretest_id');
                 $siswa = "";
                 $jenis_siswa = "pretest";
             }
             $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-            if($cek_exist->baca_total==0){
+            if ($cek_exist->baca_total == 0) {
                 $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            }
-            else if($cek_exist->baca_total>0){
+            } else if ($cek_exist->baca_total > 0) {
                 $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
             }
         }
 
-        $where = array(
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
 
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
-        $data = array(
+        $data = [
             "kelas_navbar" => $kelas_navbar,
 
-            'siswa'          => $siswa,
-            'instruktur'     => $instruktur,
-            'materi'         => $materi,
-            'materi_pokok'   => $mapok_baru,
+            'siswa'            => $siswa,
+            'instruktur'       => $instruktur,
+            'materi'           => $materi,
+            'materi_pokok'     => $mapok_baru,
             'materi_pokok_pre' => $mapok_baru_pre,
-            'sub_materi'     => $sub_materi_1,
-            'konten'         => $konten,
-            'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-            'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
-            'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
-            'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
-            'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
+            'sub_materi'       => $sub_materi_1,
+            'konten'           => $konten,
+            'list_submateri'   => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+            'next'             => $this->Model_pg->get_next_konten($konten->id_konten),
+            'prev'             => $this->Model_pg->get_prev_konten($konten->id_konten),
+            'next_mapok'       => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+            'prev_mapok'       => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+        ];
         $this->load->view('pg_user/konten_video', $data);
     }
 
@@ -359,7 +358,7 @@ class Konten extends CI_Controller
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
         if ($konten->materi_status == 'buy') {
-            if(($siswa_logged && $siswa->id_premium==0) || $pretest_logged){
+            if (($siswa_logged && $siswa->id_premium == 0) || $pretest_logged) {
                 alert_error("Hanya untuk akun premium", "Silahkan login sebagai akun premium atau lakukan pendaftaran.");
                 redirect(base_url("profil"));
             }
@@ -376,42 +375,41 @@ class Konten extends CI_Controller
                     "sub_materi_id" => NULL,
                 ];
             }
-            if($siswa_logged){
+            if ($siswa_logged) {
                 $id = $this->session->userdata('id_siswa');
                 $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                 $jenis_siswa = "siswa";
-            }else if ($pretest_logged){
+            } else if ($pretest_logged) {
                 $id = $this->session->userdata('pretest_id');
                 $siswa = "";
                 $jenis_siswa = "pretest";
             }
             //pretest
             $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-            if($cek_exist->baca_total==0){
+            if ($cek_exist->baca_total == 0) {
                 $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-            }
-            else if($cek_exist->baca_total>0){
+            } else if ($cek_exist->baca_total > 0) {
                 $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
             }
             $data_log = $this->Model_konten->select_log_data_result($check);
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
-                'materi_pokok'   => $mapok_baru,
+                'materi_pokok'     => $mapok_baru,
                 'materi_pokok_pre' => $mapok_baru_pre,
-                'materi'         => $materi,
-                'sub_materi'     => $sub_materi_1,
-                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-                'soal'           => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
-                'jumlah'         => $this->Model_pg->jumlah_soal($id_sub_materi),
+                'materi'           => $materi,
+                'sub_materi'       => $sub_materi_1,
+                'list_submateri'   => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next'             => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'             => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'       => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'       => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'soal'             => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
+                'jumlah'           => $this->Model_pg->jumlah_soal($id_sub_materi),
 
                 'test_jum' => $this->Model_konten->select_log_count_pretest($check),
                 'log'      => $this->Model_konten->select_log_data_pretest($check),
-            );
+            ];
             if ($this->session->userdata('pretest_id')) {
                 //error
                 $jawab_data = [
@@ -445,40 +443,39 @@ class Konten extends CI_Controller
                 ];
             }
             $data_log = $this->Model_konten->select_log_data_result($check);
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
-                'siswa'          => $siswa,
-                'materi_pokok'   => $mapok_baru,
+                'siswa'            => $siswa,
+                'materi_pokok'     => $mapok_baru,
                 'materi_pokok_pre' => $mapok_baru_pre,
-                'materi'         => $materi,
-                'sub_materi'     => $sub_materi_1,
-                'list_submateri' => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
-                'next'           => $this->Model_pg->get_next_konten($konten->id_konten),
-                'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
-                'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
-                'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-                'soal'           => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
-                'jumlah'         => $this->Model_pg->jumlah_soal($id_sub_materi),
+                'materi'           => $materi,
+                'sub_materi'       => $sub_materi_1,
+                'list_submateri'   => $this->Model_pg->get_sub_materi_by_materi($sub_materi_1->materi_pokok_id),
+                'next'             => $this->Model_pg->get_next_konten($konten->id_konten),
+                'prev'             => $this->Model_pg->get_prev_konten($konten->id_konten),
+                'next_mapok'       => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
+                'prev_mapok'       => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
+                'soal'             => $this->Model_pg->fetch_soal_by_submateri($id_sub_materi),
+                'jumlah'           => $this->Model_pg->jumlah_soal($id_sub_materi),
 
                 'test_jum' => $this->Model_konten->select_log_count($check),
                 'log'      => $this->Model_konten->select_log_data($check),
-            );
+            ];
             if (isset($siswa->id_siswa)) {
-                if($siswa_logged){
+                if ($siswa_logged) {
                     $id = $this->session->userdata('id_siswa');
                     $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
                     $jenis_siswa = "siswa";
-                }else if ($pretest_logged){
+                } else if ($pretest_logged) {
                     $id = $this->session->userdata('pretest_id');
                     $siswa = "";
                     $jenis_siswa = "pretest";
                 }
                 $cek_exist = $this->Model_pg->get_log_baca($id, $sub_materi_1->id_sub_materi);
-                if($cek_exist->baca_total==0){
+                if ($cek_exist->baca_total == 0) {
                     $this->insert_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
-                }
-                else if($cek_exist->baca_total>0){
+                } else if ($cek_exist->baca_total > 0) {
                     $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
                 }
                 //error
@@ -504,10 +501,10 @@ class Konten extends CI_Controller
             // $data['innerHTMLnya'] = $this->model_konten->select_log_data($check)['nilai'];
 
         }
-        
-        $where = array(
+
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
         $data["instruktur"] = $instruktur;
         $this->load->view('pg_user/konten_soal', $data);
@@ -801,7 +798,7 @@ class Konten extends CI_Controller
             //     echo "error log update";
             //     echo var_dump($update_log);
             // }
-        }else{
+        } else {
             $updt_ins = [
                 "id_siswa"      => $siswa,
                 "sub_materi_id" => $id_sub_materi,
@@ -884,13 +881,16 @@ class Konten extends CI_Controller
 
     }
 
-    public function insert_log_baca($id, $sub_materi, $jenis_siswa){
+    public function insert_log_baca($id, $sub_materi, $jenis_siswa)
+    {
         // simpan ke log baca
         //TODO Log diinsert saat akses klik sidebar
         $tanggal = date(DATE_ATOM);
         $this->Model_konten->insert_log_baca($id, $sub_materi, $tanggal, $jenis_siswa);
     }
-    public function update_log_baca($id, $sub_materi, $jenis_siswa){
+
+    public function update_log_baca($id, $sub_materi, $jenis_siswa)
+    {
         // simpan ke log baca
         //TODO Log diinsert saat akses klik sidebar
         $tanggal = date(DATE_ATOM);

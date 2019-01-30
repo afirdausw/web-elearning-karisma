@@ -124,7 +124,8 @@ $this->load->view('pg_user/header');
                                 $i = 1;
                                 foreach ($transaksi as $key => $value) {
                                     ?>
-                                    <a class="link-history" href="<?= base_url('konfirmasi-pembayaran/' . $value->id_transaksi) ?>">
+                                    <a class="link-history"
+                                       href="<?= base_url('konfirmasi-pembayaran/' . $value->id_transaksi) ?>">
                                         <div class="row m-3 p-3 vertical-align">
                                             <div class="numbering"><?= $i++; ?></div>
                                             <div class="text-center col-md-2 col-sm-12">
@@ -157,6 +158,10 @@ $this->load->view('pg_user/header');
                                                     2 => [
                                                         "tipe" => "warning",
                                                         "teks" => "Menunggu Konfirmasi Admin",
+                                                    ],
+                                                    3 => [
+                                                        "tipe" => "default",
+                                                        "teks" => "Tiket Sudah Expired",
                                                     ],
                                                 ];
 

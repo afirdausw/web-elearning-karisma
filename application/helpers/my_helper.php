@@ -53,8 +53,86 @@ function money($val)
 }
 
 
+
+function get_string_between($string, $start, $end)
+{
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+function convert_base64_to_image($text, $dir)
+{
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+    $doc = new DOMDocument();
+    @$doc->loadHTML($text);
+
+    $tags = $doc->getElementsByTagName('img');
+    $img = [];
+    $i = 0;
+    $text_lama = $text;
+    foreach ($tags as $tag) {
+        $img[$i]['img'] = $tag->getAttribute('src');
+        if (strpos($tag->getAttribute('src'), ';base64,') !== false) {
+            $image_parts = explode(";base64,", $tag->getAttribute('src'));
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $img[$i]['tipe'] = $image_type;
+            $img[$i]['tipe_file'] = tipe($image_type);
+            $file = $dir . uniqid() . '.' . tipe($image_type);
+            $image_base64 = base64_decode($image_parts[1]);
+            file_put_contents($file, $image_base64);
+            $img[$i]['file'] = base_url($file);
+            $text = str_replace($tag->getAttribute('src'), base_url($file), $text);
+            $i++;
+        }
+
+    }
+    $img['text'] = $text;
+    $img['text_lama'] = $text_lama;
+    if ($handle = opendir($dir)) {
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+                if (strpos($text, $entry) != true) {
+                    unlink($dir . $entry);
+                    echo $entry;
+                }
+            }
+        }
+
+        closedir($handle);
+    }
+
+    return $text;
+}
+
+function tipe($tipe)
+{
+    $tipe = strtolower($tipe);
+    switch ($tipe) {
+        case "gif":
+            return "gif";
+            break;
+        case "jpeg":
+            return "jpg";
+            break;
+        case "png":
+            return "png";
+            break;
+        default :
+            return false;
+            break;
+    }
+}
+
 function delete_files($directory)
 {
+
 
     if (substr($directory, strlen($directory) - 1, 1) != '/') {
         $directory .= '/';

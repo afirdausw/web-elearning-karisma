@@ -61,7 +61,7 @@ class Materi extends CI_Controller
 
         $this->ajax_pagination->initialize($config);
 
-        $data = array(
+        $data = [
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
             'data_tabel'           => $this->Model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
@@ -72,7 +72,7 @@ class Materi extends CI_Controller
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
-        );
+        ];
 
         $this->load->view('pg_admin/materi', $data);
     }
@@ -80,7 +80,7 @@ class Materi extends CI_Controller
     public function index2($kelas = 0, $mapel = 0, $mapok = 0)
     {
 
-        $data = array(
+        $data = [
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
             'table_data'           => $this->Model_adm1->get_all_materi_query($kelas, $mapel, $mapok)->result(),
@@ -89,14 +89,14 @@ class Materi extends CI_Controller
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
-        );
+        ];
         $this->load->view('pg_admin/materi_new', $data);
     }
 
     public function listdata($kelas = 0, $mapel = 0, $mapok = 0)
     {
 
-        $data = array(
+        $data = [
             'navbar_title'         => "Materi",
             'form_action'          => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
             'table_data'           => $this->Model_adm1->get_all_materi_all($kelas, $mapel, $mapok),
@@ -105,7 +105,7 @@ class Materi extends CI_Controller
             'idmapel'              => $mapel,
             'idmapok'              => $mapok,
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
-        );
+        ];
 
 //            return $this->output
 //                    ->set_content_type('application/json')
@@ -164,7 +164,7 @@ class Materi extends CI_Controller
             $carimapok = '';
         }
 
-        $data = array(
+        $data = [
             'data_tabel'           => $this->Model_adm1->get_all_materi($kelas, $mapel, $mapok, $offset, $limit),
             'paginator'            => $this->ajax_pagination->create_links(),
             'hal'                  => $page,
@@ -175,7 +175,7 @@ class Materi extends CI_Controller
             'carimapel'            => $carimapel,
             'carimapok'            => $carimapok,
             'select_options_kelas' => $this->Model_banksoal->get_kelas(),
-        );
+        ];
 
         $this->load->view('pg_admin/materi_ajaxpage', $data);
     }
@@ -189,7 +189,7 @@ class Materi extends CI_Controller
 
             switch ($aksi) {
                 case 'tambah':
-                    $data = array(
+                    $data = [
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Tambah Materi",
                         'form_action'                 => current_url(),
@@ -199,7 +199,7 @@ class Materi extends CI_Controller
                         'idkelas'                     => $kelas,
                         'idmapel'                     => $mapel,
                         'idmapok'                     => $mapok,
-                    );
+                    ];
 
                     //Form materi submit handler. See if the user is attempting to submit a form or not
                     if ($this->input->post('form_submit')) {
@@ -211,7 +211,7 @@ class Materi extends CI_Controller
                     }
                     break;
                 case 'tambah_materi':
-                    $data = array(
+                    $data = [
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Tambah Materi",
                         'form_action'                 => current_url(),
@@ -221,7 +221,7 @@ class Materi extends CI_Controller
                         'idmapel'                     => $mapel,
                         'idmapok'                     => $mapok,
                         'jumlah_soal_submateri'       => 0,
-                    );
+                    ];
 
                     //Form materi submit handler. See if the user is attempting to submit a form or not
                     if ($this->input->post('form_submit')) {
@@ -236,7 +236,7 @@ class Materi extends CI_Controller
                     //Passing id value from GET '?id' to variable '$id'
                     $id = $this->input->get('id') ? $this->input->get('id') : null;
 
-                    $data = array(
+                    $data = [
                         'navbar_title'                => "Manajemen Materi",
                         'page_title'                  => "Ubah Materi",
                         'form_action'                 => current_url() . "?id=$id",
@@ -247,7 +247,7 @@ class Materi extends CI_Controller
                         'idkelas'                     => $kelas,
                         'idmapel'                     => $mapel,
                         'idmapok'                     => $mapok,
-                    );
+                    ];
 
                     //Redirect to materi if id is not exist
                     if (!$id) {
@@ -283,12 +283,12 @@ class Materi extends CI_Controller
     public function proses_tambah($kelas, $mapel, $mapok)
     {
         //set the page title
-        $data = array(
+        $data = [
             'page_title'                  => "Tambah Materi",
             'form_action'                 => current_url(),
             'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
             'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
-        );
+        ];
 
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, false);
@@ -330,6 +330,9 @@ class Materi extends CI_Controller
             //passing input value to Model
             $insert_id = $this->Model_adm->add_materi($kategori, $mapel_id, $materi_pokok_id, $nama_sub_materi, $deskripsi_sub_materi, '', $video_materi, $gambar_materi, $tanggal, $waktu, $urutan_materi);
 
+            if ($kategori == 1) {
+
+            }
             //continue passing soal input value to Model
             if ($insert_id && $kategori == 3) {
                 $result = $this->Model_adm->add_item_soal($isi_soal, $jawab_1, $jawab_2, $jawab_3, $jawab_4, $jawab_5, $kunci_jawaban, $insert_id, $pembahasan, $pembahasan_video);
@@ -347,12 +350,12 @@ class Materi extends CI_Controller
     public function proses_ubah($id, $kelas, $mapel, $mapok)
     {
         //set the page title
-        $data = array(
+        $data = [
             'page_title'                  => "Ubah Materi",
             'form_action'                 => current_url() . "?id=$id",
             'select_options_mapel'        => $this->Model_adm->fetch_options_materi_pokok(),
             'select_options_materi_pokok' => $this->Model_adm->fetch_options_materi(),
-        );
+        ];
 
         //fetch input (make sure that the variable name is the same as column name in database!)
         $params = $this->input->post(null, false);
@@ -530,10 +533,10 @@ class Materi extends CI_Controller
     function ajax_datatables()
     {
         // $fields = array('alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'nama_sub_materi', 'kategori');
-        $fields = array('id_sub_materi', 'nama_sub_materi', 'status_materi', 'alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'kategori');
+        $fields = ['id_sub_materi', 'nama_sub_materi', 'status_materi', 'alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'kategori'];
         $request_data = $_REQUEST;
         $totalfiltered = $request_data['length'];
-        $columns = array('', 'alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'nama_sub_materi', 'kategori', '', '');
+        $columns = ['', 'alias_kelas', 'nama_mapel', 'nama_materi_pokok', 'nama_sub_materi', 'kategori', '', ''];
         $filterColumn = $columns[$request_data['order'][0]['column']];
         $table_data = $this->Model_adm->fetch_ajax_materi($fields, $totalfiltered, $filterColumn, $request_data);
         $totaldata = count($this->Model_adm->fetch_all_materi());
@@ -549,10 +552,10 @@ class Materi extends CI_Controller
         // die();
 
 
-        $row = array();
+        $row = [];
         $no = $request_data['start'] + 1;
         foreach ($table_data as $item) {
-            $row[] = array(
+            $row[] = [
                 "no"                => $no,
                 "alias_kelas"       => $item->alias_kelas,
                 "nama_mapel"        => $item->nama_mapel,
@@ -563,7 +566,7 @@ class Materi extends CI_Controller
                 "aksi"              => base_url() . $this->uri->slash_segment(1) . $this->uri->slash_segment(2),
                 "id_sub_materi"     => $item->id_sub_materi,
                 "status_materi"     => $item->status_materi,
-            );
+            ];
             // $row[] = $no;
             $no++;
         }
@@ -573,12 +576,12 @@ class Materi extends CI_Controller
         //     echo "</pre>";
         //     die();
 
-        $json_data = array(
+        $json_data = [
             "draw"            => intval($_REQUEST['draw']),
             "recordsTotal"    => intval($totaldata),
             "recordsFiltered" => intval($totalFiltered),
             "data"            => $row,
-        );
+        ];
         echo json_encode($json_data);
     }
 

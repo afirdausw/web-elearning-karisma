@@ -136,9 +136,10 @@ $this->load->view('pg_user/header');
                                                   class="label label-danger">Belum Dibayar</span>
                                         <?php } elseif (isset($transaksi->status) && $transaksi->status == 2) { ?>
                                             <span style="font-size: 14px;" class="label label-warning">Menunggu Konfirmasi Admin</span>
-                                        <?php } else { ?>
+                                        <?php } elseif (isset($transaksi->status) && $transaksi->status == 1) { ?>
                                             <span class="label label-success">Sudah Dibayar</span>
                                         <?php } ?>
+
                                     </div>
                                     <p class="text-gray-3 mt-5" style="line-height: 18px;">Silahkan transfer
                                         <strong><?= "Rp. " . money($transaksi->jumlah_total); ?></strong> pada
