@@ -232,9 +232,9 @@ $this->load->view('pg_user/header');
                     <div class="table-responsive">
                         <table class="table table-hover m-0">
                             <colgroup>
-                                <col class="col-md-2">
+                                <col class="col-xs-2 col-md-2">
                                 <col class="col-md-7">
-                                <col class="col-2 col-md-4">
+                                <col class="col-md-4">
                             </colgroup>
                             <?php
                             $total = 0;
@@ -323,7 +323,6 @@ $this->load->view('pg_user/header');
                     <form method="POST" action="<?= base_url('konfirmasi/pembayaran/' . $transaksi->id_transaksi) ?>"
                           enctype="multipart/form-data">
                         <div class="modal-body px-5">
-
                             <div class="form-group">
                                 <small><label for="bank_anda">Bank Yang Anda Gunakan</label></small>
                                 <input <?= $transaksi->status == 2 ? "readonly" : "" ?> type="text" name="bank_anda"
@@ -387,18 +386,13 @@ $this->load->view('pg_user/header');
                                         <?php
                                     } ?>
                                 </div>
-
                             </div>
                             <?php
                             if ($transaksi->status == 0) {
-                                ?>
-                                <div class="form-group">
-                                    <div class="offset-md-6 col-md-6 col-sm-12 pull-right text-right">
-                                        <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">
-                                            Kirim
-                                        </button>
-                                    </div>
-                                </div>
+                            ?>
+                            <div class="form-group  text-right">
+                                <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">Kirim</button>
+                            </div>
                             <?php } ?>
                         </div>
                     </form>
