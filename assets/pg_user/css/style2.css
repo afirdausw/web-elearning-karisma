@@ -1937,6 +1937,12 @@ footer a:hover:not(.logo-footer) {
 .wrap-materi-list .right::after {
     left: -38px;
 }
+.wrap-materi-list .right .content ul li {
+    text-align: left;
+} 
+.wrap-materi-list .right .content h2 {
+    text-align: left;
+} 
 .wrap-materi-list .content {
     padding: 10px 30px;
     position: relative;
