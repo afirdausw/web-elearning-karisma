@@ -1999,39 +1999,45 @@ footer a:hover:not(.logo-footer) {
     width: 80%;
     margin: 50px auto 0;
     border: solid 1px #999;
-    border-radius: 8px;
+    border-radius: 1em; 
+    overflow: hidden;
 }
-.materi-list .row {
+.materi-list tr {
     margin: 0;
 }
-.materi-list .row:not(.materi-list-header) {
+.materi-list tr:not(.materi-list-header) {
     height: 60px;
     line-height: 60px;
 }
-.materi-list .row:nth-last-child(2n) {
+.materi-list td{
+    vertical-align: middle !important;
+    padding-top: 10px;
+    border: 2px solid #eee; 
+}
+.materi-list tr:nth-last-child(2n) {
     background: #F2F2F2;
 }
-.materi-list .row .text-left {
+.materi-list tr .text-left {
     font-size: 17px;
     font-weight: 600;
 }
-.materi-list .row i {
+.materi-list tr i {
     font-size: 24px;
 }
-.materi-list .row .col-md-2 {
+.materi-list tr .col-md-2 {
     width: 22.2233%;
 }
-.materi-list .row i.fa-check {
+.materi-list tr i.fa-check {
     color: #0579AA;
 }
-.materi-list .row i.fa-times {
+.materi-list tr i.fa-times {
     color: #D24130;
 }
-.materi-list .row .btn-beli {
+.materi-list tr .btn-beli {
     padding: 0 8px 1px;
     text-transform: capitalize;
 }
-.materi-list .row b {
+.materi-list tr b {
     font-style: italic;
 }
 .materi-list-header {

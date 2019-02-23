@@ -69,76 +69,56 @@
                 </div>
             </div>
         </div>
-        <div class="row materi-list text-center">
-            <div class="row materi-list-header">
-                <div class="col-md-4">
-                    <h3>Choose your plan</h3>
-                </div>
-                <div class="col-md-2">
-                    <span class="basic">Basic</span>
-                    <p>(Rp. 1.300.000)</p>
-                </div>
-                <div class="col-md-2">
-                    <span class="silver">Silver</span>
-                    <p>(Rp. 1.500.000)</p>
-                </div>
-                <div class="col-md-2">
-                    <span class="gold">Gold</span>
-                    <p>(Rp. 1.800.000)</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-left">Sertifikat Karisma Academy</div>
-                <div class="col-md-2">
-                    <i class="fa fa-check"></i>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-check"></i>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-check"></i>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-left">Sertifikat Internasional</div>
-                <div class="col-md-2">
-                    <i class="fa fa-times"></i>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-check"></i>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa fa-check"></i>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-left">Live Instruktur</div>
-                <div class="col-md-2">
-                    <i class="fa fa-times"></i>
-                </div>
-                <div class="col-md-2">
-                    <b>60 Hari</b>
-                </div>
-                <div class="col-md-2">
-                    <b>120 Hari</b>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-2">
-                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
-                </div>
-                <div class="col-md-2">
-                    <a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a>
-                </div>
-            </div>
-            
+        <div class="row" ">
+            <table class="table table-responsive materi-list"> 
+                <colgroup>
+                    <col class="col-xs-4 col-sm-4 col-md-4">
+                    <col class="col-xs-2 col-sm-2 col-md-2">
+                    <col class="col-xs-2 col-sm-2 col-md-2">
+                    <col class="col-xs-2 col-sm-2 col-md-2">
+                </colgroup>
+                <tr class="materi-list-header text-center">
+                    <td><h3>Choose your plan</h3></td>
+                    <td>
+                       <span class="basic">Basic</span>
+                       <p>(Rp. 1.300.000)</p>
+                    </td>
+                    <td>
+                       <span class="silver">Silver</span>
+                       <p>(Rp. 1.500.000)</p>
+                    </td>
+                    <td>
+                       <span class="gold">Gold</span>
+                       <p>(Rp. 1.800.000)</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-left">Sertifikat Karisma Academy</td>
+                    <td><i class="fa fa-check"></i></td>
+                    <td><i class="fa fa-check"></i></td>
+                    <td><i class="fa fa-check"></i></td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-left">Sertifikat Internasional</td>
+                    <td><i class="fa fa-times"></i></td>
+                    <td><i class="fa fa-check"></i></td>
+                    <td><i class="fa fa-check"></i></td>
+                </tr>
+                <tr class="text-center">
+                    <td class="text-left">Live Instruktur</td>
+                    <td><i class="fa fa-times"></i></td>
+                    <td><b>60 Hari</b></td>
+                    <td><b>120 Hari</b></td>
+                </tr>
+                <tr class="text-center">
+                    <td></td>
+                    <td><a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a></td>
+                    <td><a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a></td>
+                    <td><a href="#" class="btn btn-xs btn-primary btn-beli">Beli Sekarang</a></td>
+                </tr>
+            </table>
         </div>
     </div>
-    
 </section>
 
 <?php include('footer.php'); ?>
