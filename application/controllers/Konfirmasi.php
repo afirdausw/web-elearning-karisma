@@ -31,10 +31,10 @@ class Konfirmasi extends CI_Controller
     function history_transaksi()
     {
         $data = [
-            'navbar_links'     => $this->Model_pg->get_navbar_links(),
-            'video_demo'       => $this->Model_pg->get_video_demo(null),
-            'judul_tab'        => "History Transaksi",
-            "transaksi"        => $this->Model_Transaksi->getTransaksiByIdSiswa($_SESSION['id_siswa']),
+            'navbar_links' => $this->Model_pg->get_navbar_links(),
+            'video_demo'   => $this->Model_pg->get_video_demo(null),
+            'judul_tab'    => "History Transaksi",
+            "transaksi"    => $this->Model_Transaksi->getTransaksiByIdSiswa($_SESSION['id_siswa']),
         ];
 
 
@@ -59,7 +59,7 @@ class Konfirmasi extends CI_Controller
                 $this->load->library('upload', $config);
 
                 if (!$this->upload->do_upload($file_element_name)) {
-                    $error = array('error' => $this->upload->display_errors());
+                    $error = ['error' => $this->upload->display_errors()];
                     alert('danger', ul($error));
                     redirect(base_url('konfirmasi-pembayaran/' . $id_pembayaran));
 
@@ -71,6 +71,9 @@ class Konfirmasi extends CI_Controller
                         "atas_nama"        => $_POST["atas_nama"],
                         "total_transfer"   => $_POST["total_transfer"],
                         "bukti_pembayaran" => $bukti_transfer,
+                        "no_rek"           => $_POST["no_rekening"],
+                        "bank_anda"        => $_POST["bank_anda"],
+                        "bank"             => $_POST["bank_tujuan"],
                         "status"           => 2,
                     ];
 

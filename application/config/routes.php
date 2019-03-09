@@ -53,7 +53,7 @@ $route['default_controller'] = 'home';
 
 $route['beli-paket'] = 'beli_paket';
 $route['pg_admin'] = 'pg_admin/login';
-$route['psep_sekolah'] = 'psep_sekolah/login';
+$route['pg_instruktur'] = 'pg_instruktur/login';
 
 $admin = 'pg_admin';
 $route[$admin . '/materi/manajemen/tambah-bulk'] = 'pg_admin/admin_materi_bulk/materi';
