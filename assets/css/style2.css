@@ -1764,3 +1764,7 @@ footer a:hover:not(.logo-footer) {
     height: 0;
     border-right: 3px solid blue;
 }
+
+.link-history:hover {
+    text-decoration: none;
+}
