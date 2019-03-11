@@ -130,7 +130,7 @@ $this->load->view('pg_user/header');
                                             <div class="numbering"><?= $i++; ?></div>
                                             <div class="text-center col-md-2 col-sm-12">
                                                 <div class="mx-auto"
-                                                     style="width: 100px;height: 100px;border-radius:100%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 200px no-repeat;"></div>
+                                                     style="width: 100px;height: 100px;border-radius:5%;background: url('<?= base_url() ?>image/mapel/<?= $value->gambar_mapel ?>') center center / 100px no-repeat;"></div>
                                             </div>
                                             <div class="col-md-6 col-sm-12">
                                                 <button class="btn btn-primary btn-sm p-1">Kelas Premium</button>
