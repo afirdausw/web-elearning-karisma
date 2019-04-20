@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?php include "html_header.php"; ?>
+<?php include "inc/html_header.php"; ?>
 
 <div class="wrapper">
-	<?php include "sidebar.php"; ?>
+	<?php include "inc/sidebar.php"; ?>
 
 	<div class="main-panel">
-		<?php include "navbar.php"; ?>
+		<?php include "inc/navbar.php"; ?>
 		
 		<div class="content">      
 			<div class="container-fluid">
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php echo validation_errors(); ?>
 							</div>
 							<div class="content">
-								<form method="post" action="http://localhost/e-learning_karisma/pg_admin/testimoni_siswa/add_testimonial" enctype="multipart/form-data">
+								<form method="post" action="<?= base_url('pg_admin/testimoni_siswa/add_testimonial')?>" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-md-4">
 											<div class="form-group">
@@ -60,30 +60,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div> <!-- end .content -->
 
-		<?php include "footer.php"; ?>
+		<?php include "inc/footer.php"; ?>
 
 	</div>
 </div>
 
-<?php include "alert_modal.php"; ?>
+<?php include "alert/alert_modal.php"; ?>
 </body>
 
 <!--   Core JS Files   -->
-<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
-<script src="<?php echo base_url('assets/js/bootstrap.min.js" type="text/javascript');?>"></script>
+<script src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js" type="text/javascript');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js" type="text/javascript');?>"></script>
 
 <!--  Nestable Plugin    -->
-<script src="<?php echo base_url('assets/js/plugins/nestable/jquery.nestable.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/nestable/js/jquery.nestable.js');?>"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
-<script src="<?php echo base_url('assets/js/bootstrap-checkbox-radio-switch.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-checkbox-radio-switch/bootstrap-checkbox-radio-switch.js');?>"></script>
 
 <!--  Notifications Plugin    -->
-<script src="<?php echo base_url('assets/js/bootstrap-notify.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-notify/bootstrap-notify.js');?>"></script>
 
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="<?php echo base_url('assets/js/light-bootstrap-dashboard.js');?>"></script>
+<script src="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/js/light-bootstrap-dashboard.js');?>"></script>
 
 <!-- PLUGINS FUNCTION -->
  <!-- Nestable plugin  -->
@@ -152,67 +152,6 @@ $(document).ready(function()
 					output.val('JSON browser support required for this demo.');
 			}
 	};
-
-	// activate Nestable for list 1
-	// $('#nestable').nestable({ group: 1, maxDepth: 2 }).on('change', updateOutput);
-	
-	// activate Nestable per id_mapel
-	<?php foreach ($list_mapel as $init_mapel) {
-		?>
-		$('<?php echo "#nestable_".$init_mapel->id_mapel;?>').nestable({ 
-			group: 1, 
-			maxDepth: 3,
-			enableHMove: false 
-		}).on('change', updateOutput);
-
-		// updateOutput($('<?php echo "#nestable_".$init_mapel->id_mapel;?>').data('output', $('#nestable-output')));
-		<?php
-	}?>
-
-	// output initial serialised data
-	// updateOutput($('#nestable').data('output', $('#nestable-output')));
-
-	$('.nestable-menu').on('click', function(e)
-	{
-			var target = $(e.target),
-					action = target.data('action');
-			if (action === 'expand-all') {
-					$('.dd').nestable('expandAll');
-			}
-			if (action === 'collapse-all') {
-					$('.dd').nestable('collapseAll');
-			}
-	});
-
-	$("[id*='demo-']").on('click', function(e)
-	{
-		var e_id = $(this).attr('id');
-		var element = $("[id^='"+e_id+"'");
-
-		var ids = e_id.split('-');
-		var id_sub = ids[1];
-
-		console.log(id_sub);
-
-		$.post("<?php echo base_url('pg_admin/dashboard/ajax_set_demo'); ?>",
-			{
-				id: id_sub, 
-			},
-			function(data, status) {
-					console.log("\nStatus: " + status + "\nData: " + data);
-					if(data == 1)
-					{
-						console.log(element);
-						if(element.hasClass('btn-fill')) {
-							element.removeClass('btn-fill');
-						}
-						else {
-							element.addClass('btn-fill');
-						}
-					}
-			})
-
-	});
 
 });
 </script>

@@ -65,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--  Core CSS  -->
 		<link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />		
 		<!--   Core JS Files   -->
-	 	<script src="<?php echo base_url('assets/plugins/jquery/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
+	 	<script src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
 		<script src="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.js');?>"></script>
 </head>
 <body>

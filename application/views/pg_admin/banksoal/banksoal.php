@@ -175,8 +175,8 @@ $(function(){
     <?php $this->load->view("pg_admin/inc/footer.php"); ?>
 
 <!--  Datatables Plugin -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/dataTables/js/jquery.dataTables.min.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/dataTables/js/dataTables.bootstrap.min.js');?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/plugins.js');?>"></script>
 <div id="list_modal">
 <?php
@@ -210,9 +210,9 @@ $no++;
 
 <!--  Datatables Plugin -->
 <script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/jquery.dataTables.min.js'); ?>"></script>
+        src="<?php echo base_url('assets/plugins/dataTables/js/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript"
-        src="<?php echo base_url('assets/js/plugins/datatables/dataTables.bootstrap.min.js'); ?>"></script>
+        src="<?php echo base_url('assets/plugins/dataTables/js/dataTables.bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/plugins/plugins.js'); ?>"></script>
 
 </html>
