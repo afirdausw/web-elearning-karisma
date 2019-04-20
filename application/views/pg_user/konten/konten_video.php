@@ -1,5 +1,5 @@
 <?php
-$judul_tab = $sub_materi->materi_pokok_id.".".$sub_materi->urutan_materi." ".$sub_materi->nama_sub_materi;
+$judul_tab = $sub_materi->nama_sub_materi;
 $this->load->view('pg_user/inc/header.php');
 ?>
 
@@ -63,9 +63,15 @@ $this->load->view('pg_user/inc/header.php');
                                         $prev = $prev_mapok;
                                     }
                                     $prev_url = "#";
-                                    if ($prev->kategori == "1") { $prev_url = base_url('konten/detail/' . $prev->id_konten); }
-                                    if ($prev->kategori == "2") { $prev_url = base_url('konten/detail_video/' . $prev->id_konten); }
-                                    if ($prev->kategori == "3") { $prev_url = base_url('konten/detail_soal/' . $prev->id_konten); }
+                                    if ($prev->kategori == "1") {
+                                        $prev_url = base_url('konten/detail/' . $prev->id_konten);
+                                    }
+                                    if ($prev->kategori == "2") {
+                                        $prev_url = base_url('konten/detail_video/' . $prev->id_konten);
+                                    }
+                                    if ($prev->kategori == "3") {
+                                        $prev_url = base_url('konten/detail_soal/' . $prev->id_konten);
+                                    }
 
                                     echo '<li><a href="'.$prev_url.'" title="'.$prev->nama_sub_materi.'" class="prev-materi"><span class="ti-angle-left"></span> Sebelumnya</a></li>';
                                 }
@@ -79,11 +85,17 @@ $this->load->view('pg_user/inc/header.php');
                                         $next = $next_mapok;
                                     }
                                     $next_url = "#";
-                                    if ($next->kategori == "1") { $next_url = base_url('konten/detail/' . $next->id_konten); }
-                                    if ($next->kategori == "2") { $next_url = base_url('konten/detail_video/' . $next->id_konten); }
-                                    if ($next->kategori == "3") {  $next_url = base_url('konten/detail_soal/' . $next->id_konten); }
+                                    if ($next->kategori == "1") {
+                                        $next_url = base_url('konten/detail/' . $next->id_konten);
+                                    }
+                                    if ($next->kategori == "2") {
+                                        $next_url = base_url('konten/detail_video/' . $next->id_konten);
+                                    }
+                                    if ($next->kategori == "3") {
+                                        $next_url = base_url('konten/detail_soal/' . $next->id_konten);
+                                    }
 
-                                    echo '<li><a href="'.$next_url.'" title="'.$next->nama_sub_materi.'" class="next-materi">Selanjutnya <span class="ti-angle-right"></span></a></li>';
+                                    echo '<li><a href="' . $next_url . '" title="' . $next->nama_sub_materi . '" class="next-materi">Selanjutnya <span class="ti-angle-right"></span></a></li>';
                                 }
                             ?>
                         </ul>

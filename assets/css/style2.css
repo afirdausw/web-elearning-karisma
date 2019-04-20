@@ -1768,3 +1768,347 @@ footer a:hover:not(.logo-footer) {
 .link-history:hover {
     text-decoration: none;
 }
+
+
+/* PAGE LIST DETAIL HARGA MATERI  */
+.materi-top-header {
+    color: #FFF;
+    height: 120px;
+    background-color: #00000090;
+}
+.materi-top-header:after {
+    width: 0;
+    height: 0;
+    content: "";
+    left: 50%;
+    margin-top: 21px;
+    margin-left: -10px;
+    position: absolute;
+    border-bottom: 15px solid #FFF;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.materi-top-header .background {
+    background-position: center !important;
+    background-size: cover !important;
+    position: absolute;
+    filter: blur(15px);
+    height: 120px;
+    width: 100%;
+    margin-top: 70px;
+    z-index: -1;
+    top: -10px;
+    left: -5px;
+    bottom: 10px;
+}
+.materi-top-header h1 {
+    font-size: 26px;
+    font-weight: 300;
+    margin: 20px 0 8px 0;
+}
+.materi-top-header h2 {
+    color: #E59228;
+    font-size: 26px;
+    margin: 5px 0 0 0;
+}
+.materi-konten .text-center h1 {
+    font-size: 26px;
+    margin: 40px 0 10px;
+}
+.materi-konten .text-center h3 {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 0 20px;
+}
+.materi-video {
+    margin: 20px auto;
+    width: 70%;
+    font-size: 15px;
+    border: solid 1px #777;
+    box-shadow: 1px 1px 15px #BBB;
+}
+.materi-video .top {
+    padding: 20px;
+}
+.materi-video .bottom {
+    border-top: solid 1px #AAA;
+    text-align: justify;
+    padding: 20px;
+}
+.materi-video img {
+    width: 100%;
+}
+.wrap-materi-list .judul-list-materi {
+    font-size: 20px;
+    margin-top: 0;
+}
+.wrap-materi-list ul {
+    margin: 0;
+    padding: 0;
+}
+.wrap-materi-list ul li {
+    font-style: italic;
+    list-style: none;
+    margin-bottom: 5px;
+}
+.wrap-materi-list ul li > b:after {
+    content: " : "
+}
+.wrap-materi-list .row > .col-md-2 .icon {
+    margin-top: 40px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+    padding: 15px;
+    border: solid 1px #777;
+    background: #FFF;
+}
+.wrap-materi-list .row > .col-md-2 .icon img {
+    width: 90%;
+}
+
+
+/* TIMELINE */
+.wrap-materi-list {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto 0;
+}
+.wrap-materi-list::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background-color: #AAA;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-top: 20px;
+    margin-left: 0;
+}
+.wrap-materi-list .wrap-content {
+    padding: 10px 50px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+.wrap-materi-list .wrap-content::after {
+    content: url('../images/open-book.png');
+    position: absolute;
+    top: 15px;
+    width: 80px;
+    height: 80px;
+    right: -42px;
+    padding: 16px 0 0 18px;
+    box-sizing: border-box;
+    border: solid 1px #AAA;
+    background-color: #FFF;
+    border-radius: 50%;
+    z-index: 1;
+}
+.wrap-materi-list .left {
+    left: 0;
+}
+.wrap-materi-list .right {
+    left: 50%;
+}
+.wrap-materi-list .right::after {
+    left: -38px;
+}
+.wrap-materi-list .content {
+    padding: 10px 30px;
+    position: relative;
+}
+.wrap-materi-list .left .content {
+    text-align: right;
+}
+.wrap-materi-list .right .content {
+    text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+    .wrap-materi-list::after {
+        left: 32px;
+        width: 1px;
+        top: 20px;
+    }
+    .wrap-materi-list .wrap-content {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    .wrap-materi-list .wrap-content::after {
+        top: 25px;
+        bottom: 30px;
+        width: 60px;
+        height: 60px;
+        padding: 7px 0 0 10px;
+    }
+    .wrap-materi-list .wrap-content::before {
+        left: 60px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+    }
+    .wrap-materi-list .left::after,
+    .wrap-materi-list .right::after {
+        left: 2px;
+    }
+    .wrap-materi-list .right {
+        left: 0%;
+    }
+    .wrap-materi-list .left .content {
+        text-align: left;
+    }
+    .wrap-materi-list .right .content {
+        text-align: left;
+    }
+}
+
+
+/* LIST MATERI */
+.materi-list {
+    width: 80%;
+    margin: 50px auto 0;
+    border: solid 1px #999;
+    border-radius: 8px;
+}
+.materi-list .row {
+    margin: 0;
+}
+.materi-list .row:not(.materi-list-header) {
+    height: 60px;
+    line-height: 60px;
+}
+.materi-list .row:nth-last-child(2n) {
+    background: #F2F2F2;
+}
+.materi-list .row .text-left {
+    font-size: 17px;
+    font-weight: 600;
+}
+.materi-list .row i {
+    font-size: 24px;
+}
+.materi-list .row .col-md-2 {
+    width: 22.2233%;
+}
+.materi-list .row i.fa-check {
+    color: #0579AA;
+}
+.materi-list .row i.fa-times {
+    color: #D24130;
+}
+.materi-list .row .btn-beli {
+    padding: 0 8px 1px;
+    text-transform: capitalize;
+}
+.materi-list .row b {
+    font-style: italic;
+}
+.materi-list-header {
+    color: #FFF;
+    padding: 25px 0;
+    background: #1D2D3C;
+    margin: -1px -1px 0 -1px !important;
+    border-radius: 8px 8px 0 0;
+}
+.materi-list-header h3 {
+    font-style: italic;
+    text-transform: capitalize;
+    margin: 15px 0 0 !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+.materi-list-header h3:before,
+.materi-list-header h3:after {
+    content: 'ˮ';
+    font-style: italic;
+}
+.materi-list-header .basic,
+.materi-list-header .silver,
+.materi-list-header .gold {
+    padding: 0px 12px 3px 12px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+.materi-list-header .basic {
+    background: #93BB3E;
+}
+.materi-list-header .silver {
+    background: #EEEEEE;
+    color: #111;
+}
+.materi-list-header .gold {
+    background: #E59023;
+}
+.materi-list-header p {
+    margin: 8px 0 0;
+    color: #CCC;
+}
+
+/* PAGE CARA PEMBELAJARAN */
+.wrap-cara {
+    position: relative;
+    margin-top: 50px;
+    max-width: 100%;
+}
+.wrap-cara:after {
+    content: '';
+    width: 1px;
+    position: absolute;
+    background-color: #888;
+    top: 0;
+    left: 50%;
+    bottom: 0;
+    margin-top: 60px;
+    margin-bottom: 120px;
+    margin-left: 0;
+    z-index: -1;
+}
+.wrap-cara .row {
+    margin-bottom: 70px;
+}
+.wrap-cara .row .icon {
+    left: 32.5%;
+    width: 60px;
+    height: 60px;
+    margin: 50px 0;
+    position: relative;
+    display: inline-block;
+    border: solid 1px #555;
+    background: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 55px;
+    font-size: 45px;
+    color: #666;
+}
+.wrap-cara .step-title {
+    cursor: default;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 8px 20px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+}
+.wrap-cara p:nth-child(2n) {
+    font-size: 16px;
+    font-weight: 600;
+}
+.wrap-cara p:nth-child(3n) {
+    font-size: 18px;
+    font-style: italic;
+    text-align: justify;
+    line-height: 1.3;
+    direction:rtl;
+    float: right;
+    width: 90%;
+}
+.wrap-cara .text-left p {
+    direction: ltr;
+    float: none;
+}

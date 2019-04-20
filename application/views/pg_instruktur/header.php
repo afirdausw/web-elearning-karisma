@@ -16,16 +16,42 @@
     <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
     <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/themify-icons.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/font-awesome.min.css'); ?>">
+    <!--
+        Plugin
+    -->
+    <!-- Bootstrap -->
+    <!-- Bootstrap 3 CSS-->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
+    <!--  Datatables (Bootstrap) Plugin CSS    -->
+    <link href="<?php echo base_url('assets/plugins/dataTables/css/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
+    <!--  Bootstrap Switch Plugin CSS    -->
+    <link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
+    <!-- BS 4 Margin -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-4/css/bs-4-margin.css'); ?>">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bootstrap.css'); ?>">
-    <link rel="stylesheet" type="text/css"
-          href="<?php echo base_url('assets/pg_user/css/jquery.mCustomScrollbar.min.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/style2.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/custom.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/responsive.css'); ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
+    
+    <!-- ETC -->
+    <!-- Animation library notifications -->
+    <link href="<?php echo base_url('assets/plugins/animate/animate.min.css');?>" rel="stylesheet"/>
+    <!--  Chosen Select Box Plugin -->
+    <link href="<?php echo base_url('assets/plugins/jquery/jquery-chosen/css/chosen.css');?>" rel="stylesheet"/>
+    <!--  Awesomplate CSS  -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/awesomplete/awesomplete.css');?>" />
+    <!--  Nestable (JQuery)-->
+    <link href="<?php echo base_url('assets/plugins/nestable/css/nestable.css');?>" rel="stylesheet"/>
+    <!-- nProgress -->
+    <link href="<?php echo base_url('assets/plugins/nprogress/css/nprogress.css'); ?>" rel='stylesheet' />
+    <!--  jQuery UI   -->
+    <link href="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
+
+
+    <!--  Core CSS  -->
+    <link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />		
+    <!--   Core JS Files   -->
+    <script src="<?php echo base_url('assets/plugins/jquery/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.js');?>"></script>
     <style>
         /* Footer optimization */
         html, body {
@@ -52,7 +78,7 @@
                     </div>
 
                     <div class="sidebar-header">
-                        <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px"
+                        <img src="<?php echo base_url('assets/img/merk/header-logo.png') ?>" width="250px"
                              height="38px"
                              alt="Karisma Academy">
                     </div>
@@ -77,7 +103,7 @@
                 </div>
 
                 <div class="sidebar-header">
-                    <img src="<?php echo base_url('assets/pg_user/images/header-logo.png') ?>" width="250px"
+                    <img src="<?php echo base_url('assets/img/merk/header-logo.png') ?>" width="250px"
                          height="38px"
                          alt="Karisma Academy">
                 </div>

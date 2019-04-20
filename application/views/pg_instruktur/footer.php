@@ -1,4 +1,4 @@
-    </div>
+</div>
 </div>
 <section id="bawah">
     <div class="container">
@@ -66,16 +66,17 @@
     </div>
 </a>
 
+<!-- Javascript -->
 <script>
     var base_url = "<?= base_url() ?>";
 </script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/jquery-1.11.3.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/cart.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/bootstrap.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/js/cart.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/bootstrap-3/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript"
-        src="<?php echo base_url('assets/pg_user/js/jquery.CustomScrollbar.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-sidebar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/pg_user/js/my-collapse.js'); ?>"></script>
+        src="<?php echo base_url('assets/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/my/my-sidebar.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/plugins/my/my-collapse.js'); ?>"></script>
 
 <script>
     var base_url = "<?= base_url() ?>";

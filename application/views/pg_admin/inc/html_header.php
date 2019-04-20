@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--  Light Bootstrap Table core CSS    -->
 		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
 		<!--  Datatables (Bootstrap) Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
+		<link href="<?php echo base_url('assets/plugins/dataTables/css/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
 		<!--  Bootstrap Switch Plugin CSS    -->
 		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
 		<!-- BS 4 Margin -->

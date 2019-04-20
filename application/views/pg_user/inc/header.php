@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php ?>
     <title><?= ((isset($judul_tab) AND $judul_tab != '') ? $judul_tab . " - " : "") ?>Karisma Academy - Sertifikasi
         Online</title>
 

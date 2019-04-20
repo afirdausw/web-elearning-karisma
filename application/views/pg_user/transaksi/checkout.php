@@ -132,7 +132,7 @@ $this->load->view('pg_user/inc/header');
                                                   class="label label-danger">Belum Dibayar</span>
                                         <?php } elseif (isset($transaksi->status) && $transaksi->status == 2) { ?>
                                             <span style="font-size: 14px;" class="label label-warning">Menunggu Konfirmasi Admin</span>
-                                        <?php } else { ?>
+                                        <?php } elseif (isset($transaksi->status) && $transaksi->status == 1) { ?>
                                             <span class="label label-success">Sudah Dibayar</span>
                                         <?php } ?>
                                     </div>
@@ -287,7 +287,7 @@ $this->load->view('pg_user/inc/header');
                                         <span style="font-size: 14px;" class="label label-danger">Belum Dibayar</span>
                                     <?php } elseif (isset($transaksi->status) && $transaksi->status == 2) { ?>
                                         <span style="font-size: 14px;" class="label label-warning">Menunggu Konfirmasi Admin</span>
-                                    <?php } else { ?>
+                                    <?php } elseif (isset($transaksi->status) && $transaksi->status == 1) { ?>
                                         <span class="label label-success">Sudah Dibayar</span>
                                     <?php } ?>
                                 </td>
@@ -377,7 +377,7 @@ $this->load->view('pg_user/inc/header');
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <?php if ($transaksi->status == 1 || $transaksi->status == 0) {
-                                        $gambar = base_url() . "/assets/img/no-image.jpg";
+                                        $gambar = base_url() . "/assets/img/icon/no-image.jpg";
                                     } else {
                                         $gambar = base_url() . "/assets/uploads/bukti_transfer/" . $transaksi->bukti_pembayaran; ?>
                                         <a href="<?= $gambar ?>" class="col-md-6 input-sm">Lihat Gambar</a>

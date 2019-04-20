@@ -39,7 +39,7 @@ class Konten extends CI_Controller
             $mapok_baru = json_decode(json_encode($mapok_baru), FALSE);
             $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
                 
                 'siswa'          => $siswa,
@@ -52,7 +52,7 @@ class Konten extends CI_Controller
                 'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
                 'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
                 'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-            );
+            ];
 //            return $this->output
 //                ->set_content_type('application/json')
 //                ->set_status_header(500)
@@ -81,11 +81,11 @@ class Konten extends CI_Controller
 
         $pretest_logged = $this->session->userdata('pretest_logged_in');
         $siswa_logged = $this->session->userdata('siswa_logged_in');
-        if($siswa_logged){
+        if ($siswa_logged) {
             $id = $this->session->userdata('id_siswa');
             $siswa = $this->Model_pg->get_data_user($this->session->userdata('id_siswa'));
             $jenis_siswa = "siswa";
-        }else if ($pretest_logged){
+        } else if ($pretest_logged) {
             $id = $this->session->userdata('pretest_id');
             $siswa = "";
             $jenis_siswa = "pretest";
@@ -120,7 +120,7 @@ class Konten extends CI_Controller
             // END PRE
             $konten = $this->Model_pg->get_konten_by_sub_materi($sub_materi_1->id_sub_materi)[0];
 
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
                 'siswa'          => $siswa,
@@ -134,7 +134,7 @@ class Konten extends CI_Controller
                 'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
                 'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
                 'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-            );
+            ];
 
             // return $this->output
             // ->set_content_type('application/json')
@@ -220,13 +220,13 @@ class Konten extends CI_Controller
             }
         }
 
-        $where = array(
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
 
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
 
-        $data = array(
+        $data = [
             "kelas_navbar" => $kelas_navbar,
 
             'siswa'          => $siswa,
@@ -241,7 +241,7 @@ class Konten extends CI_Controller
             'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
             'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
             'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
+        ];
         //        return $this->output
         //            ->set_content_type('application/json')
         //            ->set_status_header(500)
@@ -305,12 +305,12 @@ class Konten extends CI_Controller
             }
         }
 
-        $where = array(
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
 
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
-        $data = array(
+        $data = [
             "kelas_navbar" => $kelas_navbar,
 
             'siswa'          => $siswa,
@@ -325,7 +325,7 @@ class Konten extends CI_Controller
             'prev'           => $this->Model_pg->get_prev_konten($konten->id_konten),
             'next_mapok'     => $this->Model_pg->get_next_mapok($materi->id_materi_pokok),
             'prev_mapok'     => $this->Model_pg->get_prev_mapok($materi->id_materi_pokok),
-        );
+        ];
         $this->load->view('pg_user/konten/konten_video', $data);
     }
 
@@ -394,7 +394,7 @@ class Konten extends CI_Controller
                 $this->update_log_baca($id, $sub_materi_1->id_sub_materi, $jenis_siswa);
             }
             $data_log = $this->Model_konten->select_log_data_result($check);
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
                 'materi_pokok'   => $mapok_baru,
@@ -411,7 +411,7 @@ class Konten extends CI_Controller
 
                 'test_jum' => $this->Model_konten->select_log_count_pretest($check),
                 'log'      => $this->Model_konten->select_log_data_pretest($check),
-            );
+            ];
             if ($this->session->userdata('pretest_id')) {
                 //error
                 $jawab_data = [
@@ -445,7 +445,7 @@ class Konten extends CI_Controller
                 ];
             }
             $data_log = $this->Model_konten->select_log_data_result($check);
-            $data = array(
+            $data = [
                 "kelas_navbar" => $kelas_navbar,
 
                 'siswa'          => $siswa,
@@ -463,7 +463,7 @@ class Konten extends CI_Controller
 
                 'test_jum' => $this->Model_konten->select_log_count($check),
                 'log'      => $this->Model_konten->select_log_data($check),
-            );
+            ];
             if (isset($siswa->id_siswa)) {
                 if($siswa_logged){
                     $id = $this->session->userdata('id_siswa');
@@ -505,9 +505,9 @@ class Konten extends CI_Controller
 
         }
         
-        $where = array(
+        $where = [
             "mata_pelajaran.id_mapel" => $mapok[0]->id_mapel,
-        );
+        ];
         $instruktur = $this->Model_instruktur->get_instruktur_by_mapel($where);
         $data["instruktur"] = $instruktur;
         $this->load->view('pg_user/konten/konten_soal', $data);

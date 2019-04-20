@@ -61,7 +61,7 @@ $this->load->view('pg_user/inc/header.php');
                             <a href="<?= base_url() . 'materi/' . $data->id_mapel ?>">
                                 <!-- <span class="badge-diskon">Diskon 25%</span> -->
                                 <div class="mapel-image">
-                                    <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/no-image.jpg') : base_url() . 'assets/img/no-image.jpg') ?>"
+                                    <img src="<?= (isset($data->gambar_mapel) ? (!empty($data->gambar_mapel) ? base_url() . 'image/mapel/' . $data->gambar_mapel : base_url() . 'assets/img/icon/no-image.jpg') : base_url() . 'assets/img/icon/no-image.jpg') ?>"
                                         alt="Thumbnail Kursus <?= $data->nama_mapel ?>">
                                 </div>
                                 <div class="caption">
