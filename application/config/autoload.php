@@ -296,5 +296,6 @@ $autoload['model'] = array(
     "Model_voucher",
     "Model_voucher_baru",
     "Model_Transaksi",
+    "Model_Testimoni",
 );
 

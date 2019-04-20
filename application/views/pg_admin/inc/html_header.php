@@ -5,8 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Ready to Merge 
-	<?php if(isset($page_title)){echo $page_title." - ";}?>Karisma 
+	<title> <?php if(isset($page_title)){echo $page_title." - ";}?>Karisma 
 	<?php 
 		if(uri_string()== "psep_sekolah/login"){
 			echo "Sekolah / Guru";}else{echo "Admin";

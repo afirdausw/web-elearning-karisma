@@ -189,9 +189,8 @@
 										?>
 										<?php } else { ?>
 										<tr><td colspan="8"><i>No Data Found</i></td></tr>
-										<?php }?>
+										<?php } ?>
 										</tbody>
 									</table>
 									<?php echo $paginator;?>
 								</div>
-

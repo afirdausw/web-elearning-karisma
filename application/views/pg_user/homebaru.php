@@ -186,7 +186,7 @@
                 <div class="col-xs-<?= $colBagi ?> col-md-<?= $colBagi ?>">
                     <div class="p-5">
                         <img src="<?= "{$val['icon']}" ?>" alt="<?= "{$val['title']}" ?>" class="img-responsive"
-                             style="border-radius:100%;">
+                            style="border-radius:100%; max-width: 80%; display: inline;">
                     </div>
                     <h2 class="my-2"><b><?= "{$val['title']}" ?></b></h2>
                     <p class="text-gray-3 m-0 text-center"><?= "{$val['detail']}" ?></p>

@@ -1,79 +1,66 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-	
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title> <?php if(isset($page_title)){echo $page_title." - ";}?>Karisma Instruktur Dashboard</title>
+	
 	<meta charset="utf-8" />
-			<link rel="icon" href="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>">
-			<link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>" >
-			<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/icon-lpi.png');?>" >
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>
-	<?php if(isset($page_title))
-	{echo $page_title." - ";}
-	?>Karisma 
-	<?php if(uri_string()== "psep_sekolah/login"){
-			echo "Sekolah / Guru";
-		}else{
-			echo "Admin";
-		}
-
-		?>
-	 Dashboard</title>
-
-	 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-		<meta name="viewport" content="width=device-width" />
+	
+	<!--
+		FAVICON
+	-->
+	<link rel="icon" href="<?php echo base_url('assets/img/merk/favicon.ico');?>">
+	<link rel="icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico');?>" >
+	<link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico');?>" >
 
 
-		<!-- Bootstrap core CSS     -->
-		<link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" />
-
-		<!-- Animation library for notifications   -->
-		<link href="<?php echo base_url('assets/css/animate.min.css');?>" rel="stylesheet"/>
-
-		<!--  Light Bootstrap Table core CSS    -->
-		<link href="<?php echo base_url('assets/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
-
-		
-		<!--  CSS for Karisma PG_Admin  -->
-		<link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />
-		
-		<link href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
-
-
-		<!--     Fonts and icons     -->
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<!--
+			Fonts and icons
+		-->
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-		<link href="<?php echo base_url('assets/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
+		<link href="<?php echo base_url('assets/plugins/fontawesome-4.7/css/font-awesome.min.css');?>" rel="stylesheet">
+		<link href="<?php echo base_url('assets/plugins/pe-icon-7/css/pe-icon-7-stroke.css" rel="stylesheet');?>" />
 
-		<!-- ADDITIONAL -->
-		<!--  Chosen Select Box Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/chosen.css');?>" rel="stylesheet"/>
-		
-		<!--  Awseomplate Plugin CSS  -->
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/awesomplete.css');?>" />
-		
+		<!--
+			Plugin
+		-->
+		<!-- Bootstrap -->
+		<!-- Bootstrap 3 CSS-->
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/css/bootstrap.min.css');?>" rel="stylesheet" />
+		<!--  Light Bootstrap Table core CSS    -->
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/light-bootstrap-dashboard/css/light-bootstrap-dashboard.css');?>" rel="stylesheet"/>
 		<!--  Datatables (Bootstrap) Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
-		
-		<!--  Nestable (JQuery) Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/nestable.css');?>" rel="stylesheet"/>
-		
+		<link href="<?php echo base_url('assets/plugins/dataTables/css/dataTables.bootstrap.min.css');?>" rel="stylesheet"/>
 		<!--  Bootstrap Switch Plugin CSS    -->
-		<link href="<?php echo base_url('assets/css/plugins/bootstrap-switch.min.css');?>" rel="stylesheet"/>
-		
-		<!-- Progress -->
-		<link href="<?php echo base_url('assets/css/nprogress.css'); ?>" rel='stylesheet' />
+		<link href="<?php echo base_url('assets/plugins/bootstrap-3/plugins/bootstrap-switch/bootstrap-switch.min.css');?>" rel="stylesheet"/>
 		<!-- BS 4 Margin -->
-	    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/pg_user/css/bs-4-margin.css'); ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/bootstrap-4/css/bs-4-margin.css'); ?>">
 
-		<!--   Core JS Files   -->
-	 		<script src="<?php echo base_url('assets/js/jquery-3.2.1.js" type="text/javascript');?>"></script>
 		
-		<script src="<?php echo base_url('assets/js/jquery-ui/jquery-ui.js');?>">
-		</script>
+		<!-- ETC -->
+		<!-- Animation library notifications -->
+		<link href="<?php echo base_url('assets/plugins/animate/animate.min.css');?>" rel="stylesheet"/>
+		<!--  Chosen Select Box Plugin -->
+		<link href="<?php echo base_url('assets/plugins/jquery/jquery-chosen/css/chosen.css');?>" rel="stylesheet"/>
+		<!--  Awesomplate CSS  -->
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/plugins/awesomplete/awesomplete.css');?>" />
+		<!--  Nestable (JQuery)-->
+		<link href="<?php echo base_url('assets/plugins/nestable/css/nestable.css');?>" rel="stylesheet"/>
+		<!-- nProgress -->
+		<link href="<?php echo base_url('assets/plugins/nprogress/css/nprogress.css'); ?>" rel='stylesheet' />
+		<!--  jQuery UI   -->
+		<link href="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.css" rel="stylesheet');?>" />
+
+
+		<!--  Core CSS  -->
+		<link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />		
+		<!--   Core JS Files   -->
+	 	<script src="<?php echo base_url('assets/plugins/jquery/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
+		<script src="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.js');?>"></script>
 </head>
 <body>

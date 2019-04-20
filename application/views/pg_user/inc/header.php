@@ -129,9 +129,6 @@
                                 <li>
                                     <a href="<?php echo base_url(); ?>" role="button"aria-expanded="false">Beranda</a>
                                 </li>
-                                <li>
-                                    <a href="#" role="button" aria-expanded="false">Tentang Kami</a>
-                                </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                     aria-expanded="false">Kursus <span class="arrow-down ti-angle-down"></span></a>

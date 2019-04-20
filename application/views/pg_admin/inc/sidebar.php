@@ -158,6 +158,23 @@ Tip 2: you can also add an image using data-image tag
 			}
 		?>
 		<!-- END INSTRUKTUR -->
+		
+		<!-- START TESTIMONI -->
+		<?php
+			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
+				$menuSlug = "testimoni_siswa";
+				$menuTitle = ucwords(strtolower($menuSlug));
+		?>
+				<li class="<?php echo ($active=="{$menuSlug}" ? 'active' : '')?>">
+					<a href="<?php echo site_url("pg_admin/{$menuSlug}") ?>">
+						<i class="pe-7s-comment"></i>
+						<p><?="{$menuTitle}"?></p>
+					</a>
+				</li>
+		<?php
+			}
+		?>
+		<!-- END INSTRUKTUR -->
 		<?php
 			if($this->session->userdata('level') == "superadmin" or $this->session->userdata('level') == "admin"){
 		?>

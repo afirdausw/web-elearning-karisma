@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
-    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/dashboard/images/favicon.ico'); ?>">
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
+    <link rel="icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
+    <link rel="apple-touch-icon" sizes="130x128" href="<?php echo base_url('assets/img/merk/favicon.ico'); ?>">
 
     <!--
         Plugin
@@ -50,7 +50,7 @@
     <!--  Core CSS  -->
     <link href="<?php echo base_url('assets/css/pg_admin.css" rel="stylesheet');?>" />		
     <!--   Core JS Files   -->
-    <script src="<?php echo base_url('assets/plugins/jquery/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/plugins/jquery/jquery-1.12.4.min.js');?>" type="text/javascript"></script>
     <script src="<?php echo base_url('assets/plugins/jquery/jquery-ui/jquery-ui.js');?>"></script>
     <style>
         /* Footer optimization */

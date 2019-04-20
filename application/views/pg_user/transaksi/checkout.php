@@ -228,9 +228,9 @@ $this->load->view('pg_user/inc/header');
                     <div class="table-responsive">
                         <table class="table table-hover m-0">
                             <colgroup>
-                                <col class="col-md-2">
+                                <col class="col-xs-2 col-md-2">
                                 <col class="col-md-7">
-                                <col class="col-2 col-md-4">
+                                <col class="col-md-4">
                             </colgroup>
                             <?php
                             $total = 0;
@@ -389,12 +389,8 @@ $this->load->view('pg_user/inc/header');
                             <?php
                             if ($transaksi->status == 0) {
                                 ?>
-                                <div class="form-group">
-                                    <div class="offset-md-6 col-md-6 col-sm-12 pull-right text-right">
-                                        <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">
-                                            Kirim
-                                        </button>
-                                    </div>
+                                <div class="form-group  text-right">
+                                    <button type="submit" class="btn btn-warning px-5" style="font-size: 12pt;">Kirim</button>
                                 </div>
                             <?php } ?>
                         </div>
