@@ -68,6 +68,7 @@ $route['kelas/(:any)'] = 'kelas/index/$1';
 $route['hasil/(:any)'] = 'hasil/index/$1';
 $route['konfirmasi-pembayaran/(:any)'] = 'konfirmasi/index/$1';
 $route['history-transaksi'] = 'konfirmasi/history_transaksi';
+$route['testimoni_siswa/(:any)'] = 'testimoni_siswa/index/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
